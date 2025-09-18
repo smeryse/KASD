@@ -12,6 +12,8 @@ namespace ЛР2
         public string Name { get; set; }
         public uint Population { get; set; }
         public uint Area { get; set; }
-
+        public static State operator +(State s1, State s2)
+            {
+            }
     }
 }
