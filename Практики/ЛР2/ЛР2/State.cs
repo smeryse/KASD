@@ -13,32 +13,43 @@ namespace ЛР2
         public string Name { get; set; }
         public uint Population { get; set; }
         public uint Area { get; set; }
+
+        public State() { }
+        public State(string name, uint population, uint area)
+        {
+            Name = name;
+            Population = population;
+            Area = area;
+        }
+        
+        // Перегрузка операторов сравнения
         public static State operator +(State s1, State s2)
         {
-            string name = s1.Name;
-            uint population = s1.Population + s2.Population;
-            uint area = s1.Area + s2.Area;
-            return new State { Name = name, Population = population, Area = area };
+            return new State ( s1.Name, s1.Population + s2.Population, s1.Area + s2.Area );
         }
+
+
         public static bool operator >(State s1, State s2)
         {
-            if (s1.Area > s2.Area) { return true; }
-            else { return false; }
+            return s1?.Area > s2?.Area;
         }
+
+
         public static bool operator <(State s1, State s2)
         {
-            if (s1.Area < s2.Area) { return true; }
-            else { return false; }
+            return s1?.Area < s2?.Area;
         }
+
+
         public static bool operator ==(State s1, State s2)
         {
-            if (s1.Area == s2.Area) { return true; }
-            else { return false; }
+            return s1?.Area == s2?.Area;
         }
+
+
         public static bool operator !=(State s1, State s2)
         {
-            if (s1.Area != s2.Area) { return true; }
-            else { return false; }
+            return s1?.Area != s2?.Area;
         }
     }
 }
