@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ЛР2
 {
-    class Republic
+    class Republic : State
     {
+
     }
 }

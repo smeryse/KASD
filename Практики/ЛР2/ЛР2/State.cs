@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.SqlServer.Server;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,9 @@ namespace ЛР2
 {
     class State
     {
+        public string Name { get; set; }
+        public uint Population { get; set; }
+        public uint Area { get; set; }
+
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ЛР2
 {
-    class Monarchy
+    class Monarchy : State
     {
     }
 }
