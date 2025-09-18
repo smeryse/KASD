@@ -1,0 +1,21 @@
+{
+	"nodes":[
+		{"id":"0852c4923183f933","type":"group","x":-360,"y":20,"width":200,"height":201,"label":"State"},
+		{"id":"f02c4242424efbac","type":"group","x":440,"y":300,"width":300,"height":118,"label":"ConstitutionalMonarchy"},
+		{"id":"ab89f3c61971dbf6","type":"group","x":440,"y":103,"width":240,"height":118,"label":"AbsoluteMonarchy"},
+		{"id":"ee7d42ace5b9ee90","type":"group","x":220,"y":103,"width":149,"height":118,"label":"Monarchy"},
+		{"id":"fc63a28e205395d1","type":"group","x":920,"y":300,"width":140,"height":118,"label":"Kigdom"},
+		{"id":"91b8a7e2836a34ce","type":"group","x":220,"y":-113,"width":149,"height":93,"label":"Republic"},
+		{"id":"ecf2c50b21dedfe7","type":"text","text":"Republic, monarchy, Kingdom, State","x":-284,"y":-333,"width":250,"height":60},
+		{"id":"cb64a1b9ae8be26d","type":"text","text":"string Name","x":-340,"y":40,"width":169,"height":50},
+		{"id":"10c8b6dbf2021d5c","type":"text","text":"uint Population","x":-340,"y":90,"width":169,"height":50},
+		{"id":"7374a877df1edcc8","type":"text","text":"uint Area","x":-340,"y":140,"width":169,"height":50}
+	],
+	"edges":[
+		{"id":"1bf125abaad883f6","fromNode":"0852c4923183f933","fromSide":"right","toNode":"91b8a7e2836a34ce","toSide":"left"},
+		{"id":"a4770fb42a41db6c","fromNode":"0852c4923183f933","fromSide":"right","toNode":"ee7d42ace5b9ee90","toSide":"left"},
+		{"id":"8759c92290f2537f","fromNode":"ee7d42ace5b9ee90","fromSide":"right","toNode":"ab89f3c61971dbf6","toSide":"left"},
+		{"id":"aa702bf106791ec0","fromNode":"ee7d42ace5b9ee90","fromSide":"right","toNode":"f02c4242424efbac","toSide":"left"},
+		{"id":"2bd1c19e5075e904","fromNode":"f02c4242424efbac","fromSide":"right","toNode":"fc63a28e205395d1","toSide":"left"}
+	]
+}
