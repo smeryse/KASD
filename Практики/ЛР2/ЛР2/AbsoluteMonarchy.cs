@@ -8,6 +8,5 @@ namespace ЛР2
 {
     class AbsoluteMonarchy
     {
-        Console.WriteLine("Start Point");
     }
 }
