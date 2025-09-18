@@ -1,7 +1,7 @@
 {
 	"nodes":[
+		{"id":"ab89f3c61971dbf6","type":"group","x":570,"y":164,"width":360,"height":153,"label":"class AbsoluteMonarchy"},
 		{"id":"f02c4242424efbac","type":"group","x":570,"y":400,"width":360,"height":150,"label":"class ConstitutionalMonarchy"},
-		{"id":"ab89f3c61971dbf6","type":"group","x":570,"y":164,"width":300,"height":153,"label":"class AbsoluteMonarchy"},
 		{"id":"0852c4923183f933","type":"group","x":-140,"y":9,"width":169,"height":162,"label":"virtual class State"},
 		{"id":"91b8a7e2836a34ce","type":"group","x":220,"y":-113,"width":169,"height":153,"label":"class Republic"},
 		{"id":"ee7d42ace5b9ee90","type":"group","x":220,"y":165,"width":169,"height":150,"label":"class Monarchy"},
@@ -19,8 +19,8 @@
 		{"id":"1b732df48b71dedf","type":"text","text":"uint Population","x":570,"y":450,"width":360,"height":50},
 		{"id":"0da617aff4319129","type":"text","text":"uint Area","x":570,"y":500,"width":360,"height":50},
 		{"id":"44ab54352476f746","type":"text","text":"string Name","x":570,"y":165,"width":360,"height":52},
-		{"id":"a71334eac96dc856","type":"text","text":"uint Population","x":570,"y":217,"width":250,"height":50},
-		{"id":"875d4e0e6f18f9cd","type":"text","text":"uint Area","x":570,"y":267,"width":300,"height":50},
+		{"id":"a71334eac96dc856","type":"text","text":"uint Population","x":570,"y":217,"width":360,"height":50},
+		{"id":"875d4e0e6f18f9cd","type":"text","text":"uint Area","x":570,"y":267,"width":360,"height":50},
 		{"id":"5008c84c40b6a4a9","type":"text","text":"string Name","x":1100,"y":400,"width":169,"height":50},
 		{"id":"2e1701d7ce1a0028","type":"text","text":"uint Population","x":1100,"y":450,"width":169,"height":50},
 		{"id":"2ffc2c66926701bd","type":"text","text":"uint Area","x":1100,"y":500,"width":169,"height":50}
