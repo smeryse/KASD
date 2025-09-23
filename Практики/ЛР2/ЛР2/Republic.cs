@@ -8,6 +8,8 @@ namespace ЛР2
 {
     class Republic : State
     {
-
+        // Дополнительные свойства: President, GovernmentType
+        // Метод: HoldElections() - проведение выборов
+        // Переопределить ToString()
     }
 }

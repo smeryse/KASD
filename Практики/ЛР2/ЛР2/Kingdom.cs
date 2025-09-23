@@ -8,5 +8,8 @@ namespace ЛР2
 {
     class Kingdom
     {
+        // Дополнительные свойства: Capital, Regions (массив)
+        // Методы: RoyalTour(), DisplayRegions()
+        // Переопределить Coronation() и ToString()
     }
 }

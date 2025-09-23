@@ -6,7 +6,9 @@ namespace ЛР2
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Start Point");
+            // Создать объекты каждого типа
+            // Продемонстрировать работу всех методов
+            // Вывести информацию через ToString()
         }
     }
 }
