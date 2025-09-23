@@ -5,9 +5,7 @@ namespace ЛР2
     class Republic : State
     {
         public string President { get; set; }
-        public string GovernmentType { get; set; } = "Республика";
 
-        // Конструкторы
         public Republic() { }
 
         public Republic(string name, uint population, uint area, string president)
@@ -23,7 +21,7 @@ namespace ЛР2
 
         public override string ToString()
         {
-            return $"{base.ToString()}, Президент: {President}, Тип: {GovernmentType}";
+            return $"{base.ToString()}, президент: {President}";
         }
     }
 }
