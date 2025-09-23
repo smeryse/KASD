@@ -1,21 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ЛР2
 {
     class Republic : State
     {
-        private string _president;
+        public string President { get; set; }
+        public string GovernmentType { get; set; } = "Республика";
 
-        public string President
+        // Конструкторы
+        public Republic() { }
+
+        public Republic(string name, uint population, uint area, string president)
+            : base(name, population, area)
         {
-            get { return _president; }
-            set { _president = value; }
+            President = president;
         }
 
+        public void HoldElections()
+        {
+            Console.WriteLine($"В республике {Name} проводятся выборы президента!");
+        }
 
+        public override string ToString()
+        {
+            return $"{base.ToString()}, Президент: {President}, Тип: {GovernmentType}";
+        }
     }
 }
