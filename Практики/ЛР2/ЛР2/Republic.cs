@@ -8,9 +8,14 @@ namespace ЛР2
 {
     class Republic : State
     {
-        public string  Afwe { get; set; }
-        // Дополнительные свойства: President, GovernmentType
-        // Метод: HoldElections() - проведение выборов
-        // Переопределить ToString()
+        private string _president;
+
+        public string President
+        {
+            get { return _president; }
+            set { _president = value; }
+        }
+
+
     }
 }

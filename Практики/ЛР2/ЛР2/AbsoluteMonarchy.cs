@@ -10,10 +10,6 @@ namespace ЛР2
 {
     class AbsoluteMonarchy : Monarchy
     {
-        // Дополнительные свойства: RoyalGuardCount
-        // Метод: IssueDecree() - издание указа
-        // Переопределить Coronation() и ToString()
-
         private uint _royalGuardCount;
         public uint RoyalGuardCount
         {
