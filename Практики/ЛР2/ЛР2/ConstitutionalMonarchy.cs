@@ -23,15 +23,14 @@ namespace ЛР2
         }
 
         public ConstitutionalMonarchy(string name, uint population, uint area,
-                                      string monarch, string dynasty, string primeminister) 
+                                      string monarch, string dynasty, string primeMinister) 
             : base(name, population, area, monarch, dynasty)
         {
-            PrimeMinister = primeminister;
+            PrimeMinister = primeMinister;
         }
 
-        private DateTime _constitutionDate;
-
         // TODO: Дописать логику установки даты
+        private DateTime _constitutionDate;
         public DateTime ConstitutionDate
         {
             get => _constitutionDate;
@@ -42,6 +41,10 @@ namespace ЛР2
         {
             if (status) Console.WriteLine("Заседание парламента открыто");
             else Console.WriteLine("Заседание парламента закрыто");
+        }
+        public override string ToString()
+        {
+            return $"{base.ToString()}, Столица: {Capital}";
         }
     }
 }
