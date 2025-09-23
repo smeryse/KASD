@@ -9,10 +9,6 @@ namespace ЛР2
 {
     class ConstitutionalMonarchy : Monarchy
     {
-        // Дополнительные свойства: PrimeMinister, ConstitutionDate
-        // Метод: ParliamentarySession() - заседание парламента
-        // Переопределить Coronation() и ToString()
-
         private string _primeMinister;
         public string PrimeMinister
         {

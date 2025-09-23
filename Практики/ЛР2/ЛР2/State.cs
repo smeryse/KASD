@@ -12,10 +12,6 @@ namespace ЛР2
 {
     class State
     {
-        // Свойства: Name, Population, Area
-        // Конструкторы (по умолчанию и с параметрами)
-        // Метод ToString() для вывода информации
-
         private string _name;
         public string Name
         {
@@ -34,8 +30,6 @@ namespace ЛР2
             Area = area;
         }
         
-
-        // Перегрузка операторов сравнения
         public static State operator +(State s1, State s2)
         {
             if (s1 is null || s2 is null)
