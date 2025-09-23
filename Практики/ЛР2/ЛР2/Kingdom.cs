@@ -29,7 +29,6 @@ namespace ЛР2
         {
             Console.WriteLine($"Великая коронация в королевстве {Name}!");
             Console.WriteLine($"Церемония проходит в столице {Capital}");
-            Console.WriteLine($"По конституции от {ConstitutionDate} под руководством {PrimeMinister}");
         }
         public override string ToString()
         {
