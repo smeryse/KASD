@@ -20,9 +20,9 @@ namespace ЛР2
         public Kingdom() { }
         public Kingdom(string name, uint population, uint area,
                        string monarch, string dynasty,
-                       string primeminister,
+                       string primeMinister,
                        string capital) 
-            : base(name, population, area, monarch, dynasty, primeminister)
+            : base(name, population, area, monarch, dynasty, primeMinister)
         {
             Capital = capital;
         }
@@ -31,7 +31,10 @@ namespace ЛР2
             Console.WriteLine($"Великая коронация в королевстве {Name}!");
             Console.WriteLine($"Церемония проходит в столице {Capital}");
             Console.WriteLine($"По конституции от {ConstitutionDate} под руководством {PrimeMinister}");
-            Console.WriteLine($"Королевство состоит из {Regions?.Length ?? 0} регионов");
+        }
+        public override string ToString()
+        {
+            return $"{base.ToString()}, Столица: {Capital}";
         }
     }
 }
