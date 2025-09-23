@@ -19,9 +19,9 @@ namespace ЛР2
         public Kingdom() { }
         public Kingdom(string name, uint population, uint area,
                        string monarch, string dynasty,
-                       string primeMinister, DateTime constitutionDate,
+                       string primeMinister,
                        string capital) 
-            : base(name, population, area, monarch, dynasty, primeMinister, constitutionDate)
+            : base(name, population, area, monarch, dynasty, primeMinister)
         {
             Capital = capital;
         }

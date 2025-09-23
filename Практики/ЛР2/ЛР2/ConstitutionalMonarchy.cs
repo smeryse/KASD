@@ -24,15 +24,6 @@ namespace ЛР2
         {
             PrimeMinister = primeMinister;
         }
-
-        // TODO: Дописать логику установки даты
-        private DateTime _constitutionDate;
-        public DateTime ConstitutionDate
-        {
-            get => _constitutionDate;
-            set { _constitutionDate = value; }
-        }
-
         public void ParliamentarySession(bool status)
         {
             if (status) Console.WriteLine("Заседание парламента открыто");
