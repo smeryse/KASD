@@ -16,7 +16,6 @@ namespace ЛР2
                 : throw new ArgumentException("Название столицы не может быть пустым");
         }
 
-        // Дополнительные свойства: Capital, Regions (массив)
         // Переопределить Coronation() и ToString()
         public Kingdom() { }
         public Kingdom(string name, uint population, uint area,
@@ -26,6 +25,13 @@ namespace ЛР2
             : base(name, population, area, monarch, dynasty, primeminister)
         {
             Capital = capital;
+        }
+        public override void Coronation()
+        {
+            Console.WriteLine($"Великая коронация в королевстве {Name}!");
+            Console.WriteLine($"Церемония проходит в столице {Capital}");
+            Console.WriteLine($"По конституции от {ConstitutionDate} под руководством {PrimeMinister}");
+            Console.WriteLine($"Королевство состоит из {Regions?.Length ?? 0} регионов");
         }
     }
 }
