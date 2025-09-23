@@ -42,9 +42,10 @@ namespace ЛР2
             if (status) Console.WriteLine("Заседание парламента открыто");
             else Console.WriteLine("Заседание парламента закрыто");
         }
+
         public override string ToString()
         {
-            return $"{base.ToString()}, Столица: {Capital}";
+            return $"{base.ToString()}, премьер-министр: {PrimeMinister}";
         }
     }
 }
