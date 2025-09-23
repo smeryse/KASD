@@ -18,7 +18,12 @@ namespace ЛР2
 
         // Дополнительные свойства: Capital, Regions (массив)
         // Переопределить Coronation() и ToString()
-        public Kingdom(string name, uint population, uint area, string monarch, string dynasty, string capital) : base(name, population, area, monarch, dynasty)
+        public Kingdom() { }
+        public Kingdom(string name, uint population, uint area,
+                       string monarch, string dynasty,
+                       string primeminister,
+                       string capital) 
+            : base(name, population, area, monarch, dynasty, primeminister)
         {
             Capital = capital;
         }

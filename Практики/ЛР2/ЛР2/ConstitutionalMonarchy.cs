@@ -22,9 +22,11 @@ namespace ЛР2
             
         }
 
-        public ConstitutionalMonarchy(string name, uint population, uint area, string monarch, string dynasty) : base(name, population, area, monarch, dynasty)
+        public ConstitutionalMonarchy(string name, uint population, uint area,
+                                      string monarch, string dynasty, string primeminister) 
+            : base(name, population, area, monarch, dynasty)
         {
-            _primeMinister = PrimeMinister;
+            PrimeMinister = primeminister;
         }
 
         private DateTime _constitutionDate;
