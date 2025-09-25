@@ -16,7 +16,6 @@ namespace ЛР2
                 : throw new ArgumentException("Название столицы не может быть пустым");
         }
 
-        public Kingdom() { }
         public Kingdom(string name, uint population, uint area,
                        string monarch, string dynasty,
                        string primeMinister,
