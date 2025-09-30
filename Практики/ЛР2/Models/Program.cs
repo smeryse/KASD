@@ -14,5 +14,9 @@ namespace ЛР2
             Console.WriteLine($"Создана: {russia}");
         }
     }
+    class Test
+    {
+
+    }
 }
 

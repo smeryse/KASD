@@ -5,20 +5,30 @@ class Program
 {
     static void Main(string[] args)
     {
-        string path = @"C:\2 курс\KASD\Практики\ЛР3\test1.txt";
-        FileInfo file = new FileInfo(path);
-        if (file.Exists)
+        Console.WriteLine("Введите строку для записи в файл:");
+        string text = Console.ReadLine();
+        // запись в файл 
+        using (FileStream fstream = new FileStream(@"C:\SomeDir\noname\note.txt", FileMode.OpenOrCreate))
         {
-            Console.WriteLine("Имя файла: {0}", file.Name);
-            Console.WriteLine("Время создания: {0}", file.CreationTime);
-            Console.WriteLine("Размер: {0}", file.Length);
-            string newPath = @"C:\2 курс\KASD\Практики\ЛР3\test2.txt";
-            file.CopyTo(newPath, false);
-            //file.Delete(); // Удаление файла
+            // преобразуем строку в байты 
+            byte[] array = System.Text.Encoding.Default.GetBytes(text);
+            // запись массива байтов в файл 
+            fstream.Write(array, 0, array.Length);
+            Console.WriteLine("Текст записан в файл");
         }
-        else
+        // чтение из файла 
+        using (FileStream fstream =
+        File.OpenRead(@"C:\SomeDir\noname\note.txt"))
         {
-            Console.WriteLine("Файл не найден.");
+            // преобразуем строку в байты 
+            byte[] array = new byte[fstream.Length];
+        // считываем данные 
+            fstream.Read(array, 0, array.Length);   
+            // декодируем байты в строку 
+            string textFromFile =
+            System.Text.Encoding.Default.GetString(array);
+            Console.WriteLine("Текст из файла: {0}", textFromFile);
         }
+        Console.ReadLine();
     }
 }
