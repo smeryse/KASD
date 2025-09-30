@@ -19,4 +19,9 @@ namespace _2_практика
             Application.Run(new Form1());
         }
     }
+    class Test
+    { 
+    }
 }
+
+
