@@ -1,34 +1,39 @@
 ﻿using System;
 using System.IO;
+using System.Text;
+using ЛР3.Models;
 
 class Program
 {
-    static void Main(string[] args)
+    static void Main()
     {
-        Console.WriteLine("Введите строку для записи в файл:");
-        string text = Console.ReadLine();
-        // запись в файл 
-        using (FileStream fstream = new FileStream(@"C:\SomeDir\noname\note.txt", FileMode.OpenOrCreate))
-        {
-            // преобразуем строку в байты 
-            byte[] array = System.Text.Encoding.Default.GetBytes(text);
-            // запись массива байтов в файл 
-            fstream.Write(array, 0, array.Length);
-            Console.WriteLine("Текст записан в файл");
-        }
-        // чтение из файла 
-        using (FileStream fstream =
-        File.OpenRead(@"C:\SomeDir\noname\note.txt"))
-        {
-            // преобразуем строку в байты 
-            byte[] array = new byte[fstream.Length];
-        // считываем данные 
-            fstream.Read(array, 0, array.Length);   
-            // декодируем байты в строку 
-            string textFromFile =
-            System.Text.Encoding.Default.GetString(array);
-            Console.WriteLine("Текст из файла: {0}", textFromFile);
-        }
-        Console.ReadLine();
+        // Предметы
+        Subject math = new Subject("Математика", "Иванов", 5);
+        Subject prog = new Subject("Программирование", "Петров", 6);
+
+        // Студенты
+        Student s1 = new Student("Иван Иванов", 19, "12345");
+        s1.AddSubject(math);
+        s1.AddSubject(prog);
+
+        Student s2 = new Student("Мария Смирнова", 20, "67890");
+        s2.AddSubject(prog);
+
+        // Группа
+        Group g1 = new Group("ИВТ-21");
+        g1.AddStudent(s1);
+        g1.AddStudent(s2);
+
+        // Курс
+        Course c2 = new Course(2);
+        c2.AddGroup(g1);
+
+        // Вывод
+        c2.PrintCourse();
+        Console.WriteLine();
+        s1.PrintSubjects();
+        s2.PrintSubjects();
     }
 }
+
+
