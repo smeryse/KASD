@@ -42,8 +42,7 @@ class Course : IPrintable
     public void RemoveSubject(int subjectId)
     {
         Subject subject = FindSubject(subjectId);
-        if (subject != null)
-            Subjects.Remove(subject); // Аналогично, может стоит реализовать используя SubjectFind
+        Subjects.Remove(subject);
     }
 
     public Subject FindSubject(int subjectId)
