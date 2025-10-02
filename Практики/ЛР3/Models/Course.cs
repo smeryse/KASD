@@ -28,7 +28,7 @@ class Course
 
     public void RemoveGroup(int groupId)
     {
-        var group = Groups.Find(g => g.GroupId == groupId);
+        var group = FindGroup(groupId);
         if (group != null)
             Groups.Remove(group);// Может лучше реализовать уже используя FindGroup
     }
@@ -51,7 +51,7 @@ class Course
 
     public void RemoveSubject(int subjectId)
     {
-        var subject = Subjects.Find(s => s.SubjectId == subjectId);
+        var subject = FindSubject(subjectId);
         if (subject != null)
             Subjects.Remove(subject); // Аналогично, может стоит реализовать используя SubjectFind
     }
@@ -67,10 +67,10 @@ class Course
 
     public void PrintCouse()
     {
-        Console.WriteLine($"Курс: {0}", Number);
+        Console.WriteLine($"Курс: {Number}");
         foreach (var group in Groups)
         {
-            Console.WriteLine($"Группа: {0}", group.GroupName);
+            Console.WriteLine($"Группа: {group.GroupName}");
             foreach (var student in group.Students)
             {
                 Console.Write(student.Name);
