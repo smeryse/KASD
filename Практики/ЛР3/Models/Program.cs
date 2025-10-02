@@ -7,6 +7,38 @@ class Program
 {
     static void Main()
     {
+        while (true)
+        {
+            Console.WriteLine("1. Добавить студента");
+            Console.WriteLine("2. Удалить студента");
+            Console.WriteLine("3. Показать институт");
+            Console.WriteLine("4. Сохранить студентов в файл");
+            Console.WriteLine("5. Выход");
+            Console.Write("Выберите действие: ");
+            string choice = Console.ReadLine();
+
+            switch (choice)
+            {
+                case "1":
+                    // ввод данных и добавление студента
+                    break;
+                case "2":
+                    // удаление по Id или имени
+                    break;
+                case "3":
+                    Institute.PrintInstitute();
+                    break;
+                case "4":
+                    SaveToFile(institute);
+                    break;
+                case "5":
+                    return; // выход из программы
+            }
+        }
+
+    }
+    static void MainTest()
+    {
         // Предметы
         Subject math = new Subject("Математика", "Иванов", 5);
         Subject prog = new Subject("Программирование", "Петров", 6);
