@@ -15,15 +15,13 @@ class Course : IPrintable
         _nextId += 1;
     }
 
-    // Methods
     // Работа с группами
     public void AddGroup(Group group) => Groups.Add(group);
 
     public void RemoveGroup(int groupId)
     {
         Group group = FindGroup(groupId);
-        if (group != null)
-            Groups.Remove(group);// Может лучше реализовать уже используя FindGroup
+        Groups.Remove(group);
     }
 
     public Group FindGroup(int groupId)
@@ -53,6 +51,7 @@ class Course : IPrintable
         else
             return subject;
     }
+
     public void Print()
     {
         Console.WriteLine($"Курс {Number} (ID {CourseId}):");
