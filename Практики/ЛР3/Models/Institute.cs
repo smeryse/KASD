@@ -1,28 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 class Institute
 {
-    public string Name { get; set; }
-    public List<Course> Courses { get; set; } = new List<Course>();
+    string Name { get; set; }
+    List<Course> Courses { get; set; } = new List<Course>();
 
     public Institute(string name)
     {
         Name = name;
+        Courses = new List<Course> { };
     }
 
+    // Методы
     public void AddCourse(Course course)
     {
         Courses.Add(course);
     }
 
-    public void PrintInstitute()
+    public void RemoveCourse(int courseId)
     {
-        Console.WriteLine($"Институт: {Name}");
-        foreach (var c in Courses)
-            c.PrintCourse();
+        Courses.Remove(Courses[courseId]);
+    }
+
+    public void FindCourse(int courseId)
+    {
+        Courses.Find(с => c.courseId == courseId);
     }
 }
