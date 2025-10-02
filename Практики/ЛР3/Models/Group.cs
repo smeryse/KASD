@@ -19,10 +19,18 @@ class Group
         Students.Add(student);
     }
 
-    public void PrintStudents()
+    public void PrintGroup()
     {
-        Console.WriteLine($"Группа {GroupName}:");
-        foreach (var s in Students)
-            Console.WriteLine("  " + s);
+        Console.WriteLine($" Группа {GroupName} (ID: {GroupId})");
+
+        if (Students.Count == 0)
+        {
+            Console.WriteLine("   Нет студентов");
+        }
+        else
+        {
+            foreach (var student in Students)
+                student.PrintStudent();
+        }
     }
 }
