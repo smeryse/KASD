@@ -1,25 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-class Subject
+
+class Subject : IPrintable
 {
     public int SubjectId { get; set; }
     public string Title { get; set; }
     public string Teacher { get; set; }
-    public int Credits { get; set; } // например, количество зачетных единиц
+    public int Hours { get; set; }
 
-    public Subject(string title, string teacher, int credits)
+    public Subject(string title, string teacher, int hours)
     {
         Title = title;
         Teacher = teacher;
-        Credits = credits;
+        Hours = hours;
     }
-
-    public void Print()
+        public void Print()
     {
-
+        Console.WriteLine($"Предмет: {Title}, преподаватель: {Teacher}, часы: {Hours}");
     }
+}
+
 }

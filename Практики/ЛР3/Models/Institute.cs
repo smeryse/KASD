@@ -9,21 +9,25 @@ class Institute : IPrintable
     public Institute(string name)
     {
         Name = name;
-        Courses = new List<Course> { };
     }
 
     // Методы
-    public void AddCourse(Course course)
-    {
-        Courses.Add(course);
-    }
+    public void AddCourse(Course course) => Courses.Add(course);
 
+    // Переписать
     public void RemoveCourse(int courseId)
     {
-        Courses.Remove(Courses[courseId]);
+        Course course = FindCourse(courseId);
+        if (course != null)
+        {
+            Courses.Remove(Courses[courseId]);
+        }
     }
 
-    public Course FindCourse(int courseId) => Courses.Find(c => c.CourseId == courseId);
+    public Course FindCourse(int courseId)
+    {
+        return Courses.Find(c => c.CourseId == courseId);
+    }
     public void Print()
     {
         Console.WriteLine($"Институт: {Name}");
