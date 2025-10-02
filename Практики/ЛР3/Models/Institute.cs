@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 class Institute
 {
-    string Name { get; set; }
-    List<Course> Courses { get; set; } = new List<Course>();
+    public string Name { get; set; }
+    public List<Course> Courses { get; set; } = new List<Course>();
 
     public Institute(string name)
     {
@@ -36,8 +36,11 @@ class Institute
             Console.WriteLine($"Курс: {0}");
             foreach (var group in course.Groups)
             {
-                Console.WriteLine($"Группа: {0}", grop.Name)
-                Console.WriteLine("");
+                Console.WriteLine($"Группа: {0}", group.GroupName);
+                foreach (var student in group.Students)
+                {
+                    Console.Write(student.Name);
+                }
             }
         }
     }
