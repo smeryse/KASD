@@ -23,9 +23,11 @@ class Course
         Groups.Add(group);
     }
 
-    public void RemoveGroup(Group group)
+    public void RemoveGroup(int groupId)
     {
-        Groups.Remove(group);
+        var group = Groups.Find(g => g.GroupId == groupId);
+        if (group != null)
+            Groups.Remove(group);
     }
 
     public void AddSubject(Subject subject)
