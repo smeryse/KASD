@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Cryptography;
-using System.Xml.Linq;
+using System.Text.RegularExpressions;
 using ЛР3.Models;
 class Course
 {
@@ -37,10 +36,10 @@ class Course
     {
         var group = Groups.Find(g => g.GroupId == groupId);
         // может лучше конструкция try except
-        if (group != null)
-            return group;
+        if (group == null)
+            throw new Exception($"Группа с id={groupId} не найдена");
         else
-            return null;
+            return group;
     }
 
     // Работа с предметами
@@ -59,8 +58,8 @@ class Course
     public Subject FindSubject(int subjectId)
     {
         var subject = Subjects.Find(s => s.SubjectId == subjectId);
-        if (subject != null)
-            return subject;
+        if (subject == null)
+            throw new Exception($"Предмет с id={groupId} не найден");
         else
             return null;
     }
