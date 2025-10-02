@@ -18,10 +18,10 @@ class Institute : IPrintable
     public void RemoveCourse(int courseId)
     {
         Course course = FindCourse(courseId);
-        if (course != null)
-        {
-            Courses.Remove(Courses[courseId]);
-        }
+        if (course == null)
+            trow
+        else
+            Courses.Remove(course);
     }
 
     public Course FindCourse(int courseId)
