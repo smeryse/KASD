@@ -29,7 +29,7 @@ class Course
     {
         var group = Groups.Find(g => g.GroupId == groupId);
         if (group != null)
-            Groups.Remove(group);
+            Groups.Remove(group);// Может лучше реализовать уже используя FindGroup
     }
 
     public Group FindGroup(int groupId)
@@ -50,6 +50,22 @@ class Course
 
     public void RemoveSubject(int subjectId)
     {
-        Subjects.Remove(subject);
+        var subject = Subjects.Find(s => s.SubjectId == subjectId);
+        if (subject != null)
+            Subjects.Remove(subject); // Аналогично, может стоит реализовать используя SubjectFind
+    }
+
+    public Subject FindSubject(int subjectId)
+    {
+        var subject = Subjects.Find(s => s.SubjectId == subjectId);
+        if (subject != null)
+            return subject;
+        else
+            return null;
+    }
+
+    public void PrintCourse()
+    {
+
     }
 }
