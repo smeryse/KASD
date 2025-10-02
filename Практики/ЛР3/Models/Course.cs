@@ -1,30 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using ЛР3.Models;
 class Course
 {
-    public int CourseId { get; set; }
+    public static int _nextId = 1;
+    public int CourseId;
     public int Number { get; set; }
-    public List<Group> Groups { get; set; } = new List<Group>();
+    public List<Group> Groups;
+    public List<Subject> Subjects;
 
-    public Course(int number)
+    public Course(int Number)
     {
-        Number = number;
+        CourseId = _nextId;
+        _nextId += 1;
+        Groups = new List<Group>();
+        Subjects = new List<Subject>();
     }
 
+    // Methods
     public void AddGroup(Group group)
     {
         Groups.Add(group);
     }
 
-    public void PrintCourse()
+    public void RemoveGroup(Group group)
     {
-        Console.WriteLine($"{Number} курс:");
-        foreach (var g in Groups)
-            g.PrintStudents();
+        Groups.Remove(group);
     }
-}
 
+    public void AddSubject(Subject subject)
+    {
+        Subjects.Add(subject);
+    }
+
+}
