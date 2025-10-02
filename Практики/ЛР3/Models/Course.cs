@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using ЛР3.Models;
-class Course
+class Course : IPrintable
 {
     public static int _nextId = 1;
     public int CourseId;
@@ -19,21 +17,18 @@ class Course
 
     // Methods
     // Работа с группами
-    public void AddGroup(Group group)
-    {
-        Groups.Add(group);
-    }
+    public void AddGroup(Group group) => Groups.Add(group);
 
     public void RemoveGroup(int groupId)
     {
-        var group = FindGroup(groupId);
+        Group group = FindGroup(groupId);
         if (group != null)
             Groups.Remove(group);// Может лучше реализовать уже используя FindGroup
     }
 
     public Group FindGroup(int groupId)
     {
-        var group = Groups.Find(g => g.GroupId == groupId);
+        Group group = Groups.Find(g => g.GroupId == groupId);
         // может лучше конструкция try except
         if (group == null)
             throw new Exception($"Группа с id={groupId} не найдена");
@@ -42,29 +37,33 @@ class Course
     }
 
     // Работа с предметами
-    public void AddSubject(Subject subject)
-    {
-        Subjects.Add(subject);
-    }
+    public void AddSubject(Subject subject) => Subjects.Add(subject);
 
     public void RemoveSubject(int subjectId)
     {
-        var subject = FindSubject(subjectId);
+        Subject subject = FindSubject(subjectId);
         if (subject != null)
             Subjects.Remove(subject); // Аналогично, может стоит реализовать используя SubjectFind
     }
 
     public Subject FindSubject(int subjectId)
     {
-        var subject = Subjects.Find(s => s.SubjectId == subjectId);
+        Subject subject = Subjects.Find(s => s.SubjectId == subjectId);
         if (subject == null)
             throw new Exception($"Предмет с id={subjectId} не найден");
         else
             return subject;
     }
-
     public void Print()
     {
+        Console.WriteLine($"Курс {Number} (ID {CourseId}):");
 
+        Console.WriteLine("Предметы:");
+        foreach (var subject in Subjects)
+            subject.Print();
+
+        Console.WriteLine("Группы:");
+        foreach (var group in Groups)
+            group.Print();
     }
 }
