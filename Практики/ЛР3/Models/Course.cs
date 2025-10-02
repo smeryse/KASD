@@ -59,13 +59,13 @@ class Course
     {
         var subject = Subjects.Find(s => s.SubjectId == subjectId);
         if (subject == null)
-            throw new Exception($"Предмет с id={groupId} не найден");
+            throw new Exception($"Предмет с id={subjectId} не найден");
         else
-            return null;
+            return subject;
     }
 
     public void PrintCouse()
-    {
+    {   
         Console.WriteLine($"Курс: {Number}");
         foreach (var group in Groups)
         {
