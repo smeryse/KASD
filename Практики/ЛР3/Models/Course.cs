@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using System.Xml.Linq;
 using ЛР3.Models;
 class Course
 {
@@ -64,8 +65,16 @@ class Course
             return null;
     }
 
-    public void PrintCourse()
+    public void PrintCouse()
     {
-
-    }
+        Console.WriteLine($"Курс: {0}", Number);
+        foreach (var group in Groups)
+        {
+            Console.WriteLine($"Группа: {0}", group.GroupName);
+            foreach (var student in group.Students)
+            {
+                Console.Write(student.Name);
+            }
+        }
+    } // замечание. почти такой же код в PrintInstitute, может можно все это как-то организовать логично
 }
