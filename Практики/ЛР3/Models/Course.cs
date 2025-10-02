@@ -63,16 +63,8 @@ class Course
             return subject;
     }
 
-    public void PrintCouse()
-    {   
-        Console.WriteLine($"Курс: {Number}");
-        foreach (var group in Groups)
-        {
-            Console.WriteLine($"Группа: {group.GroupName}");
-            foreach (var student in group.Students)
-            {
-                Console.Write(student.Name);
-            }
-        }
-    } // замечание. почти такой же код в PrintInstitute, может можно все это как-то организовать логично
+    public void Print()
+    {
+
+    }
 }

@@ -18,8 +18,8 @@ class Subject
         Credits = credits;
     }
 
-    public override string ToString()
+    public void Print()
     {
-        return $"{Title} (преподаватель: {Teacher}, {Credits} кр.)";
+
     }
 }

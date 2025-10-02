@@ -1,7 +1,8 @@
 ﻿using System;
-using System.IO;
-using System.Text;
-using ЛР3.Models;
+public interface IPrintable
+{
+    void Print();
+}
 
 class Program
 {

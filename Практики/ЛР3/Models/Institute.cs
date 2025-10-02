@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-class Institute
+class Institute : IPrintable
 {
     public string Name { get; set; }
     public List<Course> Courses { get; set; } = new List<Course>();
@@ -28,20 +28,8 @@ class Institute
         return Courses.Find(c => c.CourseId == courseId);
     }
 
-    public void PrintInstitute()
+    public void Print()
     {
-        Console.WriteLine($"Институт: {0}", Name);
-        foreach (var course in Courses)
-        {
-            Console.WriteLine($"Курс: {0}");
-            foreach (var group in course.Groups)
-            {
-                Console.WriteLine($"Группа: {0}", group.GroupName);
-                foreach (var student in group.Students)
-                {
-                    Console.Write(student.Name);
-                }
-            }
-        }
+
     }
 }
