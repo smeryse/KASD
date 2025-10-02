@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 class Course
 {
-    public int Number { get; set; }
     public int CourseId { get; set; }
+    public int Number { get; set; }
     public List<Group> Groups { get; set; } = new List<Group>();
 
     public Course(int number)
