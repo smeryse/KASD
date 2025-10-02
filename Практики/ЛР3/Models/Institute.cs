@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 class Institute
 {
@@ -22,8 +23,22 @@ class Institute
         Courses.Remove(Courses[courseId]);
     }
 
-    public void FindCourse(int courseId)
+    public Course FindCourse(int courseId)
     {
-        Courses.Find(с => c.courseId == courseId);
+        return Courses.Find(c => c.CourseId == courseId);
+    }
+
+    public void PrintInstitute()
+    {
+        Console.WriteLine($"Институт: {0}", Name);
+        foreach (var course in Courses)
+        {
+            Console.WriteLine($"Курс: {0}");
+            foreach (var group in course.Groups)
+            {
+                Console.WriteLine($"Группа: {0}", grop.Name)
+                Console.WriteLine("");
+            }
+        }
     }
 }
