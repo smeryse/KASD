@@ -23,13 +23,11 @@ class Institute : IPrintable
         Courses.Remove(Courses[courseId]);
     }
 
-    public Course FindCourse(int courseId)
-    {
-        return Courses.Find(c => c.CourseId == courseId);
-    }
-
+    public Course FindCourse(int courseId) => Courses.Find(c => c.CourseId == courseId);
     public void Print()
     {
-
+        Console.WriteLine($"Институт: {Name}");
+        foreach (var course in Courses)
+            course.Print();
     }
 }
