@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-class Institute : IManageable<Course>, IEditable
+class Institute : IManageable
 {
     public string Name { get; set; }
     public List<Course> Courses { get; set; } = new List<Course>();
@@ -12,15 +12,15 @@ class Institute : IManageable<Course>, IEditable
     }
 
     // Методы
-    public void Add(Course course) => Courses.Add(course);
+    public void Add<Course>(Course course) => Courses.Add(course);
 
-    public void Edit(int id)
+    public void Edit<Course>(int id)
     {
 
     }
-    public void Remove(int id) => Courses.Remove(Find(id));
+    public void Remove<Course>(int id) => Courses.Remove(Find(id));
     
-    public Course Find(int id)
+    public Course Find<Course>(int id)
     {
         Course course = Courses.Find(c => c.CourseId == id);
         if (course == null)
