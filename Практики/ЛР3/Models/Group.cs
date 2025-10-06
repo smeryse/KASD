@@ -17,6 +17,7 @@ class Group : IPrintable
     {
         if (Students.Exists(s => s.StudentId == student.StudentId))
             throw new Exception($"Студент с ID={student.StudentId} уже есть в группе");
+        Students.Add(student);
     }
     public void RemoveStudent(int studentId) => Students.Remove(FindStudent(studentId));
 
