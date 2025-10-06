@@ -1,0 +1,15 @@
+{
+	"nodes":[
+		{"id":"dc1438a5566d2f87","type":"text","text":"**Institute**\nInstituteId : int\nName : str\nCourses : List <>","x":-218,"y":-84,"width":250,"height":124},
+		{"id":"a3e07ec7cf40a5f4","type":"text","text":"**Course**\nCourseId : int\nNumber: int\nGroup : List <>\nSubjects : List <>","x":-218,"y":77,"width":250,"height":163},
+		{"id":"832a7997f6fdeac3","type":"text","text":"**Group**\nGroupId : int\nGourName : str\nStudents : List <>","x":-218,"y":280,"width":250,"height":120},
+		{"id":"e911f616a747fc1c","type":"text","text":"**Student**\nStudentId : str\nName : str\nSurname : str\nAge : int","x":-218,"y":440,"width":250,"height":160},
+		{"id":"468ce5f542ebe013","type":"text","text":"**Subject**\nSubjectId : int\nTitle : str\nTeacher : str\nHours : int","x":-218,"y":640,"width":250,"height":160}
+	],
+	"edges":[
+		{"id":"4a686119b5111de6","fromNode":"dc1438a5566d2f87","fromSide":"bottom","toNode":"a3e07ec7cf40a5f4","toSide":"top"},
+		{"id":"4fa30b705ae76ad5","fromNode":"a3e07ec7cf40a5f4","fromSide":"bottom","toNode":"832a7997f6fdeac3","toSide":"top"},
+		{"id":"ec58717b1b42a5e3","fromNode":"832a7997f6fdeac3","fromSide":"bottom","toNode":"e911f616a747fc1c","toSide":"top"},
+		{"id":"336b8b7d35113602","fromNode":"e911f616a747fc1c","fromSide":"bottom","toNode":"468ce5f542ebe013","toSide":"top"}
+	]
+}
