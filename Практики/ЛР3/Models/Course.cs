@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-class Course : IManageable, IEditable
+class Course : IManageable
 {
     private static int _nextId = 1;
     public int CourseId { get; }

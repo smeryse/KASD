@@ -1,7 +1,7 @@
-﻿public interface IManageable<T>
+﻿public interface IManageable
 {
-    void Add(T item);
-    void Remove(int id);
-    T Find(int id);
+    void Add<T>(T item);
+    void Remove<T>(int id);
+    T Find<T>(int id);
     void Print();
 }
