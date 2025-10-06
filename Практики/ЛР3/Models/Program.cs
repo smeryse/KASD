@@ -1,8 +1,12 @@
 ﻿using System;
-public interface IPrintable
+public interface IManageable<T>
 {
+    void Add(T item);
+    void Remove(int id);
+    void Edit(int id);
     void Print();
 }
+
 class Program
 {
     static void Main()

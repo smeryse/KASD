@@ -10,6 +10,8 @@ class Student : IPrintable
     public int Age { get; set; }
     public List<Subject> Subjects { get; set; } = new List<Subject>();
 
+    public List<Grade> Grades { get; set; } = new List<Grade>();
+
     public Student(string name, string surname, int age)
     {
         StudentId = _nextId++;
@@ -31,6 +33,31 @@ class Student : IPrintable
         else
             return subject;
     }
+
+    public void AddGrade(Subject subject, int grade)
+    {
+        Grade g = Grades.Find(x => x.Subject == subject);
+        if (g == null)
+            Grades.Add(new Grade
+            {
+                Subject = subject,
+                Scores = new List<int> { grade }
+            });
+    }
+
+    //public void EditGrade(Subject subject, int grade)
+
+    public void RemoveGrade(Subject subject, int grade)
+    {
+        Grade g = FindGrade(subject);
+        if (g == null)
+            throw new Exception($"Предмет {subject.Title} не найден");
+
+        g.Scores.Remove(grade);
+    }
+
+    public Grade FindGrade(Subject subject) => Grades.Find(x => x.Subject == subject);
+        
     public void Print()
     {
         Console.WriteLine($"Студент: {Name} {Surname}, {Age} лет, ID={StudentId}");

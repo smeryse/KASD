@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-class Course : IPrintable
+class Course : IManageable, IEditable
 {
     private static int _nextId = 1;
     public int CourseId { get; }
@@ -83,4 +83,55 @@ class Course : IPrintable
         }
     }
 
+    public void Add<T>(T item)
+    {
+        switch (item)
+        {
+            case Group g:
+                AddGroup(g);
+                break;
+
+            case Subject s:
+                AddSubject(s);
+                break;
+
+            default:
+                throw new ArgumentException($"Тип {typeof(T).Name} не поддерживается.");
+        }
+    }
+
+    public void Remove<T>(int id)
+    {
+        switch (typeof(T).Name)
+        {
+            case nameof(Group):
+                RemoveGroup(id);
+                break;
+            case nameof(Subject):
+                RemoveSubject(id);
+                break;
+
+            default:
+                throw new ArgumentException($"Тип {typeof(T).Name} не поддерживается для удаления.");
+        }
+    }
+
+    public T Find<T>(int id)
+    {
+        object result;
+        switch (typeof(T).Name)
+        {
+            case nameof(Group):
+                result = FindGroup(id);
+                break;
+
+            case nameof(Subject):
+                result = FindSubject(id);
+                break;
+
+            default: throw new ArgumentException($"Тип {typeof(T).Name} не поддерживается для поиска.");
+        };
+
+        return (T)result;
+    }
 }

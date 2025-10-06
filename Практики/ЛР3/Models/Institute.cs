@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-class Institute : IPrintable
+class Institute : IManageable<Course>, IEditable
 {
     public string Name { get; set; }
     public List<Course> Courses { get; set; } = new List<Course>();
@@ -12,24 +12,28 @@ class Institute : IPrintable
     }
 
     // Методы
-    public void AddCourse(Course course) => Courses.Add(course);
-    public void RemoveCourse(int courseId)
+    public void Add(Course course) => Courses.Add(course);
+
+    public void Edit(int id)
     {
-        Course course = FindCourse(courseId);
-        Courses.Remove(course);
+
     }
-    public Course FindCourse(int courseId)
+    public void Remove(int id) => Courses.Remove(Find(id));
+    
+    public Course Find(int id)
     {
-        Course course = Courses.Find(c => c.CourseId == courseId);
+        Course course = Courses.Find(c => c.CourseId == id);
         if (course == null)
-            throw new Exception($"Курс с id={courseId} не найден");
+            throw new Exception($"Курс с id={id} не найден");
         else
             return course;
     }
+
     public void Print()
     {
         Console.WriteLine($"Институт: {Name}");
         foreach (var course in Courses)
             course.Print();
     }
+
 }
