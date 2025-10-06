@@ -3,6 +3,7 @@
 
 class Subject : IPrintable
 {
+    private static int _nextId = 1;
     public int SubjectId { get; set; }
     public string Title { get; set; }
     public string Teacher { get; set; }
@@ -10,14 +11,14 @@ class Subject : IPrintable
 
     public Subject(string title, string teacher, int hours)
     {
+        SubjectId = _nextId++;
         Title = title;
         Teacher = teacher;
         Hours = hours;
     }
-        public void Print()
+    public void Print()
     {
         Console.WriteLine($"Предмет: {Title}, преподаватель: {Teacher}, часы: {Hours}");
     }
 }
 
-}
