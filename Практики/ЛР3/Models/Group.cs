@@ -3,6 +3,7 @@ using System.Collections.Generic;
 class Group
 {
     private static int _nextId = 1;
+    public static void SetNextId(int v) => _nextId = v;
     public int GroupId { get; set; }
     public string GroupName { get; set; }
     public List<Student> Students { get; set; } = new List<Student>();

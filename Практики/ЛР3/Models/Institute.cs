@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -46,9 +45,6 @@ class Institute
         var options = new JsonSerializerOptions { WriteIndented = true };
         File.WriteAllText(path, System.Text.Json.JsonSerializer.Serialize(this, options));
     }
-
-
-
 public static Institute LoadFromFile(string path)
 {
     var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
