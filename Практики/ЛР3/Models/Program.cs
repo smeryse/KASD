@@ -464,8 +464,6 @@ class Program
     // === 6. Тесты ===
     static void Test()
     {
-        Console.OutputEncoding = System.Text.Encoding.UTF8;
-
         // Создаём предметы
         Subject math = new Subject("Математика", "Иванова", 60);
         Subject prog = new Subject("Программирование", "Петров", 90);
@@ -486,6 +484,7 @@ class Program
         actions += s => s.Print();
 
         Console.WriteLine("=== Проверка через многоадресный делегат ===");
+        ShowStructure();
         actions.Invoke(ivan);
     }
 }
