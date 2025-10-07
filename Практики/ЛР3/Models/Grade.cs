@@ -28,14 +28,13 @@ class Grade // Класс, представляющий оценки студе�
             throw new Exception("Такой оценки нет в списке");
     }
 
-    public void Print()
+    public string ToFormattedString(string indent = "")
     {
-        if (Scores.Count == 0)
-            Console.WriteLine($"  {Subject.Title}: нет оценок");
-        else
-        {
-            string scoresStr = string.Join(", ", Scores);
-            Console.WriteLine($"  {Subject.Title}: [{scoresStr}] (средний балл: {Average:F2})");
-        }
+        string scores = Scores.Count > 0 ? $"[{string.Join(", ", Scores)}]" : "нет оценок";
+        return $"{indent}{Subject.Title}: {scores} → ср. {Average:F2}";
     }
+
+    public override string ToString() => ToFormattedString();
+    public void Print(string indent = "") => Console.WriteLine(ToFormattedString(indent));
+
 }

@@ -15,9 +15,11 @@ class Subject
         Teacher = teacher;
         Hours = hours;
     }
-    public void Print()
-    {
-        Console.WriteLine($"Предмет: {Title}, преподаватель: {Teacher}, часы: {Hours}");
-    }
+    public string ToFormattedString(string indent = "")
+            => $"{indent}{Title} (преподаватель: {Teacher}, часы: {Hours})";
+
+    public override string ToString() => ToFormattedString();
+    public void Print() => Console.WriteLine(ToFormattedString());
+
 }
 

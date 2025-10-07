@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Text.Json;
 
 class Institute
 {
@@ -22,10 +25,30 @@ class Institute
         else
             return course;
     }
-    public void Print()
+    public string ToFormattedString(string indent = "")
     {
-        Console.WriteLine($"Институт: {Name}");
+        string result = $"Институт: {Name}\n";
+        if (Courses.Count == 0)
+            return result + "  └─ Нет курсов\n";
+
         foreach (var course in Courses)
-            course.Print("  ");
+            result += course.ToFormattedString("  ");
+        return result;
+    }
+
+    public override string ToString() => ToFormattedString();
+    public void Print() => Console.Write(ToFormattedString());
+
+    // JSON SAVE/LOAD
+    public void SaveToFile(string path)
+    {
+        var options = new JsonSerializerOptions { WriteIndented = true };
+        File.WriteAllText(path, System.Text.Json.JsonSerializer.Serialize(this, options));
+    }
+
+    public static Institute LoadFromFile(string path)
+    {
+        string json = File.ReadAllText(path);
+        return System.Text.Json.JsonSerializer.Deserialize<Institute>(json);
     }
 }

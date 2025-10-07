@@ -54,36 +54,35 @@ class Course
         return subject;
     }
 
-    public void Print(string indent = "")
+    public string ToFormattedString(string indent = "")
     {
-        Console.WriteLine($"{indent}Курс {Number} (ID={CourseId})");
+        string result = $"{indent}Курс {Number} (ID={CourseId})\n";
 
         // Предметы
         if (Subjects.Count == 0)
-        {
-            Console.WriteLine($"{indent}   └─ Нет предметов");
-        }
+            result += $"{indent}   ├─ Нет предметов\n";
         else
         {
-            Console.WriteLine($"{indent}   ├─ Предметы:");
+            result += $"{indent}   ├─ Предметы:\n";
             for (int i = 0; i < Subjects.Count; i++)
             {
                 string branch = (i == Subjects.Count - 1) ? "└" : "├";
-                var s = Subjects[i];
-                Console.WriteLine($"{indent}   │  {branch}─ {s.Title} (преподаватель: {s.Teacher}, часы: {s.Hours})");
+                result += $"{indent}   │  {branch}─ {Subjects[i].ToFormattedString()}\n";
             }
         }
 
         // Группы
         if (Groups.Count == 0)
-        {
-            Console.WriteLine($"{indent}   └─ Нет групп");
-        }
+            result += $"{indent}   └─ Нет групп\n";
         else
         {
-            Console.WriteLine($"{indent}   └─ Группы:");
-            foreach (var group in Groups)
-                group.Print(indent + "      ");
+            result += $"{indent}   └─ Группы:\n";
+            foreach (var g in Groups)
+                result += g.ToFormattedString(indent + "      ");
         }
+
+        return result;
     }
+    public override string ToString() => ToFormattedString();
+    public void Print(string indent = "") => Console.Write(ToFormattedString(indent));
 }

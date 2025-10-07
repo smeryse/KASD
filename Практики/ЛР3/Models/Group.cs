@@ -29,22 +29,20 @@ class Group
         else
             return student;
     }
-    public void Print(string indent = "")
+    public string ToFormattedString(string indent = "")
     {
-        Console.WriteLine($"{indent}Группа {GroupName} (ID={GroupId})");
-
+        string result = $"{indent}Группа {GroupName} (ID={GroupId})\n";
         if (Students.Count == 0)
+            return result + $"{indent}   └─ Нет студентов\n";
+
+        for (int i = 0; i < Students.Count; i++)
         {
-            Console.WriteLine($"{indent}   └─ Нет студентов");
+            string branch = (i == Students.Count - 1) ? "└" : "├";
+            result += $"{indent}   {branch}─ {Students[i].ToFormattedString(indent + "   │  ")}";
         }
-        else
-        {
-            for (int i = 0; i < Students.Count; i++)
-            {
-                string branch = (i == Students.Count - 1) ? "└" : "├";
-                Console.Write($"{indent}   {branch}─ ");
-                Students[i].Print(indent + "   │  ");
-            }
-        }
+
+        return result;
     }
+    public override string ToString() => ToFormattedString();
+    public void Print(string indent = "") => Console.Write(ToFormattedString(indent));
 }

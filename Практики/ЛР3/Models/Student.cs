@@ -76,24 +76,21 @@ class Student
     }
 
     // Вывод информации о студенте
-    public void Print(string indent = "")
+    public string ToFormattedString(string indent = "")
     {
-        Console.WriteLine($"{Name} {Surname} ({Age} лет, ID={StudentId})");
-
+        string result = $"{indent}{Name} {Surname} ({Age} лет, ID={StudentId})\n";
         if (Grades.Count == 0)
-        {
-            Console.WriteLine($"{indent}   └─ Нет предметов и оценок");
-            return;
-        }
+            return result + $"{indent}   └─ Нет предметов и оценок\n";
 
         for (int i = 0; i < Grades.Count; i++)
         {
             string branch = (i == Grades.Count - 1) ? "└" : "├";
-            var g = Grades[i];
-            string scores = g.Scores.Count > 0 ? $"[{string.Join(", ", g.Scores)}]" : "нет оценок";
-            Console.WriteLine($"{indent}   {branch}─ {g.Subject.Title}: {scores} -> ср. {g.Average:F2}");
+            result += $"{indent}   {branch}─ {Grades[i].ToFormattedString()}\n";
         }
 
-        Console.WriteLine($"{indent}   Средний балл: {GetAverageAll():F2}");
+        result += $"{indent}   Средний балл: {GetAverageAll():F2}\n";
+        return result;
     }
+    public override string ToString() => ToFormattedString();
+    public void Print(string indent = "") => Console.Write(ToFormattedString(indent));
 }

@@ -4,7 +4,9 @@ class Program
 {
     static void Main()
     {
-        // === 1. Создаём институт ===
+        Console.OutputEncoding = System.Text.Encoding.UTF8; // чтобы дерево и русские символы отображались корректно
+
+        // === 1. Создание института ===
         Institute institute = new Institute("ИТИ");
 
         // === 2. Добавляем курс ===
@@ -51,9 +53,28 @@ class Program
         anna.AddGrade(prog, 5);
         anna.AddGrade(prog, 5);
 
-        // === 8. Печатаем всю структуру ===
+        // === 8. Вывод структуры ===
+        Console.WriteLine("=== Исходная структура ===");
         institute.Print();
 
+        // === 9. Сохранение в файл ===
+        string jsonPath = "institute.json";
+        string textPath = "institute.txt";
+
+        institute.SaveToFile(jsonPath);
+        System.IO.File.WriteAllText(textPath, institute.ToString());
+
+        Console.WriteLine($"\nДанные сохранены в файлы:\n - {jsonPath}\n - {textPath}");
+
+        // === 10. Загрузка обратно ===
+        Console.WriteLine("\n=== Загрузка из JSON ===");
+        Institute loaded = Institute.LoadFromFile(jsonPath);
+        loaded.Print();
+
+        // === 11. Проверка отдельного студента ===
         Console.WriteLine("\n=== Проверка индивидуального студента ===");
+        Console.WriteLine(ivan.ToString());
+
+        Console.WriteLine("\n=== Программа завершена ===");
     }
 }
