@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-class Group
+class Group : IPrintable
 {
     private static int _nextId = 1;
     public static void SetNextId(int v) => _nextId = v;
