@@ -84,6 +84,5 @@ class Course
 
         return result;
     }
-    public override string ToString() => ToFormattedString();
     public void Print(string indent = "") => Console.Write(ToFormattedString(indent));
 }

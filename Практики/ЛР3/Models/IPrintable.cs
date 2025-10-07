@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ЛР3.Models
+interface IPrintable
 {
-    internal interface IPrintable
-    {
-    }
+    string ToFormattedString();
+    //string ToString
 }
