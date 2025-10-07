@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
-class Student : IPrintable
+class Student
 {
     private static int _nextId = 1;
     public int StudentId { get; }
     public string Name { get; set; }
     public string Surname { get; set; }
     public int Age { get; set; }
-    public List<Subject> Subjects { get; set; } = new List<Subject>();
 
+    // Список оценок по предметам (Grade уже содержит ссылку на Subject)
     public List<Grade> Grades { get; set; } = new List<Grade>();
 
     public Student(string name, string surname, int age)
@@ -19,53 +20,80 @@ class Student : IPrintable
         Surname = surname;
         Age = age;
     }
+
+    // Добавление предмета (создаём запись Grade для этого предмета)
     public void AddSubject(Subject subject)
     {
-        if (!Subjects.Contains(subject))
-            Subjects.Add(subject);
+        if (Grades.Any(g => g.Subject.SubjectId == subject.SubjectId))
+            throw new Exception($"Предмет {subject.Title} уже есть у студента");
+        Grades.Add(new Grade(subject));
     }
-    public void RemoveSubject(int subjectId) => Subjects.Remove(FindSubject(subjectId));
-    public Subject FindSubject(int subjectId)
+
+    // Удаление предмета и всех оценок по нему
+    public void RemoveSubject(int subjectId)
     {
-        Subject subject = Subjects.Find(s => s.SubjectId == subjectId);
-        if (subject == null)
+        var grade = Grades.FirstOrDefault(g => g.Subject.SubjectId == subjectId);
+        if (grade == null)
             throw new Exception($"Предмет с id={subjectId} не найден");
-        else
-            return subject;
+        Grades.Remove(grade);
     }
 
-    public void AddGrade(Subject subject, int grade)
+    // Добавление оценки по предмету
+    public void AddGrade(Subject subject, int score)
     {
-        Grade g = Grades.Find(x => x.Subject == subject);
-        if (g == null)
-            Grades.Add(new Grade
-            {
-                Subject = subject,
-                Scores = new List<int> { grade }
-            });
+        Grade grade = Grades.FirstOrDefault(g => g.Subject.SubjectId == subject.SubjectId);
+        if (grade == null)
+        {
+            grade = new Grade(subject);
+            Grades.Add(grade);
+        }
+        grade.AddScore(score);
     }
 
-    //public void EditGrade(Subject subject, int grade)
-
-    public void RemoveGrade(Subject subject, int grade)
+    // Удаление оценки
+    public void RemoveGrade(Subject subject, int score)
     {
-        Grade g = FindGrade(subject);
-        if (g == null)
+        Grade grade = Grades.FirstOrDefault(g => g.Subject.SubjectId == subject.SubjectId);
+        if (grade == null)
             throw new Exception($"Предмет {subject.Title} не найден");
-
-        g.Scores.Remove(grade);
+        grade.RemoveScore(score);
     }
 
-    public Grade FindGrade(Subject subject) => Grades.Find(x => x.Subject == subject);
-        
-    public void Print()
+    // Получить средний балл по всем предметам
+    public double GetAverageAll()
     {
-        Console.WriteLine($"Студент: {Name} {Surname}, {Age} лет, ID={StudentId}");
-        if (Subjects.Count == 0)
-            Console.WriteLine("  Нет предметов");
-        else
-            foreach (var subject in Subjects)
-                subject.Print();
+        IEnumerable<Grade> validGrades = Grades.Where(g => g.Scores.Count > 0);
+        return validGrades.Any() ? validGrades.Average(g => g.Average) : 0;
     }
 
+    // Поиск оценок по предмету
+    public Grade FindGrades(Subject subject)
+    {
+        Grade grades = Grades.FirstOrDefault(g => g.Subject.SubjectId == subject.SubjectId);
+        if (grades == null)
+            throw new Exception($"Предмет {subject.Title} не найден у студента");
+        return grades;
+    }
+
+    // Вывод информации о студенте
+    public void Print(string indent = "")
+    {
+        Console.WriteLine($"{Name} {Surname} ({Age} лет, ID={StudentId})");
+
+        if (Grades.Count == 0)
+        {
+            Console.WriteLine($"{indent}   └─ Нет предметов и оценок");
+            return;
+        }
+
+        for (int i = 0; i < Grades.Count; i++)
+        {
+            string branch = (i == Grades.Count - 1) ? "└" : "├";
+            var g = Grades[i];
+            string scores = g.Scores.Count > 0 ? $"[{string.Join(", ", g.Scores)}]" : "нет оценок";
+            Console.WriteLine($"{indent}   {branch}─ {g.Subject.Title}: {scores} -> ср. {g.Average:F2}");
+        }
+
+        Console.WriteLine($"{indent}   Средний балл: {GetAverageAll():F2}");
+    }
 }

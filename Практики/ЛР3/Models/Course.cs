@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-class Course : IManageable
+class Course
 {
     private static int _nextId = 1;
     public int CourseId { get; }
     public int Number { get; set; }
     public List<Group> Groups { get; set; } = new List<Group>();
     public List<Subject> Subjects { get; set; } = new List<Subject>();
-
 
     public Course(int number)
     {
@@ -22,13 +21,11 @@ class Course : IManageable
             throw new Exception($"Группа с ID={group.GroupId} уже есть на курсе");
         Groups.Add(group);
     }
-
     public void RemoveGroup(int groupId)
     {
         Group group = FindGroup(groupId);
         Groups.Remove(group);
     }
-
     public Group FindGroup(int groupId)
     {
         Group group = Groups.Find(g => g.GroupId == groupId);
@@ -49,7 +46,6 @@ class Course : IManageable
         Subject subject = FindSubject(subjectId);
         Subjects.Remove(subject);
     }
-
     public Subject FindSubject(int subjectId)
     {
         Subject subject = Subjects.Find(s => s.SubjectId == subjectId);
@@ -58,80 +54,36 @@ class Course : IManageable
         return subject;
     }
 
-    public void Print()
+    public void Print(string indent = "")
     {
-        Console.WriteLine($"Курс {Number} (ID={CourseId}):");
+        Console.WriteLine($"{indent}Курс {Number} (ID={CourseId})");
 
         // --- Предметы ---
         if (Subjects.Count == 0)
-            Console.WriteLine("  Нет предметов");
+        {
+            Console.WriteLine($"{indent}   └─ Нет предметов");
+        }
         else
         {
-            Console.WriteLine("  Предметы:");
-            foreach (var subject in Subjects)
-                subject.Print();
+            Console.WriteLine($"{indent}   ├─ Предметы:");
+            for (int i = 0; i < Subjects.Count; i++)
+            {
+                string branch = (i == Subjects.Count - 1) ? "└" : "├";
+                var s = Subjects[i];
+                Console.WriteLine($"{indent}   │  {branch}─ {s.Title} (преподаватель: {s.Teacher}, часы: {s.Hours})");
+            }
         }
 
         // --- Группы ---
         if (Groups.Count == 0)
-            Console.WriteLine("  Нет групп");
+        {
+            Console.WriteLine($"{indent}   └─ Нет групп");
+        }
         else
         {
-            Console.WriteLine("  Группы:");
+            Console.WriteLine($"{indent}   └─ Группы:");
             foreach (var group in Groups)
-                group.Print();
+                group.Print(indent + "      ");
         }
-    }
-
-    public void Add<T>(T item)
-    {
-        switch (item)
-        {
-            case Group g:
-                AddGroup(g);
-                break;
-
-            case Subject s:
-                AddSubject(s);
-                break;
-
-            default:
-                throw new ArgumentException($"Тип {typeof(T).Name} не поддерживается.");
-        }
-    }
-
-    public void Remove<T>(int id)
-    {
-        switch (typeof(T).Name)
-        {
-            case nameof(Group):
-                RemoveGroup(id);
-                break;
-            case nameof(Subject):
-                RemoveSubject(id);
-                break;
-
-            default:
-                throw new ArgumentException($"Тип {typeof(T).Name} не поддерживается для удаления.");
-        }
-    }
-
-    public T Find<T>(int id)
-    {
-        object result;
-        switch (typeof(T).Name)
-        {
-            case nameof(Group):
-                result = FindGroup(id);
-                break;
-
-            case nameof(Subject):
-                result = FindSubject(id);
-                break;
-
-            default: throw new ArgumentException($"Тип {typeof(T).Name} не поддерживается для поиска.");
-        };
-
-        return (T)result;
     }
 }

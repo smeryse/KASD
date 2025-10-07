@@ -1,7 +1,6 @@
 ﻿using System;
 
-
-class Subject : IPrintable
+class Subject
 {
     private static int _nextId = 1;
     public int SubjectId { get; set; }
