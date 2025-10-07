@@ -39,7 +39,7 @@ class Program
                 case "4": DeleteMenu(); break;
                 case "5": SaveToFile(); break;
                 case "6": LoadFromFile(); break;
-                case "7": Test(); break;
+                case "7": TestDelegate(); break;
                 case "0": return;
                 default: Console.WriteLine("Неверный выбор."); break;
             }
@@ -462,29 +462,41 @@ class Program
     }
 
     // === 6. Тесты ===
-    static void Test()
+    static void TestDelegate()
     {
-        // Создаём предметы
+        Console.Clear();
+        Console.WriteLine("=== Тест делегата и интерфейсов ===");
+
+        // 1. Создаём курс, группу и предметы
+        Course course = new Course(1);
+        Group group = new Group("А1");
         Subject math = new Subject("Математика", "Иванова", 60);
         Subject prog = new Subject("Программирование", "Петров", 90);
 
-        // Создаём студента
+        course.AddSubject(math);
+        course.AddSubject(prog);
+        course.AddGroup(group);
+
+        // 2. Создаём студента
         Student ivan = new Student("Иван", "Иванов", 19);
+        group.AddStudent(ivan);
 
-        // Создаём делегат
+        // 3. Создаём многоадресный делегат
         StudentAction actions = null;
-
-        // Добавляем методы в многоадресный делегат
         actions += s => s.AddSubject(math);
         actions += s => s.AddSubject(prog);
         actions += s => s.AddGrade(math, 5);
         actions += s => s.AddGrade(prog, 4);
         actions += s => s.Print();
-        actions += s => s.RemoveSubject(math.SubjectId);
-        actions += s => s.Print();
 
-        Console.WriteLine("=== Проверка через многоадресный делегат ===");
-        ShowStructure();
+        // 4. Вызываем делегат
         actions.Invoke(ivan);
+
+        // 5. Добавляем курс в институт (чтобы потом показать через пункт 1)
+        institute.Courses.Clear();
+        institute.AddCourse(course);
+
+        Console.WriteLine("\nСтруктура института успешно создана.");
     }
+
 }
