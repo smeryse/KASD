@@ -16,7 +16,7 @@ class Program
     {
         while (true)
         {
-            Console.Clear();
+            Console.Clear(); 
             Console.WriteLine("===== МЕНЮ ИНСТИТУТА =====");
             Console.WriteLine("1. Показать структуру");
             Console.WriteLine("2. Добавить курс");
@@ -30,7 +30,6 @@ class Program
             Console.Write("Ваш выбор: ");
 
             string choice = Console.ReadLine();
-            Console.WriteLine();
 
             switch (choice)
             {
@@ -50,8 +49,6 @@ class Program
             Console.ReadKey();
         }
     }
-
-    // ==== МЕНЮ ДЕЙСТВИЙ ====
 
     static void ShowStructure()
     {
