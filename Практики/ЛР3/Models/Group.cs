@@ -6,7 +6,8 @@ class Group
     public int GroupId { get; set; }
     public string GroupName { get; set; }
     public List<Student> Students { get; set; } = new List<Student>();
-
+    
+    public Group() { }
     public Group(string groupName)
     {
         GroupId = _nextId++;

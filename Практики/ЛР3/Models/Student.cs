@@ -13,6 +13,7 @@ class Student
     // Список оценок по предметам (Grade уже содержит ссылку на Subject)
     public List<Grade> Grades { get; set; } = new List<Grade>();
 
+    public Student() { }
     public Student(string name, string surname, int age)
     {
         StudentId = _nextId++;

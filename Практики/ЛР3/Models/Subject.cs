@@ -3,11 +3,13 @@
 class Subject
 {
     private static int _nextId = 1;
+    public static void SetNextId(int v) => _nextId = v;
     public int SubjectId { get; set; }
     public string Title { get; set; }
     public string Teacher { get; set; }
     public int Hours { get; set; }
 
+    public Subject() { }
     public Subject(string title, string teacher, int hours)
     {
         SubjectId = _nextId++;

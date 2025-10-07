@@ -10,6 +10,7 @@ class Grade // Класс, представляющий оценки студе�
     // Средний балл
     public double Average => Scores.Count > 0 ? Scores.Average() : 0;
 
+    public Grade() { }
     public Grade(Subject subject)
     {
         Subject = subject;
