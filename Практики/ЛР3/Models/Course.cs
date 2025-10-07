@@ -58,7 +58,7 @@ class Course
     {
         Console.WriteLine($"{indent}Курс {Number} (ID={CourseId})");
 
-        // --- Предметы ---
+        // Предметы
         if (Subjects.Count == 0)
         {
             Console.WriteLine($"{indent}   └─ Нет предметов");
@@ -74,7 +74,7 @@ class Course
             }
         }
 
-        // --- Группы ---
+        // Группы
         if (Groups.Count == 0)
         {
             Console.WriteLine($"{indent}   └─ Нет групп");
