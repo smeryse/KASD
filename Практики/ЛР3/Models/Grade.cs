@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
-class Grade // Класс, представляющий оценки студента по одному предмету
+class Grade : IPrintable
 {
+    /*Класс, представляющий оценки студента по одному предмету*/
     public Subject Subject { get; set; }
     public List<int> Scores { get; set; } = new List<int>();
 
