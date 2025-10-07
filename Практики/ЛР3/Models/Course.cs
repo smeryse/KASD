@@ -3,7 +3,7 @@ using System.Collections.Generic;
 class Course
 {
     private static int _nextId = 1;
-    public int CourseId { get; }
+    public int CourseId { get; set; }
     public int Number { get; set; }
     public List<Group> Groups { get; set; } = new List<Group>();
     public List<Subject> Subjects { get; set; } = new List<Subject>();

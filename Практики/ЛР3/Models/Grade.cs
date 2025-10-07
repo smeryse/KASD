@@ -36,5 +36,4 @@ class Grade // Класс, представляющий оценки студе�
 
     public override string ToString() => ToFormattedString();
     public void Print(string indent = "") => Console.WriteLine(ToFormattedString(indent));
-
 }

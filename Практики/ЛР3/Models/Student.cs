@@ -5,7 +5,7 @@ using System.Linq;
 class Student
 {
     private static int _nextId = 1;
-    public int StudentId { get; }
+    public int StudentId { get; set; }
     public string Name { get; set; }
     public string Surname { get; set; }
     public int Age { get; set; }
