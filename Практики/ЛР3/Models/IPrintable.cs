@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-class Program
+namespace ЛР3.Models
 {
-    static void Main(string[] args)
+    internal interface IPrintable
     {
-        
     }
 }
-
