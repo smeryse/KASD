@@ -24,6 +24,7 @@ class Program
             Console.WriteLine("4. Удалить данные");
             Console.WriteLine("5. Сохранить в файл");
             Console.WriteLine("6. Загрузить из файла");
+            Console.WriteLine("7. Запустить тесты");
             Console.WriteLine("0. Выход");
             Console.Write("Ваш выбор: ");
 
@@ -38,6 +39,7 @@ class Program
                 case "4": DeleteMenu(); break;
                 case "5": SaveToFile(); break;
                 case "6": LoadFromFile(); break;
+                case "7": Test(); break;
                 case "0": return;
                 default: Console.WriteLine("Неверный выбор."); break;
             }
@@ -457,5 +459,33 @@ class Program
 
         institute = Institute.LoadFromFile(path);
         Console.WriteLine("Данные успешно загружены.");
+    }
+
+    // === 6. Тесты ===
+    static void Test()
+    {
+        Console.OutputEncoding = System.Text.Encoding.UTF8;
+
+        // Создаём предметы
+        Subject math = new Subject("Математика", "Иванова", 60);
+        Subject prog = new Subject("Программирование", "Петров", 90);
+
+        // Создаём студента
+        Student ivan = new Student("Иван", "Иванов", 19);
+
+        // Создаём делегат
+        StudentAction actions = null;
+
+        // Добавляем методы в многоадресный делегат
+        actions += s => s.AddSubject(math);
+        actions += s => s.AddSubject(prog);
+        actions += s => s.AddGrade(math, 5);
+        actions += s => s.AddGrade(prog, 4);
+        actions += s => s.Print();
+        actions += s => s.RemoveSubject(math.SubjectId);
+        actions += s => s.Print();
+
+        Console.WriteLine("=== Проверка через многоадресный делегат ===");
+        actions.Invoke(ivan);
     }
 }
