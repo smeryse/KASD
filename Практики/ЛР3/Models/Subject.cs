@@ -1,6 +1,6 @@
 ﻿using System;
 
-class Subject
+public class Subject
 {
     private static int _nextId = 1;
     public static void SetNextId(int v) => _nextId = v;
