@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-class Student
+class Student : IPrintable, IManageable
 {
     private static int _nextId = 1;
     public static void SetNextId(int v) => _nextId = v;

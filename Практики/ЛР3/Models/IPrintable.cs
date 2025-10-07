@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 interface IPrintable
 {
-    string ToFormattedString();
-    //string ToString
+    string ToFormattedString(string str);
+    void Print(string str);
 }
