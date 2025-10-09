@@ -25,6 +25,7 @@ class Program
             Console.WriteLine("5. Сохранить в файл");
             Console.WriteLine("6. Загрузить из файла");
             Console.WriteLine("7. Запустить тесты");
+            Console.WriteLine("8. Удалить студентов с тремя двойками"); // НОВЫЙ ПУНКТ
             Console.WriteLine("0. Выход");
             Console.Write("Ваш выбор: ");
 
@@ -40,6 +41,7 @@ class Program
                 case "5": SaveToFile(); break;
                 case "6": LoadFromFile(); break;
                 case "7": TestDelegate(); break;
+                case "8": RemoveStudentsWithThreeTwos(institute); break; // ВЫЗОВ НОВОЙ ФУНКЦИИ
                 case "0": return;
                 default: Console.WriteLine("Неверный выбор."); break;
             }
@@ -480,11 +482,13 @@ class Program
         // 1.2. Создаём студентов
         Student ivan = new Student("Иван", "Иванов", 19);
         Student petr = new Student("Петр", "Петров", 20);
-        Student sergey = new Student("Сергей", "Сидоров", 21); // Новый студент с тремя двойками
+        Student sergey = new Student("Сергей", "Сидоров", 21); // Студент с тремя двойками
+        Student olga = new Student("Ольга", "Олегова", 20);   // Еще один студент с тремя двойками
 
         group.AddStudent(ivan);
         group.AddStudent(petr);
         group.AddStudent(sergey);
+        group.AddStudent(olga);
 
         // 1.3. Создаём многоадресный делегат для студентов
         StudentAction actions = null;
@@ -499,6 +503,7 @@ class Program
                 s.AddGrade(math, 5);
                 s.AddGrade(prog, 2);
                 s.AddGrade(prog, 4);
+                s.AddGrade(math, 3);
             }
         };
 
@@ -510,6 +515,7 @@ class Program
                 s.AddGrade(math, 5);
                 s.AddGrade(prog, 5);
                 s.AddGrade(math, 4);
+                s.AddGrade(prog, 4);
             }
         };
 
@@ -521,10 +527,24 @@ class Program
                 s.AddGrade(math, 2);
                 s.AddGrade(prog, 2);
                 s.AddGrade(math, 2);
+                s.AddGrade(prog, 3);
+            }
+        };
+
+        // Добавляем оценки Ольге (4 двойки)
+        actions += s =>
+        {
+            if (s.StudentId == olga.StudentId)
+            {
+                s.AddGrade(math, 2);
+                s.AddGrade(prog, 2);
+                s.AddGrade(math, 2);
+                s.AddGrade(prog, 2);
             }
         };
 
         // 1.4. Вызываем делегат для всех студентов
+        Console.WriteLine("=== Исходные данные студентов ===");
         foreach (var student in group.Students)
         {
             actions.Invoke(student);
@@ -532,37 +552,54 @@ class Program
             Console.WriteLine();
         }
 
-        // 2. ЗАПРОС: Находим студентов первого курса с тремя двойками и удаляем их
-        Console.WriteLine("=== Поиск студентов с тремя двойками ===");
+        // 2. Добавляем курс в институт
+        institute.Courses.Clear();
+        institute.AddCourse(course);
+    }
 
-        var studentsToRemove = group.Students
-            .Where(s => s.Grades.Sum(g => g.Scores.Count(score => score == 2)) >= 3)
-            .ToList();
+    static void RemoveStudentsWithThreeTwos(Institute institute)
+    {
+        Console.WriteLine("=== Запрос: Удаление студентов первого курса с тремя двойками ===");
 
-        if (studentsToRemove.Any())
+        // Находим первый курс
+        var firstCourse = institute.Courses.FirstOrDefault(c => c.Number == 1);
+        if (firstCourse == null)
         {
-            Console.WriteLine("Найдены студенты с тремя и более двойками:");
+            Console.WriteLine("Первый курс не найден.");
+            return;
+        }
+
+        int removedCount = 0;
+
+        // Перебираем все группы первого курса
+        foreach (var group in firstCourse.Groups.ToList())
+        {
+            // Находим студентов с тремя и более двойками
+            var studentsToRemove = group.Students
+                .Where(s =>
+                {
+                    // Считаем общее количество двоек у студента
+                    int twosCount = s.Grades.Sum(g => g.Scores.Count(score => score == 2));
+                    return twosCount >= 3;
+                })
+                .ToList();
+
+            // Удаляем найденных студентов
             foreach (var student in studentsToRemove)
             {
-                Console.WriteLine($"- {student.Name} {student.Surname}");
+                Console.WriteLine($"Удаляем студента: {student.Name} {student.Surname} (ID: {student.StudentId})");
                 group.RemoveStudent(student.StudentId);
+                removedCount++;
             }
-            Console.WriteLine("Эти студенты удалены из группы.");
+        }
+
+        if (removedCount > 0)
+        {
+            Console.WriteLine($"Удалено студентов: {removedCount}");
         }
         else
         {
             Console.WriteLine("Студентов с тремя двойками не найдено.");
         }
-
-        // 3. Показываем обновленную структуру
-        Console.WriteLine("\n=== Обновленная структура группы ===");
-        group.Print();
-
-        // 4. Добавляем курс в институт
-        institute.Courses.Clear();
-        institute.AddCourse(course);
-
-        Console.WriteLine("\nСтруктура института успешно создана.");
     }
-
 }
