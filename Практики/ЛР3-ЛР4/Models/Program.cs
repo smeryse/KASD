@@ -477,22 +477,42 @@ class Program
         course.AddSubject(prog);
         course.AddGroup(group);
 
-        // 2. Создаём студента
+        // 1.2. Создаём студента
         Student ivan = new Student("Иван", "Иванов", 19);
         group.AddStudent(ivan);
 
-        // 3. Создаём многоадресный делегат
+        // 1.3. Создаём многоадресный делегат первого студента
         StudentAction actions = null;
         actions += s => s.AddSubject(math);
         actions += s => s.AddSubject(prog);
         actions += s => s.AddGrade(math, 5);
         actions += s => s.AddGrade(prog, 4);
+        actions += s => s.AddGrade(prog, 2);
+        actions += s => s.AddGrade(prog, 2);
+        actions += s => s.AddGrade(math, 2);
         actions += s => s.Print();
 
-        // 4. Вызываем делегат
+        // 1.4. Вызываем делегат
         actions.Invoke(ivan);
 
-        // 5. Добавляем курс в институт (чтобы потом показать через пункт 1)
+        // 2.2. Создаем нового студента
+        Student petr = new Student("Петр", "Петров", 20);
+        group.AddStudent(petr);
+
+        // 2.3. Создаем многоадресный делегат второго студента
+        actions = null;
+        actions += s => s.AddSubject(math);
+        actions += s => s.AddSubject(prog);
+        actions += s => s.AddGrade(math, 5);
+        actions += s => s.AddGrade(prog, 4);
+        actions += s => s.AddGrade(prog, 3);
+        actions += s => s.AddGrade(math, 5);
+        actions += s => s.Print();
+
+        // 2.4. Вызываем делегат
+        actions.Invoke(petr);
+
+        // 3. Добавляем курс в институт (чтобы потом показать через пункт 1)
         institute.Courses.Clear();
         institute.AddCourse(course);
 
