@@ -477,42 +477,88 @@ class Program
         course.AddSubject(prog);
         course.AddGroup(group);
 
-        // 1.2. Создаём студента
+        // 1.2. Создаём студентов
         Student ivan = new Student("Иван", "Иванов", 19);
-        group.AddStudent(ivan);
+        Student petr = new Student("Петр", "Петров", 20);
+        Student sergey = new Student("Сергей", "Сидоров", 21); // Новый студент с тремя двойками
 
-        // 1.3. Создаём многоадресный делегат первого студента
+        group.AddStudent(ivan);
+        group.AddStudent(petr);
+        group.AddStudent(sergey);
+
+        // 1.3. Создаём многоадресный делегат для студентов
         StudentAction actions = null;
         actions += s => s.AddSubject(math);
         actions += s => s.AddSubject(prog);
-        actions += s => s.AddGrade(math, 5);
-        actions += s => s.AddGrade(prog, 4);
-        actions += s => s.AddGrade(prog, 2);
-        actions += s => s.AddGrade(prog, 2);
-        actions += s => s.AddGrade(math, 2);
-        actions += s => s.Print();
 
-        // 1.4. Вызываем делегат
-        actions.Invoke(ivan);
+        // Добавляем оценки Ивану (2 двойки)
+        actions += s =>
+        {
+            if (s.StudentId == ivan.StudentId)
+            {
+                s.AddGrade(math, 5);
+                s.AddGrade(prog, 2);
+                s.AddGrade(prog, 4);
+            }
+        };
 
-        // 2.2. Создаем нового студента
-        Student petr = new Student("Петр", "Петров", 20);
-        group.AddStudent(petr);
+        // Добавляем оценки Петру (без двоек)
+        actions += s =>
+        {
+            if (s.StudentId == petr.StudentId)
+            {
+                s.AddGrade(math, 5);
+                s.AddGrade(prog, 5);
+                s.AddGrade(math, 4);
+            }
+        };
 
-        // 2.3. Создаем многоадресный делегат второго студента
-        actions = null;
-        actions += s => s.AddSubject(math);
-        actions += s => s.AddSubject(prog);
-        actions += s => s.AddGrade(math, 5);
-        actions += s => s.AddGrade(prog, 4);
-        actions += s => s.AddGrade(prog, 3);
-        actions += s => s.AddGrade(math, 5);
-        actions += s => s.Print();
+        // Добавляем оценки Сергею (3 двойки)
+        actions += s =>
+        {
+            if (s.StudentId == sergey.StudentId)
+            {
+                s.AddGrade(math, 2);
+                s.AddGrade(prog, 2);
+                s.AddGrade(math, 2);
+            }
+        };
 
-        // 2.4. Вызываем делегат
-        actions.Invoke(petr);
+        // 1.4. Вызываем делегат для всех студентов
+        foreach (var student in group.Students)
+        {
+            actions.Invoke(student);
+            student.Print();
+            Console.WriteLine();
+        }
 
-        // 3. Добавляем курс в институт (чтобы потом показать через пункт 1)
+        // 2. ЗАПРОС: Находим студентов первого курса с тремя двойками и удаляем их
+        Console.WriteLine("=== Поиск студентов с тремя двойками ===");
+
+        var studentsToRemove = group.Students
+            .Where(s => s.Grades.Sum(g => g.Scores.Count(score => score == 2)) >= 3)
+            .ToList();
+
+        if (studentsToRemove.Any())
+        {
+            Console.WriteLine("Найдены студенты с тремя и более двойками:");
+            foreach (var student in studentsToRemove)
+            {
+                Console.WriteLine($"- {student.Name} {student.Surname}");
+                group.RemoveStudent(student.StudentId);
+            }
+            Console.WriteLine("Эти студенты удалены из группы.");
+        }
+        else
+        {
+            Console.WriteLine("Студентов с тремя двойками не найдено.");
+        }
+
+        // 3. Показываем обновленную структуру
+        Console.WriteLine("\n=== Обновленная структура группы ===");
+        group.Print();
+
+        // 4. Добавляем курс в институт
         institute.Courses.Clear();
         institute.AddCourse(course);
 
