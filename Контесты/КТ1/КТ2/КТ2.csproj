@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="CountingInversions.cs" />
     <Compile Include="CountingSort.cs" />
+    <Compile Include="MaxHeap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
