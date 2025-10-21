@@ -4,12 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-class merge_sort
-{
+
     
-class program
+class MergeSorter
 {
-    static void main()
+    public int[] Array { get; private set; }
+
+    public MergeSorter(int[] arr) => Array = arr;
+    private void merge_sort(int left, int right)
+    {
+        if (left >= right) return;
+        int mid = Array.Length / 2;
+        int[] left_half;
+        int[] right_half;
+        Array.CopyTo(left_half, right_half, 0);
+    }
+    void merge()
     {
 
     }
