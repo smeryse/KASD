@@ -14,10 +14,11 @@ class MergeSorter
     private void merge_sort(int left, int right)
     {
         if (left >= right) return;
-        int mid = Array.Length / 2;
-        int[] left_half;
-        int[] right_half;
-        Array.CopyTo(left_half, right_half, 0);
+        int mid = (left + right) / 2;
+        int[] left_half = { };
+        int[] right_half = { };
+        Array.CopyTo(left_half, 0);
+        Array.CopyTo(left_half, mid);
     }
     void merge()
     {
