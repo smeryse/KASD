@@ -34,20 +34,40 @@ class MergeSorter
         while (i < amount_left && j < amount_right)
         {
             if (left_half[i] <= right_half[j])
-                Array[k++] = left_half[i++];
+            {
+                Array[k] = left_half[i];
+                k++; i++;
+            }
+
             else
-                Array[k++] = right_half[j++];
+            {
+                Array[k] = right_half[j];
+                k++; j++;
+            }
+            
         }
 
         while (i < amount_left) Array[k++] = left_half[i++];
         while (j < amount_right) Array[k++] = right_half[j++];
     }
 }
-
 class Program
 {
-    static void main(string[] args)
+    static void Main(string[] args)
     {
+        Test(new int[] { 5, 3, 8, 4, 2 }, "Случайный массив");
+        Test(new int[] { 1, 2, 3, 4, 5 }, "Уже отсортированный");
+        Test(new int[] { 5, 4, 3, 2, 1 }, "Отсортированный в обратном порядке");
+        Test(new int[] { 7 }, "Один элемент");
+        Test(new int[] { }, "Пустой массив");
+        Test(new int[] { 2, 3, 2, 1, 1 }, "С дубликатами");
+        Test(new int[] { 10, -5, 3, 0, -1 }, "С отрицательными числами");
+    }
 
+    static void Test(int[] arr, string description)
+    {
+        MergeSorter sorter = new MergeSorter((int[])arr.Clone()); // клонируем, чтобы исходный не трогать
+        sorter.Sort();
+        Console.WriteLine($"{description}: {string.Join(", ", sorter.Array)}");
     }
 }
