@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Threading;
 
 class MergeSorter
 {
@@ -54,6 +56,14 @@ class MergeSorter
 class Program
 {
     static void Main(string[] args)
+    {
+        int n = int.Parse(Console.ReadLine());
+        int[] arr = Console.ReadLine()
+                   .Split(' ', (char)StringSplitOptions.RemoveEmptyEntries)
+                   .Select(int.Parse)
+                   .ToArray();
+    }
+    static void MainTest(string[] args)
     {
         Test(new int[] { 5, 3, 8, 4, 2 }, "Случайный массив");
         Test(new int[] { 1, 2, 3, 4, 5 }, "Уже отсортированный");
