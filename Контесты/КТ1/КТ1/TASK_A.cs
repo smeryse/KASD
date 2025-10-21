@@ -59,7 +59,7 @@ class Program
     {
         int n = int.Parse(Console.ReadLine());
         int[] arr = Console.ReadLine()
-                   .Split(' ', (char)StringSplitOptions.RemoveEmptyEntries)
+                   .Split(' ')
                    .Select(int.Parse)
                    .ToArray();
         MergeSorter sorter = new MergeSorter(arr);
