@@ -15,9 +15,15 @@ class MergeSorter
     {
         if (left >= right) return;
         int mid = (left + right) / 2;
-        int[] left_half = { };
-        int[] right_half = { };
-        Array.CopyTo(left_half, 0);
+
+        int amount_left = mid - left + 1;
+        int amount_right = right - mid;
+
+        int[] left_half = new int[amount_left];
+        int[] right_half = new int[amount_right];
+
+        Array.CopyTo(
+            Array, left, left_half, amount_left);
         Array.CopyTo(left_half, mid);
     }
     void merge()
