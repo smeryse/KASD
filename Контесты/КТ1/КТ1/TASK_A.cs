@@ -35,8 +35,8 @@ class MergeSorter
         int[] L = new int[n1];
         int[] R = new int[n2];
 
-        Array.Copy(Array, left, L, 0, n1);
-        Array.Copy(Array, mid + 1, R, 0, n2);
+        System.Array.Copy(Array, left, L, 0, n1);
+        System.Array.Copy(Array, mid + 1, R, 0, n2);
 
         int i = 0, j = 0, k = left;
 
