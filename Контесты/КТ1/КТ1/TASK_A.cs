@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace КТ1
+class merge_sort
 {
-    internal class TASK_A
+    
+class program
+{
+    static void main()
     {
+
     }
 }
