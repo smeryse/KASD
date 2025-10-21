@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Threading;
 
 class MergeSorter
 {
@@ -8,19 +7,19 @@ class MergeSorter
 
     public MergeSorter(int[] arr) => Array = arr;
 
-    public void Sort() => merge_sort(0, Array.Length - 1);
+    public void Sort() => MergeSort(0, Array.Length - 1);
 
-    private void merge_sort(int left, int right)
+    private void MergeSort(int left, int right)
     {
         if (left >= right) return;
         int mid = (left + right) / 2;
 
-        merge_sort(left, mid);
-        merge_sort(mid + 1, right);
+        MergeSort(left, mid);
+        MergeSort(mid + 1, right);
 
-        merge(left, mid, right);
+        Merge(left, mid, right);
     }
-    private void merge(int left, int mid, int right)
+    private void Merge(int left, int mid, int right)
     {
         int amount_left = mid - left + 1;
         int amount_right = right - mid;
@@ -56,8 +55,8 @@ class MergeSorter
 class Program
 {
     static void Main(string[] args)
-    {
-        int n = int.Parse(Console.ReadLine());
+    { 
+        Console.ReadLine();
         int[] arr = Console.ReadLine()
                    .Split(' ')
                    .Select(int.Parse)
