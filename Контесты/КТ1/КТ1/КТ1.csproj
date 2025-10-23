@@ -37,10 +37,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApproximateBinarySearch.cs" />
+    <Compile Include="ArraySplit.cs" />
     <Compile Include="CountingInversions.cs" />
     <Compile Include="CountingSort.cs" />
-    <Compile Include="GladeOfFirewood[WIP].cs" />
-    <Compile Include="K-best.cs" />
+    <Compile Include="GladeOfFirewood [WIP].cs" />
+    <Compile Include="K-best [WIP].cs" />
     <Compile Include="MaxHeap.cs" />
     <Compile Include="MergeSort.cs" />
     <Compile Include="QuickSearchInArray.cs" />
