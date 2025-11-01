@@ -1,0 +1,28 @@
+{
+	"nodes":[
+		{"id":"a0d0c85bf614538f","type":"text","text":"$dp[i][w]=max(dp[i-1][w], dp[i-1][w-weight[i-1]]+value[i-1])$","x":-285,"y":100,"width":545,"height":60},
+		{"id":"9e13d5466b6d2ce2","type":"text","text":"$int[] values$","x":0,"y":-120,"width":260,"height":60},
+		{"id":"8c75aa791bc606f4","type":"text","text":"1\\0 Рюкзак\nw=5","x":-600,"y":-120,"width":250,"height":85},
+		{"id":"4c114a7e189ce90e","type":"text","text":"3..\nw=4\nv=5","x":-395,"y":-20,"width":90,"height":100},
+		{"id":"e8ee1e1ca62c5d2a","type":"text","text":"2..\nw=3\nv=4","x":-500,"y":-20,"width":90,"height":100},
+		{"id":"663598a2c16297d6","type":"text","text":"1..\nw=2\nv=3","x":-600,"y":-20,"width":90,"height":100},
+		{"id":"d2e3fcbc4fb854cc","type":"text","text":"$int[] weights$","x":-285,"y":-120,"width":250,"height":60},
+		{"id":"19b3434996f0db7c","type":"text","text":"$List<weights, values> intems$","x":-135,"y":-240,"width":250,"height":60},
+		{"id":"2f8de9dc3e7484e2","type":"text","text":"","x":-600,"y":100,"width":295,"height":60},
+		{"id":"fc9be594ef238867","type":"text","text":"","x":-600,"y":180,"width":295,"height":60},
+		{"id":"8c830005bd3ebb06","type":"text","text":"","x":-600,"y":260,"width":295,"height":60},
+		{"id":"eb26b1466278c681","type":"text","text":"$dp[i][w] \\text{ - Максимальная суммарная стоимость первых i элементов}$\n$i = 3$\n$w = 5$","x":-285,"y":-20,"width":545,"height":100},
+		{"id":"2c20eda1b3fed2b0","type":"text","text":"\n| 0   | 1   | 2   |\n| --- | --- | --- |\n|     |     |     |\n","x":300,"y":-20,"width":300,"height":340},
+		{"id":"56ff7bd56e8260f1","type":"text","text":"$dp[1][5]=max(dp[0][5], dp[0][w-weight[0]]+value[0]);$","x":-285,"y":340,"width":545,"height":60},
+		{"id":"7a5aa4d3e907cb63","type":"text","text":"$dp[2][5]=max(dp[1][5], dp[1][w-weight[1]]+value[1])$","x":-285,"y":260,"width":545,"height":60},
+		{"id":"50a265609a258f57","type":"text","text":"$dp[i][w]=max(dp[i-1][w], dp[i-1][w-weight[i-1]]+value[i-1])$","x":-285,"y":180,"width":545,"height":60}
+	],
+	"edges":[
+		{"id":"d36b0b947ee8bc74","fromNode":"19b3434996f0db7c","fromSide":"bottom","toNode":"d2e3fcbc4fb854cc","toSide":"top"},
+		{"id":"59269c70919c0995","fromNode":"19b3434996f0db7c","fromSide":"bottom","toNode":"9e13d5466b6d2ce2","toSide":"top"},
+		{"id":"a8f096e1bed8cabd","fromNode":"a0d0c85bf614538f","fromSide":"right","toNode":"2c20eda1b3fed2b0","toSide":"left"},
+		{"id":"4f19680f8046f4c7","fromNode":"7a5aa4d3e907cb63","fromSide":"right","toNode":"2c20eda1b3fed2b0","toSide":"left"},
+		{"id":"51eded5caaeecbb5","fromNode":"56ff7bd56e8260f1","fromSide":"right","toNode":"2c20eda1b3fed2b0","toSide":"left"},
+		{"id":"6ca7fff3aafe2bf8","fromNode":"50a265609a258f57","fromSide":"right","toNode":"2c20eda1b3fed2b0","toSide":"left"}
+	]
+}
