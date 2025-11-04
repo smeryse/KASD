@@ -7,16 +7,16 @@ class Program
     static void Main()
     {
         int[] arr = { 2, 4, 7, 11, 15, 21, 30 };
-        int num = 11;
-        BinarySearch(num, arr.Max(), arr.Sum(), arr);
+        int result = 11;
+        BinarySearch(result, arr.Max(), arr.Sum(), arr);
 
-        Console.WriteLine(BinarySearch(num, 0, arr.Length - 1, arr));
+        Console.WriteLine(BinarySearch(result, 0, arr.Length - 1, arr));
     }
 
-    static int BinarySearch(int num, int left, int right, int[] arr)
+    static int BinarySearch(int result, int left, int right, int[] arr)
     {
         int mid = (left + right) / 2;
-        if (num > mid)
+        if (result > mid)
         {
 
         }
@@ -25,19 +25,18 @@ class Program
     static bool CanSplit(int k, int maxSum, int[] arr)
     {
         int temp = 0;
-        int count = 0;
+        int count = 1;
         foreach (int i in arr)
         {
-            if (temp >= maxSum)
+            if (i > maxSum) return false;
+
+            if (temp + i > maxSum)  
             {
-                temp = 0;
                 count++;
+                temp = i;
             }
-            else
-            {
-                temp += i;
-            }
+            else temp += i;
         }
-        return count == k;
+        return count <= k;
     }
 }
