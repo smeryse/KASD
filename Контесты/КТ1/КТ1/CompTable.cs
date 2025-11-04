@@ -25,7 +25,7 @@ class Program
         int result = 0;
         for (int i = 1; i <= n; i++)
         {
-            result += num / i - 1;
+            result += (num - 1) / i;
         }
         return result;
     }
