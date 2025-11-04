@@ -14,13 +14,13 @@ class Program
         n = int.Parse(firstString[0]);
         k = long.Parse(firstString[1]);
 
-        a = Console.ReadLine().Split().Select(long.Parse).ToArray();
-        b = Console.ReadLine().Split().Select(long.Parse).ToArray();
+        a = Array.ConvertAll(Console.ReadLine().Split(' '), long.Parse);
+        b = Array.ConvertAll(Console.ReadLine().Split(' '), long.Parse);
 
         Array.Sort(a);
         Array.Sort(b);
 
-        long result = KthSum(a, b, k);
+        long result = KSum(a, b, k);
         Console.WriteLine(result);
     }
 
@@ -47,7 +47,7 @@ class Program
     }
 
     // Бинарный поиск k-й суммы
-    static long KthSum(long[] a, long[] b, long k)
+    static long KSum(long[] a, long[] b, long k)
     {
         long left = a[0] + b[0];
         long right = a[a.Length - 1] + b[b.Length - 1];
