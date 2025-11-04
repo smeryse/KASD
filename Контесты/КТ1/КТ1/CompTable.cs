@@ -18,7 +18,7 @@ class Program
     {
         if (left == right) return left;
         long mid = (left + right) / 2;
-        if (CountBefore(mid) >= k) return BinarySearch(left, mid - 1);
+        if (CountBefore(mid) >= k) return BinarySearch(left, mid);
         else return BinarySearch(mid + 1, right);
     }
     static long CountBefore(long num)
