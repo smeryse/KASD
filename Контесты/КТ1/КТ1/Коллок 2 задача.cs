@@ -6,12 +6,11 @@ class Program
 {
     static void Main()
     {
-        int[] arr = { 1, 8, 24, 84, 13, 40, 3 };
-        int result = 3;
-        BinarySearch(result, arr.Max(), arr.Sum(), arr);
+        int[] arr = { 2, 4, 7, 11, 15, 21, 30 };
+        int k = 3;
 
-        Console.WriteLine(BinarySearch(result, 0, arr.Length - 1, arr));
-    }
+        Console.WriteLine(BinarySearch(k, arr.Max(), arr.Sum(), arr));
+    } 
 
     static int BinarySearch(int k, int left, int right, int[] arr)
     {
