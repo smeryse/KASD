@@ -8,18 +8,27 @@ class Program
         RunAllTests();
     }
 
-    // --- Рекурсивная реализация с long ---
+    // --- Исправленная рекурсивная реализация с long ---
     static long BinarySearchRecursive(int k, long left, long right, int[] arr)
     {
-        if (left >= right) return left;
-        long mid = left + (right - left) / 2; // безопасное вычисление mid
-        if (CanSplitRecursive(k, mid, arr)) return BinarySearchRecursive(k, left, mid - 1, arr);
-        else return BinarySearchRecursive(k, mid + 1, right, arr);
+        if (left >= right) return left; // базовый случай
+
+        long mid = left + (right - left) / 2;
+
+        if (CanSplitRecursive(k, mid, arr))
+        {
+            // mid рабочий, проверяем можно ли уменьшить максимум
+            return BinarySearchRecursive(k, left, mid, arr); // без -1
+        }
+        else
+        {
+            return BinarySearchRecursive(k, mid + 1, right, arr);
+        }
     }
 
     static bool CanSplitRecursive(int k, long maxSum, int[] arr)
     {
-        long temp = 0; // здесь тоже long
+        long temp = 0;
         int count = 1;
         foreach (int i in arr)
         {
@@ -100,9 +109,10 @@ class Program
             long iterResult = BinarySearchIterative(k, arr);
 
             Console.WriteLine($"arr=[{string.Join(",", arr)}], k={k}, expected={expected}");
-            Console.WriteLine($"  Recursive (long): {recResult} {(recResult == expected ? "+" : "-")}");
+            Console.WriteLine($"  Recursive (fixed): {recResult} {(recResult == expected ? "+" : "-")}");
             Console.WriteLine($"  Iterative (long): {iterResult} {(iterResult == expected ? "+" : "-")}");
             Console.WriteLine();
         }
     }
 }
+    
