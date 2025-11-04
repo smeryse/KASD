@@ -1,12 +1,20 @@
 ﻿using System;
 using System.Linq;
+using System.Reflection;
 using System.Security.AccessControl;
 
 class Program
 {
     static void Main()
     {
-        RunTests();
+        string[] firstString = Console.ReadLine().Split(' ');
+        string[] secondString = Console.ReadLine().Split(' ');
+
+        int n = int.Parse(firstString[0]);
+        int k = int.Parse(secondString[1]);
+        int[] arr = Array.ConvertAll(secondString, int.Parse);
+
+        Console.WriteLine(BinarySearch(k, arr.Max(), arr.Sum(), arr));
     }
 
     static void RunTests()
