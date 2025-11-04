@@ -20,23 +20,19 @@ class Program
         Array.Sort(a);
         Array.Sort(b);
 
-        long result = KSum(a, b, k);
-        Console.WriteLine(result);
+        Console.WriteLine(KSum());
     }
 
-    // Функция подсчета количества пар с суммой <= x
-    static long CountPairs(long[] a, long[] b, long x)
+    static long CountPairs(long curSum)
     {
         long count = 0;
-        int n = b.Length;
-        for (int i = 0; i < a.Length; i++)
+        for (int i = 0; i < n; i++)
         {
-            // бинарный поиск: сколько элементов b[j] <= x - a[i]
             int left = 0, right = n;
             while (left < right)
             {
                 int mid = (left + right) / 2;
-                if (b[mid] <= x - a[i])
+                if (b[mid] + a[i] <= curSum)
                     left = mid + 1;
                 else
                     right = mid;
@@ -47,15 +43,15 @@ class Program
     }
 
     // Бинарный поиск k-й суммы
-    static long KSum(long[] a, long[] b, long k)
+    static long KSum()
     {
         long left = a[0] + b[0];
         long right = a[a.Length - 1] + b[b.Length - 1];
 
         while (left < right)
         {
-            long mid = left + (right - left) / 2;
-            if (CountPairs(a, b, mid) < k)
+            long mid = (right + left) / 2;
+            if (CountPairs(mid) < k)
                 left = mid + 1;
             else
                 right = mid;
