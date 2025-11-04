@@ -6,20 +6,20 @@ class Program
 {
     static void Main()
     {
-        int[] arr = { 2, 4, 7, 11, 15, 21, 30 };
-        int result = 11;
+        int[] arr = { 1, 8, 24, 84, 13, 40, 3 };
+        int result = 3;
         BinarySearch(result, arr.Max(), arr.Sum(), arr);
 
         Console.WriteLine(BinarySearch(result, 0, arr.Length - 1, arr));
     }
 
-    static int BinarySearch(int result, int left, int right, int[] arr)
+    static int BinarySearch(int k, int left, int right, int[] arr)
     {
-        int mid = (left + right) / 2;
-        if (result > mid)
-        {
+        if (left == right) return left;
 
-        }
+        int mid = (left + right) / 2;
+        if (CanSplit(k, mid, arr)) return BinarySearch(k, left, mid - 1, arr);
+        else return BinarySearch(k, mid + 1, right, arr);
     }
 
     static bool CanSplit(int k, int maxSum, int[] arr)
