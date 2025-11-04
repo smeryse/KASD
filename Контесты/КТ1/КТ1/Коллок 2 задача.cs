@@ -1,27 +1,21 @@
-﻿//using System;
-//using System.Collections.Generic;
+﻿using System;
+class Program
+{
+    static void Main(string[] args)
+    {
+        Console.WriteLine();
+    }
+    int knapSack(int W, int n, int[] weight, int[] values)
+    {
+        if (n == 0 || W == 0) return 0;
 
-//class Program
-//{
-//    static void Main()
-//    {
-//        int[] arr = { 1, 1, 2, 2, 3 };
-//        Dictionary<int, int> counter = new Dictionary<int, int>();
-
-//        for (int i = 0; i < arr.Length; i++)
-//        {
-//            counter[arr[i]] = 0;
-//        }
-
-//        for (int i = 0; i < arr.Length; i++)
-//        {
-//            counter[arr[i]] += 1;
-//        }
-
-//        foreach (int i in counter.Keys)
-//        {
-//            if (counter[i] == 1) Console.WriteLine(i);
-//        }
-//    }
-
-//}
+        if (weight[n - 1] > W) return knapSack(W, n - 1, weight, values);
+        else
+        {
+            return Math.Max(
+                knapSack(W, n - 1, weight, values), 
+                values[n - 1] + knapSack(W - weight[n - 1], n - 1, weight, values)
+                );
+        }
+    }
+}
