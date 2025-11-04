@@ -28,6 +28,7 @@ class Program
         long count = 0;
         for (int i = 0; i < n; i++)
         {
+            //left, right, mid - indexes
             int left = 0, right = n;
             while (left < right)
             {
