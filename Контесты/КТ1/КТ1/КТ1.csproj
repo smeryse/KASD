@@ -40,6 +40,7 @@
     <Compile Include="CompTable.cs" />
     <Compile Include="CountingInversions.cs" />
     <Compile Include="CountingSort.cs" />
+    <Compile Include="KSumm.cs" />
     <Compile Include="SplitArray.cs" />
     <Compile Include="GladeOfFirewood [WIP].cs" />
     <Compile Include="K-best [WIP].cs" />
