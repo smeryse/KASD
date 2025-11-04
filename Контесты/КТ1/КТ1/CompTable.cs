@@ -2,23 +2,31 @@
 
 class Program
 {
+    static int n;
+    static int k;
+    static int[] arr;
     static void Main(string[] args)
     {
         int n = 3;
-        CountingSort(n);
+        int k = 4;
+
+        Console.WriteLine(CountBefore(4));
     }
-    static void CountingSort(int n)
+
+    static int BinarySearch(int left, int right)
     {
-        if (n == 0) return;
-
-        int min = 1;
-        int max = n*n;
-
-        int[] count = new int[max + 1];
-
-        for (int val = 1; val <= n * n; val++)
-            for (int k = 1; k < count[val]; k++)
-                Console.WriteLine(val);
+        if (left == right) return left;
+        int mid = (left + right) / 2;
+        if (CountBefore(mid) > k) return BinarySearch(left, mid);
+        else return BinarySearch(mid, right);
     }
-
+    static int CountBefore(int num)
+    {
+        int result = 0;
+        for (int i = 1; i <= n; i++)
+        {
+            result += num / i - 1;
+        }
+        return result;
+    }
 }
