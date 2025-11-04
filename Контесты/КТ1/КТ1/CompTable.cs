@@ -1,9 +1,11 @@
-﻿class Program
+﻿using System;
+
+class Program
 {
     static void Main(string[] args)
     {
         int n = 3;
-
+        CountingSort(n);
     }
     static void CountingSort(int n)
     {
@@ -12,28 +14,11 @@
         int min = 1;
         int max = n*n;
 
-        for (int num = 1; num <= max; num++)
-        {
-            if (num > max) max = num;
-            if (num < min) min = num;
-        }
+        int[] count = new int[max + 1];
 
-        int range = max - min + 1;
-        int[] count = new int[range];
-
-        foreach (int num in arr)
-        {
-            count[num - min]++;
-        }
-        int index = 0;
-        for (int i = 0; i < range; i++)
-        {
-            while (count[i] > 0)
-            {
-                arr[index++] = i + min;
-                count[i]--;
-            }
-        }
+        for (int val = 1; val <= n * n; val++)
+            for (int k = 1; k < count[val]; k++)
+                Console.WriteLine(val);
     }
 
 }
