@@ -7,8 +7,10 @@ class Program
     static int[] arr;
     static void Main(string[] args)
     {
-        n = 3;
-        k = 4;
+        string[] firstString = Console.ReadLine().Split(' ');
+
+        n = int.Parse(firstString[0]);
+        k = int.Parse(firstString[1]);
 
         Console.WriteLine(BinarySearch(1, n*n));
     }
