@@ -1,53 +1,65 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
+﻿using System;
+using System.Linq;
 
-//class Program
-//{
-//    static void Main()
-//    {
-//        var args = Console.ReadLine().Split(' ');
-//        int n = int.Parse(args[0]);
-//        int k = int.Parse(args[1]);
+class Program
+{
+    static void Main()
+    {
+        string[] first = Console.ReadLine().Split();
+        int n = int.Parse(first[0]);
+        int k = int.Parse(first[1]);
 
-//        var gems = new List<(int value, int weight, int index)>();
+        long[] v = new long[n];
+        long[] w = new long[n];
 
-//        for (int i = 0; i < n; i++)
-//        {
-//            var parts = Console.ReadLine().Split(' ');
-//            int v = int.Parse(parts[0]);
-//            int w = int.Parse(parts[1]);
-//            gems.Add((v, w, i + 1));
-//        }
+        for (int i = 0; i < n; i++)
+        {
+            string[] parts = Console.ReadLine().Split();
+            v[i] = long.Parse(parts[0]);
+            w[i] = long.Parse(parts[1]);
+        }
 
-//        double left = 0;
-//        double right = gems.Max(g => (double)g.value / g.weight);
-//        double eps = 1e-7;
+        int[] answer = new int[k];
+        double left = 0;
+        double right = 1e6;
 
-//        List<int> answerIndices = null;
+        // Бинарный поиск по среднему значению
+        for (int iter = 0; iter < 100; iter++)
+        {
+            double mid = (left + right) / 2;
+            if (IsPossible(v, w, n, k, mid, out int[] chosen))
+            {
+                left = mid;
+                answer = chosen;
+            }
+            else
+            {
+                right = mid;
+            }
+        }
 
-//        while (right - left > eps)
-//        {
-//            double mid = (left + right) / 2;
+        // Выводим индексы в 1-базе
+        for (int i = 0; i < k; i++)
+            Console.Write((answer[i] + 1) + " ");
+    }
 
-//            var b = gems.Select(g => (g.value - mid * g.weight, g.index)).ToList();
+    // Проверка, достижимо ли отношение X
+    static bool IsPossible(long[] v, long[] w, int n, int k, double X, out int[] chosen)
+    {
+        double[] scores = new double[n];
+        for (int i = 0; i < n; i++)
+            scores[i] = v[i] - X * w[i];
 
-//            b.Sort((a, c) => c.Item1.CompareTo(a.Item1));
-//            double sum = 0;
-//            for (int i = 0; i < k; i++) sum += b[i].Item1;
+        int[] idx = Enumerable.Range(0, n).ToArray();
+        Array.Sort(idx, (i, j) => scores[j].CompareTo(scores[i]));
 
-//            if (sum >= 0)
-//            {
-//                left = mid;
-//                answerIndices = b.Take(k).Select(x => x.Item2).ToList();
-//            }
-//            else
-//            {
-//                right = mid;
-//            }
-//        }
+        double sum = 0;
+        for (int i = 0; i < k; i++)
+            sum += scores[idx[i]];
 
-//        foreach (var idx in answerIndices)
-//            Console.WriteLine(idx);
-//    }
-//}
+        chosen = new int[k];
+        Array.Copy(idx, chosen, k);
+
+        return sum >= 0;
+    }
+}
