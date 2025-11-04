@@ -7,8 +7,8 @@ class Program
     static int[] arr;
     static void Main(string[] args)
     {
-        int n = 3;
-        int k = 4;
+        n = 3;
+        k = 4;
 
         Console.WriteLine(CountBefore(4));
     }
@@ -27,6 +27,6 @@ class Program
         {
             result += (num - 1) / i;
         }
-        return result;
+        return result - 1;
     }
 }
