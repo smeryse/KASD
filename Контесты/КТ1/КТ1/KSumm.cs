@@ -23,7 +23,10 @@ class Program
         int right = b.Count;
         while (left < right)
         {
-            MidpointRounding 
+            int mid = (left + right) / 2;
+            if (b[mid] <= a) left = mid + 1;
+            else right = mid;
         }
+        return left;
     }
 }
