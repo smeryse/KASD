@@ -2,9 +2,8 @@
 
 class Program
 {
-    static int n;
-    static int k;
-    static int[] arr;
+    static long n;
+    static long k;
     static void Main(string[] args)
     {
         string[] firstString = Console.ReadLine().Split(' ');
@@ -15,19 +14,19 @@ class Program
         Console.WriteLine(BinarySearch(1, n*n));
     }
 
-    static int BinarySearch(int left, int right)
+    static long BinarySearch(long left, long right)
     {
         if (left == right) return left;
-        int mid = (left + right) / 2;
-        if (CountBefore(mid) > k) return BinarySearch(left, mid - 1);
+        long mid = (left + right) / 2;
+        if (CountBefore(mid) >= k) return BinarySearch(left, mid - 1);
         else return BinarySearch(mid + 1, right);
     }
-    static int CountBefore(int num)
+    static long CountBefore(long num)
     {
-        int result = 0;
-        for (int i = 1; i <= n; i++)
+        long result = 0;
+        for (long i = 1; i <= n; i++)
         {
-            result += Math.Min(n, (num - 1) / i);
+            result += Math.Min(n, num / i);
         }
         return result - 1;
     }
