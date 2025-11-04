@@ -3,9 +3,14 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine();
+        int[] values = { 60, 100, 120 };
+        int[] weight = { 10, 20, 30};
+        int W = 50;
+        int n = values.Length;
+
+        Console.WriteLine(knapSack(W, n, weight, values));
     }
-    int knapSack(int W, int n, int[] weight, int[] values)
+    static int knapSack(int W, int n, int[] weight, int[] values)
     {
         if (n == 0 || W == 0) return 0;
 
