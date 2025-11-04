@@ -27,7 +27,7 @@ class Program
         int result = BinarySearch(k, left, right, arr);
 
         Console.WriteLine($"arr=[{string.Join(",", arr)}], k={k} => min max sum: {result} (expected {expected}) " +
-                          $"{(result == expected ? "✅" : "❌")}");
+                          $"{(result == expected ? "+" : "-")}");
     }
 
     static int BinarySearch(int k, int left, int right, int[] arr)
