@@ -6,11 +6,29 @@ class Program
 {
     static void Main()
     {
-        int[] arr = { 2, 4, 7, 11, 15, 21, 30 };
-        int k = 3;
+        RunTests();
+    }
 
-        Console.WriteLine(BinarySearch(k, arr.Max(), arr.Sum(), arr));
-    } 
+    static void RunTests()
+    {
+        Test(new int[] { 2, 4, 7, 11, 15, 21, 30 }, 2, 55);
+        Test(new int[] { 2, 4, 7, 11, 15, 21, 30 }, 3, 36);
+        Test(new int[] { 1, 2, 3, 4, 5 }, 2, 9);
+        Test(new int[] { 5, 5, 5, 5, 5 }, 3, 10);
+        Test(new int[] { 10, 20, 30 }, 1, 60);
+        Test(new int[] { 10, 20, 30 }, 3, 30);
+        Test(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, 4, 15);
+    }
+
+    static void Test(int[] arr, int k, int expected)
+    {
+        int left = arr.Max(), right = arr.Sum();
+
+        int result = BinarySearch(k, left, right, arr);
+
+        Console.WriteLine($"arr=[{string.Join(",", arr)}], k={k} => min max sum: {result} (expected {expected}) " +
+                          $"{(result == expected ? "✅" : "❌")}");
+    }
 
     static int BinarySearch(int k, int left, int right, int[] arr)
     {
