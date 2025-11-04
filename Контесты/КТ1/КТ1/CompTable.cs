@@ -7,10 +7,10 @@ class Program
     static int[] arr;
     static void Main(string[] args)
     {
-        n = 3;
+        n = 9;
         k = 4;
 
-        Console.WriteLine(CountBefore(4));
+        Console.WriteLine(CountBefore(35));
     }
 
     static int BinarySearch(int left, int right)
