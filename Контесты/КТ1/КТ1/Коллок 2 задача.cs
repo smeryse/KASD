@@ -8,18 +8,18 @@ class Program
         RunAllTests();
     }
 
-    // --- Ваша оригинальная рекурсивная реализация (без изменений) ---
-    static int BinarySearchRecursive(int k, int left, int right, int[] arr)
+    // --- Рекурсивная реализация с long ---
+    static long BinarySearchRecursive(int k, long left, long right, int[] arr)
     {
         if (left >= right) return left;
-        int mid = (left + right) / 2;
-        if (CanSplitRecursive(k, mid, arr)) return BinarySearchRecursive(k, left + 1, mid - 1, arr);
-        else return BinarySearchRecursive(k, mid + 1, right - 1, arr);
+        long mid = left + (right - left) / 2; // безопасное вычисление mid
+        if (CanSplitRecursive(k, mid, arr)) return BinarySearchRecursive(k, left, mid - 1, arr);
+        else return BinarySearchRecursive(k, mid + 1, right, arr);
     }
 
-    static bool CanSplitRecursive(int k, int maxSum, int[] arr)
+    static bool CanSplitRecursive(int k, long maxSum, int[] arr)
     {
-        int temp = 0;
+        long temp = 0; // здесь тоже long
         int count = 1;
         foreach (int i in arr)
         {
@@ -35,7 +35,7 @@ class Program
         return count <= k;
     }
 
-    // --- Моя итеративная реализация (использует long) ---
+    // --- Итеративная реализация (для сравнения) ---
     static long BinarySearchIterative(int k, int[] arr)
     {
         long left = arr.Max();
@@ -44,7 +44,7 @@ class Program
 
         while (left <= right)
         {
-            long mid = (left + right) / 2;
+            long mid = left + (right - left) / 2;
             if (CanSplitIterative(k, mid, arr))
             {
                 result = mid;
@@ -90,16 +90,17 @@ class Program
             (new int[] { 10, 20, 30 }, 3, 30),
             (new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, 4, 15),
             (new int[] { 1, 3, 2, 4, 10, 8, 4, 2, 5, 3 }, 4, 14),
-            (new int[] {1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, 2, 5)
+            (new int[] {1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, 2, 5),
+            (new int[] { 1000000000, 1000000000, 1000000000 }, 2, 2000000000)
         };
 
         foreach (var (arr, k, expected) in tests)
         {
-            int recResult = BinarySearchRecursive(k, arr.Max(), arr.Sum(), arr);
+            long recResult = BinarySearchRecursive(k, arr.Max(), arr.Select(x => (long)x).Sum(), arr);
             long iterResult = BinarySearchIterative(k, arr);
 
             Console.WriteLine($"arr=[{string.Join(",", arr)}], k={k}, expected={expected}");
-            Console.WriteLine($"  Recursive (original int): {recResult} {(recResult == expected ? "+" : "-")}");
+            Console.WriteLine($"  Recursive (long): {recResult} {(recResult == expected ? "+" : "-")}");
             Console.WriteLine($"  Iterative (long): {iterResult} {(iterResult == expected ? "+" : "-")}");
             Console.WriteLine();
         }
