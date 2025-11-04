@@ -1,31 +1,64 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
+using System.Linq;
 
 class Program
 {
+    static long[] a;
+    static long[] b;
+    static int n;
+    static long k;
+
     static void Main()
     {
-        int n = 5;
-        int k = 10;
-        List<int> a = new List<int>() { 4, 2, 6, 4, 8 };
-        List<int> b = new List<int>() { 7, 3, 1, 9, 5 };
+        string[] firstString = Console.ReadLine().Split();
+        n = int.Parse(firstString[0]);
+        k = long.Parse(firstString[1]);
 
-        a.Sort(); // 2, 4, 5, 6, 8
-        b.Sort(); // 1, 3, 5, 7, 9
+        a = Console.ReadLine().Split().Select(long.Parse).ToArray();
+        b = Console.ReadLine().Split().Select(long.Parse).ToArray();
 
-        List<int> result = new List<int>();
-        Console.WriteLine(BinaryCount(a[0], b));
+        Array.Sort(a);
+        Array.Sort(b);
+
+        long result = KthSum(a, b, k);
+        Console.WriteLine(result);
     }
-    static int BinaryCount(int a, List<int> b)
+
+    // Функция подсчета количества пар с суммой <= x
+    static long CountPairs(long[] a, long[] b, long x)
     {
-        int left = 0;
-        int right = b.Count;
+        long count = 0;
+        int n = b.Length;
+        for (int i = 0; i < a.Length; i++)
+        {
+            // бинарный поиск: сколько элементов b[j] <= x - a[i]
+            int left = 0, right = n;
+            while (left < right)
+            {
+                int mid = (left + right) / 2;
+                if (b[mid] <= x - a[i])
+                    left = mid + 1;
+                else
+                    right = mid;
+            }
+            count += left;
+        }
+        return count;
+    }
+
+    // Бинарный поиск k-й суммы
+    static long KthSum(long[] a, long[] b, long k)
+    {
+        long left = a[0] + b[0];
+        long right = a[a.Length - 1] + b[b.Length - 1];
+
         while (left < right)
         {
-            int mid = (left + right) / 2;
-            if (b[mid] <= a) left = mid + 1;
-            else right = mid;
+            long mid = left + (right - left) / 2;
+            if (CountPairs(a, b, mid) < k)
+                left = mid + 1;
+            else
+                right = mid;
         }
         return left;
     }
