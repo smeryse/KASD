@@ -8,20 +8,22 @@ class Program
     {
         int n = 5;
         int k = 10;
-        int[] a = { 4, 2, 6, 4, 8 };
-        int[] b = { 7, 3, 1, 9, 5 };
+        List<int> a = new List<int>() { 4, 2, 6, 4, 8 };
+        List<int> b = new List<int>() { 7, 3, 1, 9, 5 };
+
+        a.Sort(); // 2, 4, 5, 6, 8
+        b.Sort(); // 1, 3, 5, 7, 9
 
         List<int> result = new List<int>();
-
-        for (int i = 0; i < n; i++)
+        Console.WriteLine(BinaryCount(a[0], b));
+    }
+    static int BinaryCount(int a, List<int> b)
+    {
+        int left = 0;
+        int right = b.Count;
+        while (left < right)
         {
-            for (int j = 0; j < n; j++)
-            {
-                result.Add(a[i] + b[j]);
-            }
+            MidpointRounding 
         }
-        
-        result.Sort();
-        Console.WriteLine(result[k]);
     }
 }
