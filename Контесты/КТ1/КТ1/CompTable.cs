@@ -1,15 +1,39 @@
-﻿using System;
-
-class Program
+﻿class Program
 {
-    static void Main()
+    static void Main(string[] args)
     {
-        for (int i = 1; i <= 3; i++)
+        int n = 3;
+
+    }
+    static void CountingSort(int n)
+    {
+        if (n == 0) return;
+
+        int min = 1;
+        int max = n*n;
+
+        for (int num = 1; num <= max; num++)
         {
-            for (int j = 1; j <= 3; j++)
+            if (num > max) max = num;
+            if (num < min) min = num;
+        }
+
+        int range = max - min + 1;
+        int[] count = new int[range];
+
+        foreach (int num in arr)
+        {
+            count[num - min]++;
+        }
+        int index = 0;
+        for (int i = 0; i < range; i++)
+        {
+            while (count[i] > 0)
             {
-                Console.WriteLine(i*j);
+                arr[index++] = i + min;
+                count[i]--;
             }
         }
     }
+
 }
