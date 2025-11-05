@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{176316A1-8822-457E-844B-D7951A833A90}</ProjectGuid>
+    <ProjectGuid>{31B069E6-3C77-47D6-BB38-664C87547229}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>КТ2</RootNamespace>
     <AssemblyName>КТ2</AssemblyName>
@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

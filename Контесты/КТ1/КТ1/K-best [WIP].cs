@@ -1,65 +1,73 @@
-﻿using System;
-using System.Linq;
+﻿//using System;
+//using System.Linq;
 
-class Program
-{
-    static void Main()
-    {
-        string[] first = Console.ReadLine().Split();
-        int n = int.Parse(first[0]);
-        int k = int.Parse(first[1]);
+//class Program
+//{
+//    static int n;
+//    static int k;
 
-        long[] v = new long[n];
-        long[] w = new long[n];
+//    static long[] v;
+//    static long[] w;
+//    static void Main()
+//    {
+//        string[] first = Console.ReadLine().Split();
+//        n = int.Parse(first[0]);
+//        k = int.Parse(first[1]);
 
-        for (int i = 0; i < n; i++)
-        {
-            string[] parts = Console.ReadLine().Split();
-            v[i] = long.Parse(parts[0]);
-            w[i] = long.Parse(parts[1]);
-        }
+//        v = new long[n];
+//        w = new long[n];
 
-        int[] answer = new int[k];
-        double left = 0;
-        double right = 1e6;
+//        for (int i = 0; i < n; i++)
+//        {
+//            string[] parts = Console.ReadLine().Split();
+//            v[i] = long.Parse(parts[0]);
+//            w[i] = long.Parse(parts[1]);
+//        }
 
-        // Бинарный поиск по среднему значению
-        for (int iter = 0; iter < 100; iter++)
-        {
-            double mid = (left + right) / 2;
-            if (IsPossible(v, w, n, k, mid, out int[] chosen))
-            {
-                left = mid;
-                answer = chosen;
-            }
-            else
-            {
-                right = mid;
-            }
-        }
+//        int[] answer = new int[k];
+//        double left = 0;
+//        double right = 1e6;
+        
+//        double eps = 1e-9;
 
-        // Выводим индексы в 1-базе
-        for (int i = 0; i < k; i++)
-            Console.Write((answer[i] + 1) + " ");
-    }
+//        while (right - left > eps)
+//        {
+//            double mid = (left + right) / 2;
+//            if (IsPossible(mid, out int[] chosen))
+//            {
+//                left = mid;
+//                answer = chosen;
+//            }
+//            else
+//            {
+//                right = mid;
+//            }
+//        }
 
-    // Проверка, достижимо ли отношение X
-    static bool IsPossible(long[] v, long[] w, int n, int k, double X, out int[] chosen)
-    {
-        double[] scores = new double[n];
-        for (int i = 0; i < n; i++)
-            scores[i] = v[i] - X * w[i];
+//        for (int i = 0; i < k; i++)
+//            Console.WriteLine(answer[i] + 1);
+//    }
 
-        int[] idx = Enumerable.Range(0, n).ToArray();
-        Array.Sort(idx, (i, j) => scores[j].CompareTo(scores[i]));
+//    static bool IsPossible(double X, out int[] chosen)
+//    {
+//        double[] scores = new double[n];
+//        for (int i = 0; i < n; i++)
+//            scores[i] = v[i] - X * w[i];
 
-        double sum = 0;
-        for (int i = 0; i < k; i++)
-            sum += scores[idx[i]];
+//        int[] idx = new int[n];
+//        for (int i = 0; i < n; i++)
+//            idx[i] = i;
 
-        chosen = new int[k];
-        Array.Copy(idx, chosen, k);
+//        Array.Sort(idx, (i, j) => scores[j].CompareTo(scores[i]));
 
-        return sum >= 0;
-    }
-}
+//        double sum = 0;
+//        for (int i = 0; i < k; i++)
+//            sum += scores[idx[i]];
+
+//        chosen = new int[k];
+//        for (int i = 0; i < k; i++)
+//            chosen[i] = idx[i];
+
+//        return sum >= 0;
+//    }
+//}
