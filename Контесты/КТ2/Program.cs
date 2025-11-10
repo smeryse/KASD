@@ -13,7 +13,7 @@ class MinStack : Stack<int>
             minStack.Push(item);
     }
 
-    public int Pop()
+    public new int Pop()
     {
         int item = base.Pop();
 
@@ -23,9 +23,9 @@ class MinStack : Stack<int>
         return item;
     }
 
-    public int Peek()
+    public new int Peek()
     {
-        return stack.Peek();
+        return base.Peek();
     }
 
     public int GetMin()
@@ -38,15 +38,24 @@ class Program
 {
     static void Main()
     {
-        MinStack s = new MinStack();
-        s.Push(5);
-        s.Push(3);
-        s.Push(7);
-        s.Push(2);
+        MinStack minStack = new MinStack();
+        var operations = new Dictionary<int, Action<int?>>()
+        {
+            { 1, x => minStack.Push(x.Value) },
+            { 2, _ => minStack.Pop() },
+            { 3, _ => Console.WriteLine(minStack.GetMin()) }
+        };
 
-        Console.WriteLine(s.GetMin()); // 2
-        s.Pop();
-        Console.WriteLine(s.GetMin()); // 3
-        Console.WriteLine(s.Peek());   // 7
+        int n = int.Parse(Console.ReadLine());
+
+        for (int i = 0; i < n; i++)
+        {
+            var parts = Console.ReadLine().Split();
+            int t = int.Parse(parts[0]);
+            int? x = parts.Length > 1 ? int.Parse(parts[1]) : (int?)null;
+
+            operations[t](x);
+        }
+
     }
 }
