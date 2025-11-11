@@ -36,10 +36,10 @@
 //    }
 
 //    static int Bound(int[] arr, int x)
-//    { 
+//    {
 //        int left = 0, right = arr.Length;
 //        while (left < right)
-//        {  
+//        {
 //            int mid = (left + right) / 2;
 //            if (arr[mid] >= x) right = mid;
 //            else left = mid + 1;

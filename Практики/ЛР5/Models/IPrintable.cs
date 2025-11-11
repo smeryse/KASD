@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-class Program
+namespace ЛР5
 {
-    static void Main(string[] args)
+    interface IPrintable
     {
-        
+        string ToFormattedString(string str);
+        void Print(string str);
     }
 }
-

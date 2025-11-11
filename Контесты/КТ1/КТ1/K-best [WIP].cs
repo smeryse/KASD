@@ -27,7 +27,7 @@
 //        int[] answer = new int[k];
 //        double left = 0;
 //        double right = 1e6;
-        
+
 //        double eps = 1e-9;
 
 //        while (right - left > eps)

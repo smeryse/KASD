@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
+using System.Diagnostics.Tracing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,13 +10,14 @@ namespace Algoritms
 {
     class Program
     {
-        static void Main()
-        {
-            int[] a = { 11, 4, 63, 4, 5, 16, 7, 86, 9, 10, 11, 12, 44413, 14, 15 };
-            InsertionSort(a);
-            foreach (int i in a) Console.Write(i + " ");
-            Console.WriteLine();
-        }
+        //static void Main()
+        //{
+        //    int[] arr = { 8, 5, 3, 7, 6, 2, 4, 1 };
+
+        //    //TreeSort(arr);
+        //    foreach (int i in arr) Console.Write(i + " ");
+        //    Console.WriteLine();
+        //}
 
         static void BubbleSort(int[] arr)
         {
@@ -97,23 +100,36 @@ namespace Algoritms
             for (int i = 1; i < arr.Length; i++)
             {
                 int key = arr[i];
-                int j = i - 1;
+                int pos = i - 1;
 
-                while (j >= 0 && arr[j] > key)
+                while (pos >= 0 && arr[pos] > key)
                 {
-                    arr[j + 1] = arr[j];
-                    j--;
+                    arr[pos + 1] = arr[pos];
+                    pos--;
                 }
 
-                arr[j + 1] = key;
+                arr[pos + 1] = key;
             }
         }
 
-        static void ShellSort()
-        { }
+        // Разобраться как работает сортировка Шелла
+        static void ShellSort(int[] arr)
+        {
+            for (int gap = (arr.Length - 1) / 2; gap != 0; gap /= 2)
+                for (int i = 0; i < arr.Length - gap; i++)
+                {
+                    int key = arr[i + gap];
+                    int pos = i;
 
-        static void TreeSort()
-        { }
+                    while (pos >= 0 && arr[pos] > key)
+                    {
+                        arr[pos + gap] = arr[pos];
+                        pos -= gap;
+                    }
+
+                    arr[pos + gap] = key;
+                }
+        }
 
         static void GnomeSort()
         { }
@@ -134,6 +150,93 @@ namespace Algoritms
 
         static void BitonicSort()
         { }
+        static void Main()
+        {
+            Tree newTree = new Tree();
+
+            int[] arr = { 1, 2, 4, 6, 1, 88, 31 };
+            int len = arr.Length;
+
+            foreach (int elem in arr)
+                newTree.Insert(elem);
+
+            int[] result = new int[len];
+            newTree.InOrderTraversal(newTree.root, result, 0);
+
+            foreach (int elem in result)
+                Console.WriteLine(elem);
+        }
     }
 
+
+    public class Tree
+    {
+        public Node root;
+        public class Node
+        {
+            public int val { get; set; }
+            public Node left;
+            public Node right;
+
+            public Node() { }
+            public Node(int _val) => this.val = _val;
+        }
+
+        public Tree()
+        {
+            root = null;
+        }
+        bool IsEmpty()
+        {
+            return root == null;
+        }
+
+        public void Insert(int value, Node currNode = null)
+        {
+            if (IsEmpty())
+            {
+                root = new Node(value);
+                return;
+            }
+            if (currNode == null)
+                currNode = root;
+
+            // Правый потомок
+            if (value >= currNode.val)
+            {
+                if (currNode.right == null)
+                {
+                    currNode.right = new Node(value);
+                }
+                else Insert(value, currNode.right);
+            }
+            // Левый потомок
+            else 
+            {
+                if (currNode.left == null)
+                {
+                    currNode.left = new Node(value);
+                }
+                else Insert(value, currNode.left);
+            }
+    }
+
+
+        public int InOrderTraversal(Node currNode, int[] arr, int index)
+        {
+            if (currNode == null)
+                return index;
+
+            index = InOrderTraversal(currNode.left, arr, index);
+            
+            arr[index] = currNode.val;
+            index++;
+
+            index = InOrderTraversal(currNode.right, arr, index);
+
+            return index;
+        }
+
+
+    }
 }
