@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Data.SqlTypes;
 using System.Diagnostics.Tracing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using static Algoritms.Tree;
+using static Tree;
 
 namespace Algoritms
 {
@@ -150,93 +153,96 @@ namespace Algoritms
 
         static void BitonicSort()
         { }
-        static void Main()
-        {
-            Tree newTree = new Tree();
 
-            int[] arr = { 1, 2, 4, 6, 1, 88, 31 };
-            int len = arr.Length;
-
-            foreach (int elem in arr)
-                newTree.Insert(elem);
-
-            int[] result = new int[len];
-            newTree.InOrderTraversal(newTree.root, result, 0);
-
-            foreach (int elem in result)
-                Console.WriteLine(elem);
-        }
+        static void TreeSort()
+        { }
     }
+}
 
+using System;
+using System.Collections.Generic;
 
-    public class Tree
+namespace TreeSortApp
+{
+    public class TreeNode
     {
-        public Node root;
-        public class Node
+        public TreeNode(int data)
         {
-            public int val { get; set; }
-            public Node left;
-            public Node right;
-
-            public Node() { }
-            public Node(int _val) => this.val = _val;
+            Data = data;
         }
 
-        public Tree()
+        public int Data { get; set; }
+
+        public TreeNode Left { get; set; }
+
+        public TreeNode Right { get; set; }
+
+        public void Insert(TreeNode node)
         {
-            root = null;
-        }
-        bool IsEmpty()
-        {
-            return root == null;
+            if (node.Data < Data)
+            {
+                if (Left == null) Left = node;
+                else Left.Insert(node);
+            }
+            else
+            {
+                if (Right == null) Right = node;
+                else Right.Insert(node);
+            }
         }
 
-        public void Insert(int value, Node currNode = null)
+        public int[] Transform(List<int> elements = null)
         {
-            if (IsEmpty())
+            if (elements == null)
             {
-                root = new Node(value);
-                return;
+                elements = new List<int>();
             }
-            if (currNode == null)
-                currNode = root;
 
-            // Правый потомок
-            if (value >= currNode.val)
+            if (Left != null)
             {
-                if (currNode.right == null)
-                {
-                    currNode.right = new Node(value);
-                }
-                else Insert(value, currNode.right);
+                Left.Transform(elements);
             }
-            // Левый потомок
-            else 
+
+            elements.Add(Data);
+
+            if (Right != null)
             {
-                if (currNode.left == null)
-                {
-                    currNode.left = new Node(value);
-                }
-                else Insert(value, currNode.left);
+                Right.Transform(elements);
             }
+
+            return elements.ToArray();
+        }
     }
 
-
-        public int InOrderTraversal(Node currNode, int[] arr, int index)
+    class Program
+    {
+        //метод для сортировки с помощью двоичного дерева
+        private static int[] TreeSort(int[] array)
         {
-            if (currNode == null)
-                return index;
+            var treeNode = new TreeNode(array[0]);
+            for (int i = 1; i < array.Length; i++)
+            {
+                treeNode.Insert(new TreeNode(array[i]));
+            }
 
-            index = InOrderTraversal(currNode.left, arr, index);
-            
-            arr[index] = currNode.val;
-            index++;
-
-            index = InOrderTraversal(currNode.right, arr, index);
-
-            return index;
+            return treeNode.Transform();
         }
 
+        static void Main(string[] args)
+        {
+            Console.Write("n = ");
+            var n = int.Parse(Console.ReadLine());
 
+            var a = new int[n];
+            var random = new Random();
+            for (int i = 0; i < a.Length; i++)
+            {
+                a[i] = random.Next(0, 100);
+            }
+
+            Console.WriteLine("Random Array: {0}", string.Join(" ", a));
+
+            Console.WriteLine("Sorted Array: {0}", string.Join(" ", TreeSort(a)));
+        }
     }
 }
