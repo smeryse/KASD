@@ -6,7 +6,7 @@
 		{"id":"e911f616a747fc1c","type":"text","text":"**Student**\nStudentId : str\nName : str\nSurname : str\nAge : int","x":-218,"y":440,"width":250,"height":160},
 		{"id":"468ce5f542ebe013","type":"text","text":"**Subject**\nSubjectId : int\nTitle : str\nTeacher : str\nHours : int","x":-218,"y":640,"width":250,"height":160},
 		{"id":"9000fc74301c39f9","type":"text","text":"Institute\n └── Course\n      ├── Subject\n      └── Group\n           └── Student\n                └── Grade\n                     └── Subject\n","x":80,"y":-84,"width":140,"height":209},
-		{"id":"df68091f9fb20c22","type":"file","file":"Pasted image 20251007132201.png","x":80,"y":159,"width":400,"height":248},
+		{"id":"df68091f9fb20c22","type":"file","file":"Images/Pasted image 20251007132201.png","x":80,"y":159,"width":400,"height":248},
 		{"id":"f738f3613433f38c","type":"text","text":"institute.Print()\n│\n├─ course.Print()\n│   ├─ subjects.Print()\n│   └─ group.Print()\n│       └─ student.Print()\n│           └─ grade.Print()\n","x":270,"y":-84,"width":210,"height":209}
 	],
 	"edges":[
