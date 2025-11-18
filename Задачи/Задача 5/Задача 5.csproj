@@ -7,7 +7,7 @@
     <ProjectGuid>{4913C8AC-EB25-4DBF-91BF-5CF581ABEBF2}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>Задача_5</RootNamespace>
-    <AssemblyName>Задача_5</AssemblyName>
+    <AssemblyName>Задача 5</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
