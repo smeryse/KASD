@@ -3,15 +3,11 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
-    <RootNamespace>Задача_6</RootNamespace>
-    <AssemblyName>Задача 6</AssemblyName>
+    <RootNamespace>MaxHeap</RootNamespace>
+    <AssemblyName>MaxHeap</AssemblyName>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="../Задача 5/Task5.csproj" />
-  </ItemGroup>
 
 </Project>

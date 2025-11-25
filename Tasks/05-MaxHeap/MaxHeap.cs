@@ -214,5 +214,36 @@ namespace Task5.Collections
             }
             Console.WriteLine("====================");
         }
+
+        public bool Remove(T item)
+        {
+            int index = _items.IndexOf(item);
+            if (index < 0) return false;
+            
+            int last = Count - 1;
+            if (index != last)
+            {
+                Swap(index, last);
+                _items.RemoveAt(last);
+                if (index < Count)
+                {
+                    if (index > 0 && GreaterOrEq(item, _items[(index - 1) / 2]))
+                        ShiftUp(index);
+                    else
+                        ShiftDown(index);
+                }
+            }
+            else
+            {
+                _items.RemoveAt(last);
+            }
+            return true;
+        }
+
+        public bool Contains(T item) => _items.Contains(item);
+
+        public void Clear() => _items.Clear();
+
+        public T[] ToArray() => _items.ToArray();
     }
 }

@@ -1,0 +1,2 @@
+- Delete GitHub Actions autotests
+- Create a Unified Build & Run Script for Labs 
