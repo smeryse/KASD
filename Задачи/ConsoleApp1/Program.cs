@@ -20,7 +20,14 @@
 //        //    Console.WriteLine();
 //        //}
 
-//        static void BubbleSort(int[] arr)
+using System;
+
+static void Main(string[] args)
+{
+    Console.WriteLine("Algoritms Console App");
+}
+
+
 //        {
 //            void Swap(ref int a, ref int b)
 //            {
