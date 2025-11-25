@@ -2,7 +2,7 @@
 
 namespace ЛР2
 {
-    abstract class Republic : State
+    class Republic : State
     {
         public string President { get; set; }
 

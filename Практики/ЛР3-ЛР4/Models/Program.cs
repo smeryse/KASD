@@ -491,7 +491,7 @@ class Program
         group.AddStudent(olga);
 
         // 1.3. Создаём многоадресный делегат для студентов
-        StudentAction actions = null;
+        Action<Student> actions = null;
         actions += s => s.AddSubject(math);
         actions += s => s.AddSubject(prog);
 
