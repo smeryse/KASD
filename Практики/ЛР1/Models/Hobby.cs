@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ЛР1
 {
-    abstract class Hobby
+    public abstract class Hobby
     {
         private string _name;
         private uint _hard_lvl;

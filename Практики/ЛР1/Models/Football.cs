@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ЛР1
 {
-    sealed class Football : Sport
+    public sealed class Football : Sport
     {
         public Football(string name, uint hardLvl, string teamName) 
             : base(name, hardLvl, 11, teamName)

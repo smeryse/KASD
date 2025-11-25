@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ЛР1
 {
-    abstract class Sport : Hobby
+    public abstract class Sport : Hobby
     {
         private uint _players_amount;
         private string _team_name;
