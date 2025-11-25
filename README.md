@@ -1,4 +1,44 @@
 Образовательный репозиторий с лабораторными работами по программированию на C#.
+## Трекер задач
+### Лабораторные работы
+- [x] ЛР1 
+- [x] ЛР2
+- [x] ЛР3 (сделаю позже)
+- [x] ЛР4 (сделаю позже)
+- [x] ЛР5 (Рефактор, сдать)
+
+### Вариант 4 — markdown таблица
+
+| Task | Name                     | Status | Depends on |
+| ---- | ------------------------ | ------ | ---------- |
+| 1    | NDVectorNorm             | ✅      | —          |
+| 2    | ComplexNumberCalculator  | ✅      | —          |
+| 3    | IntSortingAlgorithms     | ⬜      | —          |
+| 4    | GenericSortingAlgorithms | ⬜      | 3          |
+| 5    | GenericMaxHeap           | ✅      | —          |
+| 6    | HeapPriorityQueue        | ✅      | 5          |
+
+
+### Задачи
+[x] Task 1: NDVectorNorm
+[x] Task 2: ComplexNumberCalculator
+[-] Task 3: IntSortingAlgorithms
+[-] Task 4: GenericSortingAlgorithms ← Task 3
+[x] Task 5: GenericMaxHeap
+[x] Task 6: HeapPriorityQueue ← Task 5
+- [] Task 7:
+- [] Task 8:
+- [] Task 9:
+- [] Task 10:
+- [] Task 11:
+- [] Task 12:
+- [] Task 13:
+- [] Task 14:
+- [] Task 15:
+- [] Task 16:
+- [] Task 17:
+
+### Контесты
 
 ## Технологический стек
 

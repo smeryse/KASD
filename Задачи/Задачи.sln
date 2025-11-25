@@ -7,13 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Задача 1", "Зада�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Задача 2", "Задача 2\Задача 2.csproj", "{78825EC6-BF45-463B-BFE5-24892D01266A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Задача 3", "Задача 3\Задача 3.csproj", "{FE88FDE7-7147-447A-8DA4-545AD693CD70}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Задача 3", "Задача 3 скип\Задача 3.csproj", "{FE88FDE7-7147-447A-8DA4-545AD693CD70}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Algoritms", "ConsoleApp1\Algoritms.csproj", "{F58E9731-213F-4A18-9BEA-D96E4A03D0E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Задача 4", "Задача 4\Задача 4.csproj", "{96A7F91F-2441-4232-8B9C-0148D2D9AFDE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Задача 4", "Задача 4 скип\Задача 4.csproj", "{96A7F91F-2441-4232-8B9C-0148D2D9AFDE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Задача 5", "Задача 5\Задача 5.csproj", "{4913C8AC-EB25-4DBF-91BF-5CF581ABEBF2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Задача 5", "Задача 5\Task5.csproj", "{4913C8AC-EB25-4DBF-91BF-5CF581ABEBF2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
