@@ -85,7 +85,7 @@ class Program
 
     static void Main()
     {
-        string testFile = @"C:\2 курс\Конструирование алгоритмов и структур данных\Задачи\Задача 1\test.txt"; 
+        string testFile = "test.txt"; 
 
         List<(Matrix, Vector)> tests = ReadTests(testFile);
 
