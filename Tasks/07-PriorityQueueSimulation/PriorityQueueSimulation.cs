@@ -38,21 +38,8 @@ namespace Task7.PriorityQueueSimulation
             int maxWait = -1;
             Request? maxReq = null;
 
-            // Попытка определить папку проекта (в которой лежит PriorityQueueSimulation.csproj).
-            string? projectDir = null;
-            var dirInfo = new System.IO.DirectoryInfo(AppContext.BaseDirectory);
-            while (dirInfo != null)
-            {
-                if (System.IO.File.Exists(System.IO.Path.Combine(dirInfo.FullName, "PriorityQueueSimulation.csproj")))
-                {
-                    projectDir = dirInfo.FullName;
-                    break;
-                }
-                dirInfo = dirInfo.Parent;
-            }
-            var exeDir = projectDir ?? AppContext.BaseDirectory;
-            var logPath = Path.Combine(exeDir, "log.txt");
-            using (var log = new StreamWriter(logPath))
+            // Записываем лог в `log.txt` из текущей рабочей директории (откуда запущена программа).
+            using (var log = new StreamWriter("log.txt"))
             {
                 for (int step = 1; step <= N; step++)
                 {
@@ -106,7 +93,7 @@ namespace Task7.PriorityQueueSimulation
                 Console.WriteLine($"НомерШагаДобавления: {maxReq.StepAdded}");
                 Console.WriteLine($"НомерШагаУдаления: {maxReq.StepRemoved}");
                 Console.WriteLine($"ВремяОжидания: {maxWait}");
-                Console.WriteLine("Логи записаны в файл log.txt (в текущей директории)");
+                Console.WriteLine($"Логи записаны в: {Path.GetFullPath("log.txt")}");
             }
         }
     }
