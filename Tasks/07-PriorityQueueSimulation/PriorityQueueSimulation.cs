@@ -16,7 +16,6 @@ namespace Task7.PriorityQueueSimulation
             if (other == null) return 1;
             int pCmp = this.Priority.CompareTo(other.Priority);
             if (pCmp != 0) return pCmp;
-            // При равном приоритете удаляем более раннюю заявку раньше
             return other.Number.CompareTo(this.Number);
         }
     }
@@ -38,12 +37,11 @@ namespace Task7.PriorityQueueSimulation
             int maxWait = -1;
             Request? maxReq = null;
 
-            // Записываем лог в `log.txt` из текущей рабочей директории (откуда запущена программа).
             using (var log = new StreamWriter("log.txt"))
             {
                 for (int step = 1; step <= N; step++)
                 {
-                    int k = rnd.Next(1, 11); // от 1 до 10 заявок
+                    int k = rnd.Next(1, 11);
                     for (int i = 0; i < k; i++)
                     {
                         var req = new Request { Priority = rnd.Next(1, 6), Number = globalNumber++, StepAdded = step };
@@ -88,11 +86,11 @@ namespace Task7.PriorityQueueSimulation
             else
             {
                 Console.WriteLine("Заявка с максимальным временем ожидания:");
-                Console.WriteLine($"НомерЗаявки: {maxReq.Number}");
+                Console.WriteLine($"Номер заявки: {maxReq.Number}");
                 Console.WriteLine($"Приоритет: {maxReq.Priority}");
-                Console.WriteLine($"НомерШагаДобавления: {maxReq.StepAdded}");
-                Console.WriteLine($"НомерШагаУдаления: {maxReq.StepRemoved}");
-                Console.WriteLine($"ВремяОжидания: {maxWait}");
+                Console.WriteLine($"Номер шага добавления: {maxReq.StepAdded}");
+                Console.WriteLine($"Номер шага удаления: {maxReq.StepRemoved}");
+                Console.WriteLine($"Время ожидания: {maxWait}");
                 Console.WriteLine($"Логи записаны в: {Path.GetFullPath("log.txt")}");
             }
         }
