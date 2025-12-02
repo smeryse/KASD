@@ -1,3 +1,5 @@
+using System;
+
 class MyArrayList<T>
 {
     #region Поля
@@ -7,14 +9,12 @@ class MyArrayList<T>
     #endregion
 
     #region Конструкторы
-    // Коструктор по умолчанию
     public MyArrayList()
     {
         elementData = new T[DEFAULT_CAPACITY];
         size = 0;
     }
 
-    // Конструктор с инициализацией из массива
     public MyArrayList(T[] arr)
     {
         if (arr == null)
@@ -24,7 +24,6 @@ class MyArrayList<T>
         size = arr.Length;
     }
 
-    // Конструктор с указанием начальной емкости
     public MyArrayList(int capacity)
     {
         if (capacity < 0)
@@ -35,7 +34,6 @@ class MyArrayList<T>
     #endregion
 
     #region Вспомогательные методы (приватные)
-    // Обеспечение емкости
     private void EnsureCapacity(int minCapacity)
     {
         if (minCapacity > elementData.Length)
@@ -49,30 +47,26 @@ class MyArrayList<T>
         }
     }
 
-    // Проверка индекса
     private void CheckIndex(int index)
     {
         if (index < 0 || index >= size)
             throw new ArgumentOutOfRangeException("Index out of bounds");
     }
-    
-    // Проверка индекса для добавления
+
     private void CheckIndexForAdd(int index)
     {
         if (index < 0 || index > size)
             throw new ArgumentOutOfRangeException("Index out of bounds");
-    }  
+    }
     #endregion
 
     #region Базовые методы (Add, Clear, Contains, Remove)
-    // Добавление одного элемента
     public void Add(T elem)
     {
         EnsureCapacity(size + 1);
         elementData[size++] = elem;
     }
 
-    // Добавление всех элементов из массива
     public void AddAll(T[] array)
     {
         if (array == null)
@@ -84,7 +78,6 @@ class MyArrayList<T>
         size += array.Length;
     }
 
-    // Очистка списка (удаляет все элементы и освобождает ссылки)
     public void Clear()
     {
         for (int i = 0; i < size; i++)
@@ -94,13 +87,11 @@ class MyArrayList<T>
         size = 0;
     }
 
-    // Проверка наличия элемента
     public bool Contains(Object o)
     {
         return IndexOf(o) >= 0;
     }
 
-    // Проверка наличия всех элементов из массива
     public bool ContainsAll(Object[] a)
     {
         if (a == null)
@@ -113,10 +104,8 @@ class MyArrayList<T>
         return true;
     }
 
-    // Проверка на пустоту
     public bool IsEmpty() => size == 0;
 
-    // Удаление элемента
     public bool Remove(Object obj)
     {
         int index = IndexOf(obj);
@@ -128,7 +117,6 @@ class MyArrayList<T>
         return false;
     }
 
-    // Удаление всех элементов из массива
     public void RemoveAll(T[] array)
     {
         if (array == null)
@@ -141,12 +129,11 @@ class MyArrayList<T>
         }
     }
 
-    // Сохранение только тех элементов, которые есть в массиве
     public void RetainAll(T[] array)
     {
         if (array == null)
             throw new ArgumentNullException("Array cannot be null");
-        
+
         for (int i = size - 1; i >= 0; i--)
         {
             bool found = false;
@@ -166,11 +153,9 @@ class MyArrayList<T>
     }
     #endregion
 
-    #region Методы запросов и преобразования (Size, ToArray, Get, Set, Index)
-    // Получение размера списка
+    #region Запросы и преобразования (Size, ToArray, Get, Set, Index)
     public int Size() => size;
 
-    // Преобразование в массив без параметров
     public Object[] ToArray()
     {
         Object[] result = new Object[size];
@@ -178,7 +163,6 @@ class MyArrayList<T>
         return result;
     }
 
-    // Преобразование в массивы с передачей массива в параметре
     public T[] ToArray(T[] array)
     {
         if (array == null)
@@ -195,14 +179,12 @@ class MyArrayList<T>
         return array;
     }
 
-    // Получение элемента по индексу
     public T Get(int index)
     {
         CheckIndex(index);
         return elementData[index];
     }
 
-    // Установка элемента по индексу
     public T Set(int index, T elem)
     {
         CheckIndex(index);
@@ -211,7 +193,6 @@ class MyArrayList<T>
         return oldValue;
     }
 
-    // Поиск первого вхождения элемента
     public int IndexOf(Object o)
     {
         for (int i = 0; i < size; i++)
@@ -222,7 +203,6 @@ class MyArrayList<T>
         return -1;
     }
 
-    // Поиск последнего вхождения элемента
     public int LastIndexOf(Object o)
     {
         for (int i = size - 1; i >= 0; i--)
@@ -233,7 +213,6 @@ class MyArrayList<T>
         return -1;
     }
 
-    // Удаление элемента по индексу
     public T RemoveAt(int index)
     {
         CheckIndex(index);
@@ -247,12 +226,11 @@ class MyArrayList<T>
         return oldValue;
     }
 
-    // Получение подсписка
     public MyArrayList<T> SubList(int fromIndex, int toIndex)
     {
         if (fromIndex < 0 || toIndex > size || fromIndex > toIndex)
             throw new ArgumentOutOfRangeException("Invalid index range");
-        
+
         MyArrayList<T> subList = new MyArrayList<T>(toIndex - fromIndex);
         for (int i = fromIndex; i < toIndex; i++)
         {
@@ -263,7 +241,6 @@ class MyArrayList<T>
     #endregion
 
     #region Методы с индексами (Add, AddAll)
-    // Добавление одного элемента по индексу
     public void Add(int index, T elem)
     {
         CheckIndexForAdd(index);
@@ -275,25 +252,24 @@ class MyArrayList<T>
         elementData[index] = elem;
         size++;
     }
-    
-    // Добавление всех элементов из массива по индексу
+
     public void AddAll(int index, T[] array)
     {
         if (array == null)
             throw new ArgumentNullException("Array cannot be null");
-        
+
         CheckIndexForAdd(index);
-        
+
         if (array.Length == 0)
             return;
-        
+
         EnsureCapacity(size + array.Length);
-        
+
         for (int i = size - 1; i >= index; i--)
         {
             elementData[i + array.Length] = elementData[i];
         }
-        
+
         Array.Copy(array, 0, elementData, index, array.Length);
         size += array.Length;
     }
