@@ -1,11 +1,13 @@
 class MyArrayList<T>
 {
+    #region Поля
     T[] elementData;
     private int size;
     const int DEFAULT_CAPACITY = 10;
+    #endregion
 
-    // ====== Конструкторы ======
-    // Конструктор по умолчанию
+    #region Конструкторы
+    // Коструктор по умолчанию
     public MyArrayList()
     {
         elementData = new T[DEFAULT_CAPACITY];
@@ -30,10 +32,10 @@ class MyArrayList<T>
         elementData = new T[capacity];
         size = 0;
     }
+    #endregion
 
-
-    // ====== Вспомогательные методы ======
-    // Увеличение емкости внутреннего массива
+    #region Вспомогательные методы (приватные)
+    // Обеспечение емкости
     private void EnsureCapacity(int minCapacity)
     {
         if (minCapacity > elementData.Length)
@@ -60,9 +62,9 @@ class MyArrayList<T>
         if (index < 0 || index > size)
             throw new ArgumentOutOfRangeException("Index out of bounds");
     }  
+    #endregion
 
-
-    // ====== Базовые методы ======
+    #region Базовые методы (Add, Clear, Contains, Remove)
     // Добавление одного элемента
     public void Add(T elem)
     {
@@ -162,6 +164,9 @@ class MyArrayList<T>
             }
         }
     }
+    #endregion
+
+    #region Методы запросов и преобразования (Size, ToArray, Get, Set, Index)
     // Получение размера списка
     public int Size() => size;
 
@@ -255,8 +260,9 @@ class MyArrayList<T>
         }
         return subList;
     }
+    #endregion
 
-    // ====== Методы с индексами ======
+    #region Методы с индексами (Add, AddAll)
     // Добавление одного элемента по индексу
     public void Add(int index, T elem)
     {
@@ -291,5 +297,5 @@ class MyArrayList<T>
         Array.Copy(array, 0, elementData, index, array.Length);
         size += array.Length;
     }
-
+    #endregion
 }
