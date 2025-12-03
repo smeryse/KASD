@@ -117,12 +117,3 @@ public class MyPriorityQueueTestRunner
         Assert(pq.Size() == 0, "Clear empties queue");
     }
 }
-
-// Для запуска тестов:
-class Program
-{
-    static void Main()
-    {
-        MyPriorityQueueTestRunner.RunAllTests();
-    }
-}

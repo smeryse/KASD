@@ -1,277 +1,282 @@
 using System;
 
-class MyArrayList<T>
+namespace Task8.Collections
 {
-    #region Поля
-    T[] elementData;
-    private int size;
-    const int DEFAULT_CAPACITY = 10;
-    #endregion
-
-    #region Конструкторы
-    public MyArrayList()
+    class MyArrayList<T>
     {
-        elementData = new T[DEFAULT_CAPACITY];
-        size = 0;
-    }
+        #region Поля
+        T[] elementData;
+        private int size;
+        const int DEFAULT_CAPACITY = 10;
+        #endregion
 
-    public MyArrayList(T[] arr)
-    {
-        if (arr == null)
-            throw new ArgumentNullException("Array cannot be null");
-        elementData = new T[arr.Length];
-        Array.Copy(arr, elementData, arr.Length);
-        size = arr.Length;
-    }
-
-    public MyArrayList(int capacity)
-    {
-        if (capacity < 0)
-            throw new ArgumentOutOfRangeException("Capacity must be non-negative");
-        elementData = new T[capacity];
-        size = 0;
-    }
-    #endregion
-
-    #region Вспомогательные методы (приватные)
-    private void EnsureCapacity(int minCapacity)
-    {
-        if (minCapacity > elementData.Length)
+        #region Конструкторы
+        public MyArrayList()
         {
-            int newCapacity = (elementData.Length * 3) / 2 + 1;
-            if (newCapacity < minCapacity)
-                newCapacity = minCapacity;
-            T[] newArray = new T[newCapacity];
-            Array.Copy(elementData, newArray, size);
-            elementData = newArray;
+            elementData = new T[DEFAULT_CAPACITY];
+            size = 0;
         }
-    }
 
-    private void CheckIndex(int index)
-    {
-        if (index < 0 || index >= size)
-            throw new ArgumentOutOfRangeException("Index out of bounds");
-    }
-
-    private void CheckIndexForAdd(int index)
-    {
-        if (index < 0 || index > size)
-            throw new ArgumentOutOfRangeException("Index out of bounds");
-    }
-    #endregion
-
-    #region Базовые методы (Add, Clear, Contains, Remove)
-    public void Add(T elem)
-    {
-        EnsureCapacity(size + 1);
-        elementData[size++] = elem;
-    }
-
-    public void AddAll(T[] array)
-    {
-        if (array == null)
-            throw new ArgumentNullException("Array cannot be null");
-        if (array.Length == 0)
-            return;
-        EnsureCapacity(size + array.Length);
-        Array.Copy(array, 0, elementData, size, array.Length);
-        size += array.Length;
-    }
-
-    public void Clear()
-    {
-        for (int i = 0; i < size; i++)
+        public MyArrayList(T[] arr)
         {
-            elementData[i] = default(T);
+            if (arr == null)
+                throw new ArgumentNullException("Array cannot be null");
+            elementData = new T[arr.Length];
+            Array.Copy(arr, elementData, arr.Length);
+            size = arr.Length;
         }
-        size = 0;
-    }
 
-    public bool Contains(Object o)
-    {
-        return IndexOf(o) >= 0;
-    }
-
-    public bool ContainsAll(Object[] a)
-    {
-        if (a == null)
-            throw new ArgumentNullException("Array cannot be null");
-        foreach (var item in a)
+        public MyArrayList(int capacity)
         {
-            if (!Contains(item))
-                return false;
+            if (capacity < 0)
+                throw new ArgumentOutOfRangeException("Capacity must be non-negative");
+            elementData = new T[capacity];
+            size = 0;
         }
-        return true;
-    }
+        #endregion
 
-    public bool IsEmpty() => size == 0;
-
-    public bool Remove(Object obj)
-    {
-        int index = IndexOf(obj);
-        if (index >= 0)
+        #region Вспомогательные методы (приватные)
+        private void EnsureCapacity(int minCapacity)
         {
-            RemoveAt(index);
+            if (minCapacity > elementData.Length)
+            {
+                int newCapacity = (elementData.Length * 3) / 2 + 1;
+                if (newCapacity < minCapacity)
+                    newCapacity = minCapacity;
+                T[] newArray = new T[newCapacity];
+                Array.Copy(elementData, newArray, size);
+                elementData = newArray;
+            }
+        }
+
+        private void CheckIndex(int index)
+        {
+            if (index < 0 || index >= size)
+                throw new ArgumentOutOfRangeException("Index out of bounds");
+        }
+
+        private void CheckIndexForAdd(int index)
+        {
+            if (index < 0 || index > size)
+                throw new ArgumentOutOfRangeException("Index out of bounds");
+        }
+        #endregion
+
+        #region Базовые методы (Add, Clear, Contains, Remove)
+        public void Add(T elem)
+        {
+            EnsureCapacity(size + 1);
+            elementData[size++] = elem;
+        }
+
+        public void AddAll(T[] array)
+        {
+            if (array == null)
+                throw new ArgumentNullException("Array cannot be null");
+            if (array.Length == 0)
+                return;
+            EnsureCapacity(size + array.Length);
+            Array.Copy(array, 0, elementData, size, array.Length);
+            size += array.Length;
+        }
+
+        public void Clear()
+        {
+            for (int i = 0; i < size; i++)
+            {
+                elementData[i] = default(T);
+            }
+            size = 0;
+        }
+
+        public bool Contains(Object o)
+        {
+            return IndexOf(o) >= 0;
+        }
+
+        public bool ContainsAll(Object[] a)
+        {
+            if (a == null)
+                throw new ArgumentNullException("Array cannot be null");
+            foreach (var item in a)
+            {
+                if (!Contains(item))
+                    return false;
+            }
             return true;
         }
-        return false;
-    }
 
-    public void RemoveAll(T[] array)
-    {
-        if (array == null)
-            throw new ArgumentNullException("Array cannot be null");
-        if (array.Length == 0)
-            return;
-        foreach (var item in array)
+        public bool IsEmpty() => size == 0;
+
+        public bool Remove(Object obj)
         {
-            while (Remove(item)) { }
+            int index = IndexOf(obj);
+            if (index >= 0)
+            {
+                RemoveAt(index);
+                return true;
+            }
+            return false;
         }
-    }
 
-    public void RetainAll(T[] array)
-    {
-        if (array == null)
-            throw new ArgumentNullException("Array cannot be null");
-
-        for (int i = size - 1; i >= 0; i--)
+        public void RemoveAll(T[] array)
         {
-            bool found = false;
+            if (array == null)
+                throw new ArgumentNullException("Array cannot be null");
+            if (array.Length == 0)
+                return;
             foreach (var item in array)
             {
-                if ((elementData[i] == null && item == null) || (elementData[i] != null && elementData[i].Equals(item)))
+                while (Remove(item)) { }
+            }
+        }
+
+        public void RetainAll(T[] array)
+        {
+            if (array == null)
+                throw new ArgumentNullException("Array cannot be null");
+
+            for (int i = size - 1; i >= 0; i--)
+            {
+                bool found = false;
+                foreach (var item in array)
                 {
-                    found = true;
-                    break;
+                    if ((elementData[i] == null && item == null) || (elementData[i] != null && elementData[i].Equals(item)))
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found)
+                {
+                    RemoveAt(i);
                 }
             }
-            if (!found)
+        }
+        #endregion
+
+        #region Запросы и преобразования (Size, ToArray, Get, Set, Index)
+        public int Size() => size;
+
+        public Object[] ToArray()
+        {
+            Object[] result = new Object[size];
+            Array.Copy(elementData, result, size);
+            return result;
+        }
+
+        public T[] ToArray(T[] array)
+        {
+            if (array == null)
+                throw new ArgumentNullException("Array cannot be null");
+            if (array.Length < size)
             {
-                RemoveAt(i);
+                T[] newArray = new T[size];
+                Array.Copy(elementData, newArray, size);
+                return newArray;
             }
+            Array.Copy(elementData, array, size);
+            if (array.Length > size)
+                array[size] = default(T);
+            return array;
         }
-    }
-    #endregion
 
-    #region Запросы и преобразования (Size, ToArray, Get, Set, Index)
-    public int Size() => size;
-
-    public Object[] ToArray()
-    {
-        Object[] result = new Object[size];
-        Array.Copy(elementData, result, size);
-        return result;
-    }
-
-    public T[] ToArray(T[] array)
-    {
-        if (array == null)
-            throw new ArgumentNullException("Array cannot be null");
-        if (array.Length < size)
+        public T Get(int index)
         {
-            T[] newArray = new T[size];
-            Array.Copy(elementData, newArray, size);
-            return newArray;
+            CheckIndex(index);
+            return elementData[index];
         }
-        Array.Copy(elementData, array, size);
-        if (array.Length > size)
-            array[size] = default(T);
-        return array;
-    }
 
-    public T Get(int index)
-    {
-        CheckIndex(index);
-        return elementData[index];
-    }
-
-    public T Set(int index, T elem)
-    {
-        CheckIndex(index);
-        T oldValue = elementData[index];
-        elementData[index] = elem;
-        return oldValue;
-    }
-
-    public int IndexOf(Object o)
-    {
-        for (int i = 0; i < size; i++)
+        public T Set(int index, T elem)
         {
-            if ((o == null && elementData[i] == null) || (o != null && elementData[i] != null && elementData[i].Equals(o)))
-                return i;
+            CheckIndex(index);
+            T oldValue = elementData[index];
+            elementData[index] = elem;
+            return oldValue;
         }
-        return -1;
-    }
 
-    public int LastIndexOf(Object o)
-    {
-        for (int i = size - 1; i >= 0; i--)
+        public int IndexOf(Object o)
         {
-            if ((o == null && elementData[i] == null) || (o != null && elementData[i] != null && elementData[i].Equals(o)))
-                return i;
+            for (int i = 0; i < size; i++)
+            {
+                if ((o == null && elementData[i] == null) || (o != null && elementData[i] != null && elementData[i].Equals(o)))
+                    return i;
+            }
+            return -1;
         }
-        return -1;
-    }
 
-    public T RemoveAt(int index)
-    {
-        CheckIndex(index);
-        T oldValue = elementData[index];
-        for (int j = index; j < size - 1; j++)
+        public int LastIndexOf(Object o)
         {
-            elementData[j] = elementData[j + 1];
+            for (int i = size - 1; i >= 0; i--)
+            {
+                if ((o == null && elementData[i] == null) || (o != null && elementData[i] != null && elementData[i].Equals(o)))
+                    return i;
+            }
+            return -1;
         }
-        elementData[size - 1] = default(T);
-        size--;
-        return oldValue;
-    }
 
-    public MyArrayList<T> SubList(int fromIndex, int toIndex)
-    {
-        if (fromIndex < 0 || toIndex > size || fromIndex > toIndex)
-            throw new ArgumentOutOfRangeException("Invalid index range");
-
-        MyArrayList<T> subList = new MyArrayList<T>(toIndex - fromIndex);
-        for (int i = fromIndex; i < toIndex; i++)
+        public T RemoveAt(int index)
         {
-            subList.Add(elementData[i]);
+            CheckIndex(index);
+            T oldValue = elementData[index];
+            for (int j = index; j < size - 1; j++)
+            {
+                elementData[j] = elementData[j + 1];
+            }
+            elementData[size - 1] = default(T);
+            size--;
+            return oldValue;
         }
-        return subList;
-    }
-    #endregion
 
-    #region Методы с индексами (Add, AddAll)
-    public void Add(int index, T elem)
-    {
-        CheckIndexForAdd(index);
-        EnsureCapacity(size + 1);
-        for (int i = size; i > index; i--)
+        public MyArrayList<T> SubList(int fromIndex, int toIndex)
         {
-            elementData[i] = elementData[i - 1];
+            if (fromIndex < 0 || toIndex > size || fromIndex > toIndex)
+                throw new ArgumentOutOfRangeException("Invalid index range");
+
+            MyArrayList<T> subList = new MyArrayList<T>(toIndex - fromIndex);
+            for (int i = fromIndex; i < toIndex; i++)
+            {
+                subList.Add(elementData[i]);
+            }
+            return subList;
         }
-        elementData[index] = elem;
-        size++;
-    }
+        #endregion
 
-    public void AddAll(int index, T[] array)
-    {
-        if (array == null)
-            throw new ArgumentNullException("Array cannot be null");
-
-        CheckIndexForAdd(index);
-
-        if (array.Length == 0)
-            return;
-
-        EnsureCapacity(size + array.Length);
-
-        for (int i = size - 1; i >= index; i--)
+        #region Методы с индексами (Add, AddAll)
+        public void Add(int index, T elem)
         {
-            elementData[i + array.Length] = elementData[i];
+            CheckIndexForAdd(index);
+            EnsureCapacity(size + 1);
+            for (int i = size; i > index; i--)
+            {
+                elementData[i] = elementData[i - 1];
+            }
+            elementData[index] = elem;
+            size++;
         }
 
-        Array.Copy(array, 0, elementData, index, array.Length);
-        size += array.Length;
+        public void AddAll(int index, T[] array)
+        {
+            if (array == null)
+                throw new ArgumentNullException("Array cannot be null");
+
+            CheckIndexForAdd(index);
+
+            if (array.Length == 0)
+                return;
+
+            EnsureCapacity(size + array.Length);
+
+            for (int i = size - 1; i >= index; i--)
+            {
+                elementData[i + array.Length] = elementData[i];
+            }
+
+            Array.Copy(array, 0, elementData, index, array.Length);
+            size += array.Length;
+        }
+        #endregion
     }
-    #endregion
 }
+
+

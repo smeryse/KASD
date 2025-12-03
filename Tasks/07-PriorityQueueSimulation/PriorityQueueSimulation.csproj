@@ -3,7 +3,8 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
-    <RootNamespace>Task7.PriorityQueueSimulation</RootNamespace>
+    <RootNamespace>Task7</RootNamespace>
+    <AssemblyName>PriorityQueueSimulation</AssemblyName>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
