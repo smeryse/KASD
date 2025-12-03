@@ -3,9 +3,14 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
-    <RootNamespace>_09_MyArrayTagParser</RootNamespace>
+    <RootNamespace>Task9</RootNamespace>
+    <AssemblyName>MyArrayTagParser</AssemblyName>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\08-MyArrayList\MyArrayList.csproj" />
+  </ItemGroup>
 
 </Project>

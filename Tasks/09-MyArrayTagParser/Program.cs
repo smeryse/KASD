@@ -12,7 +12,7 @@ class Program
 
         if (!File.Exists(inputPath))
         {
-            Console.WriteLine("input.txt file not found.");
+            Console.WriteLine("Файл input.txt не найден.");
             return;
         }
 
@@ -24,14 +24,24 @@ class Program
         {
             foreach (Match m in tagRegex.Matches(line))
             {
-                // Normalize tag to format <tag> in lowercase, without '/'
                 string normalizedTag = $"<{m.Groups[2].Value.ToLower()}>";
 
-                if (!uniqueTags.Contains(normalizedTag))
+                bool exists = false;
+                for (int i = 0; i < uniqueTags.Size(); i++)
+                {
+                    if (uniqueTags.Get(i) == normalizedTag)
+                    {
+                        exists = true;
+                        break;
+                    }
+                }
+
+                if (!exists)
                     uniqueTags.Add(normalizedTag);
             }
         }
 
+        // Запись уникальных тегов в файл
         using (var writer = new StreamWriter(outputPath))
         {
             for (int i = 0; i < uniqueTags.Size(); i++)
@@ -40,6 +50,6 @@ class Program
             }
         }
 
-        Console.WriteLine($"Unique tags successfully written to {outputPath}");
+        Console.WriteLine($"Уникальные теги успешно записаны в {outputPath}");
     }
 }
