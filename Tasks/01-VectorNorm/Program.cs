@@ -5,15 +5,22 @@ using System.IO;
 
 class Matrix
 {
+    #region Properties and fields
     public int N { get; set; }
     public double[][] G;
+    #endregion
 
+    #region Constructors
+    // Creates a matrix of size n with provided data
     public Matrix(int n, double[][] g)
     {
         N = n;
         G = g;
     }
+    #endregion
 
+    #region Methods
+    // Checks whether the matrix is symmetric
     public bool IsSymmetric()
     {
         for (int i = 0; i < N; i++)
@@ -22,20 +29,28 @@ class Matrix
                     return false;
         return true;
     }
+    #endregion
 }
 
 class Vector
 {
+    #region Properties and fields
     public int N { get; set; }
     double[] x;
     Matrix G;
+    #endregion
 
+    #region Constructors
+    // Initializes vector from given array
     public Vector(double[] arr)
     {
         x = arr;
         N = arr.Length;
     }
+    #endregion
 
+    #region Methods
+    // Computes the quadratic form norm using matrix G
     public double Norm(Matrix G)
     {
         if (!G.IsSymmetric())
@@ -48,11 +63,14 @@ class Vector
 
         return Math.Sqrt(sum);
     }
+    #endregion
 
 }
 
 class Program
 {
+    #region Helpers
+    // Reads test cases from a file and returns list of (Matrix, Vector)
     static List<(Matrix, Vector)> ReadTests(string filename)
     {
         var tests = new List<(Matrix, Vector)>();
@@ -61,7 +79,7 @@ class Program
 
         while (i < lines.Length)
         {
-            // Пропускаем пустые строки
+            // Skip empty lines
             if (string.IsNullOrWhiteSpace(lines[i]))
             {
                 i++;
@@ -82,7 +100,10 @@ class Program
 
         return tests;
     }
+    #endregion
 
+    #region Main
+    // Program entry point: reads tests and prints norms
     static void Main()
     {
         string testFile = "test.txt"; 
@@ -104,4 +125,5 @@ class Program
             testNumber++;
         }
     }
+    #endregion
 }

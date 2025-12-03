@@ -3,30 +3,45 @@ using System.Linq;
 
 class Complex
 {
+    #region Fields
     private double Re;
     private double Im;
+    #endregion
 
+    #region Constructors
+    // Initializes a complex number with real and imaginary parts
     public Complex(double re, double im)
     {
         Re = re;
         Im = im;
     }
+    #endregion
 
+    #region Properties / Operations
+    // Returns the real part
     public double GetReal() => Re;
+    // Returns the imaginary part
     public double GetImag() => Im;
+    // Returns the modulus (magnitude)
     public double Module() => Math.Sqrt(Re * Re + Im * Im);
+    // Returns the argument (angle)
     public double Argument() => Math.Atan2(Im, Re);
+    // String representation
     public override string ToString() => $"({Re} + {Im}i)";
 
+    // Addition
     public static Complex operator +(Complex a, Complex b) =>
         new Complex(a.Re + b.Re, a.Im + b.Im);
 
+    // Subtraction
     public static Complex operator -(Complex a, Complex b) =>
         new Complex(a.Re - b.Re, a.Im - b.Im);
 
+    // Multiplication
     public static Complex operator *(Complex a, Complex b) =>
         new Complex(a.Re * b.Re - a.Im * b.Im, a.Re * b.Im + a.Im * b.Re);
 
+    // Division
     public static Complex operator /(Complex a, Complex b)
     {
         double denom = b.Re * b.Re + b.Im * b.Im;
@@ -36,17 +51,23 @@ class Complex
             (a.Im * b.Re - a.Re * b.Im) / denom
         );
     }
+    #endregion
 }
 
 class Program
 {
+    #region Helpers
+    // Reads a complex number from user input with given prompt
     static Complex ReadComplex(string prompt)
     {
         Console.WriteLine(prompt);
         string[] parts = Console.ReadLine().Split();
         return new Complex(double.Parse(parts[0]), double.Parse(parts[1]));
     }
+    #endregion
 
+    #region Main
+    // Interactive calculator for complex numbers
     static void Main()
     {
         string[] single_operations = { "GetReal", "GetImag", "Module", "Argument", "ToString" };
@@ -117,4 +138,5 @@ class Program
 
         Console.WriteLine("Программа завершена.");
     }
+    #endregion
 }

@@ -7,9 +7,9 @@
 | 4 | [GenericSorting](Tasks/04-GenericSorting) | Universal sorting with generics (Generic<T>) | ⏳ | 3 |
 | 5 | [MaxHeap](Tasks/05-MaxHeap) | Generic max heap data structure | ✅ |  |
 | 6 | [HeapPriorityQueue](Tasks/06-HeapPriorityQueue) | Generic priority queue using a heap | ✅ | 5 |
-| 7 |  |  |  |  |
-| 8 |  |  |  |  |
-| 9 |  |  |  |  |
+| 7 | [PriorityQueueSimulation](Tasks/07-PriorityQueueSimulation) | Simulating step by step | ✅ | 6 |
+| 8 | [MyArrayList](Tasks/08-MyArrayList) | Generic array list data structure | ✅ |  |
+| 9 |  |  |  | 8 |
 | 10 |  |  |  |  |
 | 11 |  |  |  |  |
 | 12 |  |  |  |  |
@@ -42,13 +42,6 @@ cd 06-HeapPriorityQueue && dotnet run
 
 ## Requirements
 
-- .NET 8.0 SDK or higher
-- C# 12
-- Visual Studio Code / Visual Studio 2022
 
 ## Notes
-
-- The `Algorithms` folder (inside Task 3) contains shared utility algorithms
-- Task 3 is **not implemented yet** - it serves as a placeholder for sorting algorithm implementations
-- Task numbering corresponds to the main README.md in the repository root
-- Add a missing overwrite constructors on [HeapPriorityQueue](06-HeapPriorityQueue/MyPriorityQueue.cs)
+<!-- Duplicate removed -->
