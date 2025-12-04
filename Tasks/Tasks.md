@@ -9,7 +9,7 @@
 | 6 | [HeapPriorityQueue](Tasks/06-HeapPriorityQueue) | Generic priority queue using a heap | ✅ | 5 |
 | 7 | [PriorityQueueSimulation](Tasks/07-PriorityQueueSimulation) | Simulating step by step | ✅ | 6 |
 | 8 | [MyArrayList](Tasks/08-MyArrayList) | Generic array list data structure | ✅ |  |
-| 9 |  |  |  | 8 |
+| 9 | [MyArrayTagParser](Tasks/09-MyArrayTagParser) | Parsing htmp tags from input.txt (html) | ✅ | 8 |
 | 10 |  |  |  |  |
 | 11 |  |  |  |  |
 | 12 |  |  |  |  |

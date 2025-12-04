@@ -2,8 +2,8 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
-    <RootNamespace>ЛР2</RootNamespace>
-    <AssemblyName>ЛР2</AssemblyName>
+    <RootNamespace>Lab2</RootNamespace>
+    <AssemblyName>Polymorphism</AssemblyName>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
   </PropertyGroup>

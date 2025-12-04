@@ -2,11 +2,11 @@
 # Labs
 | # | Name | Description | Status | Based on |
 | -- | -- | -- | -- | -- |
-| 1 | Hierarchy | Class hierarchy and encapsulation in C# | ✅ |  |
-| 2 | Polymorphism | Class hierarchy with interfaces and polymorphism | ✅ | 1 |
-| 3 | FileDirectoryIO | File and directory operations using File, Directory, FileInfo, DirectoryInfo, and FileStream | ✅ |  |
-| 4 | DelegatesAndInterfaces | Interfaces and delegates in C# | ✅ | 3 |
-| 5 | DelegatesAndEvents | Event-driven programming and delegates in C# | ⏳ |  |
+| 1 | [Hierarchy](Labs/01-Hierarchy) | Class hierarchy and encapsulation in C# | ✅ |  |
+| 2 | [Polymorphism](Labs/02-Polymorphism) | Class hierarchy with interfaces and polymorphism | ✅ | 1 |
+| 3 | [FileDirectoryIO](Labs/03-04-FileDirectoryIO) | File and directory operations using File, Directory, FileInfo, DirectoryInfo, and FileStream | ✅ |  |
+| 4 | [DelegatesAndInterfaces](Labs/03-04-FileDirectoryIO) | Interfaces and delegates in C# | ✅ | 3 |
+| 5 | [DelegatesAndEvents]() | Event-driven programming and delegates in C# | ⏳ |  |
 
 ## Build & Run
 
