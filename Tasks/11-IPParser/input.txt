@@ -1,0 +1,20 @@
+[2025-12-09 03:14:22] INFO  Client connected from 185.34.12.67, user-agent Mozilla/5.0
+[2025-12-09 03:14:25] WARN  Failed login attempt 192.168.0.150 (3 times)
+[2025-12-09 03:14:29] ERROR Connection timeout to backend 10.255.255.1:443
+[2025-12-09 03:14:31] INFO  New session 87.045.176.89 → 172.16.0.5
+[2025-12-09 03:14:33] DEBUG Packet from 1.1.1.1 dropped (rate-limit)
+[2025-12-09 03:14:35] INFO  DNS query for cloudflare.com resolved to 104.16.132.229 and 104.16.133.229
+[2025-12-09 03:14:38] WARN  Suspicious traffic from 222.173.45.0/24, last IP 222.173.45.199
+[2025-12-09 03:14:41] ERROR Failed to reach monitoring 192.168.100.256 (invalid)
+[2025-12-09 03:14:44] INFO  Healthcheck OK 8.8.8.8 and 8.8.4.4
+[2025-12-09 03:14:47] DEBUG Ignoring malformed packet 256.256.256.256
+[2025-12-09 03:14:50] INFO  Reverse proxy → 127.0.0.1:3000
+[2025-12-09 03:14:53] WARN  Possible scan from 0.0.0.000 and 255.255.255.255.255
+[2025-12-09 03:14:56] INFO  Allowed 77.88.55.11 (Yandex)
+[2025-12-09 03:14:59] ERROR Timeout 172.31.255.255:22 after 30s
+[2025-12-09 03:15:02] INFO  Googlebot 66.249.66.1 crawled /robots.txt
+[2025-12-09 03:15:05] DEBUG Local interface 169.254.169.254 metadata service
+[2025-12-09 03:15:08] WARN  Bad request 111.111.111.1111 (obviously fake)
+[2025-12-09 03:15:11] INFO  VPN client 100.64.0.138 connected (CG-NAT)
+[2025-12-09 03:15:14] ERROR 121.121.121.121.2 blocked by firewall
+[2025-12-09 03:15:17] INFO  Load balancer health: 192.168.1.10, 192.168.1.11, 192.168.1.12

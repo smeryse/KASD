@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyArrayTagParser", "09-MyAr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortingAlgorithms", "03-SortingAlgorithms\SortingAlgorithms.csproj", "{43B580EF-A219-4DBB-84C2-ECBB7CCAD640}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPParser", "11-IPParser\IPParser.csproj", "{BD04C345-9162-40D0-A1F9-FA9EA144FA6F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,5 +74,9 @@ Global
 		{43B580EF-A219-4DBB-84C2-ECBB7CCAD640}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43B580EF-A219-4DBB-84C2-ECBB7CCAD640}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43B580EF-A219-4DBB-84C2-ECBB7CCAD640}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD04C345-9162-40D0-A1F9-FA9EA144FA6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD04C345-9162-40D0-A1F9-FA9EA144FA6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD04C345-9162-40D0-A1F9-FA9EA144FA6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD04C345-9162-40D0-A1F9-FA9EA144FA6F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

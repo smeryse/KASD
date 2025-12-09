@@ -1,5 +1,5 @@
 // FIXME: ArgumentNullException.ThrowIfNull(arr);
-namespace Task10
+namespace Task10.Collection
 {
     public class MyVector<T>
     {
