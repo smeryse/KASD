@@ -16,7 +16,7 @@ class Program
             return;
         }
 
-        Regex tagRegex = new Regex(@"<(/?)([A-Za-z][A-Za-z0-9]*)>", RegexOptions.Compiled);
+        Regex tagRegex = new Regex(@"<(/?)([A-Za-z][A-Za-z0-9]*)>", RegexOptions.Compiled); // </f13fvr5>
 
         MyArrayList<string> uniqueTags = new MyArrayList<string>();
 

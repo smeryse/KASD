@@ -22,6 +22,7 @@ namespace Task8.Collections
             if (arr == null)
                 throw new ArgumentNullException("Array cannot be null");
             elementData = new T[arr.Length];
+            EnsureCapacity(arr.Length); // Обновил проверку на емкость
             Array.Copy(arr, elementData, arr.Length);
             size = arr.Length;
         }
