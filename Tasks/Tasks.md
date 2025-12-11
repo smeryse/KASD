@@ -10,9 +10,9 @@
 | 7 | [PriorityQueueSimulation](Tasks/07-PriorityQueueSimulation) | Simulating step by step | ✅ | 6 |
 | 8 | [MyArrayList](Tasks/08-MyArrayList) | Generic array list data structure | ✅ |  |
 | 9 | [MyArrayTagParser](Tasks/09-MyArrayTagParser) | Parsing htmp tags from input.txt (html) | ✅ | 8 |
-| 10 |  |  |  |  |
-| 11 |  |  |  |  |
-| 12 |  |  |  |  |
+| 10 | [MyVector](Tasks/10-MyVector) | Generic vector data structure | ✅ |  |
+| 11 | [IPParser](Tasks/11-IPParser) | Parsing IP program by MyVector class | ✅ | 10 |
+| 12 | [MyStack](Tasks/12-MyStack) | Generic stack data structure | ✅ | 10 |
 | 13 |  |  |  |  |
 | 14 |  |  |  |  |
 | 15 |  |  |  |  |

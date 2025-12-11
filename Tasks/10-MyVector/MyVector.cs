@@ -1,4 +1,6 @@
 // FIXME: ArgumentNullException.ThrowIfNull(arr);
+// FIXME: Refactor Size() -> this.Size (func to field)
+// FIXME: REfactor Get\Set to use like vector[i] = 12; or Print(vector[i])
 namespace Task10.Collection
 {
     public class MyVector<T>
