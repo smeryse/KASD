@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{82E53006-9FA3-4DA1-9645-0F582AB9A099}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>CT1</RootNamespace>
+    <AssemblyName>CT1</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Tasks\A-SimpleSort.cs" />
+    <Compile Include="Tasks\B-CountSort.cs" />
+    <Compile Include="Tasks\C-CountInversions.cs" />
+    <Compile Include="Tasks\D-MaxHeap.cs" />
+    <Compile Include="Tasks\E-QuickSearchInArray.cs" />
+    <Compile Include="Tasks\F-ApproximateBinarySearch.cs" />
+    <Compile Include="Tasks\G-VeryEasyTask.cs" />
+    <Compile Include="Tasks\H-SquareRootAndSquareSquare.cs" />
+    <Compile Include="Tasks\I-GladeOfFirewood.cs" />
+    <Compile Include="Tasks\J-K-best.cs" />
+    <Compile Include="Tasks\K-SplitArray.cs" />
+    <Compile Include="Tasks\L-CompTable.cs" />
+    <Compile Include="Tasks\M-KSumm.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
