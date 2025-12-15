@@ -28,7 +28,7 @@ namespace CT1
         private static readonly Dictionary<string, string> Samples = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
         {
             ["A"] = "5\n1 3 2 4 5\n",
-            ["B"] = "5\n5 4 3 2 1\n",
+            ["B"] = "5\n7 3 4 2 5\n",
             ["C"] = "5\n2 3 9 2 9\n",
             ["D"] = "5\n0 1\n0 10\n0 5\n1\n1\n",
             ["E"] = "5\n1 2 2 3 5\n3\n1 2\n2 4\n5 6\n",
