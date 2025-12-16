@@ -1,34 +1,44 @@
 using System;
 using System.Collections.Generic;
 
-class Program
+namespace CT2.Tasks
 {
-    static void Main()
+    static class StackSort
     {
-        int n = int.Parse(Console.ReadLine());
-        var parts = Console.ReadLine().Split();
-
-        if (parts.Length != n)
+        public static void Solve()
         {
-            Console.WriteLine("impossible");
-            return;
-        }
+            int n = int.Parse(Console.ReadLine());
+            var parts = Console.ReadLine().Split();
 
-        var stackA = new Stack<int>();
-        for (int i = n - 1; i >= 0; i--)
-            stackA.Push(int.Parse(parts[i]));
+            if (parts.Length != n)
+            {
+                Console.WriteLine("impossible");
+                return;
+            }
 
-        var stackB = new Stack<int>();
-        var ops = new List<string>();
+            var stackA = new Stack<int>();
+            for (int i = n - 1; i >= 0; i--)
+                stackA.Push(int.Parse(parts[i]));
 
-        int need = 1;
+            var stackB = new Stack<int>();
+            var ops = new List<string>();
 
-        // push: A.Pop() -> B.Push()
-        // pop : B.Pop() -> output
-        while (stackA.Count > 0)
-        {
-            stackB.Push(stackA.Pop());
-            ops.Add("push");
+            int need = 1;
+
+            // push: A.Pop() -> B.Push()
+            // pop : B.Pop() -> output
+            while (stackA.Count > 0)
+            {
+                stackB.Push(stackA.Pop());
+                ops.Add("push");
+
+                while (stackB.Count > 0 && stackB.Peek() == need)
+                {
+                    stackB.Pop();
+                    ops.Add("pop");
+                    need++;
+                }
+            }
 
             while (stackB.Count > 0 && stackB.Peek() == need)
             {
@@ -36,18 +46,11 @@ class Program
                 ops.Add("pop");
                 need++;
             }
-        }
 
-        while (stackB.Count > 0 && stackB.Peek() == need)
-        {
-            stackB.Pop();
-            ops.Add("pop");
-            need++;
+            if (need == n + 1)
+                Console.WriteLine(string.Join("\n", ops));
+            else
+                Console.WriteLine("impossible");
         }
-
-        if (need == n + 1)
-            Console.WriteLine(string.Join("\n", ops));
-        else
-            Console.WriteLine("impossible");
     }
 }

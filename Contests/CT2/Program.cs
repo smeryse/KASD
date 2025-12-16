@@ -1,109 +1,65 @@
 using System;
-using System.Text;
-class Program
+using System.Collections.Generic;
+using System.IO;
+using CT2.Tasks;
+
+namespace CT2
 {
-    static int[] nest;
-    static void Main()
+    class Program
     {
-        var first = Console.ReadLine().Split();
-        int n = int.Parse(first[0]);
-        int m = int.Parse(first[1]);
-        int q = int.Parse(first[2]);
-        nest = new int[n + 1];
-        for (int i = 1; i <= n; i++)
-            nest[i] = -1;
-        for (int i = 0; i < m; i++)
+        private static readonly Dictionary<string, Action> TaskMap = new Dictionary<string, Action>(StringComparer.OrdinalIgnoreCase)
         {
-            var parts = Console.ReadLine().Split();
-            int x = int.Parse(parts[0]);
-            int y = int.Parse(parts[1]);
-            nest[x] = y;
-        }
-        var sb = new StringBuilder();
-        for (int i = 0; i < q; i++)
+            ["A"] = MinOnStack.Solve,
+            ["B"] = Balloons.Solve,
+            ["C"] = Astrograd.Solve,
+            ["D"] = GoblinsAndShamans.Solve,
+            ["E"] = PostfixEntry.Solve,
+            ["F"] = StackSort.Solve,
+            ["G"] = SystemDisjointSets.Solve,
+            ["H"] = CalcExp.Solve,
+            ["I"] = Cuckoo.Solve
+        };
+
+        // Минимальные примеры, чтобы можно было быстро запустить: dotnet run -- A sample
+        private static readonly Dictionary<string, string> Samples = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
         {
-            string line = Console.ReadLine();
-            if (string.IsNullOrWhiteSpace(line)) continue;
-            var parts = line.Split();
-            int t = int.Parse(parts[0]);
-            if (t == 1 || t == 2)
+            ["A"] = "8\n1 2\n1 0\n1 3\n3\n2\n3\n2\n3\n",
+            ["B"] = "5 1 2 2 2 1\n",
+            ["C"] = "6\n1 100\n1 200\n1 300\n5\n2\n4 200\n",
+            ["D"] = "5\n+ 1\n+ 2\n* 3\n-\n-\n",
+            ["E"] = "2 3 + 4 *\n",
+            ["F"] = "3\n1 2 3\n",
+            ["G"] = "5\nunion 1 2\nunion 3 4\nget 1\nget 3\n",
+            ["H"] = "3 5\njoin 1 2\nadd 1 10\nadd 2 5\nget 1\nget 2\n",
+            ["I"] = "3 1 3\n1 2\n1 1 2\n2 1 2\n3\n",
+        };
+
+        static void Main(string[] args)
+        {
+            if (args.Length == 0)
             {
-                int x = int.Parse(parts[1]);
-                int y = int.Parse(parts[2]);
-                bool terminates = WillTerminate(x, y);
-                sb.Append(terminates ? "Yes" : "No").Append('\n');
-                if (t == 2 && terminates)
-                {
-                    PlaceEgg(x, y);
-                }
-            }
-            else // t == 3
-            {
-                long count = 0;
-                for (int x = 1; x <= n; x++)
-                {
-                    for (int y = 1; y <= n; y++)
-                    {
-                        if (x == y) continue;
-                        if (WillTerminate(x, y))
-                            count++;
-                    }
-                }
-                sb.Append(count).Append('\n');
-            }
-        }
-        Console.Write(sb.ToString());
-    }
-    static bool WillTerminate(int x, int y)
-    {
-        bool[] visited = new bool[nest.Length];
-        int currentNest = x;
-        int currentEgg = y;
-        
-        while (true)
-        {
-            if (visited[currentNest])
-                return false; // Cycle detected
-            visited[currentNest] = true;
-            
-            if (nest[currentNest] == -1)
-                return true; // Found empty nest, can place egg
-            
-            // Simulate the same process as PlaceEgg:
-            // Save the old egg that was in currentNest
-            int oldEgg = nest[currentNest];
-            // Place our egg in currentNest (simulation, don't actually change nest)
-            // The displaced egg (currentNest, oldEgg) should be placed in nest oldEgg
-            // So we need to place egg (oldEgg, currentNest) in nest oldEgg
-            currentEgg = currentNest;
-            currentNest = oldEgg;
-        }
-    }
-    static void PlaceEgg(int x, int y)
-    {
-        int currentNest = x;
-        int currentEggOther = y;
-        
-        while (true)
-        {
-            if (nest[currentNest] == -1)
-            {
-                nest[currentNest] = currentEggOther;
+                Console.WriteLine("Укажи задачу A-I, напр.: dotnet run -- A или dotnet run -- A sample");
                 return;
             }
-            
-            // Save the old egg that was in currentNest
-            int oldEgg = nest[currentNest];
-            // Place our egg in currentNest
-            nest[currentNest] = currentEggOther;
-            // The displaced egg (currentNest, oldEgg) should be placed in nest oldEgg
-            // So we need to place egg (oldEgg, currentNest) in nest oldEgg
-            // Wait, no. The egg that was in currentNest is (currentNest, oldEgg)
-            // We want to place it in nest oldEgg, so we need to place (oldEgg, currentNest) there
-            // Actually, the egg is (currentNest, oldEgg), and we place it in nest oldEgg
-            // So the new egg to place is (oldEgg, currentNest)
-            currentEggOther = currentNest;
-            currentNest = oldEgg;
+
+            var key = args[0];
+            if (!TaskMap.TryGetValue(key, out var run))
+            {
+                Console.WriteLine($"Неизвестная задача '{key}'. Доступные: {string.Join(", ", TaskMap.Keys)}");
+                return;
+            }
+
+            // Если указан second аргумент "sample" — подставляем встроенный пример входа
+            if (args.Length > 1 && args[1].Equals("sample", StringComparison.OrdinalIgnoreCase))
+            {
+                if (Samples.TryGetValue(key, out var sample))
+                    Console.SetIn(new StringReader(sample));
+                else
+                    Console.WriteLine("Для этой задачи нет встроенного примера, использую стандартный ввод.");
+            }
+
+            run();
         }
     }
 }
+

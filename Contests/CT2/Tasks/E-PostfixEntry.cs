@@ -1,43 +1,46 @@
 using System;
 using System.Collections.Generic;
 
-class Program
+namespace CT2.Tasks
 {
-    static void Main()
+    static class PostfixEntry
     {
-        string line = Console.ReadLine();
-
-        string[] tokens = line.Split();
-        Stack<long> stack = new Stack<long>();
-
-        foreach (var token in tokens)
+        public static void Solve()
         {
-            if (long.TryParse(token, out long value))
-            {
-                stack.Push(value);
-            }
-            else
-            {
-                long b = stack.Pop();
-                long a = stack.Pop();
+            string line = Console.ReadLine();
 
-                switch (token)
+            string[] tokens = line.Split();
+            Stack<long> stack = new Stack<long>();
+
+            foreach (var token in tokens)
+            {
+                if (long.TryParse(token, out long value))
                 {
-                    case "+":
-                        stack.Push(a + b);
-                        break;
-                    case "-":
-                        stack.Push(a - b);
-                        break;
-                    case "*":
-                        stack.Push(a * b);
-                        break;
-                    default:
-                        throw new InvalidOperationException($"Неизвестный оператор '{token}'");
+                    stack.Push(value);
+                }
+                else
+                {
+                    long b = stack.Pop();
+                    long a = stack.Pop();
+
+                    switch (token)
+                    {
+                        case "+":
+                            stack.Push(a + b);
+                            break;
+                        case "-":
+                            stack.Push(a - b);
+                            break;
+                        case "*":
+                            stack.Push(a * b);
+                            break;
+                        default:
+                            throw new InvalidOperationException($"Неизвестный оператор '{token}'");
+                    }
                 }
             }
-        }
 
-        Console.WriteLine(stack.Pop());
+            Console.WriteLine(stack.Pop());
+        }
     }
 }

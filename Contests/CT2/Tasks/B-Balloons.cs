@@ -1,44 +1,47 @@
 using System;
 using System.Collections.Generic;
 
-class Program
+namespace CT2.Tasks
 {
-    static void Main()
+    static class Balloons
     {
-        var input = Console.ReadLine().Split();
-        int n = int.Parse(input[0]);
-        int[] a = new int[n];
-        for (int i = 0; i < n; i++)
-            a[i] = int.Parse(input[i + 1]);
-
-        var stack = new Stack<(int color, int count)>();
-        int totalRemoved = 0;
-
-        for (int i = 0; i < n; )
+        public static void Solve()
         {
-            int j = i;
-            while (j < n && a[j] == a[i]) j++;
-            int count = j - i;
-            var color = a[i];
+            var input = Console.ReadLine().Split();
+            int n = int.Parse(input[0]);
+            int[] a = new int[n];
+            for (int i = 0; i < n; i++)
+                a[i] = int.Parse(input[i + 1]);
 
-            if (stack.Count > 0 && stack.Peek().color == color)
+            var stack = new Stack<(int color, int count)>();
+            int totalRemoved = 0;
+
+            for (int i = 0; i < n; )
             {
-                var top = stack.Pop();
-                count += top.count;
+                int j = i;
+                while (j < n && a[j] == a[i]) j++;
+                int count = j - i;
+                var color = a[i];
+
+                if (stack.Count > 0 && stack.Peek().color == color)
+                {
+                    var top = stack.Pop();
+                    count += top.count;
+                }
+
+                if (count >= 3)
+                {
+                    totalRemoved += count;
+                }
+                else
+                {
+                    stack.Push((color, count));
+                }
+
+                i = j;
             }
 
-            if (count >= 3)
-            {
-                totalRemoved += count;
-            }
-            else
-            {
-                stack.Push((color, count));
-            }
-
-            i = j;
+            Console.WriteLine(totalRemoved);
         }
-
-        Console.WriteLine(totalRemoved);
     }
 }

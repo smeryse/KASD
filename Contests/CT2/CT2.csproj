@@ -7,7 +7,4 @@
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>disable</Nullable>
   </PropertyGroup>
-  <ItemGroup>
-    <Compile Remove="Tasks/**" />
-  </ItemGroup>
 </Project>

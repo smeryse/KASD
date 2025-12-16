@@ -1,94 +1,101 @@
 using System;
 using System.Text;
-class Program
+
+namespace CT2.Tasks
 {
-    static int[] nest;
-    static void Main()
+    static class Cuckoo
     {
-        var first = Console.ReadLine().Split();
-        int n = int.Parse(first[0]);
-        int m = int.Parse(first[1]);
-        int q = int.Parse(first[2]);
-        nest = new int[n + 1];
-        for (int i = 1; i <= n; i++)
-            nest[i] = -1;
-        for (int i = 0; i < m; i++)
+        static int[] nest;
+
+        public static void Solve()
         {
-            var parts = Console.ReadLine().Split();
-            int x = int.Parse(parts[0]);
-            int y = int.Parse(parts[1]);
-            nest[x] = y;
-        }
-        var sb = new StringBuilder();
-        for (int i = 0; i < q; i++)
-        {
-            var parts = Console.ReadLine().Split();
-            int t = int.Parse(parts[0]);
-            if (t == 1 || t == 2)
+            var first = Console.ReadLine().Split();
+            int n = int.Parse(first[0]);
+            int m = int.Parse(first[1]);
+            int q = int.Parse(first[2]);
+            nest = new int[n + 1];
+            for (int i = 1; i <= n; i++)
+                nest[i] = -1;
+            for (int i = 0; i < m; i++)
             {
-                int x = int.Parse(parts[1]);
-                int y = int.Parse(parts[2]);
-                bool terminates = WillTerminate(x, y);
-                sb.Append(terminates ? "Yes" : "No").Append('\n');
-                if (t == 2 && terminates)
-                {
-                    PlaceEgg(x, y);
-                }
+                var parts = Console.ReadLine().Split();
+                int x = int.Parse(parts[0]);
+                int y = int.Parse(parts[1]);
+                nest[x] = y;
             }
-            else // t == 3
+            var sb = new StringBuilder();
+            for (int i = 0; i < q; i++)
             {
-                long count = 0;
-                for (int x = 1; x <= n; x++)
+                var parts = Console.ReadLine().Split();
+                int t = int.Parse(parts[0]);
+                if (t == 1 || t == 2)
                 {
-                    for (int y = 1; y <= n; y++)
+                    int x = int.Parse(parts[1]);
+                    int y = int.Parse(parts[2]);
+                    bool terminates = WillTerminate(x, y);
+                    sb.Append(terminates ? "Yes" : "No").Append('\n');
+                    if (t == 2 && terminates)
                     {
-                        if (x == y) continue;
-                        if (WillTerminate(x, y))
-                            count++;
+                        PlaceEgg(x, y);
                     }
                 }
-                sb.Append(count).Append('\n');
+                else // t == 3
+                {
+                    long count = 0;
+                    for (int x = 1; x <= n; x++)
+                    {
+                        for (int y = 1; y <= n; y++)
+                        {
+                            if (x == y) continue;
+                            if (WillTerminate(x, y))
+                                count++;
+                        }
+                    }
+                    sb.Append(count).Append('\n');
+                }
             }
+            Console.Write(sb.ToString());
         }
-        Console.Write(sb.ToString());
-    }
-    static bool WillTerminate(int x, int y)
-    {
-        bool[] visited = new bool[nest.Length];
-        int currentNest = x;
-        int currentEggOther = y;
-        
-        while (true)
+
+        static bool WillTerminate(int x, int y)
         {
-            if (visited[currentNest])
-                return false; 
-            visited[currentNest] = true;
+            bool[] visited = new bool[nest.Length];
+            int currentNest = x;
+            int currentEggOther = y;
             
-            if (nest[currentNest] == -1)
-                return true; 
-            
-            int nextNest = nest[currentNest];
-            currentEggOther = currentNest; 
-            currentNest = nextNest;
-        }
-    }
-    static void PlaceEgg(int x, int y)
-    {
-        int currentNest = x;
-        int currentEggOther = y;
-        
-        while (true)
-        {
-            if (nest[currentNest] == -1)
+            while (true)
             {
-                nest[currentNest] = currentEggOther;
-                return;
+                if (visited[currentNest])
+                    return false; 
+                visited[currentNest] = true;
+                
+                if (nest[currentNest] == -1)
+                    return true; 
+                
+                int nextNest = nest[currentNest];
+                currentEggOther = currentNest; 
+                currentNest = nextNest;
             }
+        }
+
+        static void PlaceEgg(int x, int y)
+        {
+            int currentNest = x;
+            int currentEggOther = y;
             
-            int nextNest = nest[currentNest];
-            nest[currentNest] = currentEggOther;
-            currentEggOther = currentNest;
-            currentNest = nextNest;
+            while (true)
+            {
+                if (nest[currentNest] == -1)
+                {
+                    nest[currentNest] = currentEggOther;
+                    return;
+                }
+                
+                int nextNest = nest[currentNest];
+                nest[currentNest] = currentEggOther;
+                currentEggOther = currentNest;
+                currentNest = nextNest;
+            }
         }
     }
 }
