@@ -6,7 +6,7 @@ Repository for educational lab | tasks | contests exercises in C# programming.
 
 * [Tasks](Tasks/Tasks.md)
 * [Labs](Labs/Labs.md)
-* [Contests](Контесты/Contests.md)
+* [Contests](Contests/Contests.md)
 
 ## Tech Stack
 

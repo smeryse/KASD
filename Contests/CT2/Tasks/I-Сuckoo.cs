@@ -22,9 +22,7 @@ class Program
         var sb = new StringBuilder();
         for (int i = 0; i < q; i++)
         {
-            string line = Console.ReadLine();
-            if (string.IsNullOrWhiteSpace(line)) continue;
-            var parts = line.Split();
+            var parts = Console.ReadLine().Split();
             int t = int.Parse(parts[0]);
             if (t == 1 || t == 2)
             {
@@ -58,20 +56,20 @@ class Program
     {
         bool[] visited = new bool[nest.Length];
         int currentNest = x;
-        int currentEgg = y;
+        int currentEggOther = y;
         
         while (true)
         {
             if (visited[currentNest])
-                return false;
+                return false; 
             visited[currentNest] = true;
             
             if (nest[currentNest] == -1)
-                return true;
+                return true; 
             
-            int oldEgg = nest[currentNest];
-            currentEgg = currentNest;
-            currentNest = oldEgg;
+            int nextNest = nest[currentNest];
+            currentEggOther = currentNest; 
+            currentNest = nextNest;
         }
     }
     static void PlaceEgg(int x, int y)
@@ -87,10 +85,10 @@ class Program
                 return;
             }
             
-            int oldEgg = nest[currentNest];
+            int nextNest = nest[currentNest];
             nest[currentNest] = currentEggOther;
             currentEggOther = currentNest;
-            currentNest = oldEgg;
+            currentNest = nextNest;
         }
     }
 }
