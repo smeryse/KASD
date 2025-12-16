@@ -1,6 +1,6 @@
 # Tasks
 | # | Name | Description | Status | Based on |
-|---|------|-------------|--------|-----------|
+| -- | -- | -- | -- | -- |
 | 1 | [VectorNorm](Tasks/01-VectorNorm) | Computing norms of N-dimensional vectors | ✅ |  |
 | 2 | [ComplexCalculator](Tasks/02-ComplexCalculator) | Arithmetic operations on complex numbers | ✅ |  |
 | 3 | [SortingAlgorithms](Tasks/03-SortingAlgorithms) | Implementing sorting algorithms for integers | ⏳  |  |
@@ -38,10 +38,18 @@ cd 03-SortingAlgorithms && dotnet run
 cd 04-GenericSorting && dotnet run
 cd 05-MaxHeap && dotnet run
 cd 06-HeapPriorityQueue && dotnet run
+cd 07-PriorityQueueSimulation && dotnet run
+cd 08-MyArrayList && dotnet run
+cd 09-MyArrayTagParser && dotnet run
+cd 10-MyVector && dotnet run
+cd 11-IPParser && dotnet run
+cd 12-MyStack && dotnet run
 ```
 
 ## Requirements
 
+- .NET 8.0 SDK or higher
+- C# 12
+- Visual Studio Code / Visual Studio 2022
 
 ## Notes
-<!-- Duplicate removed -->
