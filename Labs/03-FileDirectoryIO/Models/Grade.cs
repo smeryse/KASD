@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Grade : IPrintable
+public class Grade
 {
     /*Класс, представляющий оценки студента по одному предмету*/
     public Subject Subject { get; set; }
@@ -37,5 +37,5 @@ public class Grade : IPrintable
     }
 
     public override string ToString() => ToFormattedString();
-    public void Print(string indent = "") => Console.WriteLine(ToFormattedString(indent));
 }
+

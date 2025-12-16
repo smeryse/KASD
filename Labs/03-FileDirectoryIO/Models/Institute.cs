@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -39,34 +39,35 @@ public class Institute
     public override string ToString() => ToFormattedString();
     public void Print() => Console.Write(ToFormattedString());
 
-    // JSON SAVE/LOAD
+    // JSON SAVE/LOAD - File/Directory IO операции
     public void SaveToFile(string path)
     {
         var options = new JsonSerializerOptions { WriteIndented = true };
         File.WriteAllText(path, System.Text.Json.JsonSerializer.Serialize(this, options));
     }
-public static Institute LoadFromFile(string path)
-{
-    var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-    string json = File.ReadAllText(path);
-    var inst = System.Text.Json.JsonSerializer.Deserialize<Institute>(json, options);
+    
+    public static Institute LoadFromFile(string path)
+    {
+        var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+        string json = File.ReadAllText(path);
+        var inst = System.Text.Json.JsonSerializer.Deserialize<Institute>(json, options);
 
-    if (inst == null) return null;
+        if (inst == null) return null;
 
-    // вычисляем максимальные ID и ставим следующие значения
-    int maxCourseId = inst.Courses.Any() ? inst.Courses.Max(c => c.CourseId) : 0;
-    Course.SetNextId(maxCourseId + 1);
+        // вычисляем максимальные ID и ставим следующие значения
+        int maxCourseId = inst.Courses.Any() ? inst.Courses.Max(c => c.CourseId) : 0;
+        Course.SetNextId(maxCourseId + 1);
 
-    int maxGroupId = inst.Courses.SelectMany(c => c.Groups).Any() ? inst.Courses.SelectMany(c => c.Groups).Max(g => g.GroupId) : 0;
-    Group.SetNextId(maxGroupId + 1);
+        int maxGroupId = inst.Courses.SelectMany(c => c.Groups).Any() ? inst.Courses.SelectMany(c => c.Groups).Max(g => g.GroupId) : 0;
+        Group.SetNextId(maxGroupId + 1);
 
-    int maxSubjectId = inst.Courses.SelectMany(c => c.Subjects).Any() ? inst.Courses.SelectMany(c => c.Subjects).Max(s => s.SubjectId) : 0;
-    Subject.SetNextId(maxSubjectId + 1);
+        int maxSubjectId = inst.Courses.SelectMany(c => c.Subjects).Any() ? inst.Courses.SelectMany(c => c.Subjects).Max(s => s.SubjectId) : 0;
+        Subject.SetNextId(maxSubjectId + 1);
 
-    int maxStudentId = inst.Courses.SelectMany(c => c.Groups).SelectMany(g => g.Students).Any() ? inst.Courses.SelectMany(c => c.Groups).SelectMany(g => g.Students).Max(s => s.StudentId) : 0;
-    Student.SetNextId(maxStudentId + 1);
+        int maxStudentId = inst.Courses.SelectMany(c => c.Groups).SelectMany(g => g.Students).Any() ? inst.Courses.SelectMany(c => c.Groups).SelectMany(g => g.Students).Max(s => s.StudentId) : 0;
+        Student.SetNextId(maxStudentId + 1);
 
-    return inst;
+        return inst;
+    }
 }
 
-}

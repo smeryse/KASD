@@ -1,12 +1,19 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+// Используем классы из Lab 4 (глобальный namespace)
+using BaseStudent = global::Student;
+using BaseCourse = global::Course;
+using BaseGroup = global::Group;
+using BaseInstitute = global::Institute;
+using BaseSubject = global::Subject;
+using BaseGrade = global::Grade;
 
 namespace ЛР5
 {
     class Program
     {
-        static Institute institute = new Institute("ИТИ");
+        static BaseInstitute institute = new BaseInstitute("ИТИ");
 
         static void Main()
         {
@@ -20,7 +27,11 @@ namespace ЛР5
                          .SelectMany(c => c.Groups)
                          .SelectMany(g => g.Students))
             {
-                student.ErrorOccurred += OnStudentError;
+                // Подписываемся только если это Student из Lab 5 (с событиями)
+                if (student is Student studentWithEvents)
+                {
+                    studentWithEvents.ErrorOccurred += OnStudentError;
+                }
             }
         }
         static void OnStudentError(object sender, StudentEventArgs e)
@@ -69,16 +80,15 @@ namespace ЛР5
         static void TestErrors()
         {
             Console.WriteLine("=== Тест ошибок студентов ===");
-
-            // Создаём студента
-            Student testStudent = new Student("Тест", "Ошибка", 20);
+            Console.WriteLine("\n--- Тест базового класса Student ---");
+            
+            // Создаём студента базового класса
+            Student testStudent = new Student("Иван", "Базовый", 20);
             testStudent.ErrorOccurred += OnStudentError;
 
-            // Примеры генерации исключений
+            // Примеры генерации исключений для базового класса
             try
             {
-                // StackOverflowException (имитация через рекурсию)
-                // В реальности StackOverflow не поймается, поэтому имитация:
                 throw new StackOverflowException("Имитация переполнения стека");
             }
             catch (Exception ex) { testStudent.RaiseError(ex); }
@@ -91,42 +101,22 @@ namespace ЛР5
             }
             catch (Exception ex) { testStudent.RaiseError(ex); }
 
-            try
-            {
-                int x = 5 / int.Parse("0"); // DivideByZeroException
-            }
-            catch (Exception ex) { testStudent.RaiseError(ex); }
+            Console.WriteLine("\n--- Тест производного класса StudentWithErrorHandling ---");
+            Console.WriteLine("(Переопределение события через наследование)\n");
 
-            try
-            {
-                int[] arr = new int[1];
-                Console.WriteLine(arr[10]); // IndexOutOfRangeException
-            }
-            catch (Exception ex) { testStudent.RaiseError(ex); }
+            // Создаём студента производного класса с переопределенным событием
+            StudentWithErrorHandling studentWithHandling = new StudentWithErrorHandling("Петр", "Производный", 21);
+            
+            // Подписываемся на переопределенное событие
+            studentWithHandling.ErrorOccurred += ErrorNotifier.HandleStudentWithErrorHandling;
 
-            try
-            {
-                object o = "string";
-                int i = (int)o; // InvalidCastException
-            }
-            catch (Exception ex) { testStudent.RaiseError(ex); }
+            // Запускаем все тесты исключений через методы производного класса
+            studentWithHandling.RunAllExceptionTests();
 
-            try
-            {
-                // OutOfMemoryException (не будем реально выделять память, имитация)
-                throw new OutOfMemoryException("Имитация недостатка памяти");
-            }
-            catch (Exception ex) { testStudent.RaiseError(ex); }
-
-            try
-            {
-                checked
-                {
-                    int max = int.MaxValue;
-                    int overflow = max + 1; // OverflowException
-                }
-            }
-            catch (Exception ex) { testStudent.RaiseError(ex); }
+            Console.WriteLine("\n--- Сравнение: базовый vs производный класс ---");
+            Console.WriteLine("Базовый класс Student использует событие: ErrorOccurred");
+            Console.WriteLine("Производный класс StudentWithErrorHandling переопределяет событие через 'new': ErrorOccurred");
+            Console.WriteLine("Обработчики событий могут быть разными для каждого класса.");
         }
 
 
@@ -166,7 +156,7 @@ namespace ЛР5
         {
             Console.Write("Введите номер курса: ");
             int number = int.Parse(Console.ReadLine());
-            Course course = new Course(number);
+            BaseCourse course = new BaseCourse(number);
             institute.AddCourse(course);
             Console.WriteLine("Курс добавлен.");
         }
@@ -190,7 +180,7 @@ namespace ЛР5
 
             Console.Write("Введите название группы: ");
             string name = Console.ReadLine();
-            course.AddGroup(new Group(name));
+            course.AddGroup(new BaseGroup(name));
             Console.WriteLine("Группа добавлена.");
         }
 
@@ -221,6 +211,7 @@ namespace ЛР5
             Console.Write("Введите возраст: ");
             int age = int.Parse(Console.ReadLine());
 
+            // Используем Student из Lab 5 (с событиями)
             group.AddStudent(new Student(name, surname, age));
             Console.WriteLine("Студент добавлен.");
         }
@@ -243,7 +234,7 @@ namespace ЛР5
             Console.Write("Введите количество часов: ");
             int hours = int.Parse(Console.ReadLine());
 
-            course.AddSubject(new Subject(title, teacher, hours));
+            course.AddSubject(new BaseSubject(title, teacher, hours));
             Console.WriteLine("Предмет добавлен.");
         }
 
@@ -538,8 +529,10 @@ namespace ЛР5
                 return;
             }
 
-            institute = Institute.LoadFromFile(path);
+            institute = BaseInstitute.LoadFromFile(path);
             Console.WriteLine("Данные успешно загружены.");
+            // После загрузки нужно подписаться на события новых студентов
+            SubscribeToStudentErrors();
         }
 
         // === 6. Тесты ===
@@ -549,10 +542,10 @@ namespace ЛР5
             Console.WriteLine("=== Тест делегата и интерфейсов ===");
 
             // 1. Создаём курс, группу и предметы
-            Course course = new Course(1);
-            Group group = new Group("А1");
-            Subject math = new Subject("Математика", "Иванова", 60);
-            Subject prog = new Subject("Программирование", "Петров", 90);
+            BaseCourse course = new BaseCourse(1);
+            BaseGroup group = new BaseGroup("А1");
+            BaseSubject math = new BaseSubject("Математика", "Иванова", 60);
+            BaseSubject prog = new BaseSubject("Программирование", "Петров", 90);
 
             course.AddSubject(math);
             course.AddSubject(prog);
@@ -636,7 +629,7 @@ namespace ЛР5
             institute.AddCourse(course);
         }
 
-        static void RemoveStudentsWithThreeTwos(Institute institute)
+        static void RemoveStudentsWithThreeTwos(BaseInstitute institute)
         {
             Console.WriteLine("=== Запрос: Удаление студентов первого курса с тремя двойками ===");
 

@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Student : IPrintable, IManageable
+public class Student
 {
     private static int _nextId = 1;
     public static void SetNextId(int v) => _nextId = v;
@@ -94,5 +94,6 @@ public class Student : IPrintable, IManageable
         return result;
     }
     public override string ToString() => ToFormattedString();
-    public void Print(string indent = "") => Console.Write(ToFormattedString(indent));
+    public void Print() => Console.Write(ToFormattedString());
 }
+

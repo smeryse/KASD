@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -96,3 +96,4 @@ public class Student : IPrintable, IManageable
     public override string ToString() => ToFormattedString();
     public void Print(string indent = "") => Console.Write(ToFormattedString(indent));
 }
+

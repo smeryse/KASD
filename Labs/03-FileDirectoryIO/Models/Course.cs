@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-public class Course : IManageable, IPrintable
+public class Course
 {
     private static int _nextId = 1;
     public static void SetNextId(int v) => _nextId = v;
@@ -84,5 +84,6 @@ public class Course : IManageable, IPrintable
 
         return result;
     }
-    public void Print(string indent = "") => Console.Write(ToFormattedString(indent));
+    public void Print() => Console.Write(ToFormattedString());
 }
+

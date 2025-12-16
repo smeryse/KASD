@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 public class Course : IManageable, IPrintable
 {
@@ -86,3 +86,4 @@ public class Course : IManageable, IPrintable
     }
     public void Print(string indent = "") => Console.Write(ToFormattedString(indent));
 }
+

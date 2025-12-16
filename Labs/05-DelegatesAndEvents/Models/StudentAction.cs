@@ -1,5 +1,6 @@
-﻿
+﻿using BaseStudent = global::Student;
+
 namespace ЛР5
 {
-    delegate void StudentAction(Student student);
+    delegate void StudentAction(BaseStudent student);
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-interface IPrintable
+public interface IPrintable
 {
     string ToFormattedString(string str);
     void Print(string str);

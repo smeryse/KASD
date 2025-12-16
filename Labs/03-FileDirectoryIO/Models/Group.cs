@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-public class Group : IPrintable
+
+public class Group
 {
     private static int _nextId = 1;
     public static void SetNextId(int v) => _nextId = v;
@@ -46,5 +47,6 @@ public class Group : IPrintable
         return result;
     }
     public override string ToString() => ToFormattedString();
-    public void Print(string indent = "") => Console.Write(ToFormattedString(indent));
+    public void Print() => Console.Write(ToFormattedString());
 }
+
