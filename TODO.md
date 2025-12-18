@@ -1,3 +1,4 @@
 - Delete GitHub Actions autotests
-- Create a Unified Build & Run Script for Labs 
-- Refactor russian named folders
+- Add readme for everyone contest
+- Refactor Contest.md
+- Refactor Tasks folders in 1st 2nd contest
