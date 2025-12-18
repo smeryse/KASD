@@ -2,8 +2,8 @@
 
 | # | Name | Description | Status | Based on |
 | -- | -- | -- | -- | -- |
-| 1 | [CT1](Contests/CT1) | Contest tasks: sorting, heaps, binary search | ✅ |  |
-| 2 | [CT2](Contests/CT2) | Contest tasks: stacks, queues, disjoint sets | ✅ |  |
+| 1 | [CT1](Contests/CT1/CT1.md) | Contest tasks: sorting, heaps, binary search | ✅ |
+| 2 | [CT2](Contests/CT2)/CT2.md | Contest tasks: stacks, queues, disjoint sets | ✅ |
 
 ## Requirements
 
