@@ -2,14 +2,14 @@
 
 | # | Name | Description | Status |
 | -- | -- | -- | -- |
-| A | [GrasshopperCollect](Models/A-GrasshopperCollect.cs) |  |  |
-| B | [TurtleAndCoins](Models/B-TurtleAndCoins.cs) |  |  |
-| C | [LargestSubseq](Models/C-LargestSubseq.cs) |  |  |
-| D | [KnightMove](Models/D-KnightMove.cs) |  |  |
-| E | [LevenshteinDist](Models/E-LevenshteinDist.cs) |  |  |
-| F | [Cafe](Models/F-Cafe.cs) |  |  |
-| G | [DeleteStaples](Models/G-DeleteStaples.cs) |  |  |
-| H | [AquariumSeller](Models/H-AquariumSeller.cs) |  |  |
-| I | [ReplaceDomino](Models/I-ReplaceDomino.cs) |  |  |
-| J | [CutePatterns](Models/J-CutePatterns.cs) |  |  |
-| K | [Multybacpack](Models/K-Multybacpack.cs) |  |  |
+| A | [GrasshopperCollect](Tasks/A-GrasshopperCollect.cs) |  |  |
+| B | [TurtleAndCoins](Tasks/B-TurtleAndCoins.cs) |  |  |
+| C | [LargestSubseq](Tasks/C-LargestSubseq.cs) |  |  |
+| D | [KnightMove](Tasks/D-KnightMove.cs) |  |  |
+| E | [LevenshteinDist](Tasks/E-LevenshteinDist.cs) |  |  |
+| F | [Cafe](Tasks/F-Cafe.cs) |  |  |
+| G | [DeleteStaples](Tasks/G-DeleteStaples.cs) |  |  |
+| H | [AquariumSeller](Tasks/H-AquariumSeller.cs) |  |  |
+| I | [ReplaceDomino](Tasks/I-ReplaceDomino.cs) |  |  |
+| J | [CutePatterns](Tasks/J-CutePatterns.cs) |  |  |
+| K | [Multybacpack](Tasks/K-Multybacpack.cs) |  |  |
