@@ -1,10 +1,12 @@
 using System;
 
-class Program
+namespace CT3.Tasks;
+
+static class AquariumSeller
 {
     const int INF = 1000000000;
     
-    static void Main()
+    public static void Solve()
     {
         int n = int.Parse(Console.ReadLine());
         int[,] dist = new int[n, n];

@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 
+namespace CT3.Tasks;
+
 class DominoTiling
 {
     private int n, m;
@@ -74,9 +76,9 @@ class DominoTiling
     }
 }
 
-class Program
+static class ReplaceDomino
 {
-    static void Main()
+    public static void Solve()
     {
         string[] first = Console.ReadLine().Split();
         int n = int.Parse(first[0]);

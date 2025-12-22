@@ -1,5 +1,7 @@
 using System;
 
+namespace CT3.Tasks;
+
 class KnightPhone
 {
     private int n;
@@ -52,9 +54,9 @@ class KnightPhone
     }
 }
 
-class Program
+static class KnightMove
 {
-    static void Main()
+    public static void Solve()
     {
         int n = int.Parse(Console.ReadLine());
         KnightPhone kp = new KnightPhone(n);

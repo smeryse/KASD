@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
 
-class Program
+namespace CT3.Tasks;
+
+static class Multybacpack
 {
-    static void Main()
+    public static void Solve()
     {
         var input = Console.ReadLine().Split();
         int n = int.Parse(input[0]);

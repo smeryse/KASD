@@ -1,5 +1,7 @@
 using System;
 
+namespace CT3.Tasks;
+
 class Levenshtein
 {
     private string s1, s2;
@@ -41,9 +43,9 @@ class Levenshtein
     }
 }
 
-class Program
+static class LevenshteinDist
 {
-    static void Main()
+    public static void Solve()
     {
         string s1 = Console.ReadLine();
         string s2 = Console.ReadLine();

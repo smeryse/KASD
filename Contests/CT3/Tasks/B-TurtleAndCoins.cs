@@ -1,9 +1,11 @@
 using System;
 using System.Text;
 
-class Program
+namespace CT3.Tasks;
+
+static class TurtleAndCoins
 {
-    static void Main()
+    public static void Solve()
     {
         var first = Console.ReadLine().Split();
         int n = int.Parse(first[0]);

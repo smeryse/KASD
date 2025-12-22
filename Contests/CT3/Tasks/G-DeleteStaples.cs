@@ -1,5 +1,7 @@
 using System;
 
+namespace CT3.Tasks;
+
 class BracketRemover
 {
     private string s;
@@ -69,9 +71,9 @@ class BracketRemover
     }
 }
 
-class Program
+static class DeleteStaples
 {
-    static void Main()
+    public static void Solve()
     {
         string input = Console.ReadLine();
         BracketRemover br = new BracketRemover(input);

@@ -1,5 +1,7 @@
 using System;
 
+namespace CT3.Tasks;
+
 class Grasshopper
 {
     private int n, k;
@@ -60,9 +62,9 @@ class Grasshopper
     }
 }
 
-class Program
+static class GrasshopperCollect
 {
-    static void Main()
+    public static void Solve()
     {
         string[] firstLine = Console.ReadLine().Split();
         int n = int.Parse(firstLine[0]);

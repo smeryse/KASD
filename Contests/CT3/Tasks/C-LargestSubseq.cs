@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 
+namespace CT3.Tasks;
+
 class LIS
 {
     private int n;
@@ -60,9 +62,9 @@ class LIS
     }
 }
 
-class Program
+static class LargestSubseq
 {
-    static void Main()
+    public static void Solve()
     {
         int n = int.Parse(Console.ReadLine());
         string[] line = Console.ReadLine().Split();

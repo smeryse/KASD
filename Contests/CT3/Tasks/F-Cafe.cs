@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 
+namespace CT3.Tasks;
+
 class Cafe
 {
     private int n;
@@ -93,9 +95,9 @@ public void Solve()
 }
 
 
-class Program
+static class CafeTask
 {
-    static void Main()
+    public static void Solve()
     {
         int n = int.Parse(Console.ReadLine());
         int[] cost = new int[n];

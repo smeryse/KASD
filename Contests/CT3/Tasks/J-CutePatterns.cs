@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 
+namespace CT3.Tasks;
+
 class NicePatterns
 {
     private int n, m;
@@ -65,9 +67,9 @@ class NicePatterns
     }
 }
 
-class Program
+static class CutePatterns
 {
-    static void Main()
+    public static void Solve()
     {
         string[] input = Console.ReadLine().Split();
         int n = int.Parse(input[0]);

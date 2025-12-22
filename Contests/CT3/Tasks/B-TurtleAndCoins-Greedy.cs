@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
 
-class Program
+namespace CT3.Tasks;
+
+static class TurtleAndCoinsGreedy
 {
-    static void Main()
+    public static void Solve()
     {
         var nm = Console.ReadLine().Split();
         int n = int.Parse(nm[0]);
