@@ -24,6 +24,12 @@ dotnet run -- A sample
 dotnet run -- A Samples/A.in
 ```
 
+Compare output with `Samples/A.out`:
+
+```bash
+dotnet run -- A sample check
+```
+
 ## Tech Stack
 
 * **Language**: C# 12

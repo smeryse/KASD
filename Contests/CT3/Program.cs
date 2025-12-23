@@ -58,7 +58,7 @@ internal class Program
             }
         }
 
-        run();
+        RunWithOptionalCheck(run, key, args);
     }
 
     private static bool TryOpenSample(string key, out TextReader reader)
@@ -82,10 +82,72 @@ internal class Program
         return false;
     }
 
+
+
+    private static void RunWithOptionalCheck(Action run, string key, string[] args)
+    {
+        if (!TryResolveExpectedPath(key, args, out var expectedPath))
+        {
+            run();
+            return;
+        }
+        var originalOut = Console.Out;
+        using var writer = new StringWriter();
+        Console.SetOut(writer);
+        run();
+        Console.Out.Flush();
+        Console.SetOut(originalOut);
+        string actual = Normalize(writer.ToString());
+        string expected = Normalize(File.ReadAllText(expectedPath));
+        if (actual == expected)
+        {
+            Console.WriteLine("OK");
+        }
+        else
+        {
+            Console.WriteLine("FAIL");
+            Console.WriteLine("Expected:");
+            Console.WriteLine(expected);
+            Console.WriteLine("Actual:");
+            Console.WriteLine(actual);
+            Environment.ExitCode = 1;
+        }
+    }
+    private static bool TryResolveExpectedPath(string key, string[] args, out string expectedPath)
+    {
+        expectedPath = "";
+        if (args.Length < 3) return false;
+        var arg = args[2];
+        if (arg.Equals("check", StringComparison.OrdinalIgnoreCase))
+        {
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "Samples", key + ".out");
+            if (!File.Exists(path))
+            {
+                Console.WriteLine($"Файл не найден: {path}. Сравнение отключено.");
+                return false;
+            }
+            expectedPath = path;
+            return true;
+        }
+        if (!File.Exists(arg))
+        {
+            Console.WriteLine($"Файл не найден: {arg}. Сравнение отключено.");
+            return false;
+        }
+        expectedPath = arg;
+        return true;
+    }
+    private static string Normalize(string value)
+    {
+        return value.Replace("\r\n", "\n").TrimEnd();
+    }
+
+
     private static void PrintUsage()
     {
         Console.WriteLine("Укажи задачу A-K, напр.: dotnet run -- A");
         Console.WriteLine("Примеры: dotnet run -- A sample | dotnet run -- A Samples/A.in");
+        Console.WriteLine("Сравнение: dotnet run -- A sample check | dotnet run -- A Samples/A.in Samples/A.out");
         Console.WriteLine("Дополнительно: B-Greedy");
     }
 }

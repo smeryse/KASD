@@ -1,9 +1,7 @@
 ## == PythonAutoReadme ==
 PythonAutoReadme/.venv
 ## == Obsidian ==
-.obsidian/workspace.json
-.obsidian/graph.json
-.obsidian/appearance.json
+.obsidian
 .DS_Store
 Thumbs.db
 .vault/
@@ -434,3 +432,5 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+
+.obsidian/

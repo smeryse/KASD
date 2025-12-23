@@ -27,12 +27,15 @@ cd CT2 && dotnet build
 Each contest supports running tasks via command line. Command format:
 
 ```bash
-dotnet run -- <TASK_ID> [sample]
+dotnet run -- <TASK_ID> [sample|INPUT_FILE] [check|OUTPUT_FILE]
 ```
 
 **Parameters:**
 - `<TASK_ID>` — task letter (A, B, C, ...)
-- `sample` (optional) — use input from `Samples/<TASK_ID>.in`
+- `sample` — use input from `Samples/<TASK_ID>.in`
+- `INPUT_FILE` — path to a custom input file
+- `check` — compare output with `Samples/<TASK_ID>.out`
+- `OUTPUT_FILE` — path to a custom output file to compare against
 
 **Important:** The double dash `--` is required to pass arguments to the program (separates `dotnet run` arguments from program arguments).
 
@@ -48,6 +51,9 @@ dotnet run -- A
 # Run task A with sample input file
 dotnet run -- A sample
 
+# Run task A and compare with sample output
+dotnet run -- A sample check
+
 # Run task N
 dotnet run -- N
 ```
@@ -61,6 +67,9 @@ dotnet run -- A
 
 # Run task A with sample input file
 dotnet run -- A sample
+
+# Run task A and compare with sample output
+dotnet run -- A sample check
 
 # Run task I
 dotnet run -- I
@@ -85,6 +94,7 @@ dotnet run -- I
 1. **No arguments:** program displays a hint with available tasks
 2. **With task letter:** program runs the corresponding task and waits for input data from standard input
 3. **With task letter and `sample`:** program uses input from `Samples/<TASK_ID>.in`
+4. **With `check`:** program compares output with `Samples/<TASK_ID>.out`
 
 #### Complete workflow example
 
