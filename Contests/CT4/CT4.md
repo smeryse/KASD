@@ -1,6 +1,7 @@
 # Contest 4
 
 Samples:
+
 - input: `Samples/A.in`
 - output: `Samples/A.out`
 - run: `dotnet run -- A sample`
