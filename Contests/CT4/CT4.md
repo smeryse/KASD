@@ -7,7 +7,7 @@ Samples:
 
 | # | Name | Description | Status |
 | -- | -- | -- | -- |
-| A | [SumSegmentTree](Tasks/A.cs) |  |  |
+| A | [SumSegmentTree](Tasks/A-SumSegmentTree.cs) |  |  |
 | B | [B](Tasks/B.cs) |  |  |
 | C | [C](Tasks/C.cs) |  |  |
 | D | [D](Tasks/D.cs) |  |  |
