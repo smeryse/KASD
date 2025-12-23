@@ -1,16 +1,16 @@
 using System;
 using System.IO;
 
-namespace Cuckoo
+namespace CT2.Tasks
 {
-    class Program
+    static class Cuckoo
     {
         static int[] parent;
         static long[] size_arr;
         static long[] edges_arr;
-        static long S0 = 0;
-        static long Q0 = 0;
-        static long case1_sum = 0;
+        static long S0;
+        static long Q0;
+        static long case1_sum;
 
         static int Find(int x)
         {
@@ -19,7 +19,7 @@ namespace Cuckoo
             return parent[x];
         }
 
-        static void Main(string[] args)
+        public static void Solve()
         {
             var stream = new StreamReader(Console.OpenStandardInput());
             var tokens = stream.ReadLine().Split();

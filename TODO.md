@@ -1,4 +1,3 @@
-- Delete GitHub Actions autotests
-- Add readme for everyone contest
-- Refactor Contest.md
+# TODO
+
 - Refactor Tasks folders in 1st 2nd contest

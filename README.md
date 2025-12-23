@@ -8,6 +8,21 @@ Repository for educational lab | tasks | contests exercises in C# programming.
 * [Labs](Labs/Labs.md)
 * [Contests](Contests/Contests.md)
 
+## Contests Structure
+
+Each contest folder `CT1`..`CT8` contains:
+
+* `CTn.md` — contest index
+* `Tasks/` — solutions per task
+* `Samples/` — `A.in` / `A.out` pairs
+* `Explanations/` — `A.md`..`N.md` notes
+
+Run a task from its contest folder:
+
+```bash
+dotnet run -- A sample
+```
+
 ## Tech Stack
 
 * **Language**: C# 12

@@ -1,18 +1,21 @@
 using System;
 using System.Collections.Generic;
 
-class DominoTiling
+namespace CT3.Tasks;
+
+internal class DominoTiling
 {
-    private int n, m;
-    private char[][] board;
-    private Dictionary<long, long> dp; // (col, mask) -> ways
+    private readonly int n;
+    private readonly int m;
+    private readonly char[][] board;
+    private readonly Dictionary<long, long> dp;
 
     public DominoTiling(int n, int m, char[][] board)
     {
         this.n = n;
         this.m = m;
         this.board = board;
-        this.dp = new Dictionary<long, long>();
+        dp = new Dictionary<long, long>();
     }
 
     public long Solve()
@@ -22,7 +25,6 @@ class DominoTiling
 
     private long Dfs(int col, int mask)
     {
-        // Все столбцы обработаны
         if (col == m)
             return mask == 0 ? 1 : 0;
 
@@ -37,21 +39,17 @@ class DominoTiling
 
     private long Fill(int col, int row, int curMask, int nextMask)
     {
-        // Весь столбец заполнен -> идём дальше
         if (row == n)
             return Dfs(col + 1, nextMask);
 
-        // Ячейка уже занята
         if ((curMask & (1 << row)) != 0)
             return Fill(col, row + 1, curMask, nextMask);
 
-        // Ячейка заблокирована
         if (board[row][col] == 'X')
             return Fill(col, row + 1, curMask, nextMask);
 
         long res = 0;
 
-        // Вертикальное домино
         if (row + 1 < n &&
             (curMask & (1 << (row + 1))) == 0 &&
             board[row + 1][col] == '.')
@@ -59,7 +57,6 @@ class DominoTiling
             res += Fill(col, row + 2, curMask, nextMask);
         }
 
-        // Горизонтальное домино
         if (col + 1 < m && board[row][col + 1] == '.')
         {
             res += Fill(col, row + 1, curMask, nextMask | (1 << row));
@@ -68,15 +65,15 @@ class DominoTiling
         return res;
     }
 
-    private long Encode(int col, int mask)
+    private static long Encode(int col, int mask)
     {
         return ((long)col << 32) | (uint)mask;
     }
 }
 
-class Program
+internal static class ReplaceDomino
 {
-    static void Main()
+    public static void Solve()
     {
         string[] first = Console.ReadLine().Split();
         int n = int.Parse(first[0]);
@@ -86,7 +83,7 @@ class Program
         for (int i = 0; i < n; i++)
             board[i] = Console.ReadLine().ToCharArray();
 
-        DominoTiling solver = new DominoTiling(n, m, board);
+        var solver = new DominoTiling(n, m, board);
         Console.WriteLine(solver.Solve());
     }
 }

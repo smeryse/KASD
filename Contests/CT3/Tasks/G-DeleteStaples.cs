@@ -1,11 +1,13 @@
 using System;
 
-class BracketRemover
+namespace CT3.Tasks;
+
+internal class BracketRemover
 {
-    private string s;
-    private int n;
-    private int[,] dp;
-    private int[,] split;
+    private readonly string s;
+    private readonly int n;
+    private readonly int[,] dp;
+    private readonly int[,] split;
 
     public BracketRemover(string input)
     {
@@ -23,7 +25,7 @@ class BracketRemover
             {
                 int r = l + len - 1;
                 dp[l, r] = 0;
-                split[l, r] = -2; // нет решения
+                split[l, r] = -2;
 
                 if (IsPair(s[l], s[r]) && len > 1)
                 {
@@ -31,7 +33,7 @@ class BracketRemover
                     if (inner + 2 > dp[l, r])
                     {
                         dp[l, r] = inner + 2;
-                        split[l, r] = -1; // использовать пару (l, r)
+                        split[l, r] = -1;
                     }
                 }
 
@@ -40,7 +42,7 @@ class BracketRemover
                     if (dp[l, k] + dp[k + 1, r] > dp[l, r])
                     {
                         dp[l, r] = dp[l, k] + dp[k + 1, r];
-                        split[l, r] = k; // разбить в точке k
+                        split[l, r] = k;
                     }
                 }
             }
@@ -51,17 +53,14 @@ class BracketRemover
 
     private string Build(int l, int r)
     {
-        if (l > r) return "";
-        if (l == r) return "";
-        if (dp[l, r] == 0) return ""; // нет решения
+        if (l > r || l == r || dp[l, r] == 0) return "";
 
         if (split[l, r] == -1)
             return s[l] + Build(l + 1, r - 1) + s[r];
-        else
-            return Build(l, split[l, r]) + Build(split[l, r] + 1, r);
+        return Build(l, split[l, r]) + Build(split[l, r] + 1, r);
     }
 
-    private bool IsPair(char open, char close)
+    private static bool IsPair(char open, char close)
     {
         return (open == '(' && close == ')') ||
                (open == '[' && close == ']') ||
@@ -69,12 +68,12 @@ class BracketRemover
     }
 }
 
-class Program
+internal static class DeleteStaples
 {
-    static void Main()
+    public static void Solve()
     {
         string input = Console.ReadLine();
-        BracketRemover br = new BracketRemover(input);
+        var br = new BracketRemover(input);
         br.Solve();
     }
 }

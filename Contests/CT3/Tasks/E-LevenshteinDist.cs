@@ -1,10 +1,14 @@
 using System;
 
-class Levenshtein
+namespace CT3.Tasks;
+
+internal class Levenshtein
 {
-    private string s1, s2;
-    private int n, m;
-    private int[,] dp;
+    private readonly string s1;
+    private readonly string s2;
+    private readonly int n;
+    private readonly int m;
+    private readonly int[,] dp;
 
     public Levenshtein(string s1, string s2)
     {
@@ -14,11 +18,10 @@ class Levenshtein
         m = s2.Length;
         dp = new int[n + 1, m + 1];
 
-        // Инициализация базовых случаев
         for (int i = 0; i <= n; i++)
-            dp[i, 0] = i; // i удалений
+            dp[i, 0] = i;
         for (int j = 0; j <= m; j++)
-            dp[0, j] = j; // j вставок
+            dp[0, j] = j;
     }
 
     public int Solve()
@@ -30,9 +33,9 @@ class Levenshtein
                 int cost = (s1[i - 1] == s2[j - 1]) ? 0 : 1;
 
                 dp[i, j] = Math.Min(
-                    Math.Min(dp[i - 1, j] + 1,    // удаление
-                             dp[i, j - 1] + 1),   // вставка
-                    dp[i - 1, j - 1] + cost       // замена (или ничего, если символы равны)
+                    Math.Min(dp[i - 1, j] + 1,
+                             dp[i, j - 1] + 1),
+                    dp[i - 1, j - 1] + cost
                 );
             }
         }
@@ -41,14 +44,14 @@ class Levenshtein
     }
 }
 
-class Program
+internal static class LevenshteinDist
 {
-    static void Main()
+    public static void Solve()
     {
         string s1 = Console.ReadLine();
         string s2 = Console.ReadLine();
 
-        Levenshtein lev = new Levenshtein(s1, s2);
+        var lev = new Levenshtein(s1, s2);
         Console.WriteLine(lev.Solve());
     }
 }

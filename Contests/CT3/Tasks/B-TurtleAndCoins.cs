@@ -1,9 +1,11 @@
 using System;
 using System.Text;
 
-class Program
+namespace CT3.Tasks;
+
+internal static class TurtleAndCoins
 {
-    static void Main()
+    public static void Solve()
     {
         var first = Console.ReadLine().Split();
         int n = int.Parse(first[0]);
@@ -18,7 +20,7 @@ class Program
         }
 
         int[,] dp = new int[n, m];
-        char[,] prev = new char[n, m]; 
+        char[,] prev = new char[n, m];
 
         dp[0, 0] = a[0, 0];
 
@@ -51,7 +53,7 @@ class Program
             }
         }
 
-        StringBuilder path = new StringBuilder();
+        var path = new StringBuilder();
         int x = n - 1, y = m - 1;
 
         while (x > 0 || y > 0)
@@ -63,7 +65,6 @@ class Program
             else y--;
         }
 
-        // ответ
         Console.WriteLine(dp[n - 1, m - 1]);
         char[] resultPath = path.ToString().ToCharArray();
         Array.Reverse(resultPath);

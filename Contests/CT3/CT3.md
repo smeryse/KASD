@@ -1,4 +1,9 @@
-# Contests 3
+# Contest 3
+
+Samples:
+- input: `Samples/A.in`
+- output: `Samples/A.out`
+- run: `dotnet run -- A sample`
 
 | # | Name | Description | Status |
 | -- | -- | -- | -- |
@@ -12,4 +17,7 @@
 | H | [AquariumSeller](Tasks/H-AquariumSeller.cs) |  |  |
 | I | [ReplaceDomino](Tasks/I-ReplaceDomino.cs) |  |  |
 | J | [CutePatterns](Tasks/J-CutePatterns.cs) |  |  |
-| K | [Multybacpack](Tasks/K-Multybacpack.cs) |  |  |
+| K | [MultiBackpack](Tasks/K-MultiBackpack.cs) |  |  |
+| L | [L](Tasks/L.cs) |  |  |
+| M | [M](Tasks/M.cs) |  |  |
+| N | [N](Tasks/N.cs) |  |  |

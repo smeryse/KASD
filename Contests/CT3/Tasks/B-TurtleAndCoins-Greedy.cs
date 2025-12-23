@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
 
-class Program
+namespace CT3.Tasks;
+
+internal static class TurtleAndCoinsGreedy
 {
-    static void Main()
+    public static void Solve()
     {
         var nm = Console.ReadLine().Split();
         int n = int.Parse(nm[0]);
@@ -36,7 +38,6 @@ class Program
             }
             else
             {
-                // ЖАДНЫЙ ВЫБОР
                 if (a[x, y + 1] >= a[x + 1, y])
                 {
                     y++;

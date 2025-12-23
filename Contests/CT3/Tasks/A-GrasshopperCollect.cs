@@ -1,33 +1,37 @@
 using System;
+using System.Collections.Generic;
 
-class Grasshopper
+namespace CT3.Tasks;
+
+internal class Grasshopper
 {
-    private int n, k;
-    private int[] coins;
-    private int[] dp;
-    private int[] prev;
+    private readonly int n;
+    private readonly int k;
+    private readonly int[] coins;
+    private readonly int[] dp;
+    private readonly int[] prev;
 
     public Grasshopper(int n, int k, int[] coinsInput)
     {
         this.n = n;
         this.k = k;
-        this.coins = new int[n + 1];
-        this.dp = new int[n + 1];
-        this.prev = new int[n + 1];
+        coins = new int[n + 1];
+        dp = new int[n + 1];
+        prev = new int[n + 1];
 
-        coins[1] = 0; 
+        coins[1] = 0;
         for (int i = 2; i <= n - 1; i++)
         {
-            coins[i] = coinsInput[i - 2]; 
+            coins[i] = coinsInput[i - 2];
         }
-        coins[n] = 0; 
+        coins[n] = 0;
 
         for (int i = 0; i <= n; i++)
         {
-            dp[i] = int.MinValue; 
+            dp[i] = int.MinValue;
             prev[i] = -1;
         }
-        dp[1] = 0; 
+        dp[1] = 0;
     }
 
     public void Solve()
@@ -44,9 +48,9 @@ class Grasshopper
             }
         }
 
-        Console.WriteLine(dp[n]); 
+        Console.WriteLine(dp[n]);
 
-        var path = new System.Collections.Generic.List<int>();
+        var path = new List<int>();
         int pos = n;
         while (pos != -1)
         {
@@ -55,14 +59,14 @@ class Grasshopper
         }
         path.Reverse();
 
-        Console.WriteLine(path.Count - 1); 
+        Console.WriteLine(path.Count - 1);
         Console.WriteLine(string.Join(" ", path));
     }
 }
 
-class Program
+internal static class GrasshopperCollect
 {
-    static void Main()
+    public static void Solve()
     {
         string[] firstLine = Console.ReadLine().Split();
         int n = int.Parse(firstLine[0]);
@@ -71,7 +75,7 @@ class Program
         string[] secondLine = Console.ReadLine().Split();
         int[] coinsInput = Array.ConvertAll(secondLine, int.Parse);
 
-        Grasshopper g = new Grasshopper(n, k, coinsInput);
+        var g = new Grasshopper(n, k, coinsInput);
         g.Solve();
     }
 }

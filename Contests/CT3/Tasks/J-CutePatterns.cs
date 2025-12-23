@@ -1,10 +1,13 @@
 using System;
 using System.Collections.Generic;
 
-class NicePatterns
+namespace CT3.Tasks;
+
+internal class NicePatterns
 {
-    private int n, m;
-    private Dictionary<(int, int), long> dp;
+    private readonly int n;
+    private readonly int m;
+    private readonly Dictionary<(int, int), long> dp;
 
     public NicePatterns(int n, int m)
     {
@@ -20,7 +23,6 @@ class NicePatterns
 
     private long Dfs(int row, int prevMask)
     {
-        // Все строки обработаны
         if (row == n)
             return 1;
 
@@ -45,7 +47,6 @@ class NicePatterns
 
     private bool IsValid(int prev, int cur)
     {
-        // Для первой строки ограничений нет
         if (prev == -1)
             return true;
 
@@ -56,7 +57,6 @@ class NicePatterns
             int c = (cur >> i) & 1;
             int d = (cur >> (i + 1)) & 1;
 
-            // Запрещённый 2×2
             if (a == b && b == c && c == d)
                 return false;
         }
@@ -65,15 +65,14 @@ class NicePatterns
     }
 }
 
-class Program
+internal static class CutePatterns
 {
-    static void Main()
+    public static void Solve()
     {
         string[] input = Console.ReadLine().Split();
         int n = int.Parse(input[0]);
         int m = int.Parse(input[1]);
 
-        // Всегда выгоднее делать DP по меньшей стороне
         if (n < m)
         {
             int tmp = n;
@@ -81,7 +80,7 @@ class Program
             m = tmp;
         }
 
-        NicePatterns solver = new NicePatterns(n, m);
+        var solver = new NicePatterns(n, m);
         Console.WriteLine(solver.Solve());
     }
 }

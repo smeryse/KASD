@@ -1,34 +1,35 @@
 using System;
 
-class KnightPhone
-{
-    private int n;
-    private long mod = 1000000000;
-    private long[,] dp;
+namespace CT3.Tasks;
 
-    private int[][] moves = new int[][]
-    {
-        new int[] {4,6},    // 0
-        new int[] {6,8},    // 1
-        new int[] {7,9},    // 2
-        new int[] {4,8},    // 3
-        new int[] {0,3,9},  // 4
-        new int[] {},       // 5 (конь не может ходить на 5)
-        new int[] {0,1,7},  // 6
-        new int[] {2,6},    // 7
-        new int[] {1,3},    // 8
-        new int[] {2,4}     // 9
-    };
+internal class KnightPhone
+{
+    private readonly int n;
+    private readonly long mod = 1000000000;
+    private readonly long[,] dp;
+
+    private readonly int[][] moves =
+    [
+        new[] { 4, 6 },    // 0
+        new[] { 6, 8 },    // 1
+        new[] { 7, 9 },    // 2
+        new[] { 4, 8 },    // 3
+        new[] { 0, 3, 9 }, // 4
+        [],               // 5 (конь не может ходить на 5)
+        new[] { 0, 1, 7 }, // 6
+        new[] { 2, 6 },    // 7
+        new[] { 1, 3 },    // 8
+        new[] { 2, 4 }     // 9
+    ];
 
     public KnightPhone(int n)
     {
         this.n = n;
-        dp = new long[n + 1, 10]; // dp[length, digit]
+        dp = new long[n + 1, 10];
     }
 
     public void Solve()
     {
-        // База: длина 1
         for (int d = 0; d <= 9; d++)
         {
             if (d != 0 && d != 8) dp[1, d] = 1;
@@ -52,12 +53,12 @@ class KnightPhone
     }
 }
 
-class Program
+internal static class KnightMove
 {
-    static void Main()
+    public static void Solve()
     {
         int n = int.Parse(Console.ReadLine());
-        KnightPhone kp = new KnightPhone(n);
+        var kp = new KnightPhone(n);
         kp.Solve();
     }
 }

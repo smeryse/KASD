@@ -1,16 +1,15 @@
 # Contests
 
-| # | Name | Description | Status | Based on |
-| -- | -- | -- | -- | -- |
+| # | Name | Description | Status |
+| -- | -- | -- | -- |
 | 1 | [CT1](CT1/CT1.md) | Contest tasks: sorting, heaps, binary search | ✅ |
 | 2 | [CT2](CT2/CT2.md) | Contest tasks: stacks, queues, disjoint sets | ✅ |
 | 3 | [CT3](CT3/CT3.md) | Contest tasks: dynamic programming | ✅ |
-
-## Requirements
-
-- .NET 8.0 SDK or higher
-- C# 12
-- Visual Studio Code / Visual Studio 2022
+| 4 | [CT4](CT4/CT4.md) | Contest tasks: segment tree basics | 🟡 |
+| 5 | [CT5](CT5/CT5.md) | Contest tasks: TBD | ⬜ |
+| 6 | [CT6](CT6/CT6.md) | Contest tasks: TBD | ⬜ |
+| 7 | [CT7](CT7/CT7.md) | Contest tasks: TBD | ⬜ |
+| 8 | [CT8](CT8/CT8.md) | Contest tasks: TBD | ⬜ |
 
 ## Build & Run
 
@@ -33,37 +32,34 @@ dotnet run -- <TASK_ID> [sample]
 
 **Parameters:**
 - `<TASK_ID>` — task letter (A, B, C, ...)
-- `sample` (optional) — use built-in sample input data instead of standard input
+- `sample` (optional) — use input from `Samples/<TASK_ID>.in`
 
 **Important:** The double dash `--` is required to pass arguments to the program (separates `dotnet run` arguments from program arguments).
 
 #### Running examples
 
-**CT1 (tasks A-M):**
+**CT1 (tasks A-N):**
 ```bash
 cd CT1
 
 # Run task A with standard input
 dotnet run -- A
 
-# Run task A with built-in sample
+# Run task A with sample input file
 dotnet run -- A sample
 
-# Run task M
-dotnet run -- M
-
-# Run task M with sample
-dotnet run -- M sample
+# Run task N
+dotnet run -- N
 ```
 
-**CT2 (tasks A-I):**
+**CT2 (tasks A-N):**
 ```bash
 cd CT2
 
 # Run task A with standard input
 dotnet run -- A
 
-# Run task A with built-in sample
+# Run task A with sample input file
 dotnet run -- A sample
 
 # Run task I
@@ -73,16 +69,22 @@ dotnet run -- I
 #### Available tasks
 
 **CT1:**
-- A-M (13 tasks): sorting, heaps, binary search
+- A-N (14 tasks): sorting, heaps, binary search
 
 **CT2:**
-- A-I (9 tasks): stacks, queues, disjoint sets
+- A-N (14 tasks): stacks, queues, disjoint sets
+
+**CT3:**
+- A-N (14 tasks): dynamic programming
+
+**CT4:**
+- A-N (14 tasks): segment tree basics
 
 #### What happens when running
 
 1. **No arguments:** program displays a hint with available tasks
 2. **With task letter:** program runs the corresponding task and waits for input data from standard input
-3. **With task letter and `sample`:** program uses built-in sample input data (convenient for quick testing)
+3. **With task letter and `sample`:** program uses input from `Samples/<TASK_ID>.in`
 
 #### Complete workflow example
 
@@ -103,4 +105,4 @@ dotnet run -- A
 
 ## Notes
 
-- [Contest Links](Contests/Ссылки.md)
+- [Contest Links](links.md)

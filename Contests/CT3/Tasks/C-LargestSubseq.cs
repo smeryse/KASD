@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
 
-class LIS
+namespace CT3.Tasks;
+
+internal class LIS
 {
-    private int n;
-    private int[] a;
-    private int[] dp;
-    private int[] prev;
+    private readonly int n;
+    private readonly int[] a;
+    private readonly int[] dp;
+    private readonly int[] prev;
 
     public LIS(int[] sequence)
     {
@@ -17,8 +19,8 @@ class LIS
 
         for (int i = 0; i < n; i++)
         {
-            dp[i] = 1;     // длина подпоследовательности хотя бы 1
-            prev[i] = -1;  // предыдущий элемент в LIS
+            dp[i] = 1;
+            prev[i] = -1;
         }
     }
 
@@ -60,15 +62,15 @@ class LIS
     }
 }
 
-class Program
+internal static class LargestSubseq
 {
-    static void Main()
+    public static void Solve()
     {
-        int n = int.Parse(Console.ReadLine());
+        _ = int.Parse(Console.ReadLine());
         string[] line = Console.ReadLine().Split();
         int[] sequence = Array.ConvertAll(line, int.Parse);
 
-        LIS lis = new LIS(sequence);
+        var lis = new LIS(sequence);
         lis.Solve();
     }
 }
