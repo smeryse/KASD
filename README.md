@@ -21,6 +21,7 @@ Run a task from its contest folder:
 
 ```bash
 dotnet run -- A sample
+dotnet run -- A Samples/A.in
 ```
 
 ## Tech Stack
