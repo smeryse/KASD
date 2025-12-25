@@ -7,9 +7,17 @@ namespace CT4;
 
 internal class Program
 {
+    private static readonly string ProjectRoot = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", ".."));
     private static readonly Dictionary<string, Action> TaskMap = new(StringComparer.OrdinalIgnoreCase)
     {
         ["A"] = SumSegmentTree.Solve,
+        ["B"] = MinCountSegmentTree.Solve,
+        ["C"] = MaxSubarraySegmentTree.Solve,
+        ["D"] = KthOneSegmentTree.Solve,
+        ["E"] = FirstAtLeastSegmentTree.Solve,
+        ["F"] = AddMinSegmentTree.Solve,
+        ["G"] = AssignMinSegmentTree.Solve,
+        ["H"] = AssignAddSumSegmentTree.Solve,
     };
 
     static void Main(string[] args)
@@ -41,6 +49,10 @@ internal class Program
             {
                 Console.SetIn(new StreamReader(inputArg));
             }
+            else if (TryResolvePathRelativeToProject(inputArg, out var resolvedInput))
+            {
+                Console.SetIn(new StreamReader(resolvedInput));
+            }
             else
             {
                 Console.WriteLine($"Файл не найден: {inputArg}. Использую стандартный ввод.");
@@ -52,7 +64,7 @@ internal class Program
 
     private static bool TryOpenSample(string key, out TextReader reader)
     {
-        string samplesDir = Path.Combine(Directory.GetCurrentDirectory(), "Samples");
+        string samplesDir = Path.Combine(ProjectRoot, "Samples");
         string[] candidates =
         {
             Path.Combine(samplesDir, key + ".in")
@@ -109,7 +121,7 @@ internal class Program
         var arg = args[2];
         if (arg.Equals("check", StringComparison.OrdinalIgnoreCase))
         {
-            var path = Path.Combine(Directory.GetCurrentDirectory(), "Samples", key + ".out");
+            var path = Path.Combine(ProjectRoot, "Samples", key + ".out");
             if (!File.Exists(path))
             {
                 Console.WriteLine($"Файл не найден: {path}. Сравнение отключено.");
@@ -118,13 +130,32 @@ internal class Program
             expectedPath = path;
             return true;
         }
-        if (!File.Exists(arg))
+        if (!TryResolvePathRelativeToProject(arg, out var resolvedPath))
         {
             Console.WriteLine($"Файл не найден: {arg}. Сравнение отключено.");
             return false;
         }
-        expectedPath = arg;
+        expectedPath = resolvedPath;
         return true;
+    }
+    private static bool TryResolvePathRelativeToProject(string path, out string resolvedPath)
+    {
+        if (File.Exists(path))
+        {
+            resolvedPath = path;
+            return true;
+        }
+        if (!Path.IsPathRooted(path))
+        {
+            var candidate = Path.Combine(ProjectRoot, path);
+            if (File.Exists(candidate))
+            {
+                resolvedPath = candidate;
+                return true;
+            }
+        }
+        resolvedPath = path;
+        return false;
     }
     private static string Normalize(string value)
     {

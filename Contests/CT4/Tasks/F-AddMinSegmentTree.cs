@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CT4.Tasks;
 
-internal static class SumSegmentTree
+internal static class AddMinSegmentTree
 {
     public static void Solve()
     {
@@ -13,12 +13,7 @@ internal static class SumSegmentTree
         int n = fs.NextInt();
         int m = fs.NextInt();
 
-        long[] values = new long[n];
-        for (int i = 0; i < n; i++)
-            values[i] = fs.NextLong();
-
-        var st = new SegmentTreeSum(values);
-
+        var st = new SegmentTreeAddMin(n);
         var sb = new StringBuilder();
 
         for (int op = 0; op < m; op++)
@@ -26,15 +21,16 @@ internal static class SumSegmentTree
             int type = fs.NextInt();
             if (type == 1)
             {
-                int index = fs.NextInt();
-                long value = fs.NextLong();
-                st.Update(index, value);
+                int l = fs.NextInt();
+                int r = fs.NextInt();
+                long v = fs.NextLong();
+                st.Add(l, r, v);
             }
             else
             {
                 int l = fs.NextInt();
                 int r = fs.NextInt();
-                sb.Append(st.Query(l, r)).Append('\n');
+                sb.Append(st.QueryMin(l, r)).Append('\n');
             }
         }
 
@@ -42,66 +38,85 @@ internal static class SumSegmentTree
     }
 
 
-    private sealed class SegmentTreeSum
+    private sealed class SegmentTreeAddMin
     {
-        private readonly int length;     // n
-        private readonly int sizePow2;   // степень двойки >= n
-        private readonly long[] tree;    // 1..2*sizePow2-1 (0 не используем)
+        private readonly int length;
+        private readonly int sizePow2;
+        private readonly long[] tree;
+        private readonly long[] lazy;
 
-        public SegmentTreeSum(long[] data)
+        public SegmentTreeAddMin(int length)
         {
-            length = data.Length;
+            this.length = length;
 
             int s = 1;
             while (s < length) s <<= 1;
             sizePow2 = s;
 
             tree = new long[2 * sizePow2];
-            BuildFromArray(data);
+            lazy = new long[2 * sizePow2];
+            BuildZeros();
         }
 
-        private void BuildFromArray(long[] data)
+        private void BuildZeros()
         {
-            for (int i = 0; i < length; i++)
-                tree[sizePow2 + i] = data[i];
+            for (int i = 0; i < sizePow2; i++)
+                tree[sizePow2 + i] = i < length ? 0 : long.MaxValue;
 
             for (int node = sizePow2 - 1; node >= 1; node--)
-                tree[node] = tree[2 * node] + tree[2 * node + 1];
+                tree[node] = Math.Min(tree[2 * node], tree[2 * node + 1]);
         }
 
-
-
-        public void Update(int index, long value)
+        public void Add(int l, int r, long value)
         {
-            int node = sizePow2 + index;
-            tree[node] = value;
-
-            while ((node >>= 1) >= 1)
-                tree[node] = tree[2 * node] + tree[2 * node + 1];
+            Add(1, 0, sizePow2, l, r, value);
         }
 
-
-        public long Query(int l, int r)
+        public long QueryMin(int l, int r)
         {
-            int left = l + sizePow2;
-            int right = r + sizePow2;
+            return QueryMin(1, 0, sizePow2, l, r);
+        }
 
-            long resLeft = 0;
-            long resRight = 0;
-
-            while (left < right)
+        private void Add(int node, int nl, int nr, int l, int r, long value)
+        {
+            if (r <= nl || nr <= l) return;
+            if (l <= nl && nr <= r)
             {
-                if ((left & 1) == 1)
-                    resLeft += tree[left++];
-
-                if ((right & 1) == 1)
-                    resRight += tree[--right];
-
-                left >>= 1;
-                right >>= 1;
+                tree[node] += value;
+                lazy[node] += value;
+                return;
             }
 
-            return resLeft + resRight;
+            Push(node);
+            int mid = (nl + nr) >> 1;
+            Add(2 * node, nl, mid, l, r, value);
+            Add(2 * node + 1, mid, nr, l, r, value);
+            tree[node] = Math.Min(tree[2 * node], tree[2 * node + 1]);
+        }
+
+        private long QueryMin(int node, int nl, int nr, int l, int r)
+        {
+            if (r <= nl || nr <= l) return long.MaxValue;
+            if (l <= nl && nr <= r) return tree[node];
+
+            Push(node);
+            int mid = (nl + nr) >> 1;
+            long left = QueryMin(2 * node, nl, mid, l, r);
+            long right = QueryMin(2 * node + 1, mid, nr, l, r);
+            return Math.Min(left, right);
+        }
+
+        private void Push(int node)
+        {
+            long add = lazy[node];
+            if (add == 0) return;
+            int left = 2 * node;
+            int right = left + 1;
+            tree[left] += add;
+            tree[right] += add;
+            lazy[left] += add;
+            lazy[right] += add;
+            lazy[node] = 0;
         }
     }
 
@@ -173,4 +188,3 @@ internal static class SumSegmentTree
         }
     }
 }
-

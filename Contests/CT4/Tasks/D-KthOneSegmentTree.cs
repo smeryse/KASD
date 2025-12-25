@@ -1,10 +1,12 @@
 using System;
 using System.IO;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.Marshalling;
 using System.Text;
 
 namespace CT4.Tasks;
 
-internal static class SumSegmentTree
+internal static class KthOneSegmentTree
 {
     public static void Solve()
     {
@@ -13,28 +15,25 @@ internal static class SumSegmentTree
         int n = fs.NextInt();
         int m = fs.NextInt();
 
-        long[] values = new long[n];
+        int[] a = new int[n];
         for (int i = 0; i < n; i++)
-            values[i] = fs.NextLong();
+            a[i] = fs.NextInt();
 
-        var st = new SegmentTreeSum(values);
-
+        var st = new SegmentTreeKthOne(a);
         var sb = new StringBuilder();
 
-        for (int op = 0; op < m; op++)
+        for (int q = 0; q < m; q++)
         {
             int type = fs.NextInt();
             if (type == 1)
             {
                 int index = fs.NextInt();
-                long value = fs.NextLong();
-                st.Update(index, value);
+                st.Toggle(index);
             }
             else
             {
-                int l = fs.NextInt();
-                int r = fs.NextInt();
-                sb.Append(st.Query(l, r)).Append('\n');
+                int k = fs.NextInt();
+                sb.Append(st.KthOne(k)).Append('\n');
             }
         }
 
@@ -42,13 +41,13 @@ internal static class SumSegmentTree
     }
 
 
-    private sealed class SegmentTreeSum
+    private sealed class SegmentTreeKthOne
     {
-        private readonly int length;     // n
-        private readonly int sizePow2;   // степень двойки >= n
-        private readonly long[] tree;    // 1..2*sizePow2-1 (0 не используем)
+        private readonly int length;
+        private readonly int sizePow2;
+        private readonly int[] tree;
 
-        public SegmentTreeSum(long[] data)
+        public SegmentTreeKthOne(int[] data)
         {
             length = data.Length;
 
@@ -56,11 +55,11 @@ internal static class SumSegmentTree
             while (s < length) s <<= 1;
             sizePow2 = s;
 
-            tree = new long[2 * sizePow2];
+            tree = new int[2 * sizePow2];
             BuildFromArray(data);
         }
 
-        private void BuildFromArray(long[] data)
+        private void BuildFromArray(int[] data)
         {
             for (int i = 0; i < length; i++)
                 tree[sizePow2 + i] = data[i];
@@ -69,39 +68,32 @@ internal static class SumSegmentTree
                 tree[node] = tree[2 * node] + tree[2 * node + 1];
         }
 
-
-
-        public void Update(int index, long value)
+        public void Toggle(int index)
         {
             int node = sizePow2 + index;
-            tree[node] = value;
+            tree[node] = 1 - tree[node];
 
             while ((node >>= 1) >= 1)
                 tree[node] = tree[2 * node] + tree[2 * node + 1];
         }
 
-
-        public long Query(int l, int r)
+        public int KthOne(int k)
         {
-            int left = l + sizePow2;
-            int right = r + sizePow2;
-
-            long resLeft = 0;
-            long resRight = 0;
-
-            while (left < right)
+            int node = 1;
+            while (node < sizePow2)
             {
-                if ((left & 1) == 1)
-                    resLeft += tree[left++];
-
-                if ((right & 1) == 1)
-                    resRight += tree[--right];
-
-                left >>= 1;
-                right >>= 1;
+                int left = 2 * node;
+                if (tree[left] > k)
+                {
+                    node = left;
+                }
+                else
+                {
+                    k -= tree[left];
+                    node = left + 1;
+                }
             }
-
-            return resLeft + resRight;
+            return node - sizePow2;
         }
     }
 
@@ -150,27 +142,5 @@ internal static class SumSegmentTree
             }
             return val * sign;
         }
-
-        public long NextLong()
-        {
-            int c;
-            do c = Read(); while (c <= ' ');
-
-            int sign = 1;
-            if (c == '-')
-            {
-                sign = -1;
-                c = Read();
-            }
-
-            long val = 0;
-            while (c > ' ')
-            {
-                val = val * 10 + (c - '0');
-                c = Read();
-            }
-            return val * sign;
-        }
     }
 }
-

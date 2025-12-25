@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CT4.Tasks;
 
-internal static class SumSegmentTree
+internal static class FirstAtLeastSegmentTree
 {
     public static void Solve()
     {
@@ -13,12 +13,11 @@ internal static class SumSegmentTree
         int n = fs.NextInt();
         int m = fs.NextInt();
 
-        long[] values = new long[n];
+        int[] values = new int[n];
         for (int i = 0; i < n; i++)
-            values[i] = fs.NextLong();
+            values[i] = fs.NextInt();
 
-        var st = new SegmentTreeSum(values);
-
+        var st = new SegmentTreeFirstAtLeast(values);
         var sb = new StringBuilder();
 
         for (int op = 0; op < m; op++)
@@ -27,14 +26,14 @@ internal static class SumSegmentTree
             if (type == 1)
             {
                 int index = fs.NextInt();
-                long value = fs.NextLong();
+                int value = fs.NextInt();
                 st.Update(index, value);
             }
             else
             {
+                int x = fs.NextInt();
                 int l = fs.NextInt();
-                int r = fs.NextInt();
-                sb.Append(st.Query(l, r)).Append('\n');
+                sb.Append(st.FindFirstAtLeast(x, l)).Append('\n');
             }
         }
 
@@ -42,13 +41,13 @@ internal static class SumSegmentTree
     }
 
 
-    private sealed class SegmentTreeSum
+    private sealed class SegmentTreeFirstAtLeast
     {
-        private readonly int length;     // n
-        private readonly int sizePow2;   // степень двойки >= n
-        private readonly long[] tree;    // 1..2*sizePow2-1 (0 не используем)
+        private readonly int length;
+        private readonly int sizePow2;
+        private readonly int[] tree;
 
-        public SegmentTreeSum(long[] data)
+        public SegmentTreeFirstAtLeast(int[] data)
         {
             length = data.Length;
 
@@ -56,52 +55,44 @@ internal static class SumSegmentTree
             while (s < length) s <<= 1;
             sizePow2 = s;
 
-            tree = new long[2 * sizePow2];
+            tree = new int[2 * sizePow2];
             BuildFromArray(data);
         }
 
-        private void BuildFromArray(long[] data)
+        private void BuildFromArray(int[] data)
         {
             for (int i = 0; i < length; i++)
                 tree[sizePow2 + i] = data[i];
 
             for (int node = sizePow2 - 1; node >= 1; node--)
-                tree[node] = tree[2 * node] + tree[2 * node + 1];
+                tree[node] = Math.Max(tree[2 * node], tree[2 * node + 1]);
         }
 
-
-
-        public void Update(int index, long value)
+        public void Update(int index, int value)
         {
             int node = sizePow2 + index;
             tree[node] = value;
 
             while ((node >>= 1) >= 1)
-                tree[node] = tree[2 * node] + tree[2 * node + 1];
+                tree[node] = Math.Max(tree[2 * node], tree[2 * node + 1]);
         }
 
-
-        public long Query(int l, int r)
+        public int FindFirstAtLeast(int x, int l)
         {
-            int left = l + sizePow2;
-            int right = r + sizePow2;
+            if (tree[1] < x) return -1;
+            return Find(1, 0, sizePow2, l, x);
+        }
 
-            long resLeft = 0;
-            long resRight = 0;
+        private int Find(int node, int nl, int nr, int l, int x)
+        {
+            if (nr <= l || tree[node] < x) return -1;
+            if (nr - nl == 1) return nl;
 
-            while (left < right)
-            {
-                if ((left & 1) == 1)
-                    resLeft += tree[left++];
-
-                if ((right & 1) == 1)
-                    resRight += tree[--right];
-
-                left >>= 1;
-                right >>= 1;
-            }
-
-            return resLeft + resRight;
+            int mid = (nl + nr) >> 1;
+            int left = 2 * node;
+            int res = Find(left, nl, mid, l, x);
+            if (res != -1) return res;
+            return Find(left + 1, mid, nr, l, x);
         }
     }
 
@@ -150,27 +141,5 @@ internal static class SumSegmentTree
             }
             return val * sign;
         }
-
-        public long NextLong()
-        {
-            int c;
-            do c = Read(); while (c <= ' ');
-
-            int sign = 1;
-            if (c == '-')
-            {
-                sign = -1;
-                c = Read();
-            }
-
-            long val = 0;
-            while (c > ' ')
-            {
-                val = val * 10 + (c - '0');
-                c = Read();
-            }
-            return val * sign;
-        }
     }
 }
-

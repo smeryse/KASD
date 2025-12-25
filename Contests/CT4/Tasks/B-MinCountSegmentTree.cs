@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CT4.Tasks;
 
-internal static class SumSegmentTree
+internal static class MinCountSegmentTree
 {
     public static void Solve()
     {
@@ -13,15 +13,15 @@ internal static class SumSegmentTree
         int n = fs.NextInt();
         int m = fs.NextInt();
 
-        long[] values = new long[n];
+        long[] a = new long[n];
         for (int i = 0; i < n; i++)
-            values[i] = fs.NextLong();
+            a[i] = fs.NextLong();
 
-        var st = new SegmentTreeSum(values);
+        var st = new SegmentTreeMinCount(a);
 
         var sb = new StringBuilder();
 
-        for (int op = 0; op < m; op++)
+        for (int q = 0; q < m; q++)
         {
             int type = fs.NextInt();
             if (type == 1)
@@ -34,7 +34,8 @@ internal static class SumSegmentTree
             {
                 int l = fs.NextInt();
                 int r = fs.NextInt();
-                sb.Append(st.Query(l, r)).Append('\n');
+                var ans = st.Query(l, r);
+                sb.Append(ans.Min).Append(' ').Append(ans.Cnt).Append('\n');
             }
         }
 
@@ -42,13 +43,27 @@ internal static class SumSegmentTree
     }
 
 
-    private sealed class SegmentTreeSum
+    private readonly struct Node
     {
-        private readonly int length;     // n
-        private readonly int sizePow2;   // степень двойки >= n
-        private readonly long[] tree;    // 1..2*sizePow2-1 (0 не используем)
+        public readonly long Min;
+        public readonly int Cnt;
 
-        public SegmentTreeSum(long[] data)
+        public Node(long min, int cnt)
+        {
+            Min = min;
+            Cnt = cnt;
+        }
+    }
+
+    private sealed class SegmentTreeMinCount
+    {
+        private static readonly Node Neutral = new Node(long.MaxValue, 0);
+
+        private readonly int length;
+        private readonly int sizePow2;
+        private readonly Node[] tree;
+
+        public SegmentTreeMinCount(long[] data)
         {
             length = data.Length;
 
@@ -56,52 +71,57 @@ internal static class SumSegmentTree
             while (s < length) s <<= 1;
             sizePow2 = s;
 
-            tree = new long[2 * sizePow2];
+            tree = new Node[2 * sizePow2];
             BuildFromArray(data);
         }
 
         private void BuildFromArray(long[] data)
         {
             for (int i = 0; i < length; i++)
-                tree[sizePow2 + i] = data[i];
+                tree[sizePow2 + i] = new Node(data[i], 1);
 
             for (int node = sizePow2 - 1; node >= 1; node--)
-                tree[node] = tree[2 * node] + tree[2 * node + 1];
+                tree[node] = Merge(tree[2 * node], tree[2 * node + 1]);
         }
-
-
 
         public void Update(int index, long value)
         {
             int node = sizePow2 + index;
-            tree[node] = value;
+            tree[node] = new Node(value, 1);
 
             while ((node >>= 1) >= 1)
-                tree[node] = tree[2 * node] + tree[2 * node + 1];
+                tree[node] = Merge(tree[2 * node], tree[2 * node + 1]);
         }
 
-
-        public long Query(int l, int r)
+        public (long Min, int Cnt) Query(int l, int r)
         {
             int left = l + sizePow2;
             int right = r + sizePow2;
 
-            long resLeft = 0;
-            long resRight = 0;
+            Node resLeft = Neutral;
+            Node resRight = Neutral;
 
             while (left < right)
             {
                 if ((left & 1) == 1)
-                    resLeft += tree[left++];
+                    resLeft = Merge(resLeft, tree[left++]);
 
                 if ((right & 1) == 1)
-                    resRight += tree[--right];
+                    resRight = Merge(tree[--right], resRight);
 
                 left >>= 1;
                 right >>= 1;
             }
 
-            return resLeft + resRight;
+            Node res = Merge(resLeft, resRight);
+            return (res.Min, res.Cnt);
+        }
+
+        private static Node Merge(Node a, Node b)
+        {
+            if (a.Min < b.Min) return a;
+            if (b.Min < a.Min) return b;
+            return new Node(a.Min, a.Cnt + b.Cnt);
         }
     }
 
@@ -173,4 +193,3 @@ internal static class SumSegmentTree
         }
     }
 }
-
