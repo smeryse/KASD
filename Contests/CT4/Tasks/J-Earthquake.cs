@@ -1,97 +1,163 @@
 using System;
 using System.IO;
 using System.Text;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CT4.Tasks;
 
-internal static class EarthquakeBuildings
+internal static class Painter
 {
     public static void Solve()
     {
         var fs = new FastScanner(Console.OpenStandardInput());
+
         int n = fs.NextInt();
-        int m = fs.NextInt();
-
-        var st = new SegmentTree(n);
-        var sb = new StringBuilder();
-
-        for (int i = 0; i < m; i++)
+        
+        var coords = new List<int>();
+        var operations = new List<(char color, int x, int len)>();
+        
+        for (int i = 0; i < n; i++)
         {
-            int type = fs.NextInt();
-            if (type == 1)
-            {
-                int idx = fs.NextInt();
-                int h = fs.NextInt();
-                st.Assign(idx, h);
-            }
-            else
-            {
-                int l = fs.NextInt();
-                int r = fs.NextInt();
-                int p = fs.NextInt();
-                int destroyed = st.Earthquake(l, r, p);
-                sb.AppendLine(destroyed.ToString());
-            }
+            char c = (char)fs.Read();
+            while (c != 'W' && c != 'B') c = (char)fs.Read();
+            
+            int x = fs.NextInt();
+            int len = fs.NextInt();
+            
+            operations.Add((c, x, len));
+            coords.Add(x);
+            coords.Add(x + len);
         }
-
+        
+        coords = coords.Distinct().OrderBy(x => x).ToList();
+        var coordMap = new Dictionary<int, int>();
+        for (int i = 0; i < coords.Count; i++)
+            coordMap[coords[i]] = i;
+        
+        var st = new SegmentTreePainter(coords.Count - 1, coords);
+        var sb = new StringBuilder();
+        
+        foreach (var op in operations)
+        {
+            int l = coordMap[op.x];
+            int r = coordMap[op.x + op.len];
+            
+            st.Paint(l, r - 1, op.color == 'B');
+            
+            var result = st.GetBlackSegments();
+            sb.Append(result.count).Append(' ').Append(result.totalLength).Append('\n');
+        }
+        
         Console.Write(sb.ToString());
     }
 
-    private sealed class SegmentTree
+
+    private sealed class SegmentTreePainter
     {
         private readonly int sizePow2;
-        private readonly int[] tree;
-        private readonly int[] maxTree;
+        private readonly int[] segmentCount;
+        private readonly long[] totalLength;
+        private readonly int?[] lazy;
+        private readonly List<int> coords;
+        private readonly int n;
 
-        public SegmentTree(int n)
+        public SegmentTreePainter(int length, List<int> coordinates)
         {
+            n = length;
+            coords = coordinates;
+            
             int s = 1;
-            while (s < n) s <<= 1;
+            while (s < length) s <<= 1;
             sizePow2 = s;
-            tree = new int[2 * sizePow2];      // actual heights
-            maxTree = new int[2 * sizePow2];   // max in subtree
+            
+            segmentCount = new int[2 * sizePow2];
+            totalLength = new long[2 * sizePow2];
+            lazy = new int?[2 * sizePow2];
         }
 
-        public void Assign(int idx, int value)
+        public void Paint(int l, int r, bool isBlack)
         {
-            int node = idx + sizePow2;
-            tree[node] = value;
-            maxTree[node] = value;
-            while (node > 1)
+            Paint(1, 0, sizePow2, l, r, isBlack ? 1 : 0);
+        }
+
+        public (int count, long totalLength) GetBlackSegments()
+        {
+            return (segmentCount[1], totalLength[1]);
+        }
+
+        private void Paint(int node, int nl, int nr, int l, int r, int color)
+        {
+            if (r < nl || nr <= l) return;
+            
+            if (l <= nl && nr <= r)
             {
-                node >>= 1;
-                maxTree[node] = Math.Max(maxTree[node << 1], maxTree[(node << 1) | 1]);
-            }
-        }
-
-        public int Earthquake(int l, int r, int p)
-        {
-            return EarthquakeRec(1, 0, sizePow2, l, r, p);
-        }
-
-        private int EarthquakeRec(int node, int nl, int nr, int l, int r, int p)
-        {
-            if (nr <= l || r <= nl || maxTree[node] <= 0) return 0;
-
-            if (nl + 1 == nr)
-            {
-                // leaf
-                if (tree[node] <= p)
-                {
-                    tree[node] = 0;
-                    maxTree[node] = 0;
-                    return 1;
-                }
-                return 0;
+                ApplyLazy(node, nl, nr, color);
+                return;
             }
 
+            Push(node, nl, nr);
             int mid = (nl + nr) >> 1;
-            int left = EarthquakeRec(node << 1, nl, mid, l, r, p);
-            int right = EarthquakeRec((node << 1) | 1, mid, nr, l, r, p);
-            maxTree[node] = Math.Max(maxTree[node << 1], maxTree[(node << 1) | 1]);
-            return left + right;
+            Paint(2 * node, nl, mid, l, r, color);
+            Paint(2 * node + 1, mid, nr, l, r, color);
+            Merge(node, nl, nr);
+        }
+
+        private void ApplyLazy(int node, int nl, int nr, int color)
+        {
+            lazy[node] = color;
+            
+            if (nl >= n)
+            {
+                segmentCount[node] = 0;
+                totalLength[node] = 0;
+                return;
+            }
+            
+            int validNr = Math.Min(nr, n);
+            long len = 0;
+            for (int i = nl; i < validNr; i++)
+                len += coords[i + 1] - coords[i];
+            
+            if (color == 1)
+            {
+                segmentCount[node] = 1;
+                totalLength[node] = len;
+            }
+            else
+            {
+                segmentCount[node] = 0;
+                totalLength[node] = 0;
+            }
+        }
+
+        private void Push(int node, int nl, int nr)
+        {
+            if (!lazy[node].HasValue || nr - nl <= 1) return;
+            
+            int mid = (nl + nr) >> 1;
+            ApplyLazy(2 * node, nl, mid, lazy[node].Value);
+            ApplyLazy(2 * node + 1, mid, nr, lazy[node].Value);
+            lazy[node] = null;
+        }
+
+        private void Merge(int node, int nl, int nr)
+        {
+            int left = 2 * node;
+            int right = 2 * node + 1;
+            int mid = (nl + nr) >> 1;
+            
+            segmentCount[node] = segmentCount[left] + segmentCount[right];
+            totalLength[node] = totalLength[left] + totalLength[right];
+            
+            if (segmentCount[left] > 0 && segmentCount[right] > 0 && 
+                mid < n && totalLength[left] > 0 && totalLength[right] > 0)
+            {
+                segmentCount[node]--;
+            }
         }
     }
+
 
     private sealed class FastScanner
     {
@@ -106,7 +172,7 @@ internal static class EarthquakeBuildings
             buffer = new byte[bufferSize];
         }
 
-        private byte Read()
+        public byte Read()
         {
             if (ptr >= len)
             {
@@ -130,6 +196,27 @@ internal static class EarthquakeBuildings
             }
 
             int val = 0;
+            while (c > ' ')
+            {
+                val = val * 10 + (c - '0');
+                c = Read();
+            }
+            return val * sign;
+        }
+
+        public long NextLong()
+        {
+            int c;
+            do c = Read(); while (c <= ' ');
+
+            int sign = 1;
+            if (c == '-')
+            {
+                sign = -1;
+                c = Read();
+            }
+
+            long val = 0;
             while (c > ' ')
             {
                 val = val * 10 + (c - '0');
