@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.3.6 Chrome/140.0.7339.249 Electron/38.8.0 Safari/537.36" version="29.3.6">
+  <diagram name="Страница-1" id="LDbz1SJPISf8Dpj4Pq0v">
+    <mxGraphModel dx="-8" dy="2147" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" parent="1" style="whiteSpace=wrap;html=1;align=center;strokeWidth=2;fontSize=14;labelBackgroundColor=none;" value="&lt;b&gt;ПРОЦЕСС УПРАВЛЕНИЯ&lt;br&gt;DJ-БИБЛИОТЕКОЙ&lt;/b&gt;" vertex="1">
+          <mxGeometry height="150" width="260" x="1095" y="940" as="geometry" />
+        </mxCell>
+        <mxCell id="3" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=12;endArrow=blockThin;endFill=1;labelBackgroundColor=none;fontColor=default;" value="">
+          <mxGeometry relative="1" x="-0.8595" y="-140" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="975" y="969.3800000000001" />
+              <mxPoint x="1395" y="969.3800000000001" />
+            </Array>
+            <mxPoint x="920" y="969" as="sourcePoint" />
+            <mxPoint x="1095" y="969.3800000000001" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4" connectable="0" parent="3" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Треки (файлы + метаданные)" vertex="1">
+          <mxGeometry relative="1" x="-0.6212" as="geometry">
+            <mxPoint x="47" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=12;endArrow=blockThin;endFill=1;labelBackgroundColor=none;fontColor=default;" value="">
+          <mxGeometry relative="1" x="-0.8595" y="-140" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="975" y="1000" />
+              <mxPoint x="1395" y="1000" />
+            </Array>
+            <mxPoint x="920" y="1000" as="sourcePoint" />
+            <mxPoint x="1095" y="1000" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6" connectable="0" parent="5" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Плейлисты / Сеты (структура)" vertex="1">
+          <mxGeometry relative="1" x="-0.7654" y="-1" as="geometry">
+            <mxPoint x="59" y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=12;endArrow=blockThin;endFill=1;labelBackgroundColor=none;fontColor=default;" value="">
+          <mxGeometry relative="1" x="-0.8595" y="-140" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="975" y="1030" />
+              <mxPoint x="1395" y="1030" />
+            </Array>
+            <mxPoint x="920" y="1030" as="sourcePoint" />
+            <mxPoint x="1095" y="1030" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8" connectable="0" parent="7" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Данные выступлений (event)" vertex="1">
+          <mxGeometry relative="1" x="-0.4962" as="geometry">
+            <mxPoint x="36" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=12;endArrow=blockThin;endFill=1;labelBackgroundColor=none;fontColor=default;" value="">
+          <mxGeometry relative="1" x="-0.8595" y="-140" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="975" y="1060" />
+              <mxPoint x="1395" y="1060" />
+            </Array>
+            <mxPoint x="920" y="1060" as="sourcePoint" />
+            <mxPoint x="1095" y="1060" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="10" connectable="0" parent="9" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Аудиофайлы" vertex="1">
+          <mxGeometry relative="1" x="-0.7846" y="2" as="geometry">
+            <mxPoint x="61" y="2" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="11" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=12;endArrow=blockThin;endFill=1;labelBackgroundColor=none;fontColor=default;" value="">
+          <mxGeometry relative="1" x="-0.8595" y="-140" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="1365" y="980" />
+              <mxPoint x="1785" y="980" />
+            </Array>
+            <mxPoint x="1355" y="980" as="sourcePoint" />
+            <mxPoint x="1530" y="980" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="12" connectable="0" parent="11" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Отчеты / Аналитика" vertex="1">
+          <mxGeometry relative="1" x="-0.2769" y="5" as="geometry">
+            <mxPoint x="22" y="5" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="13" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=12;endArrow=blockThin;endFill=1;labelBackgroundColor=none;fontColor=default;" value="">
+          <mxGeometry relative="1" x="-0.8595" y="-140" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="1365" y="1014.69" />
+              <mxPoint x="1785" y="1014.69" />
+            </Array>
+            <mxPoint x="1355" y="1014.69" as="sourcePoint" />
+            <mxPoint x="1530" y="1015" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="14" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=12;endArrow=blockThin;endFill=1;labelBackgroundColor=none;fontColor=default;" value="">
+          <mxGeometry relative="1" x="-0.8595" y="-140" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="1495" y="1050" />
+              <mxPoint x="1495" y="1050" />
+            </Array>
+            <mxPoint x="1355" y="1050" as="sourcePoint" />
+            <mxPoint x="1530" y="1050" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="15" connectable="0" parent="14" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Готовые сеты (экспорт)" vertex="1">
+          <mxGeometry relative="1" x="-0.3808" y="1" as="geometry">
+            <mxPoint x="31" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="16" connectable="0" parent="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Библиотека сетов" vertex="1">
+          <mxGeometry x="1440" y="1015" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

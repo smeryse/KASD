@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.3.6 Chrome/140.0.7339.249 Electron/38.8.0 Safari/537.36" version="29.3.6">
+  <diagram name="Страница-1" id="6I8i7sapBzdOe-lqQAXm">
+    <mxGraphModel dx="637" dy="581" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" edge="1" parent="1" source="3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="3" parent="1" style="whiteSpace=wrap;html=1;align=center;" value="&lt;div&gt;ARTIST&lt;/div&gt;&lt;div&gt;artist_id (PK)&lt;br&gt;name&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="100" x="1030" y="115" as="geometry" />
+        </mxCell>
+        <mxCell id="4" edge="1" parent="1" source="5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=-0.011;entryY=0.229;entryDx=0;entryDy=0;entryPerimeter=0;" target="6" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="5" parent="1" style="shape=rhombus;perimeter=rhombusPerimeter;whiteSpace=wrap;html=1;align=center;" value="&lt;div&gt;creates&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="1020" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="6" parent="1" style="whiteSpace=wrap;html=1;align=center;" value="TRACK&lt;div&gt;track_id (PK)&lt;br&gt;title&lt;br&gt;artist_id (FK)&lt;br&gt;genre_id (FK)&lt;/div&gt;&lt;div&gt;bpm&lt;br&gt;key&lt;br&gt;duration&lt;/div&gt;" vertex="1">
+          <mxGeometry height="130" width="100" x="1180" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="7" edge="1" parent="1" source="8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="10" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8" parent="1" style="whiteSpace=wrap;html=1;align=center;" value="GENRE&lt;br&gt;genre_id (PK)&lt;br&gt;name&lt;br&gt;parent_genre_id (FK)" vertex="1">
+          <mxGeometry height="80" width="100" x="1330" y="115" as="geometry" />
+        </mxCell>
+        <mxCell id="9" edge="1" parent="1" source="10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1.003;entryY=0.229;entryDx=0;entryDy=0;entryPerimeter=0;" target="6" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="10" parent="1" style="shape=rhombus;perimeter=rhombusPerimeter;whiteSpace=wrap;html=1;align=center;" value="classifies" vertex="1">
+          <mxGeometry height="60" width="120" x="1320" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="11" edge="1" parent="1" source="12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="14" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="12" parent="1" style="whiteSpace=wrap;html=1;align=center;" value="COLLECTION&lt;br&gt;collection_id (PK)&lt;br&gt;name&lt;div&gt;type&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="100" x="1030" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="13" edge="1" parent="1" source="14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1178" y="321" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="14" parent="1" style="shape=rhombus;perimeter=rhombusPerimeter;whiteSpace=wrap;html=1;align=center;" value="&lt;div&gt;includes&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="1020" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="15" edge="1" parent="1" source="16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="18" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1440" y="540" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="16" parent="1" style="whiteSpace=wrap;html=1;align=center;" value="EVENT&lt;br&gt;event_id (PK)&lt;br&gt;venue&lt;br&gt;date&lt;br&gt;set_id (FK)" vertex="1">
+          <mxGeometry height="80" width="100" x="1330" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="17" edge="1" parent="1" source="18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="12" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="18" parent="1" style="shape=rhombus;perimeter=rhombusPerimeter;whiteSpace=wrap;html=1;align=center;" value="uses" vertex="1">
+          <mxGeometry height="60" width="120" x="1170" y="400" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

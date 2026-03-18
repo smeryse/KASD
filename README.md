@@ -4,9 +4,9 @@ Repository for educational lab | tasks | contests exercises in C# programming.
 
 ## Task Tracker
 
-* [Tasks](Tasks/Tasks.md)
-* [Labs](Labs/Labs.md)
-* [Contests](Contests/Contests.md)
+* [Tasks](tasks/Tasks.md)
+* [Labs](labs/oop/Labs.md)
+* [Contests](contests/Contests.md)
 
 ## Contests Structure
 

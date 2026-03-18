@@ -1,0 +1,24 @@
+{
+	"nodes":[
+		{"id":"7f5d87d82d9d1285","type":"group","x":-680,"y":-220,"width":220,"height":220,"label":"Hobby"},
+		{"id":"35d9d45d26b55c0d","type":"group","x":-351,"y":-220,"width":211,"height":220,"label":"Sport"},
+		{"id":"72c6798793ace164","type":"group","x":-351,"y":40,"width":211,"height":220,"label":"Music"},
+		{"id":"d5be41251f2dc44b","type":"group","x":-40,"y":-220,"width":220,"height":155,"label":"Football"},
+		{"id":"f91a41a7700dc12c","type":"text","text":"string name;","x":-340,"y":-200,"width":180,"height":50},
+		{"id":"17ae12bebd0cb2ef","type":"text","text":"uint players_amount;","x":-340,"y":-150,"width":180,"height":60},
+		{"id":"66abed05b649aad9","type":"text","text":"void training();","x":-340,"y":-90,"width":180,"height":50},
+		{"id":"ccc5194e5139c287","type":"text","text":"string team_name;","x":-20,"y":-201,"width":178,"height":51},
+		{"id":"56aeedf75777b43e","type":"text","text":"void playing();","x":-20,"y":-150,"width":178,"height":50},
+		{"id":"3783c8a7276fce27","type":"text","text":"string tonality;","x":-340,"y":110,"width":180,"height":50},
+		{"id":"8fc7f7743744fc58","type":"text","text":"void playing();","x":-340,"y":160,"width":180,"height":50},
+		{"id":"f83e6fedb7d5bd98","type":"text","text":"string name;","x":-340,"y":60,"width":180,"height":50},
+		{"id":"182a55c75bcd588b","x":-664,"y":-90,"width":184,"height":50,"type":"text","text":"void DoActivity();"},
+		{"id":"43521148be40ca98","type":"text","text":"string name;\n","x":-664,"y":-200,"width":184,"height":50},
+		{"id":"88d71e1f2e109973","type":"text","text":"uint hard_lvl;","x":-664,"y":-151,"width":184,"height":60}
+	],
+	"edges":[
+		{"id":"77d3b0901851444c","fromNode":"7f5d87d82d9d1285","fromSide":"right","toNode":"35d9d45d26b55c0d","toSide":"left"},
+		{"id":"c61f93d649d55252","fromNode":"7f5d87d82d9d1285","fromSide":"right","toNode":"72c6798793ace164","toSide":"left","toEnd":"none"},
+		{"id":"0f20cba2bc6d37bc","fromNode":"35d9d45d26b55c0d","fromSide":"right","toNode":"d5be41251f2dc44b","toSide":"left"}
+	]
+}

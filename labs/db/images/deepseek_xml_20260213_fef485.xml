@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.3.6 Chrome/140.0.7339.249 Electron/38.8.0 Safari/537.36" version="29.3.6">
+  <diagram name="Черный ящик" id="blackbox">
+    <mxGraphModel dx="800" dy="600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- ========= АКТОР (DJ) ========= -->
+        <mxCell id="actorDJ" value="DJ" style="shape=umlActor;whiteSpace=wrap;html=1;align=center;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="120" y="250" width="40" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- ========= ЧЁРНЫЙ ЯЩИК (Бизнес-процесс) ========= -->
+        <mxCell id="process" value="&lt;b&gt;ПРОЦЕСС УПРАВЛЕНИЯ&lt;br&gt;DJ-БИБЛИОТЕКОЙ&lt;/b&gt;" style="whiteSpace=wrap;html=1;align=center;strokeWidth=2;fillColor=#f5f5f5;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="400" y="200" width="260" height="160" as="geometry"/>
+        </mxCell>
+
+        <!-- ========= ВХОДНЫЕ ПОТОКИ (слева) ========= -->
+        <!-- Треки + метаданные -->
+        <mxCell id="flowIn1" value="Треки (файлы + метаданные)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=12;endArrow=blockThin;endFill=1;" parent="1" source="actorDJ" target="process" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="200" y="280" as="sourcePoint"/>
+            <Array as="points">
+              <mxPoint x="280" y="250"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <!-- Плейлисты / Сеты -->
+        <mxCell id="flowIn2" value="Плейлисты / Сеты (структура)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=12;endArrow=blockThin;endFill=1;" parent="1" source="actorDJ" target="process" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="200" y="310" as="sourcePoint"/>
+            <Array as="points">
+              <mxPoint x="280" y="290"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <!-- Данные выступлений -->
+        <mxCell id="flowIn3" value="Данные выступлений (Event)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=12;endArrow=blockThin;endFill=1;" parent="1" source="actorDJ" target="process" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="200" y="340" as="sourcePoint"/>
+            <Array as="points">
+              <mxPoint x="280" y="330"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ========= ВЫХОДНЫЕ ПОТОКИ (справа) ========= -->
+        <!-- Библиотека треков (просмотр/поиск) -->
+        <mxCell id="flowOut1" value="Библиотека треков" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=12;endArrow=blockThin;endFill=1;" parent="1" source="process" target="actorDJ" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="720" y="230"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <!-- Сеты (экспорт) -->
+        <mxCell id="flowOut2" value="Готовые сеты (экспорт)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=12;endArrow=blockThin;endFill=1;" parent="1" source="process" target="actorDJ" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="720" y="270"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <!-- Отчёты / аналитика -->
+        <mxCell id="flowOut3" value="Отчёты / аналитика" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=12;endArrow=blockThin;endFill=1;" parent="1" source="process" target="actorDJ" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="720" y="310"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ========= ДОПОЛНИТЕЛЬНО: внешний источник (файлы) можно показать вторым актёром ========= -->
+        <mxCell id="actorFiles" value="Источники&lt;br&gt;аудиофайлов" style="shape=umlActor;whiteSpace=wrap;html=1;align=center;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="120" y="380" width="40" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="flowIn4" value="Аудиофайлы" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=12;endArrow=blockThin;endFill=1;" parent="1" source="actorFiles" target="process" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="280" y="410"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ========= ЗАГОЛОВОК И ЛЕГЕНДА ========= -->
+        <mxCell id="title" value="&lt;b&gt;Контекстная диаграмма «Чёрный ящик»&lt;/b&gt;&lt;br&gt;Предметная область: DJ-библиотека" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="350" y="50" width="350" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- Пояснение: процесс скрывает внутреннюю структуру, показаны только внешние потоки -->
+        <mxCell id="note" value="Внутренняя структура процесса не раскрывается (декомпозиция – на диаграммах UML)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontStyle=1;fontColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="400" y="370" width="260" height="30" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
