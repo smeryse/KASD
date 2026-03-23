@@ -56,21 +56,21 @@
 
 ### 3.3. Таблица **Track** (Треки)
 
-| Атрибут      | Тип данных   | Ограничения        | Описание                |
-| ------------ | ------------ | ------------------ | ----------------------- |
-| track_id     | INT          | PK                 | ID трека                |
-| title        | VARCHAR(255) | NOT NULL           | Название трека          |
-| artist_id    | INT          | FK → Artist        | Исполнитель             |
-| genre_id     | INT          | FK → Genre         | Жанр                    |
-| bpm          | DECIMAL(5,2) | NULL               | Темп                    |
-| key          | VARCHAR(10)  | NULL               | Тональность             |
-| duration     | INT          | NULL               | Длительность (сек)      |
-| file_format  | VARCHAR(20)  | NULL               | Формат файла            |
-| file_path    | VARCHAR(500) | NULL               | Путь к файлу            |
-| rating       | DECIMAL(3,2) | CHECK (0-5)        | Оценка DJ               |
-| play_count   | INT          | DEFAULT 0          | Количество проигрываний |
-| date_added   | DATE         | DEFAULT NOW()      | Дата добавления         |
-| comments     | TEXT         | NULL               | Комментарии             |
+| Атрибут     | Тип данных   | Ограничения   | Описание                |
+| ----------- | ------------ | ------------- | ----------------------- |
+| track_id    | INT          | PK            | ID трека                |
+| title       | VARCHAR(255) | NOT NULL      | Название трека          |
+| artist_id   | INT          | FK → Artist   | Исполнитель             |
+| genre_id    | INT          | FK → Genre    | Жанр                    |
+| bpm         | DECIMAL(5,2) | NULL          | Темп                    |
+| key         | VARCHAR(10)  | NULL          | Тональность             |
+| duration    | INT          | NULL          | Длительность (сек)      |
+| file_format | VARCHAR(20)  | NULL          | Формат файла            |
+| file_path   | VARCHAR(500) | NULL          | Путь к файлу            |
+| rating      | DECIMAL(3,2) | CHECK (0-5)   | Оценка DJ               |
+| play_count  | INT          | DEFAULT 0     | Количество проигрываний |
+| date_added  | DATE         | DEFAULT NOW() | Дата добавления         |
+| comments    | TEXT         | NULL          | Комментарии             |
 
 ---
 

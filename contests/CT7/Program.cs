@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using CT7.Tasks;
 
 namespace CT7;
 
@@ -8,6 +9,20 @@ internal class Program
 {
     private static readonly Dictionary<string, Action> TaskMap = new(StringComparer.OrdinalIgnoreCase)
     {
+        ["A"] = TopologicalSort.Solve,
+        ["B"] = Bridges.Solve,
+        ["C"] = ArticulationPoints.Solve,
+        ["D"] = EdgeBiconnectedComponents.Solve,
+        ["E"] = VertexBiconnectedComponents.Solve,
+        ["F"] = CondensationGraph.Solve,
+        ["G"] = ShortestPathBFS.Solve,
+        ["H"] = ShortestPathDijkstra.Solve,
+        ["I"] = MaxFlowFordFulkerson.Solve,
+        ["J"] = MSTKruskal.Solve,
+        ["K"] = LCABinaryLifting.Solve,
+        ["L"] = TwoSAT.Solve,
+        ["M"] = CentroidDecomposition.Solve,
+        ["N"] = TreeDP.Solve,
     };
 
     static void Main(string[] args)

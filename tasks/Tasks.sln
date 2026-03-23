@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyArrayDeque", "14-MyArrayD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTreeMap", "18-my-tree-map\MyTreeMap.csproj", "{D56E0760-DE77-4618-9E41-7143CADC8948}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTreeSet", "19\MyTreeSet.csproj", "{47A4AD4D-508F-441D-88C9-C2CA3BF96979}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -90,5 +92,9 @@ Global
 		{D56E0760-DE77-4618-9E41-7143CADC8948}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D56E0760-DE77-4618-9E41-7143CADC8948}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D56E0760-DE77-4618-9E41-7143CADC8948}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47A4AD4D-508F-441D-88C9-C2CA3BF96979}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47A4AD4D-508F-441D-88C9-C2CA3BF96979}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47A4AD4D-508F-441D-88C9-C2CA3BF96979}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47A4AD4D-508F-441D-88C9-C2CA3BF96979}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
