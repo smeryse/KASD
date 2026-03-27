@@ -34,6 +34,14 @@ internal class Program
         }
 
         var key = args[0];
+
+        // Специальная команда для запуска тестов задачи E
+        if (key.Equals("E-tests", StringComparison.OrdinalIgnoreCase))
+        {
+            E_TestRunner.RunAllTests();
+            return;
+        }
+
         if (!TaskMap.TryGetValue(key, out var run))
         {
             Console.WriteLine($"Неизвестная задача '{key}'. Доступные: {string.Join(", ", TaskMap.Keys)}");
@@ -150,5 +158,6 @@ internal class Program
         Console.WriteLine("Укажи задачу, напр.: dotnet run -- A");
         Console.WriteLine("Примеры: dotnet run -- A sample | dotnet run -- A Samples/A.in");
         Console.WriteLine("Сравнение: dotnet run -- A sample check | dotnet run -- A Samples/A.in Samples/A.out");
+        Console.WriteLine("Тесты для E: dotnet run -- E-tests");
     }
 }

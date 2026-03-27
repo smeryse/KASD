@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using CT8.Tasks;
 
 namespace CT8;
 
@@ -8,6 +9,12 @@ internal class Program
 {
     private static readonly Dictionary<string, Action> TaskMap = new(StringComparer.OrdinalIgnoreCase)
     {
+        ["A"] = Floyd.Solve,
+        ["B"] = ShortestPath2.Solve,
+        ["C"] = NegativeCycle.Solve,
+        ["D"] = ShortestPathK.Solve,
+        ["E"] = ShortestPaths.Solve,
+        ["F"] = LostKefir.Solve,
     };
 
     static void Main(string[] args)
@@ -19,6 +26,14 @@ internal class Program
         }
 
         var key = args[0];
+
+        // Специальная команда для запуска тестов
+        if (key.Equals("tests", StringComparison.OrdinalIgnoreCase))
+        {
+            CT8_TestRunner.RunAllTests();
+            return;
+        }
+
         if (!TaskMap.TryGetValue(key, out var run))
         {
             Console.WriteLine($"Неизвестная задача '{key}'. Доступные: {string.Join(", ", TaskMap.Keys)}");
@@ -135,5 +150,6 @@ internal class Program
         Console.WriteLine("Укажи задачу, напр.: dotnet run -- A");
         Console.WriteLine("Примеры: dotnet run -- A sample | dotnet run -- A Samples/A.in");
         Console.WriteLine("Сравнение: dotnet run -- A sample check | dotnet run -- A Samples/A.in Samples/A.out");
+        Console.WriteLine("Тесты: dotnet run -- tests");
     }
 }

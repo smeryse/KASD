@@ -8,12 +8,12 @@ Samples:
 
 | # | Name | Description | Status |
 | -- | -- | -- | -- |
-| A | [A](Tasks/A.cs) |  |  |
-| B | [B](Tasks/B.cs) |  |  |
-| C | [C](Tasks/C.cs) |  |  |
-| D | [D](Tasks/D.cs) |  |  |
-| E | [E](Tasks/E.cs) |  |  |
-| F | [F](Tasks/F.cs) |  |  |
+| A | [A](Tasks/A.cs) | Флойд (Флойд-Уоршелл) | ✅ |
+| B | [B](Tasks/B.cs) | Кратчайший путь – 2 (Дейкстра) | ✅ |
+| C | [C](Tasks/C.cs) | Цикл отрицательного веса (Флойд) | ✅ |
+| D | [D](Tasks/D.cs) | Кратчайший путь длины K (динамика) | ✅ |
+| E | [E](Tasks/E.cs) | Кратчайшие пути (Беллман-Форд) | ✅ |
+| F | [F](Tasks/F.cs) | В поисках утраченного кефира (3×Дейкстра) | ✅ |
 | G | [G](Tasks/G.cs) |  |  |
 | H | [H](Tasks/H.cs) |  |  |
 | I | [I](Tasks/I.cs) |  |  |

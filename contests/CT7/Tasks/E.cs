@@ -56,13 +56,13 @@ internal class VertexBiconnectedComponents
         Console.WriteLine(string.Join(" ", result));
     }
 
-    private static void DFS(int u, int parent)
+    private static void DFS(int u, int parentEdgeIndex)
     {
         tin[u] = low[u] = ++timer;
 
         foreach (var (v, edgeIndex) in adj[u])
         {
-            if (v == parent)
+            if (edgeIndex == parentEdgeIndex)
                 continue;
 
             if (tin[v] != 0)
@@ -74,7 +74,7 @@ internal class VertexBiconnectedComponents
             else
             {
                 edgeStack.Push(edgeIndex);
-                DFS(v, u);
+                DFS(v, edgeIndex);
                 low[u] = Math.Min(low[u], low[v]);
 
                 if (low[v] >= tin[u])
@@ -92,3 +92,5 @@ internal class VertexBiconnectedComponents
         }
     }
 }
+
+
