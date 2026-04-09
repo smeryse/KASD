@@ -362,7 +362,7 @@ done
 ## Resources
 
 - [Contests Index](contests/Contests.md)
-- [Tasks Index](tasks/Tasks.md)
+- [Tasks Index](Учеба%20ВУЗ/kasd/tasks/Tasks.md)
 - [Labs Index](labs/oop/Labs.md)
 - [Repo Rules](REPO_RULES.md)
 - [Tree Structure](tree.txt)
