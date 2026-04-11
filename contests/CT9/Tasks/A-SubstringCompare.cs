@@ -17,9 +17,7 @@ internal static class SubstringCompare
         long MOD = 1_000_000_007L;
         long BASE = 31L;
 
-        // Префиксные хэши: h[i] = хэш s[0..i-1]
         long[] h = new long[n + 1];
-        // powers[i] = BASE^i mod MOD
         long[] powers = new long[n + 1];
         powers[0] = 1;
         h[0] = 0;
@@ -39,9 +37,6 @@ internal static class SubstringCompare
             int c = fs.NextInt();
             int d = fs.NextInt();
 
-            // Переводим в 0-индексацию: s[a..b] -> [a-1, b-1]
-            // Длина подстроки: b - a + 1
-            // Хэш подстроки s[l..r] (0-индексы) = (h[r+1] - h[l] * powers[r-l+1]) mod MOD
             int len1 = b - a + 1;
             int len2 = d - c + 1;
 

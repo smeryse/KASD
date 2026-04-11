@@ -1,0 +1,17 @@
+Parsing file: Samples/input.txt
+
+=== HTML Tag Counts ===
+Total unique tags: 12
+
+  <a> : 2
+  <body> : 2
+  <div> : 4
+  <h1> : 2
+  <h2> : 2
+  <head> : 2
+  <html> : 3
+  <img> : 1
+  <meta> : 1
+  <p> : 6
+  <span> : 2
+  <title> : 2

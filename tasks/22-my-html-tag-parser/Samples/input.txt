@@ -1,0 +1,1506 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ru"><head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="X-Csrf-Token" content="586976098959677109be01d1dab63270">
+    <meta id="viewport" name="viewport" content="width=device-width, initial-scale=0.01">
+    <meta name="robots" content="noai">
+    <meta name="robots" content="noimageai">
+
+    <script type="text/javascript" src="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/jquery-1.8.3.js"></script>
+    <script type="application/javascript">
+        window.locale = "ru";
+        window.standaloneContest = true;
+        function adjustViewport() {
+            var screenWidthPx = Math.min($(window).width(), window.screen.width);
+            var siteWidthPx = 1100; // min width of site
+            var ratio = Math.min(screenWidthPx / siteWidthPx, 1.0);
+            var viewport = "width=device-width, initial-scale=" + ratio;
+            $('#viewport').attr('content', viewport);
+            var style = $('<style>html * { max-height: 1000000px; }</style>');
+            $('html > head').append(style);
+        }
+
+        if ( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
+            adjustViewport();
+        }
+
+        /* Protection against trailing dot in domain. */
+        let hostLength = window.location.host.length;
+        if (hostLength > 1 && window.location.host[hostLength - 1] === '.') {
+            window.location = window.location.protocol + "//" + window.location.host.substring(0, hostLength - 1);
+        }
+    </script>
+
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="expires" content="-1">
+    <meta http-equiv="profileName" content="n2">
+    <meta name="google-site-verification" content="OTd2dN5x4nS4OPknPI9JFg36fKxjqY0i1PSfFPv_J90">
+    <meta property="fb:admins" content="100001352546622">
+    <meta property="og:image" content="/static/images/codeforces-sponsored-by-ton.png">
+    <link rel="image_src" href="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/codeforces-sponsored-by-ton.png">
+    <meta property="og:title" content="Задача - A - Codeforces">
+    <meta property="og:description" content="">
+    
+    <meta property="og:site_name" content="Codeforces">
+    <meta name="uc" content="91c4bc8972587617ff076787b253daf173425f97">
+    <meta name="usmc" content="26d36eaa8a72fabad808cf6424603128bae1058f">
+    
+    <meta name="cc" content="4fba0db1aac3c309e0856e6612592b234ff7860d">
+    <meta name="pc" content="38ecb512abdf6f6e4dfd949ee020bcf7ab930d1c">
+    
+    <meta name="utc_offset" content="+03:00">
+    <meta name="verify-reformal" content="f56f99fd7e087fb6ccb48ef2">
+    <title>Задача - A - Codeforces</title>
+        <meta name="description" content="Codeforces. Соревнования и олимпиады по информатике и программированию, сообщество программистов">
+        <meta name="keywords" content="программирование информатика контест олимпиада алгоритмы c++ java графы vkcup">
+    <meta name="robots" content="index, follow">
+
+    <link rel="stylesheet" href="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/font-awesome.min.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/line-awesome.min.css" type="text/css" charset="utf-8">
+
+
+
+    <link rel="apple-touch-icon" sizes="57x57" href="https://kubsucasd2026.contest.codeforces.com/static/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="https://kubsucasd2026.contest.codeforces.com/static/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://kubsucasd2026.contest.codeforces.com/static/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="https://kubsucasd2026.contest.codeforces.com/static/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://kubsucasd2026.contest.codeforces.com/static/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://kubsucasd2026.contest.codeforces.com/static/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://kubsucasd2026.contest.codeforces.com/static/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://kubsucasd2026.contest.codeforces.com/static/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://kubsucasd2026.contest.codeforces.com/static/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://kubsucasd2026.contest.codeforces.com/static/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://kubsucasd2026.contest.codeforces.com/static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="https://kubsucasd2026.contest.codeforces.com/static/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://kubsucasd2026.contest.codeforces.com/static/favicon-16x16.png">
+    <link rel="manifest" href="https://kubsucasd2026.contest.codeforces.com/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/static/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <!--CombineResourcesFilter-->
+    <link rel="stylesheet" href="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/prettify.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/clear.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/style.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/ttypography.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/problem-statement.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/second-level-menu.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/roundbox.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/datatable.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/table-form.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/topic.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/jquery.jgrowl.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/facebox.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/jquery.wysiwyg.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/jquery.autocomplete.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/codeforces.datepick.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/colorbox.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/jquery.drafts.css" type="text/css" charset="utf-8">
+        <link rel="stylesheet" href="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/community.css" type="text/css" charset="utf-8">
+        <link rel="stylesheet" href="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/groups.css" type="text/css" charset="utf-8">
+        <link rel="stylesheet" href="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/sidebar-menu.css" type="text/css" charset="utf-8">
+
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config;executed=true">
+    MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$$$','$$$']], displayMath: [['$$$$$$','$$$$$$']]}
+    });
+    MathJax.Hub.Register.StartupHook("End", function () {
+        Codeforces.runMathJaxListeners();
+    });
+    </script>
+    <script type="text/javascript" async="" src="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/MathJax.js">
+    </script>
+    <!-- /MathJax -->
+
+    <script type="text/javascript" src="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/prettify.js"></script>
+    <script type="text/javascript" src="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/moment-with-locales.min.js"></script>
+    <script type="text/javascript" src="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/pushstream.js"></script>
+    <script type="text/javascript" src="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/jquery.easing.min.js"></script>
+    <script type="text/javascript" src="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/jquery.lavalamp.min.js"></script>
+    <script type="text/javascript" src="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/jquery.jgrowl.js"></script>
+    <script type="text/javascript" src="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/jquery.swipe.js"></script>
+    <script type="text/javascript" src="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/jquery.hotkeys.js"></script>
+    <script type="text/javascript" src="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/facebox.js"></script>
+    <script type="text/javascript" src="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/jquery.wysiwyg.js"></script>
+    <script type="text/javascript" src="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/wysiwyg.colorpicker.js"></script>
+    <script type="text/javascript" src="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/wysiwyg.table.js"></script>
+    <script type="text/javascript" src="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/wysiwyg.image.js"></script>
+    <script type="text/javascript" src="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/wysiwyg.link.js"></script>
+    <script type="text/javascript" src="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/jquery.autocomplete.js"></script>
+    <script type="text/javascript" src="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/jquery.datepick.js"></script>
+    <script type="text/javascript" src="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/jquery.ie6blocker.js"></script>
+    <script type="text/javascript" src="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/jquery.ba-bbq.js"></script>
+    <script type="text/javascript" src="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/jquery.drafts.js"></script>
+    <script type="text/javascript" src="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/clipboard.min.js"></script>
+    <script type="text/javascript" src="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/autosize.min.js"></script>
+    <script type="text/javascript" src="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/sjcl.js"></script>
+    <script type="text/javascript" src="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/codeforces-options.js"></script>
+    <script type="text/javascript" src="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/codeforces.js"></script>
+    <script type="text/javascript" src="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/EventCatcher.js"></script>
+    <script type="text/javascript" src="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/preparedVerdictFormats-ru.js"></script>
+    <script type="text/javascript" src="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/confetti.min.js"></script>
+    <script type="text/javascript" src="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/purify.min.js"></script>
+    <!--/CombineResourcesFilter-->
+
+    <link rel="stylesheet" href="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/style_003.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/style_002.css" type="text/css" charset="utf-8">
+
+
+    <script type="text/javascript" src="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/jquery.markitup.js"></script>
+    <script type="text/javascript" src="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/set.js"></script>
+
+    <!--[if IE]>
+    <style>
+        #sidebar {
+            padding-left: 1em;
+            margin: 1em 1em 1em 0;
+        }
+    </style>
+    <![endif]-->
+
+
+        <script id="nocomb.ace-builds/ace.js" src="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/ace.js" type="text/javascript"></script><style id="ace_editor.css">.ace_editor {position: relative;overflow: hidden;font: 12px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;direction: ltr;}.ace_scroller {position: absolute;overflow: hidden;top: 0;bottom: 0;background-color: inherit;-ms-user-select: none;-moz-user-select: none;-webkit-user-select: none;user-select: none;cursor: text;}.ace_content {position: absolute;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;min-width: 100%;}.ace_dragging .ace_scroller:before{position: absolute;top: 0;left: 0;right: 0;bottom: 0;content: '';background: rgba(250, 250, 250, 0.01);z-index: 1000;}.ace_dragging.ace_dark .ace_scroller:before{background: rgba(0, 0, 0, 0.01);}.ace_selecting, .ace_selecting * {cursor: text !important;}.ace_gutter {position: absolute;overflow : hidden;width: auto;top: 0;bottom: 0;left: 0;cursor: default;z-index: 4;-ms-user-select: none;-moz-user-select: none;-webkit-user-select: none;user-select: none;}.ace_gutter-active-line {position: absolute;left: 0;right: 0;}.ace_scroller.ace_scroll-left {box-shadow: 17px 0 16px -16px rgba(0, 0, 0, 0.4) inset;}.ace_gutter-cell {padding-left: 19px;padding-right: 6px;background-repeat: no-repeat;}.ace_gutter-cell.ace_error {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAABOFBMVEX/////////QRswFAb/Ui4wFAYwFAYwFAaWGAfDRymzOSH/PxswFAb/SiUwFAYwFAbUPRvjQiDllog5HhHdRybsTi3/Tyv9Tir+Syj/UC3////XurebMBIwFAb/RSHbPx/gUzfdwL3kzMivKBAwFAbbvbnhPx66NhowFAYwFAaZJg8wFAaxKBDZurf/RB6mMxb/SCMwFAYwFAbxQB3+RB4wFAb/Qhy4Oh+4QifbNRcwFAYwFAYwFAb/QRzdNhgwFAYwFAbav7v/Uy7oaE68MBK5LxLewr/r2NXewLswFAaxJw4wFAbkPRy2PyYwFAaxKhLm1tMwFAazPiQwFAaUGAb/QBrfOx3bvrv/VC/maE4wFAbRPBq6MRO8Qynew8Dp2tjfwb0wFAbx6eju5+by6uns4uH9/f36+vr/GkHjAAAAYnRSTlMAGt+64rnWu/bo8eAA4InH3+DwoN7j4eLi4xP99Nfg4+b+/u9B/eDs1MD1mO7+4PHg2MXa347g7vDizMLN4eG+Pv7i5evs/v79yu7S3/DV7/498Yv24eH+4ufQ3Ozu/v7+y13sRqwAAADLSURBVHjaZc/XDsFgGIBhtDrshlitmk2IrbHFqL2pvXf/+78DPokj7+Fz9qpU/9UXJIlhmPaTaQ6QPaz0mm+5gwkgovcV6GZzd5JtCQwgsxoHOvJO15kleRLAnMgHFIESUEPmawB9ngmelTtipwwfASilxOLyiV5UVUyVAfbG0cCPHig+GBkzAENHS0AstVF6bacZIOzgLmxsHbt2OecNgJC83JERmePUYq8ARGkJx6XtFsdddBQgZE2nPR6CICZhawjA4Fb/chv+399kfR+MMMDGOQAAAABJRU5ErkJggg==");background-repeat: no-repeat;background-position: 2px center;}.ace_gutter-cell.ace_warning {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAmVBMVEX///8AAAD///8AAAAAAABPSzb/5sAAAAB/blH/73z/ulkAAAAAAAD85pkAAAAAAAACAgP/vGz/rkDerGbGrV7/pkQICAf////e0IsAAAD/oED/qTvhrnUAAAD/yHD/njcAAADuv2r/nz//oTj/p064oGf/zHAAAAA9Nir/tFIAAAD/tlTiuWf/tkIAAACynXEAAAAAAAAtIRW7zBpBAAAAM3RSTlMAABR1m7RXO8Ln31Z36zT+neXe5OzooRDfn+TZ4p3h2hTf4t3k3ucyrN1K5+Xaks52Sfs9CXgrAAAAjklEQVR42o3PbQ+CIBQFYEwboPhSYgoYunIqqLn6/z8uYdH8Vmdnu9vz4WwXgN/xTPRD2+sgOcZjsge/whXZgUaYYvT8QnuJaUrjrHUQreGczuEafQCO/SJTufTbroWsPgsllVhq3wJEk2jUSzX3CUEDJC84707djRc5MTAQxoLgupWRwW6UB5fS++NV8AbOZgnsC7BpEAAAAABJRU5ErkJggg==");background-position: 2px center;}.ace_gutter-cell.ace_info {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAAAAAA6mKC9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAJ0Uk5TAAB2k804AAAAPklEQVQY02NgIB68QuO3tiLznjAwpKTgNyDbMegwisCHZUETUZV0ZqOquBpXj2rtnpSJT1AEnnRmL2OgGgAAIKkRQap2htgAAAAASUVORK5CYII=");background-position: 2px center;}.ace_dark .ace_gutter-cell.ace_info {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAJFBMVEUAAAChoaGAgIAqKiq+vr6tra1ZWVmUlJSbm5s8PDxubm56enrdgzg3AAAAAXRSTlMAQObYZgAAAClJREFUeNpjYMAPdsMYHegyJZFQBlsUlMFVCWUYKkAZMxZAGdxlDMQBAG+TBP4B6RyJAAAAAElFTkSuQmCC");}.ace_scrollbar {position: absolute;right: 0;bottom: 0;z-index: 6;}.ace_scrollbar-inner {position: absolute;cursor: text;left: 0;top: 0;}.ace_scrollbar-v{overflow-x: hidden;overflow-y: scroll;top: 0;}.ace_scrollbar-h {overflow-x: scroll;overflow-y: hidden;left: 0;}.ace_print-margin {position: absolute;height: 100%;}.ace_text-input {position: absolute;z-index: 0;width: 0.5em;height: 1em;opacity: 0;background: transparent;-moz-appearance: none;appearance: none;border: none;resize: none;outline: none;overflow: hidden;font: inherit;padding: 0 1px;margin: 0 -1px;text-indent: -1em;-ms-user-select: text;-moz-user-select: text;-webkit-user-select: text;user-select: text;white-space: pre!important;}.ace_text-input.ace_composition {background: inherit;color: inherit;z-index: 1000;opacity: 1;text-indent: 0;}.ace_layer {z-index: 1;position: absolute;overflow: hidden;word-wrap: normal;white-space: pre;height: 100%;width: 100%;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;pointer-events: none;}.ace_gutter-layer {position: relative;width: auto;text-align: right;pointer-events: auto;}.ace_text-layer {font: inherit !important;}.ace_cjk {display: inline-block;text-align: center;}.ace_cursor-layer {z-index: 4;}.ace_cursor {z-index: 4;position: absolute;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;border-left: 2px solid;transform: translatez(0);}.ace_slim-cursors .ace_cursor {border-left-width: 1px;}.ace_overwrite-cursors .ace_cursor {border-left-width: 0;border-bottom: 1px solid;}.ace_hidden-cursors .ace_cursor {opacity: 0.2;}.ace_smooth-blinking .ace_cursor {-webkit-transition: opacity 0.18s;transition: opacity 0.18s;}.ace_editor.ace_multiselect .ace_cursor {border-left-width: 1px;}.ace_marker-layer .ace_step, .ace_marker-layer .ace_stack {position: absolute;z-index: 3;}.ace_marker-layer .ace_selection {position: absolute;z-index: 5;}.ace_marker-layer .ace_bracket {position: absolute;z-index: 6;}.ace_marker-layer .ace_active-line {position: absolute;z-index: 2;}.ace_marker-layer .ace_selected-word {position: absolute;z-index: 4;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;}.ace_line .ace_fold {-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;display: inline-block;height: 11px;margin-top: -2px;vertical-align: middle;background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAJCAYAAADU6McMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJpJREFUeNpi/P//PwOlgAXGYGRklAVSokD8GmjwY1wasKljQpYACtpCFeADcHVQfQyMQAwzwAZI3wJKvCLkfKBaMSClBlR7BOQikCFGQEErIH0VqkabiGCAqwUadAzZJRxQr/0gwiXIal8zQQPnNVTgJ1TdawL0T5gBIP1MUJNhBv2HKoQHHjqNrA4WO4zY0glyNKLT2KIfIMAAQsdgGiXvgnYAAAAASUVORK5CYII="),url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAA3CAYAAADNNiA5AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACJJREFUeNpi+P//fxgTAwPDBxDxD078RSX+YeEyDFMCIMAAI3INmXiwf2YAAAAASUVORK5CYII=");background-repeat: no-repeat, repeat-x;background-position: center center, top left;color: transparent;border: 1px solid black;border-radius: 2px;cursor: pointer;pointer-events: auto;}.ace_dark .ace_fold {}.ace_fold:hover{background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAJCAYAAADU6McMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJpJREFUeNpi/P//PwOlgAXGYGRklAVSokD8GmjwY1wasKljQpYACtpCFeADcHVQfQyMQAwzwAZI3wJKvCLkfKBaMSClBlR7BOQikCFGQEErIH0VqkabiGCAqwUadAzZJRxQr/0gwiXIal8zQQPnNVTgJ1TdawL0T5gBIP1MUJNhBv2HKoQHHjqNrA4WO4zY0glyNKLT2KIfIMAAQsdgGiXvgnYAAAAASUVORK5CYII="),url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAA3CAYAAADNNiA5AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACBJREFUeNpi+P//fz4TAwPDZxDxD5X4i5fLMEwJgAADAEPVDbjNw87ZAAAAAElFTkSuQmCC");}.ace_tooltip {background-color: #FFF;background-image: -webkit-linear-gradient(top, transparent, rgba(0, 0, 0, 0.1));background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.1));border: 1px solid gray;border-radius: 1px;box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);color: black;max-width: 100%;padding: 3px 4px;position: fixed;z-index: 999999;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;cursor: default;white-space: pre;word-wrap: break-word;line-height: normal;font-style: normal;font-weight: normal;letter-spacing: normal;pointer-events: none;}.ace_folding-enabled > .ace_gutter-cell {padding-right: 13px;}.ace_fold-widget {-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;margin: 0 -12px 0 1px;display: none;width: 11px;vertical-align: top;background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAANElEQVR42mWKsQ0AMAzC8ixLlrzQjzmBiEjp0A6WwBCSPgKAXoLkqSot7nN3yMwR7pZ32NzpKkVoDBUxKAAAAABJRU5ErkJggg==");background-repeat: no-repeat;background-position: center;border-radius: 3px;border: 1px solid transparent;cursor: pointer;}.ace_folding-enabled .ace_fold-widget {display: inline-block;   }.ace_fold-widget.ace_end {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAANElEQVR42m3HwQkAMAhD0YzsRchFKI7sAikeWkrxwScEB0nh5e7KTPWimZki4tYfVbX+MNl4pyZXejUO1QAAAABJRU5ErkJggg==");}.ace_fold-widget.ace_closed {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAGCAYAAAAG5SQMAAAAOUlEQVR42jXKwQkAMAgDwKwqKD4EwQ26sSOkVWjgIIHAzPiCgaqiqnJHZnKICBERHN194O5b9vbLuAVRL+l0YWnZAAAAAElFTkSuQmCCXA==");}.ace_fold-widget:hover {border: 1px solid rgba(0, 0, 0, 0.3);background-color: rgba(255, 255, 255, 0.2);box-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);}.ace_fold-widget:active {border: 1px solid rgba(0, 0, 0, 0.4);background-color: rgba(0, 0, 0, 0.05);box-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);}.ace_dark .ace_fold-widget {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHklEQVQIW2P4//8/AzoGEQ7oGCaLLAhWiSwB146BAQCSTPYocqT0AAAAAElFTkSuQmCC");}.ace_dark .ace_fold-widget.ace_end {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAH0lEQVQIW2P4//8/AxQ7wNjIAjDMgC4AxjCVKBirIAAF0kz2rlhxpAAAAABJRU5ErkJggg==");}.ace_dark .ace_fold-widget.ace_closed {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAFCAYAAACAcVaiAAAAHElEQVQIW2P4//+/AxAzgDADlOOAznHAKgPWAwARji8UIDTfQQAAAABJRU5ErkJggg==");}.ace_dark .ace_fold-widget:hover {box-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);background-color: rgba(255, 255, 255, 0.1);}.ace_dark .ace_fold-widget:active {box-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);}.ace_fold-widget.ace_invalid {background-color: #FFB4B4;border-color: #DE5555;}.ace_fade-fold-widgets .ace_fold-widget {-webkit-transition: opacity 0.4s ease 0.05s;transition: opacity 0.4s ease 0.05s;opacity: 0;}.ace_fade-fold-widgets:hover .ace_fold-widget {-webkit-transition: opacity 0.05s ease 0.05s;transition: opacity 0.05s ease 0.05s;opacity:1;}.ace_underline {text-decoration: underline;}.ace_bold {font-weight: bold;}.ace_nobold .ace_bold {font-weight: normal;}.ace_italic {font-style: italic;}.ace_error-marker {background-color: rgba(255, 0, 0,0.2);position: absolute;z-index: 9;}.ace_highlight-marker {background-color: rgba(255, 255, 0,0.2);position: absolute;z-index: 8;}.ace_br1 {border-top-left-radius    : 3px;}.ace_br2 {border-top-right-radius   : 3px;}.ace_br3 {border-top-left-radius    : 3px; border-top-right-radius:    3px;}.ace_br4 {border-bottom-right-radius: 3px;}.ace_br5 {border-top-left-radius    : 3px; border-bottom-right-radius: 3px;}.ace_br6 {border-top-right-radius   : 3px; border-bottom-right-radius: 3px;}.ace_br7 {border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-right-radius: 3px;}.ace_br8 {border-bottom-left-radius : 3px;}.ace_br9 {border-top-left-radius    : 3px; border-bottom-left-radius:  3px;}.ace_br10{border-top-right-radius   : 3px; border-bottom-left-radius:  3px;}.ace_br11{border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-left-radius:  3px;}.ace_br12{border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}.ace_br13{border-top-left-radius    : 3px; border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}.ace_br14{border-top-right-radius   : 3px; border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}.ace_br15{border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px;}
+/*# sourceURL=ace/css/ace_editor.css */</style><style id="ace-tm">.ace-tm .ace_gutter {background: #f0f0f0;color: #333;}.ace-tm .ace_print-margin {width: 1px;background: #e8e8e8;}.ace-tm .ace_fold {background-color: #6B72E6;}.ace-tm {background-color: #FFFFFF;color: black;}.ace-tm .ace_cursor {color: black;}.ace-tm .ace_invisible {color: rgb(191, 191, 191);}.ace-tm .ace_storage,.ace-tm .ace_keyword {color: blue;}.ace-tm .ace_constant {color: rgb(197, 6, 11);}.ace-tm .ace_constant.ace_buildin {color: rgb(88, 72, 246);}.ace-tm .ace_constant.ace_language {color: rgb(88, 92, 246);}.ace-tm .ace_constant.ace_library {color: rgb(6, 150, 14);}.ace-tm .ace_invalid {background-color: rgba(255, 0, 0, 0.1);color: red;}.ace-tm .ace_support.ace_function {color: rgb(60, 76, 114);}.ace-tm .ace_support.ace_constant {color: rgb(6, 150, 14);}.ace-tm .ace_support.ace_type,.ace-tm .ace_support.ace_class {color: rgb(109, 121, 222);}.ace-tm .ace_keyword.ace_operator {color: rgb(104, 118, 135);}.ace-tm .ace_string {color: rgb(3, 106, 7);}.ace-tm .ace_comment {color: rgb(76, 136, 107);}.ace-tm .ace_comment.ace_doc {color: rgb(0, 102, 255);}.ace-tm .ace_comment.ace_doc.ace_tag {color: rgb(128, 159, 191);}.ace-tm .ace_constant.ace_numeric {color: rgb(0, 0, 205);}.ace-tm .ace_variable {color: rgb(49, 132, 149);}.ace-tm .ace_xml-pe {color: rgb(104, 104, 91);}.ace-tm .ace_entity.ace_name.ace_function {color: #0000A2;}.ace-tm .ace_heading {color: rgb(12, 7, 255);}.ace-tm .ace_list {color:rgb(185, 6, 144);}.ace-tm .ace_meta.ace_tag {color:rgb(0, 22, 142);}.ace-tm .ace_string.ace_regex {color: rgb(255, 0, 0)}.ace-tm .ace_marker-layer .ace_selection {background: rgb(181, 213, 255);}.ace-tm.ace_multiselect .ace_selection.ace_start {box-shadow: 0 0 3px 0px white;}.ace-tm .ace_marker-layer .ace_step {background: rgb(252, 255, 0);}.ace-tm .ace_marker-layer .ace_stack {background: rgb(164, 229, 101);}.ace-tm .ace_marker-layer .ace_bracket {margin: -1px 0 0 -1px;border: 1px solid rgb(192, 192, 192);}.ace-tm .ace_marker-layer .ace_active-line {background: rgba(0, 0, 0, 0.07);}.ace-tm .ace_gutter-active-line {background-color : #dcdcdc;}.ace-tm .ace_marker-layer .ace_selected-word {background: rgb(250, 250, 255);border: 1px solid rgb(200, 200, 250);}.ace-tm .ace_indent-guide {background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAE0lEQVQImWP4////f4bLly//BwAmVgd1/w11/gAAAABJRU5ErkJggg==") right repeat-y;}
+/*# sourceURL=ace/css/ace-tm */</style><style>    .error_widget_wrapper {        background: inherit;        color: inherit;        border:none    }    .error_widget {        border-top: solid 2px;        border-bottom: solid 2px;        margin: 5px 0;        padding: 10px 40px;        white-space: pre-wrap;    }    .error_widget.ace_error, .error_widget_arrow.ace_error{        border-color: #ff5a5a    }    .error_widget.ace_warning, .error_widget_arrow.ace_warning{        border-color: #F1D817    }    .error_widget.ace_info, .error_widget_arrow.ace_info{        border-color: #5a5a5a    }    .error_widget.ace_ok, .error_widget_arrow.ace_ok{        border-color: #5aaa5a    }    .error_widget_arrow {        position: absolute;        border: solid 5px;        border-top-color: transparent!important;        border-right-color: transparent!important;        border-left-color: transparent!important;        top: -5px;    }</style>
+        <script id="nocomb.ace-builds/ext-language_tools.js" src="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/ext-language_tools.js" type="text/javascript"></script><style>.ace_snippet-marker {    -moz-box-sizing: border-box;    box-sizing: border-box;    background: rgba(194, 193, 208, 0.09);    border: 1px dotted rgba(211, 208, 235, 0.62);    position: absolute;}</style><style>.ace_editor.ace_autocomplete .ace_marker-layer .ace_active-line {    background-color: #CAD6FA;    z-index: 1;}.ace_editor.ace_autocomplete .ace_line-hover {    border: 1px solid #abbffe;    margin-top: -1px;    background: rgba(233,233,253,0.4);}.ace_editor.ace_autocomplete .ace_line-hover {    position: absolute;    z-index: 2;}.ace_editor.ace_autocomplete .ace_scroller {   background: none;   border: none;   box-shadow: none;}.ace_rightAlignedText {    color: gray;    display: inline-block;    position: absolute;    right: 4px;    text-align: right;    z-index: -1;}.ace_editor.ace_autocomplete .ace_completion-highlight{    color: #000;    text-shadow: 0 0 0.01em;}.ace_editor.ace_autocomplete {    width: 280px;    z-index: 200000;    background: #fbfbfb;    color: #444;    border: 1px lightgray solid;    position: fixed;    box-shadow: 2px 3px 5px rgba(0,0,0,.2);    line-height: 1.4;}</style>
+        <script id="nocomb.ace-builds/ext-modelist.js" src="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/ext-modelist.js" type="text/javascript"></script>
+
+
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888; display: contents}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover, .MJXp-munder {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > *, .MJXp-munder > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><style type="text/css">.MathJax_Display {text-align: center; margin: 1em 0em; position: relative; display: block!important; text-indent: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; width: 100%}
+.MathJax .merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MathJax .MJX-monospace {font-family: monospace}
+.MathJax .MJX-sans-serif {font-family: sans-serif}
+#MathJax_Tooltip {background-color: InfoBackground; color: InfoText; border: 1px solid black; box-shadow: 2px 2px 5px #AAAAAA; -webkit-box-shadow: 2px 2px 5px #AAAAAA; -moz-box-shadow: 2px 2px 5px #AAAAAA; -khtml-box-shadow: 2px 2px 5px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true'); padding: 3px 4px; z-index: 401; position: absolute; left: 0; top: 0; width: auto; height: auto; display: none}
+.MathJax {display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; padding: 0; margin: 0}
+.MathJax:focus, body :focus .MathJax {display: inline-table}
+.MathJax.MathJax_FullWidth {text-align: center; display: table-cell!important; width: 10000em!important}
+.MathJax img, .MathJax nobr, .MathJax a {border: 0; padding: 0; margin: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!important; vertical-align: 0!important}
+.MathJax span {display: inline; position: static; border: 0; padding: 0; margin: 0; vertical-align: 0; line-height: normal; text-decoration: none; box-sizing: content-box}
+.MathJax nobr {white-space: nowrap!important}
+.MathJax img {display: inline!important; float: none!important}
+.MathJax * {transition: none; -webkit-transition: none; -moz-transition: none; -ms-transition: none; -o-transition: none}
+.MathJax_Processing {visibility: hidden; position: fixed; width: 0; height: 0; overflow: hidden}
+.MathJax_Processed {display: none!important}
+.MathJax_test {font-style: normal; font-weight: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow: hidden; height: 1px}
+.MathJax_test.mjx-test-display {display: table!important}
+.MathJax_test.mjx-test-inline {display: inline!important; margin-right: -1px}
+.MathJax_test.mjx-test-default {display: block!important; clear: both}
+.MathJax_ex_box {display: inline-block!important; position: absolute; overflow: hidden; min-height: 0; max-height: none; padding: 0; border: 0; margin: 0; width: 1px; height: 60ex}
+.MathJax_em_box {display: inline-block!important; position: absolute; overflow: hidden; min-height: 0; max-height: none; padding: 0; border: 0; margin: 0; width: 1px; height: 60em}
+.mjx-test-inline .MathJax_left_box {display: inline-block; width: 0; float: left}
+.mjx-test-inline .MathJax_right_box {display: inline-block; width: 0; float: right}
+.mjx-test-display .MathJax_right_box {display: table-cell!important; width: 10000em!important; min-width: 0; max-width: none; padding: 0; border: 0; margin: 0}
+.MathJax .MathJax_HitBox {cursor: text; background: white; opacity: 0; filter: alpha(opacity=0)}
+.MathJax .MathJax_HitBox * {filter: none; opacity: 1; background: transparent}
+#MathJax_Tooltip * {filter: none; opacity: 1; background: transparent}
+@font-face {font-family: MathJax_Blank; src: url('about:blank')}
+.MathJax .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body class=" "><div style="visibility: hidden; overflow: hidden; position: absolute; top: 0px; height: 1px; width: auto; padding: 0px; border: 0px; margin: 0px; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal;"><div id="MathJax_Hidden"></div></div><div id="MathJax_Message" style="display: none;"></div><span style="display:none;" class="csrf-token" data-csrf="586976098959677109be01d1dab63270">&nbsp;</span>
+
+<!-- .notificationTextCleaner used in Codeforces.showAnnouncements() -->
+<div class="notificationTextCleaner" style="font-size: 0"></div>
+<div class="button-up" style="display: none; opacity: 0.7; width: 30px; height: 100%; position: fixed; left: 0px; top: 0px; cursor: pointer; text-align: center; line-height: 30px; color: rgb(211, 219, 228); font-weight: bold; font-size: 20px;"><i class="icon-circle-arrow-up"></i></div>
+<div class="verdictPrototypeDiv" style="display: none;"></div>
+
+<!-- Codeforces JavaScripts. -->
+<script type="text/javascript">
+    String.prototype.hashCode = function() {
+        var hash = 0, i, chr;
+        if (this.length === 0) return hash;
+        for (i = 0; i < this.length; i++) {
+            chr   = this.charCodeAt(i);
+            hash  = ((hash << 5) - hash) + chr;
+            hash |= 0; // Convert to 32bit integer
+        }
+        return hash;
+    };
+
+    var queryMobile = Codeforces.queryString.mobile;
+    if (queryMobile === "true" || queryMobile === "false") {
+        Codeforces.putToStorage("useMobile", queryMobile === "true");
+    } else {
+        var useMobile = Codeforces.getFromStorage("useMobile");
+        if (useMobile === true || useMobile === false) {
+            if (useMobile != false) {
+                Codeforces.redirect(Codeforces.updateUrlParameter(document.location.href, "mobile", useMobile));
+            }
+        }
+    }
+</script>
+
+
+
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+    (function () {
+        jQuery.expr[':'].containsCI = function(elem, index, match) {
+            return !match || !match.length || match.length < 4 || !match[3] || (
+                    elem.textContent || elem.innerText || jQuery(elem).text() || ''
+            ).toLowerCase().indexOf(match[3].toLowerCase()) >= 0;
+        }
+    }(jQuery));
+
+    $.ajaxPrefilter(function(options, originalOptions, xhr) {
+        var csrf = Codeforces.getCsrfToken();
+
+        if (csrf) {
+            var data = originalOptions.data;
+            if (originalOptions.data !== undefined) {
+                if (Object.prototype.toString.call(originalOptions.data) === '[object String]') {
+                    data = $.deparam(originalOptions.data);
+                }
+            } else {
+                data = {};
+            }
+            options.data = $.param($.extend(data, { csrf_token: csrf }));
+        }
+    });
+
+    window.getCodeforcesServerTime = function(callback) {
+        $.post("/data/time", {}, callback, "json");
+    }
+
+    window.updateTypography = function () {
+        $("div.ttypography code").addClass("tt");
+        $("div.ttypography pre>code").addClass("prettyprint").removeClass("tt");
+        $("div.ttypography table").addClass("bordertable");
+        prettyPrint();
+    }
+
+    $.ajaxSetup({ scriptCharset: "utf-8" ,contentType: "application/x-www-form-urlencoded; charset=UTF-8", headers: {
+        'X-Csrf-Token': Codeforces.getCsrfToken()
+    }, beforeSend: function(jqXHR, settings) {
+        const url = new URL(settings.url, window.location.href);
+        const urlHref = url.href;
+        url.searchParams.set('rv', Math.random().toString(36).substr(2, 9)); // Generate a random value
+        settings.url = url.href;
+    }});
+
+    window.updateTypography();
+    Codeforces.signForms();
+    Codeforces.applyDatatableJs("Hold Ctrl+Alt and click to hide column. Also, you can drag&drop columns to reorder them.");
+
+    setTimeout(function() {
+        $(".second-level-menu-list").lavaLamp({
+            fx: "backout",
+            speed: 700
+        });
+    }, 100);
+
+
+    Codeforces.countdown();
+    $("a[rel='photobox']").colorbox();
+
+        var count = 0;
+
+        function getDelay() {
+            var delay = 0;
+            var last = Codeforces.getFromStorage("LastOnlineTimeUpdaterMillis", 0);
+            if (last && last != null) {
+                var period = count < 20 ? 360 * 1000 : 600 * 1000; // 6 or 10 minutes.
+                delay = period - (new Date().getTime() - last);
+                if (delay < 0)
+                    delay = 0;
+            }
+            return delay;
+        }
+
+        window.setInterval(function () {
+            if (getDelay() <= 0 && count < 120) {
+                ++count;
+                Codeforces.ping("/data/update-online");
+            }
+        }, 5000);
+
+        var handle = "g41342=s0195931";
+        $("a.rated-user:contains(" + handle + "), span.participant:contains(" + handle + ")").each(function () {
+            if ($(this).text() == handle) {
+                var td = $(this).parent();
+                var tr = $(this).parent().parent();
+                if (td.is("td") && tr.is("tr") && !tr.hasClass("disable-highlight-self")) {
+                    info(handle);
+                    tr.addClass("highlighted-row");
+                }
+            }
+        });
+
+    function showAnnouncements(json) {
+        if (json.t === "a") {
+            setTimeout(function() {
+               Codeforces.showAnnouncements(json.d, "ru");
+            }, Math.random() * 500);
+        }
+    }
+
+    function showEventCatcherUserMessage(json) {
+        if (json.t === "s") {
+            var points = json.d[5];
+            var passedTestCount = json.d[7];
+            var judgedTestCount = json.d[8];
+            var verdict = preparedVerdictFormats[json.d[12]];
+            var verdictPrototypeDiv = $(".verdictPrototypeDiv");
+            verdictPrototypeDiv.html(verdict);
+            if (judgedTestCount != null && judgedTestCount != undefined) {
+                verdictPrototypeDiv.find(".verdict-format-judged").text(judgedTestCount);
+            }
+            if (passedTestCount != null && passedTestCount != undefined) {
+                verdictPrototypeDiv.find(".verdict-format-passed").text(passedTestCount);
+            }
+            if (points != null && points != undefined) {
+                verdictPrototypeDiv.find(".verdict-format-points").text(points);
+            }
+            Codeforces.showMessage(verdictPrototypeDiv.text());
+        }
+    }
+
+    $(".clickable-title").each(function() {
+        var title = $(this).attr("data-title");
+        if (title) {
+            var tmp = document.createElement("DIV");
+            tmp.innerHTML = title;
+            $(this).attr("title", tmp.textContent || tmp.innerText || "");
+        }
+    });
+
+    $(".clickable-title").click(function() {
+        const title = $(this).attr("data-title");
+        const clazz = $(this).attr("data-clazz");
+        const props = {};
+        if (typeof (clazz) !== 'undefined') {
+            props['clazz'] = clazz;
+        }
+        if (title) {
+            Codeforces.alert(title, null, null, props);
+        } else {
+            Codeforces.alert($(this).attr("title"), null, null, props);
+        }
+    }).css("position", "relative").css("bottom", "3px");
+
+        Codeforces.showDelayedMessage();
+
+    Codeforces.reformatTimes();
+
+    //Codeforces.initializePubSub();
+    if (window.codeforcesOptions.subscribeServerUrl) {
+        window.eventCatcher = new EventCatcher(
+            window.codeforcesOptions.subscribeServerUrl,
+            [
+                Codeforces.getGlobalChannel(),
+                Codeforces.getUserChannel(),
+                Codeforces.getUserShowMessageChannel(),
+                Codeforces.getContestChannel(),
+                Codeforces.getParticipantChannel(),
+                Codeforces.getTalkChannel()
+            ]
+        );
+
+        if (Codeforces.getParticipantChannel()) {
+            window.eventCatcher.subscribe(Codeforces.getParticipantChannel(), function(json) {
+                showAnnouncements(json);
+            });
+        }
+
+        if (Codeforces.getContestChannel()) {
+            window.eventCatcher.subscribe(Codeforces.getContestChannel(), function(json) {
+                showAnnouncements(json);
+            });
+        }
+
+        if (Codeforces.getGlobalChannel()) {
+            window.eventCatcher.subscribe(Codeforces.getGlobalChannel(), function(json) {
+                showAnnouncements(json);
+            });
+        }
+
+        if (Codeforces.getUserChannel()) {
+            window.eventCatcher.subscribe(Codeforces.getUserChannel(), function(json) {
+                showAnnouncements(json);
+            });
+        }
+
+        if (Codeforces.getUserShowMessageChannel()) {
+            window.eventCatcher.subscribe(Codeforces.getUserShowMessageChannel(), function(json) {
+                showEventCatcherUserMessage(json);
+            });
+        }
+    }
+
+    Codeforces.setupContestTimes("/group/2ghRveeNIP/data/contests");
+    Codeforces.setupSpoilers();
+    Codeforces.setupTutorials("/data/problemTutorial");
+        });
+    </script>
+
+
+<div id="body">
+            <script type="application/javascript">
+                window.setTimeout(function () {
+                    var url = location.href;
+                    var hashCode32 = Math.abs(url.hashCode()).toString();
+                    var hashCode = "p" + hashCode32 + Math.abs((hashCode32 + url).hashCode());
+                    var pvs = Codeforces.getFromStorage("pvs" + hashCode);
+                    if (!pvs) {
+                        $.post("/data/apv", {
+                            ftaa: window._ftaa,
+                            bfaa: window._bfaa,
+                            url: url
+                        }, function (json) {
+                            if (json["success"] === "true") {
+                                Codeforces.putToStorage("pvs" + hashCode, true);
+                            }
+                        }, "json");
+                    }
+                }, 5000);
+            </script>
+        
+
+<div id="header" style="position: relative;">
+
+    <div style="float:left; max-height: 60px;">
+                <a href="https://kubsucasd2026.contest.codeforces.com/"><img height="65" style="height: 65px;" alt="Codeforces" title="Codeforces" src="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/codeforces-sponsored-by-ton.png"></a>
+    </div>
+    <div class="lang-chooser">
+
+        <div style="margin-top: 0.5em;">
+                        Никуличев Ярослав Юрьевич
+                     | 
+                        <a href="https://kubsucasd2026.contest.codeforces.com/17569d9e069d48fdad7aed26d0a8eb14/logout">Выйти</a>
+                    
+        </div>
+
+    </div>
+    <br style="clear: both;">
+</div>
+
+        
+
+
+    <div class="roundbox menu-box borderTopRound borderBottomRound" style="">
+    <div class="menu-list-container">
+    <ul class="menu-list main-menu-list">
+                <li class=""><a href="https://kubsucasd2026.contest.codeforces.com/group/2ghRveeNIP/contests">Соревнования</a></li>
+    </ul>
+    <br style="clear: both;">
+</div>
+
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("input.search").focus(function () {
+                if ($(this).attr("data-isPlaceholder") === "true") {
+                    $(this).val("");
+                    $(this).removeAttr("data-isPlaceholder");
+                }
+            });
+        });
+    </script>
+        
+<style data-nocturne="true" type="text/css">
+._BlitzInfoFrame_info {
+  margin: 1em;
+  text-align: center;
+  position: relative;
+}
+._BlitzInfoFrame_button {
+  font-size: 1.1rem;
+  position: absolute;
+  top: 8px;
+  right: 1rem;
+}
+</style>
+
+
+
+<script data-nocturne="true"> $(function () {
+
+}); </script>
+
+
+            <br style="height: 3em; clear: both;">
+
+        <div style="position: relative;">
+                        <div id="sidebar">
+
+
+    <div class="roundbox sidebox borderTopRound " style="">
+        <table class="rtable ">
+            <tbody>
+                <tr>
+                            <th class="left" style="width:100%;"><a style="color: black" href="https://kubsucasd2026.contest.codeforces.com/group/2ghRveeNIP">КубГУ. Конструирование алгоритмов и структур данных 2025-2026</a></th>
+                </tr>
+                    <tr>
+                                <td class="left bottom" colspan="1"><span class="contest-state-regular countdown" cdid="i1">Участник</span></td>
+                    </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="roundbox sidebox borderTopRound " style="">
+        <div class="caption titled">→ О группе
+            <div class="top-links">
+            </div>
+        </div>
+        <div style="text-align: center; margin: 1em">
+                <img style="max-width: 250px" src="data:image/png;base64,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" alt="Логотип">
+        </div>
+            <hr width="92%">
+        <div class="smaller" style="margin: 1em">
+        Группа для студентов, изучающих алгоритмы и структуры данных
+        </div>
+    </div>
+
+<style data-nocturne="true" type="text/css">
+
+</style>
+
+
+    <div class="roundbox sidebox GroupContestsSidebarFrame _GroupContestsSidebarFrame_contests sidebar-menu borderTopRound " style="">
+        <div class="caption titled">→ Соревнования группы         <i class="sidebar-caption-icon las la-angle-down"></i>
+
+            <div class="top-links">
+            </div>
+        </div>
+        <ul style=" " data-page-url="/data/group/member" data-extra-key-0="action" data-extra-value-0="setGroupContestsSidebarFrameCollapsed" data-extra-key-1="groupCode" data-extra-value-1="2ghRveeNIP">
+                <li>
+                    <a href="https://kubsucasd2026.contest.codeforces.com/group/2ghRveeNIP/contest/623688">
+Cортировки, куча, бинарный поиск                    </a>
+                </li>
+                <li>
+                    <a href="https://kubsucasd2026.contest.codeforces.com/group/2ghRveeNIP/contest/623689">
+Стеки, очереди, СНМ                    </a>
+                </li>
+                <li>
+                    <a href="https://kubsucasd2026.contest.codeforces.com/group/2ghRveeNIP/contest/623690">
+Динамическое программирование                    </a>
+                </li>
+                <li>
+                    <a href="https://kubsucasd2026.contest.codeforces.com/group/2ghRveeNIP/contest/626040">
+Дерево отрезков                    </a>
+                </li>
+                <li>
+                    <a href="https://kubsucasd2026.contest.codeforces.com/group/2ghRveeNIP/contest/626042">
+Дерево поиска                    </a>
+                </li>
+                <li>
+                    <a href="https://kubsucasd2026.contest.codeforces.com/group/2ghRveeNIP/contest/626041">
+Запросы на деревьях                    </a>
+                </li>
+                <li>
+                    <a href="https://kubsucasd2026.contest.codeforces.com/group/2ghRveeNIP/contest/626043">
+Графы: DFS, MST                    </a>
+                </li>
+                <li>
+                    <a href="https://kubsucasd2026.contest.codeforces.com/group/2ghRveeNIP/contest/626044">
+Кратчайшие пути                    </a>
+                </li>
+                <li>
+                    <a href="https://kubsucasd2026.contest.codeforces.com/group/2ghRveeNIP/contest/626046">
+Алгоритмы на строках                    </a>
+                </li>
+                <li class="active">
+                    <a href="https://kubsucasd2026.contest.codeforces.com/group/2ghRveeNIP/contest/626047">
+Паросочетания                    </a>
+                </li>
+                <li>
+                    <a href="https://kubsucasd2026.contest.codeforces.com/group/2ghRveeNIP/contest/626048">
+Потоки                    </a>
+                </li>
+                <li>
+                    <a href="https://kubsucasd2026.contest.codeforces.com/group/2ghRveeNIP/contest/626049">
+Поток минимальной стоимости                    </a>
+                </li>
+        </ul>
+    </div>
+
+<script data-nocturne="true"> $(function () {
+    $(".GroupContestsSidebarFrame .sidebar-caption-icon").click(function() {
+        $(this).toggleClass("la-angle-down la-angle-right");
+        const $target = $(this).parent().next();
+        $target.toggle();
+        const dataPageUrl = $target.attr("data-page-url");
+        const collapsed = $(this).hasClass("la-angle-right");
+        const params = {
+            action: "setCollapsed",
+            sidebarFrameSimpleClassName: "GroupContestsSidebarFrame",
+            collapsed
+        };
+        $.each($target[0].attributes, function(i, a) {
+            const name = a.name;
+            if (name.startsWith("data-extra-key-")) {
+                const key = a.value;
+                const keyIndex = parseInt(name.substring("data-extra-key-".length));
+                params[key] = $target.attr("data-extra-value-" + keyIndex);
+            }
+        });
+        $.post(dataPageUrl, params, function (result) {
+            if (result["success"] !== "true") {
+                Codeforces.showMessage("Не удалось сохранить состояние блока.");
+            }
+        }, "json");
+        return false;
+    });
+}); </script>
+
+
+
+    <div class="roundbox sidebox borderTopRound " style="">
+        <table class="rtable ">
+            <tbody>
+                <tr>
+                            <th class="left" style="width:100%;"><a style="color: black" href="https://kubsucasd2026.contest.codeforces.com/group/2ghRveeNIP/contest/626047">Паросочетания</a></th>
+                </tr>
+                    <tr>
+                                <td class="left " colspan="1"><span class="contest-state-phase">Соревнование идет</span></td>
+                    </tr>
+                    <tr>
+                                <td class="left  dark" colspan="1"><span class="contest-state-regular countdown before-contest-626047-finish" home="/static" noredirection="true" textbeforeredirect="Соревнование &quot;Паросочетания&quot; завершено, обновите страницу для просмотра последних изменений" cdid="i2"><span title="1377:47:43">2 месяца</span></span></td>
+                    </tr>
+                    <tr>
+                                <td class="left bottom" colspan="1"><span class="contest-state-regular">Участник</span></td>
+                    </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="roundbox sidebox borderTopRound " style="">
+        <div class="caption titled">→ Языки
+            <div class="top-links">
+            </div>
+        </div>
+<div style="margin:1em;">
+    <div style="font-size:0.8em;">Только перечисленные языки могут быть использованы для решения задач соревнования</div><div style="font-weight:bold;margin:0.5em 0;font-size:0.8em;text-align:center;">Паросочетания:</div>
+<ul class="list" style="font-size:0.8em;margin-top:0.5em;">
+        <li>GNU G++17 7.3.0</li>
+        <li>GNU G++20 13.2 (64 bit, winlibs)</li>
+        <li>GNU G++23 14.2 (64 bit, msys2)</li>
+        <li>C# 8, .NET Core 3.1</li>
+        <li>C# 10, .NET SDK 6.0</li>
+        <li>C# 13, .NET SDK 9</li>
+        <li>C# Mono 6.8</li>
+</ul>
+</div>
+    </div>
+
+
+
+<style>
+    .submit-form.output-only select[name='programTypeId'],
+    .submitForm.output-only select[name='programTypeId'],
+    .submit-form.output-only .programSourceTr {
+        display: none !important;
+    }
+
+    .submit-form.output-only .programTypeNotice,
+    .submitForm.output-only .programTypeNotice {
+        display: none !important;
+    }
+
+    .outputOnlyProgramTypeIdNotice {
+        display: none;
+        font-size: 1.1rem !important;
+    }
+
+    .submit-form.output-only .outputOnlyProgramTypeIdNotice,
+    .submitForm.output-only .outputOnlyProgramTypeIdNotice {
+        display: block !important;
+    }
+
+    .submitForm .genericError {
+        text-align: center;
+    }
+
+    .submitForm .genericError .shiftUp {
+        top: 0 !important;
+    }
+
+    .turnstile-container {
+        padding: 20px 0 10px 0;
+    }
+
+    .text-align-center {
+        text-align: center;
+        position: relative;
+        top: 1rem !important;
+    }
+</style>
+
+            <style type="text/css">
+                .submitForm .field {
+                    font-size: 1.1rem;
+                    width: 3em !important;
+                    padding-right: 1em;
+                }
+
+                .submitForm input, .submitForm select {
+                    font-size: 1.1rem;
+                    width: 17em;
+                }
+            </style>
+
+    <div class="roundbox sidebox borderTopRound " style="">
+        <div class="caption titled">→ Отослать?
+            <div class="top-links">
+            </div>
+        </div>
+                <div>
+                    <form method="post" action="?adcd1e=caf4f32uc37ky3&amp;csrf_token=586976098959677109be01d1dab63270" enctype="multipart/form-data" class="submitForm submitFrameForm"><input type="hidden" name="csrf_token" value="586976098959677109be01d1dab63270">
+                        <input type="hidden" name="ftaa" value="">
+                        <input type="hidden" name="bfaa" value="">
+                        <input type="hidden" name="turnstileToken" class="hidden-turnstile-token" value="">
+                        <input type="hidden" name="action" value="submitSolutionFormSubmitted">
+                        <input type="hidden" name="submittedProblemIndex" value="A">
+                        <input type="hidden" name="source" value="">
+
+                        <table class="table-form no-autofocus" style="width:90%;">
+                            <tbody><tr>
+                                <td class="field">Язык:</td>
+                                <td>
+                                    <select name="programTypeId">
+                                            <option value="54">GNU G++17 7.3.0</option>
+                                            <option value="89">GNU G++20 13.2 (64 bit, winlibs)</option>
+                                            <option value="91">GNU G++23 14.2 (64 bit, msys2)</option>
+                                            <option value="65">C# 8, .NET Core 3.1</option>
+                                            <option value="79">C# 10, .NET SDK 6.0</option>
+                                            <option value="96" selected="selected">C# 13, .NET SDK 9</option>
+                                            <option value="9">C# Mono 6.8</option>
+                                    </select>
+                                    <div class="outputOnlyProgramTypeIdNotice">ZIP</div>
+                                </td>
+                            </tr>
+                            <tr style="padding: 0; margin: 0; height: 0.5rem;line-height: 1rem;">
+                                <td style="padding: 0; margin: 0; height: 0.5rem;"></td>
+                                <td style="padding: 0; margin: 0; height: 0.5rem;">
+                                    <span class="programTypeNotice notice small" style="position: relative; bottom:7px;"></span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="field">Выберите файл:</td>
+                                <td>
+                                    <input name="sourceFile" type="file" value="">
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td colspan="2">
+                                    <div style="text-align: center;">
+
+
+
+
+                                        <div style="position: relative; display: inline-block;">
+                                            <input style="width:10em;" class="submit" type="submit" value="Отослать" id="sidebarSubmitButton">
+                                            <script>
+                                                $(function() {
+                                                })
+                                            </script>
+                                            <img class="ajax-loading-gif" style="display:none; position: absolute; right:-24px; bottom:0;" src="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/ajax-loading-24x24.gif">
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody></table>
+                    <input type="hidden" name="_tta" value="863"></form>
+                </div>
+    </div>
+
+        <script type="text/javascript">
+            $(function() {
+                window._ftaa = "tg3irqhwi9lt8isnuo";
+            })
+        </script>
+
+        <script type="text/javascript">
+            $(function() {
+                window._bfaa = "db4e094da86c085b127ed60e7b06efa5";
+            });
+        </script>
+
+    <script>
+        $(function () {
+                    $(".submitFrameForm").each(function  () {
+                        const $form = $(this);
+                            const value = 'caf4f'+Math.random().toString(36).substr(2, 9);
+                            const formAction = $form.attr("action");
+                            $form.attr("action", appendParameterToUrl(formAction, "adcd1e", value));
+                    });
+
+            function adjustNotice(programTypeId) {
+                var $programTypeNotice = $(".programTypeNotice");
+                $programTypeNotice.text("");
+            }
+
+            adjustNotice(96);
+
+            const $submittedProblemIndex = $("select[name='submittedProblemIndex']");
+
+            function adjustSubmittedProblemIndex() {
+                const index = $submittedProblemIndex.val();
+                const outputOnlyIndices = [];
+                const outputOnly = outputOnlyIndices.indexOf(index) >= 0;
+                if (outputOnly) {
+                    $submittedProblemIndex.closest(".submit-form").addClass("output-only");
+                } else {
+                    $submittedProblemIndex.closest(".submit-form").removeClass("output-only");
+                }
+            }
+
+
+            $submittedProblemIndex.change(function () {
+                adjustSubmittedProblemIndex();
+            });
+
+            adjustSubmittedProblemIndex();
+
+            $("select[name='programTypeId']").change(function () {
+                adjustNotice(parseInt($(this).val()));
+            });
+
+            $(".submit-form, .submitForm").submitOnce(function () {
+                var form = $(this);
+                var $ftaa = form.find("input[name='ftaa']");
+                var $bfaa = form.find("input[name='bfaa']");
+
+                if (window._ftaa && window._bfaa) {
+                    $ftaa.val(window._ftaa);
+                    $bfaa.val(window._bfaa);
+                }
+
+                if (form.attr("enctype") === "multipart/form-data") {
+                    var sourceFiles = form.find(".table-form input[name=sourceFile]");
+
+                    if (sourceFiles.length === 1 && sourceFiles[0].files && sourceFiles[0].files.length === 0) {
+                        form.removeAttr("enctype");
+                    }
+                }
+
+                return true;
+            });
+        });
+    </script>
+
+
+    <!-- ContestResourcesSidebarFrame: hidden. -->
+</div>
+                        <div id="pageContent" class="content-with-sidebar">
+                    <div class="second-level-menu">
+<ul class="second-level-menu-list"><li class="backLava" style="position: absolute; display: block; margin: 0px; padding: 0px; left: 0px; top: 0px; width: 68px; height: 20px; overflow: hidden;"><div class="leftLava"></div><div class="bottomLava"></div><div class="cornerLava"></div></li>
+        <li class="current selectedLava"><a href="https://kubsucasd2026.contest.codeforces.com/group/2ghRveeNIP/contest/626047">Задачи</a></li>
+        <li><a href="https://kubsucasd2026.contest.codeforces.com/group/2ghRveeNIP/contest/626047/submit">Отослать</a></li>
+        <li><a href="https://kubsucasd2026.contest.codeforces.com/group/2ghRveeNIP/contest/626047/my">Мои посылки</a></li>
+        <li><a href="https://kubsucasd2026.contest.codeforces.com/group/2ghRveeNIP/contest/626047/status">Статус</a></li>
+        <li><a href="https://kubsucasd2026.contest.codeforces.com/group/2ghRveeNIP/contest/626047/standings/groupmates/true">Положение</a></li>
+        <li><a href="https://kubsucasd2026.contest.codeforces.com/group/2ghRveeNIP/contest/626047/customtest">Запуск</a></li>
+</ul>
+</div>
+
+    <style>
+        #facebox .content:has(.diff-popup) {
+            width: 90vw;
+            max-width: 120rem !important;
+        }
+
+        .testCaseMarker {
+            position: absolute;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .diff-popup {
+            width: 90vw;
+            max-width: 120rem !important;
+            display: none;
+            overflow: auto;
+        }
+
+        .input-output-copier {
+            font-size: 1.2rem;
+            float: right;
+            color: #888 !important;
+            cursor: pointer;
+            border: 1px solid rgb(185, 185, 185);
+            padding: 3px;
+            margin: 1px;
+            line-height: 1.1rem;
+            text-transform: none;
+        }
+
+        .input-output-copier:hover {
+            background-color: #def;
+        }
+
+        .test-explanation textarea {
+            width: 100%;
+            height: 1.5em;
+        }
+
+        .pending-submission-message {
+            color: darkorange !important;
+        }
+    </style>
+    <script>
+        const OPENING_SPACE = String.fromCharCode(1001);
+        const CLOSING_SPACE = String.fromCharCode(1002);
+
+        const nodeToText = function (node, pre) {
+            let result = [];
+
+            if (node.tagName === "SCRIPT" || node.tagName === "math"
+                || (node.classList && node.classList.contains("text-hidden"))
+                || (node.classList && node.classList.contains("input-output-copier")))
+                return [];
+
+            if (node.tagName === "NOBR") {
+                result.push(OPENING_SPACE);
+            }
+
+            if (node.nodeType === Node.TEXT_NODE) {
+                let s = node.textContent;
+                if (!pre) {
+                    s = s.replace(/\s+/g, " ");
+                }
+                if (s.length > 0) {
+                    result.push(s);
+                }
+            }
+
+            if (pre && node.tagName === "BR") {
+                result.push("\n");
+            }
+
+            node.childNodes.forEach(function (child) {
+                result.push(nodeToText(child, node.tagName === "PRE").join(""));
+            });
+
+            if (node.tagName === "DIV"
+                || node.tagName === "P"
+                || node.tagName === "PRE"
+                || node.tagName === "UL"
+                || node.tagName === "LI"
+            ) {
+                result.push("\n");
+            }
+
+            if (node.tagName === "NOBR") {
+                result.push(CLOSING_SPACE);
+            }
+
+            return result;
+        }
+
+        const isSpecial = function (c) {
+            return c === ',' || c === '.' || c === ';' || c === ')' || c === ' ';
+        }
+
+        const convertStatementToText = function(statmentNode) {
+            const text = nodeToText(statmentNode, false).join("").replace(/ +/g, " ").replace(/\n\n+/g, "\n\n");
+            let result = [];
+            for (let i = 0; i < text.length; i++) {
+                const c = text.charAt(i);
+                if (c === OPENING_SPACE) {
+                    if (!((i > 0 && text.charAt(i - 1) === '(') || (result.length > 0 && result[result.length - 1] === ' '))) {
+                        result.push('+');
+                    }
+                } else if (c === CLOSING_SPACE) {
+                    if (!(i + 1 < text.length && isSpecial(text.charAt(i + 1)))) {
+                        result.push('-');
+                    }
+                } else {
+                    result.push(c);
+                }
+            }
+            return result.join("").split("\n").map(value => value.trim()).join("\n");
+        };
+    </script>
+    <div class="diff-popup">
+    </div>
+
+<div class="problemindexholder" problemindex="A" data-uuid="ps_48681457a9f6371f945306ef67e9111d0f939173">
+    <div style="display: none; margin:1em 0;text-align: center; position: relative;" class="alert alert-info diff-notifier">
+        <div>Условие задачи было недавно изменено. <a class="view-changes" href="#">Просмотреть изменения.</a></div>
+        <span class="diff-notifier-close" style="position: absolute; top: 0.2em; right: 0.3em; cursor: pointer; font-size: 1.4em;">×</span>
+    </div>
+        <div class="ttypography"><div class="problem-statement"><div class="header"><div class="title">A. Паросочетание</div><div class="time-limit"><div class="property-title">ограничение по времени на тест</div>2 секунды</div><div class="memory-limit"><div class="property-title">ограничение по памяти на тест</div>256 мегабайт</div><div class="input-file input-standard"><div class="property-title">ввод</div>стандартный ввод</div><div class="output-file output-standard"><div class="property-title">вывод</div>стандартный вывод</div></div><div><p><span class="tex-font-style-underline">Двудольным графом</span> называется неориентированный граф <span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-1-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mo stretchy=&quot;false&quot;&gt;(&lt;/mo&gt;&lt;mi&gt;V&lt;/mi&gt;&lt;mo&gt;,&lt;/mo&gt;&lt;mi&gt;E&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;)&lt;/mo&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-1" style="width: 3.205em; display: inline-block;"><span style="display: inline-block; position: relative; width: 2.771em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.467em, 1002.68em, 2.836em, -1000em); top: -2.401em; left: 0em;"><span class="mrow" id="MathJax-Span-2"><span class="mo" id="MathJax-Span-3" style="font-family: MathJax_Main;">(</span><span class="mi" id="MathJax-Span-4" style="font-family: MathJax_Math; font-style: italic; text-rendering: optimizelegibility;">V<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.186em;"></span></span><span class="mo" id="MathJax-Span-5" style="font-family: MathJax_Main;">,</span><span class="mi" id="MathJax-Span-6" style="font-family: MathJax_Math; font-style: italic; padding-left: 0.167em;">E<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.026em;"></span></span><span class="mo" id="MathJax-Span-7" style="font-family: MathJax_Main;">)</span></span><span style="display: inline-block; width: 0px; height: 2.401em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.361em; border-left: 0px solid; width: 0px; height: 1.303em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo stretchy="false">(</mo><mi>V</mi><mo>,</mo><mi>E</mi><mo stretchy="false">)</mo></math></span></span><script type="math/tex" id="MathJax-Element-1">(V,E)</script>, <span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-2-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;E&lt;/mi&gt;&lt;mo&gt;&amp;#x2286;&lt;/mo&gt;&lt;mi&gt;V&lt;/mi&gt;&lt;mo&gt;&amp;#x00D7;&lt;/mo&gt;&lt;mi&gt;V&lt;/mi&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-8" style="width: 5.668em; display: inline-block;"><span style="display: inline-block; position: relative; width: 4.865em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.534em, 1004.87em, 2.724em, -1000em); top: -2.401em; left: 0em;"><span class="mrow" id="MathJax-Span-9"><span class="mi" id="MathJax-Span-10" style="font-family: MathJax_Math; font-style: italic;">E<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.026em;"></span></span><span class="mo" id="MathJax-Span-11" style="font-family: MathJax_Main; padding-left: 0.278em;">⊆</span><span class="mi" id="MathJax-Span-12" style="font-family: MathJax_Math; font-style: italic; text-rendering: optimizelegibility; padding-left: 0.278em;">V<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.186em;"></span></span><span class="mo" id="MathJax-Span-13" style="font-family: MathJax_Main; padding-left: 0.222em;">×</span><span class="mi" id="MathJax-Span-14" style="font-family: MathJax_Math; font-style: italic; text-rendering: optimizelegibility; padding-left: 0.222em;">V<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.186em;"></span></span></span><span style="display: inline-block; width: 0px; height: 2.401em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.232em; border-left: 0px solid; width: 0px; height: 1.095em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>E</mi><mo>⊆</mo><mi>V</mi><mo>×</mo><mi>V</mi></math></span></span><script type="math/tex" id="MathJax-Element-2">E \subseteq V \times V</script> такой, что его множество вершин <span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-3-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;V&lt;/mi&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-15" style="width: 0.865em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.739em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.534em, 1000.74em, 2.608em, -1000em); top: -2.401em; left: 0em;"><span class="mrow" id="MathJax-Span-16"><span class="mi" id="MathJax-Span-17" style="font-family: MathJax_Math; font-style: italic; text-rendering: optimizelegibility;">V<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.186em;"></span></span></span><span style="display: inline-block; width: 0px; height: 2.401em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.097em; border-left: 0px solid; width: 0px; height: 0.961em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>V</mi></math></span></span><script type="math/tex" id="MathJax-Element-3">V</script> можно разбить на два&nbsp;множества <span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-4-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-18" style="width: 0.865em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.739em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.501em, 1000.72em, 2.586em, -1000em); top: -2.401em; left: 0em;"><span class="mrow" id="MathJax-Span-19"><span class="mi" id="MathJax-Span-20" style="font-family: MathJax_Math; font-style: italic;">A</span></span><span style="display: inline-block; width: 0px; height: 2.401em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.071em; border-left: 0px solid; width: 0px; height: 0.973em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>A</mi></math></span></span><script type="math/tex" id="MathJax-Element-4">A</script> и&nbsp;<span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-5-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;B&lt;/mi&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-21" style="width: 0.865em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.739em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.534em, 1000.74em, 2.586em, -1000em); top: -2.401em; left: 0em;"><span class="mrow" id="MathJax-Span-22"><span class="mi" id="MathJax-Span-23" style="font-family: MathJax_Math; font-style: italic;">B</span></span><span style="display: inline-block; width: 0px; height: 2.401em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.071em; border-left: 0px solid; width: 0px; height: 0.935em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>B</mi></math></span></span><script type="math/tex" id="MathJax-Element-5">B</script>, для которых <span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-6-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi mathvariant=&quot;normal&quot;&gt;&amp;#x2200;&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;(&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;e&lt;/mi&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/msub&gt;&lt;mo&gt;,&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;e&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msub&gt;&lt;mo stretchy=&quot;false&quot;&gt;)&lt;/mo&gt;&lt;mo&gt;&amp;#x2208;&lt;/mo&gt;&lt;mi&gt;E&lt;/mi&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-24" style="width: 6.469em; display: inline-block;"><span style="display: inline-block; position: relative; width: 5.542em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.467em, 1005.54em, 2.836em, -1000em); top: -2.401em; left: 0em;"><span class="mrow" id="MathJax-Span-25"><span class="mi" id="MathJax-Span-26" style="font-family: MathJax_Main;">∀</span><span class="mo" id="MathJax-Span-27" style="font-family: MathJax_Main;">(</span><span class="msubsup" id="MathJax-Span-28"><span style="display: inline-block; position: relative; width: 0.895em; height: 0px;"><span style="position: absolute; clip: rect(3.376em, 1000.43em, 4.198em, -1000em); top: -4.002em; left: 0em;"><span class="mi" id="MathJax-Span-29" style="font-family: MathJax_Math; font-style: italic;">e</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; top: -3.852em; left: 0.466em;"><span class="mn" id="MathJax-Span-30" style="font-size: 70.7%; font-family: MathJax_Main;">1</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span></span></span><span class="mo" id="MathJax-Span-31" style="font-family: MathJax_Main;">,</span><span class="msubsup" id="MathJax-Span-32" style="padding-left: 0.167em;"><span style="display: inline-block; position: relative; width: 0.895em; height: 0px;"><span style="position: absolute; clip: rect(3.376em, 1000.43em, 4.198em, -1000em); top: -4.002em; left: 0em;"><span class="mi" id="MathJax-Span-33" style="font-family: MathJax_Math; font-style: italic;">e</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; top: -3.852em; left: 0.466em;"><span class="mn" id="MathJax-Span-34" style="font-size: 70.7%; font-family: MathJax_Main;">2</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span></span></span><span class="mo" id="MathJax-Span-35" style="font-family: MathJax_Main;">)</span><span class="mo" id="MathJax-Span-36" style="font-family: MathJax_Main; padding-left: 0.278em;">∈</span><span class="mi" id="MathJax-Span-37" style="font-family: MathJax_Math; font-style: italic; padding-left: 0.278em;">E<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.026em;"></span></span></span><span style="display: inline-block; width: 0px; height: 2.401em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.361em; border-left: 0px solid; width: 0px; height: 1.303em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi mathvariant="normal">∀</mi><mo stretchy="false">(</mo><msub><mi>e</mi><mn>1</mn></msub><mo>,</mo><msub><mi>e</mi><mn>2</mn></msub><mo stretchy="false">)</mo><mo>∈</mo><mi>E</mi></math></span></span><script type="math/tex" id="MathJax-Element-6">\forall (e_1,e_2) \in E</script> <span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-7-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;msub&gt;&lt;mi&gt;e&lt;/mi&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/msub&gt;&lt;mo&gt;&amp;#x2208;&lt;/mo&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-38" style="width: 3.39em; display: inline-block;"><span style="display: inline-block; position: relative; width: 2.894em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.501em, 1002.87em, 2.736em, -1000em); top: -2.401em; left: 0em;"><span class="mrow" id="MathJax-Span-39"><span class="msubsup" id="MathJax-Span-40"><span style="display: inline-block; position: relative; width: 0.895em; height: 0px;"><span style="position: absolute; clip: rect(3.376em, 1000.43em, 4.198em, -1000em); top: -4.002em; left: 0em;"><span class="mi" id="MathJax-Span-41" style="font-family: MathJax_Math; font-style: italic;">e</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; top: -3.852em; left: 0.466em;"><span class="mn" id="MathJax-Span-42" style="font-size: 70.7%; font-family: MathJax_Main;">1</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span></span></span><span class="mo" id="MathJax-Span-43" style="font-family: MathJax_Main; padding-left: 0.278em;">∈</span><span class="mi" id="MathJax-Span-44" style="font-family: MathJax_Math; font-style: italic; padding-left: 0.278em;">A</span></span><span style="display: inline-block; width: 0px; height: 2.401em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.245em; border-left: 0px solid; width: 0px; height: 1.147em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>e</mi><mn>1</mn></msub><mo>∈</mo><mi>A</mi></math></span></span><script type="math/tex" id="MathJax-Element-7">e_1 \in A</script>, <span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-8-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;msub&gt;&lt;mi&gt;e&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msub&gt;&lt;mo&gt;&amp;#x2208;&lt;/mo&gt;&lt;mi&gt;B&lt;/mi&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-45" style="width: 3.39em; display: inline-block;"><span style="display: inline-block; position: relative; width: 2.894em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.534em, 1002.89em, 2.736em, -1000em); top: -2.401em; left: 0em;"><span class="mrow" id="MathJax-Span-46"><span class="msubsup" id="MathJax-Span-47"><span style="display: inline-block; position: relative; width: 0.895em; height: 0px;"><span style="position: absolute; clip: rect(3.376em, 1000.43em, 4.198em, -1000em); top: -4.002em; left: 0em;"><span class="mi" id="MathJax-Span-48" style="font-family: MathJax_Math; font-style: italic;">e</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; top: -3.852em; left: 0.466em;"><span class="mn" id="MathJax-Span-49" style="font-size: 70.7%; font-family: MathJax_Main;">2</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span></span></span><span class="mo" id="MathJax-Span-50" style="font-family: MathJax_Main; padding-left: 0.278em;">∈</span><span class="mi" id="MathJax-Span-51" style="font-family: MathJax_Math; font-style: italic; padding-left: 0.278em;">B</span></span><span style="display: inline-block; width: 0px; height: 2.401em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.245em; border-left: 0px solid; width: 0px; height: 1.109em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>e</mi><mn>2</mn></msub><mo>∈</mo><mi>B</mi></math></span></span><script type="math/tex" id="MathJax-Element-8">e_2 \in B</script> и&nbsp;<span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-9-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;mo&gt;&amp;#x222A;&lt;/mo&gt;&lt;mi&gt;B&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mi&gt;V&lt;/mi&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-52" style="width: 5.545em; display: inline-block;"><span style="display: inline-block; position: relative; width: 4.741em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.501em, 1004.74em, 2.608em, -1000em); top: -2.401em; left: 0em;"><span class="mrow" id="MathJax-Span-53"><span class="mi" id="MathJax-Span-54" style="font-family: MathJax_Math; font-style: italic;">A</span><span class="mo" id="MathJax-Span-55" style="font-family: MathJax_Main; padding-left: 0.222em;">∪</span><span class="mi" id="MathJax-Span-56" style="font-family: MathJax_Math; font-style: italic; padding-left: 0.222em;">B</span><span class="mo" id="MathJax-Span-57" style="font-family: MathJax_Main; padding-left: 0.278em;">=</span><span class="mi" id="MathJax-Span-58" style="font-family: MathJax_Math; font-style: italic; text-rendering: optimizelegibility; padding-left: 0.278em;">V<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.186em;"></span></span></span><span style="display: inline-block; width: 0px; height: 2.401em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.097em; border-left: 0px solid; width: 0px; height: 0.999em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>A</mi><mo>∪</mo><mi>B</mi><mo>=</mo><mi>V</mi></math></span></span><script type="math/tex" id="MathJax-Element-9">A \cup B = V</script>, <span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-10-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;mo&gt;&amp;#x2229;&lt;/mo&gt;&lt;mi&gt;B&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mi class=&quot;MJX-variant&quot;&gt;&amp;#x2205;&lt;/mi&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-59" style="width: 5.545em; display: inline-block;"><span style="display: inline-block; position: relative; width: 4.741em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.685em, 1004.68em, 2.793em, -1000em); top: -2.586em; left: 0em;"><span class="mrow" id="MathJax-Span-60"><span class="mi" id="MathJax-Span-61" style="font-family: MathJax_Math; font-style: italic;">A</span><span class="mo" id="MathJax-Span-62" style="font-family: MathJax_Main; padding-left: 0.222em;">∩</span><span class="mi" id="MathJax-Span-63" style="font-family: MathJax_Math; font-style: italic; padding-left: 0.222em;">B</span><span class="mo" id="MathJax-Span-64" style="font-family: MathJax_Main; padding-left: 0.278em;">=</span><span class="mi" id="MathJax-Span-65" style="font-family: MathJax_AMS; padding-left: 0.278em;">∅</span></span><span style="display: inline-block; width: 0px; height: 2.586em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.097em; border-left: 0px solid; width: 0px; height: 0.999em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>A</mi><mo>∩</mo><mi>B</mi><mo>=</mo><mi class="MJX-variant">∅</mi></math></span></span><script type="math/tex" id="MathJax-Element-10">A \cap B = \varnothing</script>.</p><p><span class="tex-font-style-underline">Паросочетанием</span> в&nbsp;двудольном графе называется любой набор его несмежных рёбер, то&nbsp;есть такой набор <span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-11-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;S&lt;/mi&gt;&lt;mo&gt;&amp;#x2286;&lt;/mo&gt;&lt;mi&gt;E&lt;/mi&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-66" style="width: 3.205em; display: inline-block;"><span style="display: inline-block; position: relative; width: 2.771em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.512em, 1002.77em, 2.724em, -1000em); top: -2.401em; left: 0em;"><span class="mrow" id="MathJax-Span-67"><span class="mi" id="MathJax-Span-68" style="font-family: MathJax_Math; font-style: italic;">S<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.032em;"></span></span><span class="mo" id="MathJax-Span-69" style="font-family: MathJax_Main; padding-left: 0.278em;">⊆</span><span class="mi" id="MathJax-Span-70" style="font-family: MathJax_Math; font-style: italic; padding-left: 0.278em;">E<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.026em;"></span></span></span><span style="display: inline-block; width: 0px; height: 2.401em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.232em; border-left: 0px solid; width: 0px; height: 1.121em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>S</mi><mo>⊆</mo><mi>E</mi></math></span></span><script type="math/tex" id="MathJax-Element-11">S \subseteq E</script>, что для любых двух рёбер <span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-12-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;msub&gt;&lt;mi&gt;e&lt;/mi&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/msub&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mo stretchy=&quot;false&quot;&gt;(&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;u&lt;/mi&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/msub&gt;&lt;mo&gt;,&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;v&lt;/mi&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/msub&gt;&lt;mo stretchy=&quot;false&quot;&gt;)&lt;/mo&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-71" style="width: 6.222em; display: inline-block;"><span style="display: inline-block; position: relative; width: 5.357em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.467em, 1005.26em, 2.836em, -1000em); top: -2.401em; left: 0em;"><span class="mrow" id="MathJax-Span-72"><span class="msubsup" id="MathJax-Span-73"><span style="display: inline-block; position: relative; width: 0.895em; height: 0px;"><span style="position: absolute; clip: rect(3.376em, 1000.43em, 4.198em, -1000em); top: -4.002em; left: 0em;"><span class="mi" id="MathJax-Span-74" style="font-family: MathJax_Math; font-style: italic;">e</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; top: -3.852em; left: 0.466em;"><span class="mn" id="MathJax-Span-75" style="font-size: 70.7%; font-family: MathJax_Main;">1</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span></span></span><span class="mo" id="MathJax-Span-76" style="font-family: MathJax_Main; padding-left: 0.278em;">=</span><span class="mo" id="MathJax-Span-77" style="font-family: MathJax_Main; padding-left: 0.278em;">(</span><span class="msubsup" id="MathJax-Span-78"><span style="display: inline-block; position: relative; width: 1.001em; height: 0px;"><span style="position: absolute; clip: rect(3.376em, 1000.55em, 4.198em, -1000em); top: -4.002em; left: 0em;"><span class="mi" id="MathJax-Span-79" style="font-family: MathJax_Math; font-style: italic;">u</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; top: -3.852em; left: 0.572em;"><span class="mn" id="MathJax-Span-80" style="font-size: 70.7%; font-family: MathJax_Main;">1</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span></span></span><span class="mo" id="MathJax-Span-81" style="font-family: MathJax_Main;">,</span><span class="msubsup" id="MathJax-Span-82" style="padding-left: 0.167em;"><span style="display: inline-block; position: relative; width: 0.914em; height: 0px;"><span style="position: absolute; clip: rect(3.375em, 1000.47em, 4.198em, -1000em); top: -4.002em; left: 0em;"><span class="mi" id="MathJax-Span-83" style="font-family: MathJax_Math; font-style: italic;">v</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; top: -3.852em; left: 0.485em;"><span class="mn" id="MathJax-Span-84" style="font-size: 70.7%; font-family: MathJax_Main;">1</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span></span></span><span class="mo" id="MathJax-Span-85" style="font-family: MathJax_Main;">)</span></span><span style="display: inline-block; width: 0px; height: 2.401em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.361em; border-left: 0px solid; width: 0px; height: 1.303em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>e</mi><mn>1</mn></msub><mo>=</mo><mo stretchy="false">(</mo><msub><mi>u</mi><mn>1</mn></msub><mo>,</mo><msub><mi>v</mi><mn>1</mn></msub><mo stretchy="false">)</mo></math></span></span><script type="math/tex" id="MathJax-Element-12">e_1 = (u_1, v_1)</script>, <span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-13-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;msub&gt;&lt;mi&gt;e&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msub&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mo stretchy=&quot;false&quot;&gt;(&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;u&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msub&gt;&lt;mo&gt;,&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;v&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msub&gt;&lt;mo stretchy=&quot;false&quot;&gt;)&lt;/mo&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-86" style="width: 6.222em; display: inline-block;"><span style="display: inline-block; position: relative; width: 5.357em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.467em, 1005.26em, 2.836em, -1000em); top: -2.401em; left: 0em;"><span class="mrow" id="MathJax-Span-87"><span class="msubsup" id="MathJax-Span-88"><span style="display: inline-block; position: relative; width: 0.895em; height: 0px;"><span style="position: absolute; clip: rect(3.376em, 1000.43em, 4.198em, -1000em); top: -4.002em; left: 0em;"><span class="mi" id="MathJax-Span-89" style="font-family: MathJax_Math; font-style: italic;">e</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; top: -3.852em; left: 0.466em;"><span class="mn" id="MathJax-Span-90" style="font-size: 70.7%; font-family: MathJax_Main;">2</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span></span></span><span class="mo" id="MathJax-Span-91" style="font-family: MathJax_Main; padding-left: 0.278em;">=</span><span class="mo" id="MathJax-Span-92" style="font-family: MathJax_Main; padding-left: 0.278em;">(</span><span class="msubsup" id="MathJax-Span-93"><span style="display: inline-block; position: relative; width: 1.001em; height: 0px;"><span style="position: absolute; clip: rect(3.376em, 1000.55em, 4.198em, -1000em); top: -4.002em; left: 0em;"><span class="mi" id="MathJax-Span-94" style="font-family: MathJax_Math; font-style: italic;">u</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; top: -3.852em; left: 0.572em;"><span class="mn" id="MathJax-Span-95" style="font-size: 70.7%; font-family: MathJax_Main;">2</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span></span></span><span class="mo" id="MathJax-Span-96" style="font-family: MathJax_Main;">,</span><span class="msubsup" id="MathJax-Span-97" style="padding-left: 0.167em;"><span style="display: inline-block; position: relative; width: 0.914em; height: 0px;"><span style="position: absolute; clip: rect(3.375em, 1000.47em, 4.198em, -1000em); top: -4.002em; left: 0em;"><span class="mi" id="MathJax-Span-98" style="font-family: MathJax_Math; font-style: italic;">v</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; top: -3.852em; left: 0.485em;"><span class="mn" id="MathJax-Span-99" style="font-size: 70.7%; font-family: MathJax_Main;">2</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span></span></span><span class="mo" id="MathJax-Span-100" style="font-family: MathJax_Main;">)</span></span><span style="display: inline-block; width: 0px; height: 2.401em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.361em; border-left: 0px solid; width: 0px; height: 1.303em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>e</mi><mn>2</mn></msub><mo>=</mo><mo stretchy="false">(</mo><msub><mi>u</mi><mn>2</mn></msub><mo>,</mo><msub><mi>v</mi><mn>2</mn></msub><mo stretchy="false">)</mo></math></span></span><script type="math/tex" id="MathJax-Element-13">e_2 = (u_2, v_2)</script> из&nbsp;<span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-14-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;S&lt;/mi&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-101" style="width: 0.742em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.616em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.512em, 1000.62em, 2.608em, -1000em); top: -2.401em; left: 0em;"><span class="mrow" id="MathJax-Span-102"><span class="mi" id="MathJax-Span-103" style="font-family: MathJax_Math; font-style: italic;">S<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.032em;"></span></span></span><span style="display: inline-block; width: 0px; height: 2.401em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.097em; border-left: 0px solid; width: 0px; height: 0.986em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>S</mi></math></span></span><script type="math/tex" id="MathJax-Element-14">S</script> <span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-15-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;msub&gt;&lt;mi&gt;u&lt;/mi&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/msub&gt;&lt;mo&gt;&amp;#x2260;&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;u&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msub&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-104" style="width: 3.882em; display: inline-block;"><span style="display: inline-block; position: relative; width: 3.325em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.501em, 1003.33em, 2.801em, -1000em); top: -2.401em; left: 0em;"><span class="mrow" id="MathJax-Span-105"><span class="msubsup" id="MathJax-Span-106"><span style="display: inline-block; position: relative; width: 1.001em; height: 0px;"><span style="position: absolute; clip: rect(3.376em, 1000.55em, 4.198em, -1000em); top: -4.002em; left: 0em;"><span class="mi" id="MathJax-Span-107" style="font-family: MathJax_Math; font-style: italic;">u</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; top: -3.852em; left: 0.572em;"><span class="mn" id="MathJax-Span-108" style="font-size: 70.7%; font-family: MathJax_Main;">1</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span></span></span><span class="mo" id="MathJax-Span-109" style="font-family: MathJax_Main; padding-left: 0.278em;">≠</span><span class="msubsup" id="MathJax-Span-110" style="padding-left: 0.278em;"><span style="display: inline-block; position: relative; width: 1.001em; height: 0px;"><span style="position: absolute; clip: rect(3.376em, 1000.55em, 4.198em, -1000em); top: -4.002em; left: 0em;"><span class="mi" id="MathJax-Span-111" style="font-family: MathJax_Math; font-style: italic;">u</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; top: -3.852em; left: 0.572em;"><span class="mn" id="MathJax-Span-112" style="font-size: 70.7%; font-family: MathJax_Main;">2</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.401em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.321em; border-left: 0px solid; width: 0px; height: 1.223em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>u</mi><mn>1</mn></msub><mo>≠</mo><msub><mi>u</mi><mn>2</mn></msub></math></span></span><script type="math/tex" id="MathJax-Element-15">u_1 \neq u_2</script> и <span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-16-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;msub&gt;&lt;mi&gt;v&lt;/mi&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/msub&gt;&lt;mo&gt;&amp;#x2260;&lt;/mo&gt;&lt;msub&gt;&lt;mi&gt;v&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msub&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-113" style="width: 3.636em; display: inline-block;"><span style="display: inline-block; position: relative; width: 3.14em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.501em, 1003.14em, 2.801em, -1000em); top: -2.401em; left: 0em;"><span class="mrow" id="MathJax-Span-114"><span class="msubsup" id="MathJax-Span-115"><span style="display: inline-block; position: relative; width: 0.914em; height: 0px;"><span style="position: absolute; clip: rect(3.375em, 1000.47em, 4.198em, -1000em); top: -4.002em; left: 0em;"><span class="mi" id="MathJax-Span-116" style="font-family: MathJax_Math; font-style: italic;">v</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; top: -3.852em; left: 0.485em;"><span class="mn" id="MathJax-Span-117" style="font-size: 70.7%; font-family: MathJax_Main;">1</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span></span></span><span class="mo" id="MathJax-Span-118" style="font-family: MathJax_Main; padding-left: 0.278em;">≠</span><span class="msubsup" id="MathJax-Span-119" style="padding-left: 0.278em;"><span style="display: inline-block; position: relative; width: 0.914em; height: 0px;"><span style="position: absolute; clip: rect(3.375em, 1000.47em, 4.198em, -1000em); top: -4.002em; left: 0em;"><span class="mi" id="MathJax-Span-120" style="font-family: MathJax_Math; font-style: italic;">v</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; top: -3.852em; left: 0.485em;"><span class="mn" id="MathJax-Span-121" style="font-size: 70.7%; font-family: MathJax_Main;">2</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.401em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.321em; border-left: 0px solid; width: 0px; height: 1.223em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>v</mi><mn>1</mn></msub><mo>≠</mo><msub><mi>v</mi><mn>2</mn></msub></math></span></span><script type="math/tex" id="MathJax-Element-16">v_1 \neq v_2</script>.</p><p>Ваша
+ задача&nbsp;— найти максимальное паросочетание в&nbsp;двудольном графе,
+ то есть паросочетание с&nbsp;максимально возможным числом рёбер.</p></div><div class="input-specification"><div class="section-title">Входные данные</div><p>В&nbsp;первой строке записаны два целых числа <span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-17-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-122" style="width: 0.742em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.616em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.775em, 1000.6em, 2.597em, -1000em); top: -2.401em; left: 0em;"><span class="mrow" id="MathJax-Span-123"><span class="mi" id="MathJax-Span-124" style="font-family: MathJax_Math; font-style: italic;">n</span></span><span style="display: inline-block; width: 0px; height: 2.401em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.084em; border-left: 0px solid; width: 0px; height: 0.668em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>n</mi></math></span></span><script type="math/tex" id="MathJax-Element-17">n</script> и&nbsp;<span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-18-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;m&lt;/mi&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-125" style="width: 1.05em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.862em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.775em, 1000.84em, 2.597em, -1000em); top: -2.401em; left: 0em;"><span class="mrow" id="MathJax-Span-126"><span class="mi" id="MathJax-Span-127" style="font-family: MathJax_Math; font-style: italic;">m</span></span><span style="display: inline-block; width: 0px; height: 2.401em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.084em; border-left: 0px solid; width: 0px; height: 0.668em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>m</mi></math></span></span><script type="math/tex" id="MathJax-Element-18">m</script> (<span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-19-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mo&gt;&amp;#x2A7D;&lt;/mo&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mo&gt;,&lt;/mo&gt;&lt;mi&gt;m&lt;/mi&gt;&lt;mo&gt;&amp;#x2A7D;&lt;/mo&gt;&lt;mn&gt;250&lt;/mn&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-128" style="width: 7.639em; display: inline-block;"><span style="display: inline-block; position: relative; width: 6.589em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.735em, 1006.55em, 2.965em, -1000em); top: -2.586em; left: 0em;"><span class="mrow" id="MathJax-Span-129"><span class="mn" id="MathJax-Span-130" style="font-family: MathJax_Main;">1</span><span class="mo" id="MathJax-Span-131" style="font-family: MathJax_AMS; padding-left: 0.278em;">⩽</span><span class="mi" id="MathJax-Span-132" style="font-family: MathJax_Math; font-style: italic; padding-left: 0.278em;">n</span><span class="mo" id="MathJax-Span-133" style="font-family: MathJax_Main;">,</span><span class="mi" id="MathJax-Span-134" style="font-family: MathJax_Math; font-style: italic; padding-left: 0.167em;">m</span><span class="mo" id="MathJax-Span-135" style="font-family: MathJax_AMS; padding-left: 0.278em;">⩽</span><span class="mn" id="MathJax-Span-136" style="font-family: MathJax_Main; padding-left: 0.278em;">250</span></span><span style="display: inline-block; width: 0px; height: 2.586em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.296em; border-left: 0px solid; width: 0px; height: 1.14em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>1</mn><mo>⩽</mo><mi>n</mi><mo>,</mo><mi>m</mi><mo>⩽</mo><mn>250</mn></math></span></span><script type="math/tex" id="MathJax-Element-19">1 \leqslant n, m \leqslant 250</script>), где <span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-20-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-137" style="width: 0.742em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.616em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.775em, 1000.6em, 2.597em, -1000em); top: -2.401em; left: 0em;"><span class="mrow" id="MathJax-Span-138"><span class="mi" id="MathJax-Span-139" style="font-family: MathJax_Math; font-style: italic;">n</span></span><span style="display: inline-block; width: 0px; height: 2.401em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.084em; border-left: 0px solid; width: 0px; height: 0.668em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>n</mi></math></span></span><script type="math/tex" id="MathJax-Element-20">n</script>&nbsp;— число вершин в&nbsp;множестве&nbsp;<span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-21-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-140" style="width: 0.865em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.739em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.501em, 1000.72em, 2.586em, -1000em); top: -2.401em; left: 0em;"><span class="mrow" id="MathJax-Span-141"><span class="mi" id="MathJax-Span-142" style="font-family: MathJax_Math; font-style: italic;">A</span></span><span style="display: inline-block; width: 0px; height: 2.401em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.071em; border-left: 0px solid; width: 0px; height: 0.973em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>A</mi></math></span></span><script type="math/tex" id="MathJax-Element-21">A</script>, а&nbsp;<span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-22-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;m&lt;/mi&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-143" style="width: 1.05em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.862em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.775em, 1000.84em, 2.597em, -1000em); top: -2.401em; left: 0em;"><span class="mrow" id="MathJax-Span-144"><span class="mi" id="MathJax-Span-145" style="font-family: MathJax_Math; font-style: italic;">m</span></span><span style="display: inline-block; width: 0px; height: 2.401em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.084em; border-left: 0px solid; width: 0px; height: 0.668em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>m</mi></math></span></span><script type="math/tex" id="MathJax-Element-22">m</script>&nbsp;— число вершин в&nbsp;<span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-23-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;B&lt;/mi&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-146" style="width: 0.865em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.739em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.534em, 1000.74em, 2.586em, -1000em); top: -2.401em; left: 0em;"><span class="mrow" id="MathJax-Span-147"><span class="mi" id="MathJax-Span-148" style="font-family: MathJax_Math; font-style: italic;">B</span></span><span style="display: inline-block; width: 0px; height: 2.401em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.071em; border-left: 0px solid; width: 0px; height: 0.935em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>B</mi></math></span></span><script type="math/tex" id="MathJax-Element-23">B</script>.</p><p>Далее следуют <span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-24-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-149" style="width: 0.742em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.616em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.775em, 1000.6em, 2.597em, -1000em); top: -2.401em; left: 0em;"><span class="mrow" id="MathJax-Span-150"><span class="mi" id="MathJax-Span-151" style="font-family: MathJax_Math; font-style: italic;">n</span></span><span style="display: inline-block; width: 0px; height: 2.401em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.084em; border-left: 0px solid; width: 0px; height: 0.668em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>n</mi></math></span></span><script type="math/tex" id="MathJax-Element-24">n</script>&nbsp;строк с&nbsp;описаниями рёбер&nbsp;— <span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-25-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-152" style="width: 0.434em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.369em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.556em, 1000.33em, 2.597em, -1000em); top: -2.401em; left: 0em;"><span class="mrow" id="MathJax-Span-153"><span class="mi" id="MathJax-Span-154" style="font-family: MathJax_Math; font-style: italic;">i</span></span><span style="display: inline-block; width: 0px; height: 2.401em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.084em; border-left: 0px solid; width: 0px; height: 0.922em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>i</mi></math></span></span><script type="math/tex" id="MathJax-Element-25">i</script>-я вершина из&nbsp;<span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-26-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-155" style="width: 0.865em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.739em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.501em, 1000.72em, 2.586em, -1000em); top: -2.401em; left: 0em;"><span class="mrow" id="MathJax-Span-156"><span class="mi" id="MathJax-Span-157" style="font-family: MathJax_Math; font-style: italic;">A</span></span><span style="display: inline-block; width: 0px; height: 2.401em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.071em; border-left: 0px solid; width: 0px; height: 0.973em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>A</mi></math></span></span><script type="math/tex" id="MathJax-Element-26">A</script> описана в&nbsp;<span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-27-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mo stretchy=&quot;false&quot;&gt;(&lt;/mo&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mo stretchy=&quot;false&quot;&gt;)&lt;/mo&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-158" style="width: 3.328em; display: inline-block;"><span style="display: inline-block; position: relative; width: 2.833em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.467em, 1002.74em, 2.836em, -1000em); top: -2.401em; left: 0em;"><span class="mrow" id="MathJax-Span-159"><span class="mo" id="MathJax-Span-160" style="font-family: MathJax_Main;">(</span><span class="mi" id="MathJax-Span-161" style="font-family: MathJax_Math; font-style: italic;">i</span><span class="mo" id="MathJax-Span-162" style="font-family: MathJax_Main; padding-left: 0.222em;">+</span><span class="mn" id="MathJax-Span-163" style="font-family: MathJax_Main; padding-left: 0.222em;">1</span><span class="mo" id="MathJax-Span-164" style="font-family: MathJax_Main;">)</span></span><span style="display: inline-block; width: 0px; height: 2.401em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.361em; border-left: 0px solid; width: 0px; height: 1.303em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo stretchy="false">(</mo><mi>i</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></math></span></span><script type="math/tex" id="MathJax-Element-27">(i+1)</script>-й строке файла. Каждая из&nbsp;этих строк содержит номера вершин из&nbsp;<span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-28-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;B&lt;/mi&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-165" style="width: 0.865em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.739em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.534em, 1000.74em, 2.586em, -1000em); top: -2.401em; left: 0em;"><span class="mrow" id="MathJax-Span-166"><span class="mi" id="MathJax-Span-167" style="font-family: MathJax_Math; font-style: italic;">B</span></span><span style="display: inline-block; width: 0px; height: 2.401em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.071em; border-left: 0px solid; width: 0px; height: 0.935em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>B</mi></math></span></span><script type="math/tex" id="MathJax-Element-28">B</script>, соединённых с&nbsp;<span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-29-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-168" style="width: 0.434em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.369em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.556em, 1000.33em, 2.597em, -1000em); top: -2.401em; left: 0em;"><span class="mrow" id="MathJax-Span-169"><span class="mi" id="MathJax-Span-170" style="font-family: MathJax_Math; font-style: italic;">i</span></span><span style="display: inline-block; width: 0px; height: 2.401em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.084em; border-left: 0px solid; width: 0px; height: 0.922em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>i</mi></math></span></span><script type="math/tex" id="MathJax-Element-29">i</script>-й вершиной <span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-30-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-171" style="width: 0.865em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.739em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.501em, 1000.72em, 2.586em, -1000em); top: -2.401em; left: 0em;"><span class="mrow" id="MathJax-Span-172"><span class="mi" id="MathJax-Span-173" style="font-family: MathJax_Math; font-style: italic;">A</span></span><span style="display: inline-block; width: 0px; height: 2.401em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.071em; border-left: 0px solid; width: 0px; height: 0.973em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>A</mi></math></span></span><script type="math/tex" id="MathJax-Element-30">A</script>. Гарантируется, что в графе нет кратных ребер. Вершины в&nbsp;<span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-31-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-174" style="width: 0.865em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.739em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.501em, 1000.72em, 2.586em, -1000em); top: -2.401em; left: 0em;"><span class="mrow" id="MathJax-Span-175"><span class="mi" id="MathJax-Span-176" style="font-family: MathJax_Math; font-style: italic;">A</span></span><span style="display: inline-block; width: 0px; height: 2.401em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.071em; border-left: 0px solid; width: 0px; height: 0.973em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>A</mi></math></span></span><script type="math/tex" id="MathJax-Element-31">A</script> и&nbsp;<span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-32-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;B&lt;/mi&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-177" style="width: 0.865em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.739em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.534em, 1000.74em, 2.586em, -1000em); top: -2.401em; left: 0em;"><span class="mrow" id="MathJax-Span-178"><span class="mi" id="MathJax-Span-179" style="font-family: MathJax_Math; font-style: italic;">B</span></span><span style="display: inline-block; width: 0px; height: 2.401em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.071em; border-left: 0px solid; width: 0px; height: 0.935em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>B</mi></math></span></span><script type="math/tex" id="MathJax-Element-32">B</script> нумеруются независимо (с&nbsp;единицы). Список завершается числом&nbsp;<span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-33-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-180" style="width: 0.619em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.493em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.551em, 1000.45em, 2.608em, -1000em); top: -2.401em; left: 0em;"><span class="mrow" id="MathJax-Span-181"><span class="mn" id="MathJax-Span-182" style="font-family: MathJax_Main;">0</span></span><span style="display: inline-block; width: 0px; height: 2.401em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.097em; border-left: 0px solid; width: 0px; height: 0.941em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>0</mn></math></span></span><script type="math/tex" id="MathJax-Element-33">0</script>. </p></div><div class="output-specification"><div class="section-title">Выходные данные</div><p>Первая строка выходного файла должна содержать одно целое число&nbsp;<span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-34-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;l&lt;/mi&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-183" style="width: 0.373em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.308em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.523em, 1000.28em, 2.597em, -1000em); top: -2.401em; left: 0em;"><span class="mrow" id="MathJax-Span-184"><span class="mi" id="MathJax-Span-185" style="font-family: MathJax_Math; font-style: italic;">l</span></span><span style="display: inline-block; width: 0px; height: 2.401em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.084em; border-left: 0px solid; width: 0px; height: 0.961em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>l</mi></math></span></span><script type="math/tex" id="MathJax-Element-34">l</script>&nbsp;— количество рёбер в&nbsp;максимальном паросочетании. Далее следуют <span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-35-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;l&lt;/mi&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-186" style="width: 0.373em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.308em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.523em, 1000.28em, 2.597em, -1000em); top: -2.401em; left: 0em;"><span class="mrow" id="MathJax-Span-187"><span class="mi" id="MathJax-Span-188" style="font-family: MathJax_Math; font-style: italic;">l</span></span><span style="display: inline-block; width: 0px; height: 2.401em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.084em; border-left: 0px solid; width: 0px; height: 0.961em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>l</mi></math></span></span><script type="math/tex" id="MathJax-Element-35">l</script>&nbsp;строк, в&nbsp;каждой из&nbsp;которых должны быть два целых числа <span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-36-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;msub&gt;&lt;mi&gt;u&lt;/mi&gt;&lt;mi&gt;j&lt;/mi&gt;&lt;/msub&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-189" style="width: 1.111em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.924em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.775em, 1000.92em, 2.88em, -1000em); top: -2.401em; left: 0em;"><span class="mrow" id="MathJax-Span-190"><span class="msubsup" id="MathJax-Span-191"><span style="display: inline-block; position: relative; width: 0.938em; height: 0px;"><span style="position: absolute; clip: rect(3.376em, 1000.55em, 4.198em, -1000em); top: -4.002em; left: 0em;"><span class="mi" id="MathJax-Span-192" style="font-family: MathJax_Math; font-style: italic;">u</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; top: -3.852em; left: 0.572em;"><span class="mi" id="MathJax-Span-193" style="font-size: 70.7%; font-family: MathJax_Math; font-style: italic;">j</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.401em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.413em; border-left: 0px solid; width: 0px; height: 0.997em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>u</mi><mi>j</mi></msub></math></span></span><script type="math/tex" id="MathJax-Element-36">u_j</script> и&nbsp;<span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-37-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;msub&gt;&lt;mi&gt;v&lt;/mi&gt;&lt;mi&gt;j&lt;/mi&gt;&lt;/msub&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-194" style="width: 1.05em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.862em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.774em, 1000.86em, 2.88em, -1000em); top: -2.401em; left: 0em;"><span class="mrow" id="MathJax-Span-195"><span class="msubsup" id="MathJax-Span-196"><span style="display: inline-block; position: relative; width: 0.851em; height: 0px;"><span style="position: absolute; clip: rect(3.375em, 1000.47em, 4.198em, -1000em); top: -4.002em; left: 0em;"><span class="mi" id="MathJax-Span-197" style="font-family: MathJax_Math; font-style: italic;">v</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span><span style="position: absolute; top: -3.852em; left: 0.485em;"><span class="mi" id="MathJax-Span-198" style="font-size: 70.7%; font-family: MathJax_Math; font-style: italic;">j</span><span style="display: inline-block; width: 0px; height: 4.002em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.401em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.413em; border-left: 0px solid; width: 0px; height: 0.998em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>v</mi><mi>j</mi></msub></math></span></span><script type="math/tex" id="MathJax-Element-37">v_j</script>&nbsp;— концы рёбер паросочетания в&nbsp;<span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-38-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-199" style="width: 0.865em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.739em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.501em, 1000.72em, 2.586em, -1000em); top: -2.401em; left: 0em;"><span class="mrow" id="MathJax-Span-200"><span class="mi" id="MathJax-Span-201" style="font-family: MathJax_Math; font-style: italic;">A</span></span><span style="display: inline-block; width: 0px; height: 2.401em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.071em; border-left: 0px solid; width: 0px; height: 0.973em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>A</mi></math></span></span><script type="math/tex" id="MathJax-Element-38">A</script> и&nbsp;<span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-39-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;B&lt;/mi&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-202" style="width: 0.865em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.739em; height: 0px; font-size: 116%;"><span style="position: absolute; clip: rect(1.534em, 1000.74em, 2.586em, -1000em); top: -2.401em; left: 0em;"><span class="mrow" id="MathJax-Span-203"><span class="mi" id="MathJax-Span-204" style="font-family: MathJax_Math; font-style: italic;">B</span></span><span style="display: inline-block; width: 0px; height: 2.401em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.071em; border-left: 0px solid; width: 0px; height: 0.935em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>B</mi></math></span></span><script type="math/tex" id="MathJax-Element-39">B</script> соотвественно.</p></div><div class="sample-tests"><div class="section-title">Пример</div><div class="sample-test"><div class="input"><div class="title">Входные данные<div title="Скопировать" data-clipboard-target="#id0000340761637417919" id="id005752348900752987" class="input-output-copier">Скопировать</div></div><pre id="id0000340761637417919">2 2<br>1 2 0<br>2 0<br></pre></div><div class="output"><div class="title">Выходные данные<div title="Скопировать" data-clipboard-target="#id0023785351073408012" id="id006554762681240303" class="input-output-copier">Скопировать</div></div><pre id="id0023785351073408012">2<br>1 1<br>2 2<br></pre></div></div></div></div><p>  </p></div>
+</div>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+            window.changedTests = new Set();
+
+        const inputFileDiv = $("div.input-file");
+        const inputFile = inputFileDiv.text();
+        const outputFileDiv = $("div.output-file");
+        const outputFile = outputFileDiv.text();
+
+
+        if (!endsWith(inputFile, "стандартный ввод")
+            && !endsWith(inputFile, "standard input")) {
+            inputFileDiv.attr("style", "font-weight: bold");
+        }
+
+        if (!endsWith(outputFile, "стандартный вывод")
+            && !endsWith(outputFile, "standard output")) {
+            outputFileDiv.attr("style", "font-weight: bold");
+        }
+
+        const titleDiv = $("div.header div.title");
+
+
+
+        String.prototype.replaceAll = function (search, replace) {
+            return this.split(search).join(replace);
+        };
+
+        $(".sample-test .title").each(function () {
+            const preId = ("id" + Math.random()).replaceAll(".", "0");
+            const cpyId = ("id" + Math.random()).replaceAll(".", "0");
+
+            $(this).parent().find("pre").attr("id", preId);
+            const $copy = $("<div title='Скопировать' data-clipboard-target='#" + preId + "' id='" + cpyId + "' class='input-output-copier'>Скопировать</div>");
+            $(this).append($copy);
+
+            const clipboard = new Clipboard('#' + cpyId, {
+                text: function (trigger) {
+                    const pre = document.querySelector('#' + preId);
+                    const lines = pre.querySelectorAll(".test-example-line");
+                    return Codeforces.filterClipboardText(pre.innerText, lines.length);
+                }
+            });
+
+            const isInput = $(this).parent().hasClass("input");
+
+            clipboard.on('success', function (e) {
+                if (isInput) {
+                    Codeforces.showMessage("Входные данные были скопированы в буфер обмена");
+                } else {
+                    Codeforces.showMessage("Выходные данные были скопированы в буфер обмена");
+                }
+                e.clearSelection();
+            });
+        });
+
+        $(".test-form-item input").change(function () {
+            addPendingSubmissionMessage($($(this).closest("form")), "Вы изменили ответ, не забудьте его отправить, если вы хотите сохранить изменения");
+            const index = $(this).closest(".problemindexholder").attr("problemindex");
+            let test = "";
+            $(this).closest("form input").each(function () {
+                const test_ = $(this).attr("name");
+                if (test_ && test_.substring(0, 4) === "test") {
+                    test = test_;
+                }
+            });
+            if (index.length > 0 && test.length > 0) {
+                const indexTest = index + "::" + test;
+                window.changedTests.add(indexTest);
+            }
+        });
+
+        $(window).on('beforeunload', function () {
+            if (window.changedTests.size > 0) {
+                return 'Dialog text here';
+            }
+        });
+
+        autosize($('.test-explanation textarea'));
+
+        function showTestCaseMarker($input, tp, clazz, end) {
+            let top = 1E20;
+            let left = 1E20;
+            let problem = $input.closest(".problemindexholder");
+            $input.find("." + clazz).css("background-color", "#FFFDE7").each(function() {
+                top = Math.min(top, $(this).offset().top);
+                left = Math.min(left, $(this).offset().left);
+            });
+            let testCaseMarker = problem.find(".testCaseMarker_" + tp + "_" + end);
+            if (testCaseMarker.length === 0) {
+                const html = "<div class=\"testCaseMarker testCaseMarker_" + tp + "_" + end + " notice\"></div>";
+                problem.append($(html));
+                testCaseMarker = problem.find(".testCaseMarker_" + tp + "_" + end);
+            }
+            if (testCaseMarker) {
+                testCaseMarker.show()
+                    .offset({top, left: left - 20})
+                    .text(end);
+            }
+        }
+
+        $(".test-example-line").hover(function() {
+            $(this).attr("class").split(" ").forEach((clazz) => {
+                if (clazz.substr(0, "test-example-line-".length) === "test-example-line-") {
+                    let end = clazz.substr("test-example-line-".length);
+                    if (end !== "even" && end !== "odd" && end !== "0") {
+                        showTestCaseMarker($(this).closest(".sample-test").find(".input"), "input", clazz, end);
+                        showTestCaseMarker($(this).closest(".sample-test").find(".output"), "output", clazz, end);
+                    }
+                }
+            });
+        }, function() {
+            $(this).attr("class").split(" ").forEach((clazz) => {
+                if (clazz.substr(0, "test-example-line-".length) === "test-example-line-") {
+                    let end = clazz.substr("test-example-line-".length);
+                    if (end !== "even" && end !== "odd" && end !== "0") {
+                        $("." + clazz).css("background-color", "");
+                        $(this).closest(".problemindexholder").find(".testCaseMarker_input_" + end).hide();
+                        $(this).closest(".problemindexholder").find(".testCaseMarker_output_" + end).hide();
+                    }
+                }
+            });
+        });
+
+    });
+</script>
+
+                </div>
+        </div>
+            <br style="clear: both;">
+            <div id="footer">
+                <div>Codeforces (c) Copyright 2010-2026 Михаил Мирзаянов</div>
+                <div>Соревнования по программированию 2.0</div>
+                    <div>Время на сервере: 09.04.2026 14:11:17 (n2).</div>
+                    <div>Десктопная версия, переключиться на <a rel="nofollow" class="switchToMobile" href="https://kubsucasd2026.contest.codeforces.com/group/2ghRveeNIP/contest/626047/problem/A?mobile=true">мобильную</a>.</div>
+                <div class="smaller">
+                    <a href="https://kubsucasd2026.contest.codeforces.com/privacy">Privacy Policy</a>
+                    |
+                    <a href="https://kubsucasd2026.contest.codeforces.com/terms">Terms and Conditions</a>
+                </div>
+
+                    <div style="margin-top: 25px;">
+                        На платформе
+                    </div>
+                    <div style="margin-top: 8px; padding-bottom: 20px;">
+                        <img style="margin-right: 1em; width: 150px;" src="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/codeforces-logo-550x67.png" alt="Codeforces" title="Codeforces">
+                    </div>
+            </div>
+        <script type="text/javascript">
+            $(function() {
+                $(".switchToMobile").click(function() {
+                    Codeforces.redirect(Codeforces.updateUrlParameter(document.location.href, "mobile", "true"));
+                    return false;
+                });
+                $(".switchToDesktop").click(function() {
+                    Codeforces.redirect(Codeforces.updateUrlParameter(document.location.href, "mobile", "false"));
+                    return false;
+                });
+            });
+        </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if ($(window).width() < 1600) {
+                $('.button-up').css('width', '30px').css('line-height', '30px').css('font-size', '20px');
+            }
+
+            if ($(window).width() >= 1200) {
+                $ (window).scroll (function () {
+                    if ($ (this).scrollTop () > 100) {
+                        $ ('.button-up').fadeIn();
+                    } else {
+                        $ ('.button-up').fadeOut();
+                    }
+                });
+
+                $('.button-up').click(function () {
+                    $('body,html').animate({
+                        scrollTop: 0
+                    }, 500);
+                    return false;
+                });
+
+                $('.button-up').hover(function () {
+                    $(this).animate({
+                        'opacity':'1'
+                    }).css({'background-color':'#e7ebf0','color':'#6a86a4'});
+                }, function () {
+                    $(this).animate({
+                        'opacity':'0.7'
+                    }).css({'background':'none','color':'#d3dbe4'});;
+                });
+            }
+
+            Codeforces.focusOnError();
+
+            Codeforces.setCopiedToClipboardText("Скопировано в буффер обмена");
+            Codeforces.listenCopyable();
+        });
+    </script>
+    <div class="userListsFacebox" style="display:none;">
+        <div style="padding: 0.5em; width: 600px; max-height: 200px; overflow-y: auto">
+<div class="datatable" style="background-color: #E1E1E1; padding-bottom: 3px;">
+            <div class="lt">&nbsp;</div>
+            <div class="rt">&nbsp;</div>
+            <div class="lb">&nbsp;</div>
+            <div class="rb">&nbsp;</div>
+
+            <div style="padding: 4px 0 0 6px;font-size:1.4rem;position:relative;">
+                Списки пользователей
+
+                <div style="position:absolute;right:0.25em;top:0.35em;">
+                    <span style="padding:0;position:relative;bottom:2px;" class="rowCount"></span>
+
+                    <img class="closed" src="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/magnifier-medium.png">
+
+                    <span class="filter" style="display:none;">
+                        <img class="opened" src="%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20-%20A%20-%20Codeforces_files/control-270.png">
+                        <input style="padding:0 0 0 20px;position:relative;bottom:2px;border:1px solid #aaa;height:17px;font-size:1.3rem;">
+                    </span>
+                </div>
+            </div>
+            <div style="background-color: white;margin:0.3em 3px 0 3px;position:relative;">
+            <div class="ilt">&nbsp;</div>
+            <div class="irt">&nbsp;</div>
+            <table class="">
+                <thead>
+                <tr>
+                    <th draggable="true" class="top left right">Название</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="no-items visible"><td style="text-align:left;" colspan="32" class="bottom dark left right">Нет данных</td></tr></tbody>
+            </table>
+            </div>
+        </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+                // Create new ':containsIgnoreCase' selector for search
+                jQuery.expr[':'].containsIgnoreCase = function(a, i, m) {
+                    return jQuery(a).text().toUpperCase()
+                            .indexOf(m[3].toUpperCase()) >= 0;
+                };
+
+                if (window.updateDatatableFilter == undefined) {
+                    window.updateDatatableFilter = function(i) {
+                        var parent = $(i).parent().parent().parent().parent();
+                        $("tr.no-items", parent).remove();
+                        $("tr", parent).hide().removeClass('visible');
+                        var text = $(i).val();
+                        if (text) {
+                            $("tr" + ":containsIgnoreCase('" + text + "')", parent).show().addClass('visible');
+                        } else {
+                            parent.find(".rowCount").text("");
+                            $("tr", parent).show().addClass('visible');
+                        }
+
+                        var found = false;
+                        var visibleRowCount = 0;
+                        $("tr", parent).each(function () {
+                            if (!found) {
+                                if ($(this).find("th").size() > 0) {
+                                    $(this).show().addClass('visible');
+                                    found = true;
+                                }
+                            }
+                            if ($(this).hasClass('visible')) {
+                                visibleRowCount++;
+                            }
+                        });
+                        if (text) {
+                            parent.find(".rowCount").text("Совпадений: " + (visibleRowCount - (found ? 1 : 0)));
+                        }
+                        if (visibleRowCount == (found ? 1 : 0)) {
+                            $("<tr class='no-items visible'><td style=\"text-align:left;\"colspan=\"32\">Нет данных<\/td><\/tr>").appendTo($(parent).find('table'));
+                        }
+                        $(parent).find("tr td").removeClass("dark");
+                        $(parent).find("tr.visible:odd td").addClass("dark");
+                    }
+
+                    $(".datatable .closed").click(function () {
+                        var parent = $(this).parent();
+                        $(this).hide();
+                        $(".filter", parent).fadeIn(function () {
+                            $("input", parent).val("").focus().css("border", "1px solid #aaa");
+                        });
+                    });
+
+                    $(".datatable .opened").click(function () {
+                        var parent = $(this).parent().parent();
+                        $(".filter", parent).fadeOut(function () {
+                            $(".closed", parent).show();
+                            $("input", parent).val("").each(function () {
+                                window.updateDatatableFilter(this);
+                            });
+                        });
+                    });
+
+                    $(".datatable .filter input").keyup(function(e) {
+                        window.updateDatatableFilter(this);
+                        e.preventDefault();
+                        e.stopPropagation();
+                    });
+
+                    $(".datatable table").each(function () {
+                        var found = false;
+                        $("tr", this).each(function () {
+                            if (!found && $(this).find("th").size() == 0) {
+                                found = true;
+                            }
+                        });
+                        if (!found) {
+                            $("<tr class='no-items visible'><td style=\"text-align:left;\"colspan=\"32\">Нет данных<\/td><\/tr>").appendTo(this);
+                        }
+                    });
+
+                    // Applies styles to datatables.
+                    $(".datatable").each(function () {
+                        $(this).find("tr:first th").addClass("top");
+                        $(this).find("tr:last td").addClass("bottom");
+                        $(this).find("tr:odd td").addClass("dark");
+                        $(this).find("tr td:first-child, tr th:first-child").addClass("left");
+                        $(this).find("tr td:last-child, tr th:last-child").addClass("right");
+                    });
+
+                    $(".datatable table.tablesorter").each(function () {
+                        $(this).bind("sortEnd", function () {
+                            $(".datatable").each(function () {
+                                $(this).find("th, td")
+                                    .removeClass("top").removeClass("bottom")
+                                    .removeClass("left").removeClass("right")
+                                    .removeClass("dark");
+                                $(this).find("tr:first th").addClass("top");
+                                $(this).find("tr:last td").addClass("bottom");
+                                $(this).find("tr:odd td").addClass("dark");
+                                $(this).find("tr td:first-child, tr th:first-child").addClass("left");
+                                $(this).find("tr td:last-child, tr th:last-child").addClass("right");
+                            });
+                        });
+                    });
+                }
+        });
+    </script>
+        </div>
+    </div>
+    <script type="application/javascript">
+        $(function() {
+            $(".userListMarker").click(function() {
+                $.post("/data/lists", {action: "findTouched"}, function(json) {
+                    Codeforces.facebox(".userListsFacebox");
+                    var tbody = $("#facebox tbody");
+                    tbody.empty();
+                    for (var i in json) {
+                        tbody.append(
+                            $("<tr></tr>").append(
+                                $("<td></td>").attr("data-readKey", json[i].readKey).text(json[i].name)
+                            )
+                        );
+                    }
+                    Codeforces.updateDatatables();
+                    tbody.find("td").css("cursor", "pointer").click(function() {
+                        document.location = Codeforces.updateUrlParameter(document.location.href, "list", $(this).attr("data-readKey"));
+                    });
+                }, "json");
+            });
+        });
+    </script>
+</div>
+
+
+<div id="datepick-div" style="display: none;"></div><div id="cboxOverlay" style="display: none;"></div><div id="colorbox" class="" style="display: none; padding-bottom: 42px; padding-right: 42px;"><div id="cboxWrapper"><div><div id="cboxTopLeft" style="float: left;"></div><div id="cboxTopCenter" style="float: left;"></div><div id="cboxTopRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxMiddleLeft" style="float: left;"></div><div id="cboxContent" style="float: left;"><div id="cboxLoadedContent" style="width: 0px; height: 0px; overflow: hidden; float: left;"></div><div id="cboxLoadingOverlay" style="float: left;"></div><div id="cboxLoadingGraphic" style="float: left;"></div><div id="cboxTitle" style="float: left;"></div><div id="cboxCurrent" style="float: left;"></div><div id="cboxNext" style="float: left;"></div><div id="cboxPrevious" style="float: left;"></div><div id="cboxSlideshow" style="float: left;"></div><div id="cboxClose" style="float: left;"></div></div><div id="cboxMiddleRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxBottomLeft" style="float: left;"></div><div id="cboxBottomCenter" style="float: left;"></div><div id="cboxBottomRight" style="float: left;"></div></div></div><div style="position: absolute; width: 9999px; visibility: hidden; display: none;"></div></div><div style="position: absolute; width: 0px; height: 0px; overflow: hidden; padding: 0px; border: 0px; margin: 0px;"><div id="MathJax_Font_Test" style="position: absolute; visibility: hidden; top: 0px; left: 0px; width: auto; min-width: 0px; max-width: none; padding: 0px; border: 0px; margin: 0px; white-space: nowrap; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; font-size: 40px; font-weight: normal; font-style: normal; font-size-adjust: none; font-family: MathJax_AMS, sans-serif;"></div></div></body></html>

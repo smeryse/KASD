@@ -11,7 +11,7 @@
 
 This is an educational repository for a university course on Algorithms and Data Structures. The project contains:
 
-- **Contests (CT1–CT9):** Competitive programming tasks with solutions, sample I/O, and detailed explanations
+- **Contests (CT1–CT10):** Competitive programming tasks with solutions, sample I/O, and detailed explanations
 - **Tasks (01–18+):** Individual programming assignments implementing data structures and algorithms
 - **Labs:** Database labs (db/) and OOP labs (oop/)
 - **Exams:** Exam preparation materials, theory answers, and task solutions
@@ -22,7 +22,7 @@ The codebase focuses on C# implementations of classic algorithms and data struct
 - Data structures (heaps, stacks, queues, segment trees, treaps, AVL trees)
 - String algorithms (hashing, Z-function, prefix function, Aho-Corasick)
 - Dynamic programming
-- Graph algorithms (disjoint sets, shortest paths)
+- Graph algorithms (disjoint sets, shortest paths, bipartite matching)
 
 ---
 
@@ -127,6 +127,7 @@ dotnet run -- A input.txt output.txt
 | CT7 | TBD | A–N (14) | ⬜ |
 | CT8 | TBD | A–N (14) | ⬜ |
 | CT9 | String algorithms | A–G (7) | ✅ |
+| CT10 | Bipartite matching | A–F (6) | ✅ |
 
 ---
 
@@ -240,8 +241,11 @@ cd contests/CT9 && dotnet run -- A sample check
 
 - **Namespace:** Match project name (`CT9`, `CT9.Tasks`)
 - **Access modifiers:** Explicit (`internal`, `private`, `public`)
-- **Documentation:** XML comments for public APIs
-- **Comments:** Russian language for explanations
+- **Documentation:** XML comments for public APIs only (///)
+- **Comments in code:** DO NOT add inline comments unless absolutely necessary for non-obvious logic
+- **Explanations:** Put explanations in separate `.md` files in `Explanations/` folder, NOT in code
+- **Emoji usage:** DO NOT use emojis in code, commit messages, or documentation
+- **Language:** Russian for explanations, English for code identifiers
 
 ### File Organization
 
@@ -327,6 +331,7 @@ static void Main()
 3. **Missing tests:** No unit tests for algorithms
 4. **Incomplete contests:** CT5–CT8 are placeholders
 5. **Assets cleanup:** `assets/images/lectures/` contains many `Pasted image *.png` files
+6. **CT10 added:** Bipartite matching contest (A–F), all tasks solved
 
 ### TODO Items
 

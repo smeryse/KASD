@@ -1,154 +1,165 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using CT1.Tasks;
+using CT10.Tasks;
 
-namespace CT1
+namespace CT10;
+
+internal class Program
 {
-    class Program
+    private static readonly string ProjectRoot = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", ".."));
+    private static readonly Dictionary<string, Action> TaskMap = new(StringComparer.OrdinalIgnoreCase)
     {
-        private static readonly Dictionary<string, Action> TaskMap = new Dictionary<string, Action>(StringComparer.OrdinalIgnoreCase)
+        ["A"] = TaskA.Solve,
+        ["B"] = TaskB.Solve,
+        ["C"] = TaskC.Solve,
+        ["D"] = TaskD.Solve,
+        ["E"] = TaskE.Solve,
+        ["F"] = TaskF.Solve,
+    };
+
+    static void Main(string[] args)
+    {
+        if (args.Length == 0)
         {
-            ["A"] = SimpleSort.Solve,
-            ["B"] = CountSort.Solve,
-            ["C"] = CountInversions.Solve,
-            ["D"] = MaxHeapTask.Solve,
-            ["E"] = QuickSearchInArray.Solve,
-            ["F"] = ApproximateBinarySearch.Solve,
-            ["G"] = VeryEasyTask.Solve,
-            ["H"] = SquareRootAndSquareSquare.Solve,
-            ["I"] = GladeOfFirewood.Solve,
-            ["J"] = KBest.Solve,
-            ["K"] = SplitArray.Solve,
-            ["L"] = CompTable.Solve,
-            ["M"] = KSumm.Solve
-        };
+            PrintUsage();
+            return;
+        }
 
-        static void Main(string[] args)
+        var key = args[0];
+        if (!TaskMap.TryGetValue(key, out var run))
         {
-            if (args.Length == 0)
-            {
-                PrintUsage();
-                return;
-            }
+            Console.WriteLine($"Unknown task '{key}'. Available: {string.Join(", ", TaskMap.Keys)}");
+            return;
+        }
 
-            var key = args[0];
-            if (!TaskMap.TryGetValue(key, out var run))
+        if (args.Length > 1)
+        {
+            var inputArg = args[1];
+            if (inputArg.Equals("sample", StringComparison.OrdinalIgnoreCase))
             {
-                Console.WriteLine($"Неизвестная задача '{key}'. Доступные: {string.Join(", ", TaskMap.Keys)}");
-                return;
-            }
-
-            if (args.Length > 1)
-            {
-                var inputArg = args[1];
-                if (inputArg.Equals("sample", StringComparison.OrdinalIgnoreCase))
-                {
-                    if (TryOpenSample(key, out var reader))
-                        Console.SetIn(reader);
-                    else
-                        Console.WriteLine("Для этой задачи нет файла с примером, использую стандартный ввод.");
-                }
-                else if (File.Exists(inputArg))
-                {
-                    Console.SetIn(new StreamReader(inputArg));
-                }
+                if (TryOpenSample(key, out var reader))
+                    Console.SetIn(reader);
                 else
-                {
-                    Console.WriteLine($"Файл не найден: {inputArg}. Использую стандартный ввод.");
-                }
+                    Console.WriteLine("No sample file found, using standard input.");
             }
-
-            RunWithOptionalCheck(run, key, args);
-        }
-
-        private static bool TryOpenSample(string key, out TextReader reader)
-        {
-            string samplesDir = Path.Combine(Directory.GetCurrentDirectory(), "Samples");
-            string[] candidates =
+            else if (File.Exists(inputArg))
             {
-                Path.Combine(samplesDir, key + ".in")
-            };
-
-            foreach (var path in candidates)
-            {
-                if (File.Exists(path))
-                {
-                    reader = new StreamReader(path);
-                    return true;
-                }
+                Console.SetIn(new StreamReader(inputArg));
             }
-
-            reader = TextReader.Null;
-            return false;
-        }
-
-
-
-        private static void RunWithOptionalCheck(Action run, string key, string[] args)
-        {
-            if (!TryResolveExpectedPath(key, args, out var expectedPath))
+            else if (TryResolvePathRelativeToProject(inputArg, out var resolvedInput))
             {
-                run();
-                return;
-            }
-            var originalOut = Console.Out;
-            using var writer = new StringWriter();
-            Console.SetOut(writer);
-            run();
-            Console.Out.Flush();
-            Console.SetOut(originalOut);
-            string actual = Normalize(writer.ToString());
-            string expected = Normalize(File.ReadAllText(expectedPath));
-            if (actual == expected)
-            {
-                Console.WriteLine("OK");
+                Console.SetIn(new StreamReader(resolvedInput));
             }
             else
             {
-                Console.WriteLine("FAIL");
-                Console.WriteLine("Expected:");
-                Console.WriteLine(expected);
-                Console.WriteLine("Actual:");
-                Console.WriteLine(actual);
-                Environment.ExitCode = 1;
+                Console.WriteLine($"File not found: {inputArg}. Using standard input.");
             }
         }
-        private static bool TryResolveExpectedPath(string key, string[] args, out string expectedPath)
+
+        RunWithOptionalCheck(run, key, args);
+    }
+
+    private static bool TryOpenSample(string key, out TextReader reader)
+    {
+        string samplesDir = Path.Combine(ProjectRoot, "Samples");
+        string[] candidates = { Path.Combine(samplesDir, key + ".in") };
+        foreach (var path in candidates)
         {
-            expectedPath = "";
-            if (args.Length < 3) return false;
-            var arg = args[2];
-            if (arg.Equals("check", StringComparison.OrdinalIgnoreCase))
+            if (File.Exists(path))
             {
-                var path = Path.Combine(Directory.GetCurrentDirectory(), "Samples", key + ".out");
-                if (!File.Exists(path))
-                {
-                    Console.WriteLine($"Файл не найден: {path}. Сравнение отключено.");
-                    return false;
-                }
-                expectedPath = path;
+                reader = new StreamReader(path);
                 return true;
             }
-            if (!File.Exists(arg))
+        }
+        reader = TextReader.Null;
+        return false;
+    }
+
+    private static void RunWithOptionalCheck(Action run, string key, string[] args)
+    {
+        if (!TryResolveExpectedPath(key, args, out var expectedPath))
+        {
+            run();
+            return;
+        }
+        var originalOut = Console.Out;
+        using var writer = new StringWriter();
+        Console.SetOut(writer);
+        run();
+        Console.Out.Flush();
+        Console.SetOut(originalOut);
+        string actual = Normalize(writer.ToString());
+        string expected = Normalize(File.ReadAllText(expectedPath));
+        if (actual == expected)
+        {
+            Console.WriteLine("OK");
+        }
+        else
+        {
+            Console.WriteLine("FAIL");
+            Console.WriteLine("Expected:");
+            Console.WriteLine(expected);
+            Console.WriteLine("Actual:");
+            Console.WriteLine(actual);
+            Environment.ExitCode = 1;
+        }
+    }
+
+    private static bool TryResolveExpectedPath(string key, string[] args, out string expectedPath)
+    {
+        expectedPath = "";
+        if (args.Length < 3) return false;
+        var arg = args[2];
+        if (arg.Equals("check", StringComparison.OrdinalIgnoreCase))
+        {
+            var path = Path.Combine(ProjectRoot, "Samples", key + ".out");
+            if (!File.Exists(path))
             {
-                Console.WriteLine($"Файл не найден: {arg}. Сравнение отключено.");
+                Console.WriteLine($"File not found: {path}. Check disabled.");
                 return false;
             }
-            expectedPath = arg;
+            expectedPath = path;
             return true;
         }
-        private static string Normalize(string value)
+        if (!TryResolvePathRelativeToProject(arg, out var resolvedPath))
         {
-            return value.Replace("\r\n", "\n").TrimEnd();
+            Console.WriteLine($"File not found: {arg}. Check disabled.");
+            return false;
         }
+        expectedPath = resolvedPath;
+        return true;
+    }
 
-
-        private static void PrintUsage()
+    private static bool TryResolvePathRelativeToProject(string path, out string resolvedPath)
+    {
+        if (File.Exists(path))
         {
-            Console.WriteLine("Укажи задачу A-M, напр.: dotnet run -- A");
-            Console.WriteLine("Примеры: dotnet run -- A sample | dotnet run -- A Samples/A.in");
-            Console.WriteLine("Сравнение: dotnet run -- A sample check | dotnet run -- A Samples/A.in Samples/A.out");
+            resolvedPath = path;
+            return true;
         }
+        if (!Path.IsPathRooted(path))
+        {
+            var candidate = Path.Combine(ProjectRoot, path);
+            if (File.Exists(candidate))
+            {
+                resolvedPath = candidate;
+                return true;
+            }
+        }
+        resolvedPath = path;
+        return false;
+    }
+
+    private static string Normalize(string value)
+    {
+        return value.Replace("\r\n", "\n").TrimEnd();
+    }
+
+    private static void PrintUsage()
+    {
+        Console.WriteLine("Usage: dotnet run -- <task> [input] [check]");
+        Console.WriteLine("Examples: dotnet run -- A sample");
+        Console.WriteLine("          dotnet run -- A sample check");
     }
 }
