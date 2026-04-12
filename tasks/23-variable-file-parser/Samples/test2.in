@@ -1,0 +1,24 @@
+int counter = 100;
+float pi = 3;
+double epsilon = 0;
+int max_size = 1024;
+int _temp = 42;
+
+float pi = 999;
+double counter = 777;
+
+string name = 10;
+bool flag = 1;
+char symbol = 65;
+
+int
+multi_line_var
+=
+500;
+
+float x1 = 1;
+int var_2 = 20;
+double _result_ = 314;
+
+int = 5;
+  float  spaces  =  10  ;

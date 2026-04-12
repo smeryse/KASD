@@ -1,0 +1,16 @@
+int x = 42;
+float y = 100;
+double z = 200;
+int counter = 100;
+
+string invalid_type = 50;
+int x = 999;
+float my_var = 12345;
+
+double
+multi_line
+=
+777;
+
+int good_one = 0;
+bool not_supported = 1;

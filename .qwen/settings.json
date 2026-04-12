@@ -3,7 +3,8 @@
     "allow": [
       "Bash(dotnet *)",
       "Bash(mkdir *)",
-      "Bash(rm *)"
+      "Bash(rm *)",
+      "Bash(timeout *)"
     ]
   },
   "$version": 3
