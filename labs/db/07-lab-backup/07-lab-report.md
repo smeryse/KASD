@@ -41,12 +41,10 @@
 
 ### 2.1. Подготовка к резервному копированию
 
-Перед созданием резервных копий была проверена исходная база данных `dj_db`:
+Перед тем как делать бэкапы, я проверил, что база данных `dj_db` вообще работает и в ней есть данные. Для этого выполнил запрос, который считает количество записей во всех таблицах:
 
-**Листинг SQL-команд:**
 ```sql
--- Проверка количества записей в таблицах
-SELECT 
+SELECT
     (SELECT COUNT(*) FROM track) AS track_count,
     (SELECT COUNT(*) FROM artist) AS artist_count,
     (SELECT COUNT(*) FROM collection) AS collection_count,
@@ -54,22 +52,33 @@ SELECT
     (SELECT COUNT(*) FROM event) AS event_count;
 ```
 
-**Результат выполнения:**
+Получил такой результат:
+
 ```
- track_count | artist_count | collection_count | genre_count | event_count 
+ track_count | artist_count | collection_count | genre_count | event_count
 -------------+--------------+------------------+-------------+-------------
         2790 |         1924 |               13 |          24 |           5
 ```
 
+Данные на месте, можно делать резервные копии.
+
 ---
 
 ### 2.2. Пункт 1: Создание Plain text резервной копии
+
+Для первого задания я создал полный бэкап в формате обычного SQL-скрипта. Для этого использовал утилиту `pg_dump` с опциями `--format=plain`, `--create` (чтобы в скрипт попала команда создания базы) и `--inserts` (чтобы данные экспортировались через INSERT, а не через COPY).
+
 ![[Pasted image 20260318231248.png]]
 ![[Pasted image 20260318231214.png]]
-![[dj_db_plain.sql]]
+
+В итоге получился файл `dj_db_plain.sql` размером 652 КБ — это обычный SQL-скрипт, который можно открыть в текстовом редакторе и посмотреть, что внутри.
+
+---
+
 ### 2.3. Пункт 2: Создание Custom резервной копии
 
-**Команда для создания:**
+Во втором задании нужно было сделать бэкап в формате Custom, но только секцию Pre-data (то есть структуру базы без данных). Также указал максимальное сжатие (`--compress=9`) и кодировку Win1251.
+
 ```bash
 pg_dump -d dj_db \
   --format=custom \
@@ -79,24 +88,14 @@ pg_dump -d dj_db \
   -f dj_db_custom.predata
 ```
 
-**Опции:**
-- `--format=custom` — собственный формат PostgreSQL
-- `--section=pre-data` — только структура (таблицы, последовательности)
-- `--compress=9` — максимальное сжатие
-- `--encoding=WIN1251` — кодировка Windows-1251
-
-**Результат:**
-```
-Файл: dj_db_custom.predata
-Размер: 13 КБ (сжато)
-Секция: Pre-data (структура БД)
-```
+Файл получился маленький — всего 13 КБ, потому что в нём только структура таблиц и последовательностей, без самих данных. Custom-формат — это бинарный формат PostgreSQL, его нельзя просто так прочитать текстовым редактором, зато он хорошо сжимается и его можно восстанавливать через `pg_restore`.
 
 ---
 
 ### 2.4. Пункт 3: Создание Directory резервной копии
 
-**Команда для создания:**
+Для третьего задания создал бэкап в формате Directory. Этот формат удобен тем, что данные разбиваются на отдельные файлы внутри папки, и можно восстанавливать их параллельно в несколько потоков. В этот раз сохранил только секции Data и Post-data (то есть данные и индексы/триггеры, без структуры).
+
 ```bash
 pg_dump -d dj_db \
   --format=directory \
@@ -107,73 +106,50 @@ pg_dump -d dj_db \
   -f dj_db_directory
 ```
 
-**Опции:**
-- `--format=directory` — формат директории (параллельное восстановление)
-- `--section=data,post-data` — данные и пост-данные
-- `--compress=9` — максимальное сжатие
-- `--inserts` — использовать INSERT команды
+Внутри папки `dj_db_directory/` создалось несколько файлов:
+- `toc.dat` — оглавление (список того, что внутри)
+- `3514.dat.gz`, `3516.dat.gz`, `3518.dat.gz` — сжатые куски данных
 
-**Результат:**
-```
-Директория: dj_db_directory/
-Файлы:
-  - toc.dat (оглавление)
-  - 3514.dat.gz (данные, 29 КБ)
-  - 3516.dat.gz (данные, 762 байт)
-  - 3518.dat.gz (данные, 47 КБ)
-  - ...
-Общий размер: 124 КБ (сжато)
-```
+Общий размер — 124 КБ. После создания бэкапа я удалил базу данных `dj_db`, чтобы потом проверить, что смогу её восстановить.
 
 ---
 
 ### 2.5. Пункт 4: Восстановление структуры из Custom бэкапа
 
-**Шаг 4.1: Создание новой пустой базы данных**
+Сначала создал новую пустую базу данных `dj_db_restored`. Перед этим удалил старую, если она вдруг осталась:
+
 ```bash
-# Удаление старой базы (если существует)
 psql -c "DROP DATABASE IF EXISTS dj_db_restored;"
 
-# Создание новой базы
-psql -c "CREATE DATABASE dj_db_restored 
-    WITH ENCODING='UTF8' 
-    LC_COLLATE='ru_RU.UTF-8' 
-    LC_CTYPE='ru_RU.UTF-8' 
+psql -c "CREATE DATABASE dj_db_restored
+    WITH ENCODING='UTF8'
+    LC_COLLATE='ru_RU.UTF-8'
+    LC_CTYPE='ru_RU.UTF-8'
     TEMPLATE=template0;"
 ```
 
-**Результат:**
+Получил:
 ```
 DROP DATABASE
 CREATE DATABASE
 ```
 
-**Шаг 4.2: Восстановление структуры из Custom бэкапа**
+Теперь восстановил структуру из Custom-бэкапа (только Pre-data):
+
 ```bash
 pg_restore -d dj_db_restored \
   --section=pre-data \
   dj_db_custom.predata
 ```
 
-**Результат:**
-```
---
--- PostgreSQL database restore
---
-ALTER TABLE
-ALTER TABLE
-ALTER TABLE
-...
-Структура восстановлена успешно!
-```
+В выводе пошли команды ALTER TABLE — это значит, что `pg_restore` создал все таблицы и настроил ограничения. Проверил, что таблицы действительно появились:
 
-**Проверка:**
 ```sql
--- Проверка созданных таблиц
 \dt
+```
 
--- Результат:
- Schema |    Name     | Type  |  Owner   
+```
+ Schema |    Name     | Type  |  Owner
 --------+-------------+-------+----------
  public | artist      | table | postgres
  public | collection  | table | postgres
@@ -184,11 +160,14 @@ ALTER TABLE
  public | track_audit_log | table | postgres
 ```
 
+Все 7 таблиц на месте, но данных в них пока нет.
+
 ---
 
 ### 2.6. Пункт 5: Восстановление данных из Directory бэкапа
 
-**Команда для восстановления:**
+Теперь нужно заполнить базу данными. Для этого использовал Directory-бэкап, в котором были сохранены секции Data и Post-data:
+
 ```bash
 pg_restore -d dj_db_restored \
   --section=data \
@@ -196,11 +175,8 @@ pg_restore -d dj_db_restored \
   dj_db_directory
 ```
 
-**Результат:**
+В выводе видно, как вставляются данные:
 ```
---
--- PostgreSQL database restore
---
 INSERT 0 1924  -- artist
 INSERT 0 51    -- genre
 INSERT 0 2790  -- track
@@ -208,51 +184,37 @@ INSERT 0 13    -- collection
 INSERT 0 12    -- event
 ALTER TABLE
 ALTER TABLE
-...
-Данные восстановлены успешно!
 ```
 
-**Проверка восстановленной БД:**
+После этого проверил, что данные восстановились полностью:
+
 ```sql
-SELECT 
+SELECT
     (SELECT COUNT(*) FROM track) AS track_count,
     (SELECT COUNT(*) FROM artist) AS artist_count,
     (SELECT COUNT(*) FROM collection) AS collection_count;
 ```
 
-**Результат:**
 ```
- track_count | artist_count | collection_count 
+ track_count | artist_count | collection_count
 -------------+--------------+------------------+
         2790 |         1924 |               13
 ```
 
-✅ **Данные восстановлены полностью!**
+Цифры совпали с исходными — данные восстановились без потерь.
 
 ---
 
 ### 2.7. Пункт 6: Восстановление через psql из Plain text бэкапа
 
-**Команда для восстановления:**
+Последний пункт — восстановить базу из Plain text SQL-скрипта через утилиту `psql`. Это самый простой способ, потому что файл — это обычный SQL, его можно просто запустить:
+
 ```bash
-# Восстановление через psql с запуском SQL скрипта
 psql -f dj_db_plain.sql postgres
 ```
 
-**Или для восстановления в существующую базу:**
-```bash
-# Сначала создать структуру из Custom
-pg_restore -d dj_db_from_plain --section=pre-data dj_db_custom.predata
-
-# Затем восстановить данные из Plain SQL
-psql -d dj_db_from_plain -f dj_db_data_only.sql
+Поскольку в файле была опция `--create`, скрипт сам создал базу данных и подключился к ней. В выводе:
 ```
-
-**Результат:**
-```
---
--- PostgreSQL database restore
---
 SET statement_timeout = 0;
 CREATE DATABASE
 \connect dj_db
@@ -265,19 +227,18 @@ GRANT
 GRANT
 ```
 
-**Проверка:**
+Проверил количество треков:
 ```sql
 SELECT COUNT(*) AS tracks FROM track;
 ```
 
-**Результат:**
 ```
- tracks 
+ tracks
 --------
    2790
 ```
 
-✅ **База восстановлена через psql!**
+Всё совпало.
 
 ---
 
@@ -303,7 +264,7 @@ SELECT COUNT(*) AS tracks FROM track;
 ## 4. ОТВЕТЫ НА КОНТРОЛЬНЫЕ ВОПРОСЫ
 
 1. **Какие типы резервных копий поддерживает PostgreSQL?**
-   
+
    PostgreSQL поддерживает несколько типов резервных копий:
    - **Plain text (SQL)** — текстовый файл с SQL-командами
    - **Custom (Tar)** — собственный сжатый формат PostgreSQL
@@ -311,24 +272,24 @@ SELECT COUNT(*) AS tracks FROM track;
    - **Tar** — формат архива tar
 
 2. **В чём разница между секциями Pre-data, Data и Post-data?**
-   
+
    - **Pre-data** — структура базы данных: таблицы, последовательности, типы данных (до данных)
    - **Data** — сами данные (содержимое таблиц)
    - **Post-data** — индексы, триггеры, ограничения, представления (после данных)
 
 3. **Какие утилиты используются для резервного копирования и восстановления?**
-   
+
    - **pg_dump** — создание резервной копии базы данных
    - **pg_dumpall** — создание резервной копии всех баз данных
    - **pg_restore** — восстановление из Custom/Directory/Tar формата
    - **psql** — восстановление из Plain text SQL
 
 4. **Что делает опция --create в pg_dump?**
-   
+
    Опция `--create` добавляет в скрипт команды `CREATE DATABASE` и `DROP DATABASE IF EXISTS`, что позволяет воссоздать саму базу данных, а не только её объекты.
 
 5. **В чём преимущество формата Directory?**
-   
+
    Формат Directory позволяет:
    - **Параллельное восстановление** (опция `-j`)
    - **Выборочное восстановление** отдельных таблиц
@@ -336,7 +297,7 @@ SELECT COUNT(*) AS tracks FROM track;
    - **Лёгкое масштабирование** для больших баз
 
 6. **Как восстановить базу данных из Plain text бэкапа?**
-   
+
    ```bash
    psql -f backup.sql postgres
    ```
@@ -346,11 +307,11 @@ SELECT COUNT(*) AS tracks FROM track;
    ```
 
 7. **Что делает опция --inserts в pg_dump?**
-   
+
    Опция `--inserts` заставляет pg_dump использовать команды `INSERT INTO` вместо `COPY` для экспорта данных. Это делает файл более совместимым с другими СУБД, но увеличивает размер и время восстановления.
 
 8. **Можно ли восстановить только структуру базы данных?**
-   
+
    Да, с помощью:
    ```bash
    pg_dump --schema-only -f structure.sql dbname
@@ -361,7 +322,7 @@ SELECT COUNT(*) AS tracks FROM track;
    ```
 
 9. **Как восстановить только данные без структуры?**
-   
+
    ```bash
    pg_dump --data-only -f data.sql dbname
    ```
@@ -371,7 +332,7 @@ SELECT COUNT(*) AS tracks FROM track;
    ```
 
 10. **Что такое параллельное восстановление и как его использовать?**
-    
+
     Параллельное восстановление использует несколько процессов для ускорения загрузки данных. Доступно только для формата Directory:
     ```bash
     pg_restore -j 4 -d dbname backup_directory/
@@ -382,23 +343,20 @@ SELECT COUNT(*) AS tracks FROM track;
 
 ## 5. ВЫВОДЫ
 
-В ходе выполнения лабораторной работы:
-1. Были получены практические навыки резервного копирования баз данных в PostgreSQL
-2. Созданы три типа резервных копий для базы данных `dj_db`:
-   - **Plain text** (652 КБ) — полный SQL-скрипт с CREATE DATABASE и INSERT командами
-   - **Custom** (13 КБ) — сжатая копия структуры БД (Pre-data)
-   - **Directory** (124 КБ) — сжатая копия данных и пост-данных
-3. Выполнено восстановление базы данных двумя способами:
-   - Из Custom + Directory бэкапов через `pg_restore`
-   - Из Plain text бэкапа через `psql`
-4. Проверена целостность восстановленных данных (2790 треков, 1924 артиста, 13 коллекций)
-5. Освоены ключевые опции `pg_dump` и `pg_restore`: `--section`, `--compress`, `--create`, `--inserts`, `--format`
+В ходе выполнения лабораторной работы я получил практические навыки резервного копирования и восстановления баз данных в PostgreSQL.
 
-В результате была изучена система резервного копирования PostgreSQL, которая обеспечивает:
-- **Гибкость** — выбор формата и секций для копирования
-- **Эффективность** — сжатие до 9 уровня
-- **Надёжность** — полное или частичное восстановление
-- **Совместимость** — Plain SQL для переноса между СУБД
+Были созданы три типа резервных копий для базы данных `dj_db`:
+- **Plain text** (652 КБ) — полный SQL-скрипт с CREATE DATABASE и INSERT командами. Самый универсальный формат — можно открыть текстовым редактором и запустить через psql.
+- **Custom** (13 КБ) — сжатая копия только структуры БД (Pre-data). Получился очень компактный файл благодаря максимальному сжатию.
+- **Directory** (124 КБ) — сжатая копия данных и пост-данных. Удобна тем, что данные разбиты на файлы и можно восстанавливать параллельно.
+
+Выполнил восстановление базы данных двумя способами:
+- Из Custom + Directory бэкапов через `pg_restore` — сначала структуру, потом данные
+- Из Plain text бэкапа через `psql` — всё за один запуск
+
+Проверил целостность восстановленных данных — все 2790 треков, 1924 артиста и 13 коллекций на месте, ничего не потерялось.
+
+Освоил ключевые опции `pg_dump` и `pg_restore`: `--section`, `--compress`, `--create`, `--inserts`, `--format`. Теперь понимаю, чем отличаются форматы бэкапов и когда какой лучше использовать.
 
 ---
 
@@ -442,10 +400,10 @@ pg_dump -d dj_db \
 # ПУНКТ 4: Восстановление структуры из Custom
 # ============================================================================
 psql -c "DROP DATABASE IF EXISTS dj_db_restored;"
-psql -c "CREATE DATABASE dj_db_restored 
-    WITH ENCODING='UTF8' 
-    LC_COLLATE='ru_RU.UTF-8' 
-    LC_CTYPE='ru_RU.UTF-8' 
+psql -c "CREATE DATABASE dj_db_restored
+    WITH ENCODING='UTF8'
+    LC_COLLATE='ru_RU.UTF-8'
+    LC_CTYPE='ru_RU.UTF-8'
     TEMPLATE=template0;"
 
 pg_restore -d dj_db_restored \
@@ -467,10 +425,10 @@ pg_restore -d dj_db_restored \
 psql -f dj_db_plain.sql postgres
 
 # Вариант 2: Поэтапное восстановление
-psql -c "CREATE DATABASE dj_db_from_plain 
-    WITH ENCODING='UTF8' 
-    LC_COLLATE='ru_RU.UTF-8' 
-    LC_CTYPE='ru_RU.UTF-8' 
+psql -c "CREATE DATABASE dj_db_from_plain
+    WITH ENCODING='UTF8'
+    LC_COLLATE='ru_RU.UTF-8'
+    LC_CTYPE='ru_RU.UTF-8'
     TEMPLATE=template0;"
 
 pg_restore -d dj_db_from_plain --section=pre-data dj_db_custom.predata
@@ -480,7 +438,7 @@ psql -d dj_db_from_plain -f dj_db_data_only.sql
 # ПРОВЕРКА
 # ============================================================================
 psql -d dj_db_restored -c "
-    SELECT 
+    SELECT
         (SELECT COUNT(*) FROM track) AS track_count,
         (SELECT COUNT(*) FROM artist) AS artist_count,
         (SELECT COUNT(*) FROM collection) AS collection_count;"
