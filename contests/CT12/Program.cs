@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using CT1.Tasks;
+using CT12.Tasks;
 
-namespace CT1
+namespace CT12
 {
     class Program
     {

@@ -2,8 +2,8 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
-    <RootNamespace>CT1</RootNamespace>
-    <AssemblyName>CT1</AssemblyName>
+    <RootNamespace>CT11</RootNamespace>
+    <AssemblyName>CT11</AssemblyName>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>disable</Nullable>
   </PropertyGroup>

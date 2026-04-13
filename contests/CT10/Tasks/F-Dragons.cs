@@ -1,167 +1,110 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 
-namespace CT10.Tasks;
-
-internal static class TaskF
+class Program
 {
-    static int[] matchB;
-    static bool[] vis;
-    static List<int>[] adj;
+    static int m, k, n;
+    static int[] matchGreen, matchYellow;
+    static bool[,] forbidden;
+    static bool[] visited;
+    static Queue<string> tokens = new Queue<string>();
 
-    static bool Dfs(int u)
+    static int NextInt()
     {
-        if (vis[u]) return false;
-        vis[u] = true;
-        foreach (int v in adj[u])
+        while (tokens.Count == 0)
         {
-            if (matchB[v] == -1 || Dfs(matchB[v]))
+            string line = Console.ReadLine();
+            if (line == null) break;
+            foreach (var p in line.Trim().Split(new char[]{' ','\t'}, StringSplitOptions.RemoveEmptyEntries))
+                tokens.Enqueue(p);
+        }
+        return int.Parse(tokens.Dequeue());
+    }
+
+    static bool DfsGreen(int g)
+    {
+        for (int y = 0; y < k; y++)
+        {
+            if (!forbidden[g, y] && !visited[y])
             {
-                matchB[v] = u;
-                return true;
+                visited[y] = true;
+                if (matchYellow[y] == -1 || DfsGreen(matchYellow[y]))
+                {
+                    matchGreen[g] = y;
+                    matchYellow[y] = g;
+                    return true;
+                }
             }
         }
         return false;
     }
 
-    public static void Solve()
+    static void Main()
     {
-        var fs = new FastScannerF(Console.OpenStandardInput());
-        int m = fs.NextInt();
-        int k = fs.NextInt();
-        int n = fs.NextInt();
+        m = NextInt(); k = NextInt(); n = NextInt();
 
-        int t = fs.NextInt();
-        var forbidden = new HashSet<(int, int)>();
+        forbidden = new bool[m, k];
+        int t = NextInt();
         for (int i = 0; i < t; i++)
         {
-            int g = fs.NextInt();
-            int y = fs.NextInt();
-            forbidden.Add((g, y - m));
+            int g = NextInt() - 1;
+            int y = NextInt() - m - 1;
+            forbidden[g, y] = true;
         }
 
-        int q = fs.NextInt();
-        var canBeAlone = new bool[m + k + 1];
-        for (int i = 1; i <= m + k; i++) canBeAlone[i] = true;
+        int q = NextInt();
+        var lonelyGreen  = new HashSet<int>();
+        var lonelyYellow = new HashSet<int>();
         for (int i = 0; i < q; i++)
         {
-            int dragon = fs.NextInt();
-            canBeAlone[dragon] = false;
+            int x = NextInt();
+            if (x <= m) lonelyGreen.Add(x - 1);
+            else        lonelyYellow.Add(x - m - 1);
         }
 
-        int mustGreen = 0, mustYellow = 0;
-        for (int i = 1; i <= m; i++)
-            if (!canBeAlone[i]) mustGreen++;
-        for (int i = m + 1; i <= m + k; i++)
-            if (!canBeAlone[i]) mustYellow++;
+        matchGreen  = new int[m];
+        matchYellow = new int[k];
+        for (int i = 0; i < m; i++) matchGreen[i]  = -1;
+        for (int j = 0; j < k; j++) matchYellow[j] = -1;
 
-        adj = new List<int>[m];
-        for (int i = 1; i <= m; i++)
-        {
-            adj[i - 1] = new List<int>();
-            for (int j = 1; j <= k; j++)
-            {
-                if (!forbidden.Contains((i, j)))
-                    adj[i - 1].Add(j - 1);
-            }
-        }
+        // Обязательные зелёные — первыми (приоритет в паросочетании)
+        foreach (int g in lonelyGreen) { visited = new bool[k]; DfsGreen(g); }
+        // Остальные зелёные
+        for (int g = 0; g < m; g++)
+            if (!lonelyGreen.Contains(g)) { visited = new bool[k]; DfsGreen(g); }
 
-        matchB = new int[k];
-        Array.Fill(matchB, -1);
-        var matchA = new int[m];
-        Array.Fill(matchA, -1);
+        // Проверяем покрытие обязательных
+        bool ok = true;
+        foreach (int g in lonelyGreen)
+            if (matchGreen[g] == -1) { ok = false; break; }
+        if (ok)
+            foreach (int y in lonelyYellow)
+                if (matchYellow[y] == -1) { ok = false; break; }
 
-        for (int i = 1; i <= m; i++)
-        {
-            if (!canBeAlone[i])
-            {
-                vis = new bool[m];
-                DfsF(i - 1, matchA, matchB, adj);
-            }
-        }
+        int matched = 0;
+        for (int i = 0; i < m; i++) if (matchGreen[i] != -1) matched++;
 
-        for (int i = 1; i <= m; i++)
-        {
-            vis = new bool[m];
-            DfsF(i - 1, matchA, matchB, adj);
-        }
+        if (!ok || matched < n) { Console.WriteLine("NO"); return; }
 
-        int matching = 0;
-        for (int j = 0; j < k; j++)
-            if (matchB[j] != -1) matching++;
+        // Обязательные зелёные = lonelyGreen + партнёры lonelyYellow
+        var mandatoryGreen = new HashSet<int>(lonelyGreen);
+        foreach (int y in lonelyYellow)
+            mandatoryGreen.Add(matchYellow[y]);
 
-        if (matching < n)
-        {
-            Console.WriteLine("NO");
-            return;
-        }
+        var result = new List<(int g, int y)>();
+        foreach (int g in mandatoryGreen)
+            result.Add((g, matchGreen[g]));
 
-        var matchedGreen = new bool[m + 1];
-        var matchedYellow = new bool[m + k + 1];
-        for (int j = 0; j < k; j++)
-        {
-            if (matchB[j] != -1)
-            {
-                matchedGreen[matchB[j] + 1] = true;
-                matchedYellow[m + j + 1] = true;
-            }
-        }
+        if (result.Count > n) { Console.WriteLine("NO"); return; }
 
-        for (int i = 1; i <= m; i++)
-            if (!canBeAlone[i] && !matchedGreen[i])
-            { Console.WriteLine("NO"); return; }
-        for (int i = m + 1; i <= m + k; i++)
-            if (!canBeAlone[i] && !matchedYellow[i])
-            { Console.WriteLine("NO"); return; }
+        for (int g = 0; g < m && result.Count < n; g++)
+            if (!mandatoryGreen.Contains(g) && matchGreen[g] != -1)
+                result.Add((g, matchGreen[g]));
+
+        if (result.Count < n) { Console.WriteLine("NO"); return; }
 
         Console.WriteLine("YES");
-        int printed = 0;
-        for (int j = 0; j < k && printed < n; j++)
-        {
-            if (matchB[j] != -1)
-            {
-                Console.WriteLine($"{matchB[j] + 1} {m + j + 1}");
-                printed++;
-            }
-        }
-    }
-
-    static bool DfsF(int u, int[] matchA, int[] matchB, List<int>[] adj)
-    {
-        int m = matchA.Length;
-        if (vis[u]) return false;
-        vis[u] = true;
-        foreach (int v in adj[u])
-        {
-            if (matchB[v] == -1 || DfsF(matchB[v], matchA, matchB, adj))
-            {
-                matchA[u] = v;
-                matchB[v] = u;
-                return true;
-            }
-        }
-        return false;
-    }
-}
-
-internal sealed class FastScannerF
-{
-    private readonly Stream stream;
-    private readonly byte[] buffer = new byte[1 << 16];
-    private int pos, len;
-    public FastScannerF(Stream s) { stream = s; }
-    private byte ReadByte()
-    {
-        if (pos >= len) { pos = 0; len = stream.Read(buffer); if (len == 0) return 0; }
-        return buffer[pos++];
-    }
-    public int NextInt()
-    {
-        int c = ReadByte();
-        while (c <= ' ') { if (c == 0) return 0; c = ReadByte(); }
-        int res = 0;
-        do { res = res * 10 + c - '0'; c = ReadByte(); } while (c >= '0' && c <= '9');
-        return res;
+        foreach (var (g, y) in result)
+            Console.WriteLine((g + 1) + " " + (y + m + 1));
     }
 }

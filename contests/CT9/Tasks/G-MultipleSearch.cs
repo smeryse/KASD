@@ -1,158 +1,148 @@
 using System;
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
 
 namespace CT9.Tasks;
 
-internal static class MultipleSearch
+internal static class TaskG
 {
+    public static void Main()
+    {
+        Solve();
+    }
+
     public static void Solve()
     {
-        var fs = new FastScanner(Console.OpenStandardInput());
+        var fs = new FastScannerG(Console.OpenStandardInput());
         int n = fs.NextInt();
-        string[] patterns = new string[n];
+
+        var patterns = new string[n];
+        int totalLen = 0;
         for (int i = 0; i < n; i++)
+        {
             patterns[i] = fs.NextString();
+            totalLen += patterns[i].Length;
+        }
         string t = fs.NextString();
 
-        var ac = new AhoCorasick(patterns);
+        var seen = new Dictionary<string, int>();
+        var canonicalIdx = new int[n];
 
-        bool[] found = ac.Search(t);
+        int nodeCount = totalLen + 2;
+        var go = new int[nodeCount][];
+        var fail = new int[nodeCount];
+        var output = new int[nodeCount];
+        var dict = new int[nodeCount];
 
-        var sb = new System.Text.StringBuilder();
+        for (int i = 0; i < nodeCount; i++)
+        {
+            go[i] = new int[26];
+            for (int c = 0; c < 26; c++) go[i][c] = -1;
+            output[i] = -1;
+            dict[i] = -1;
+        }
+
+        int size = 1;
+
         for (int i = 0; i < n; i++)
         {
-            sb.Append(found[i] ? "YES" : "NO").Append('\n');
-        }
-        Console.Write(sb.ToString());
-    }
-
-    private sealed class AhoCorasick
-    {
-        private sealed class Node
-        {
-            public Dictionary<char, int> next = new();
-            public int fail = 0;
-            public List<int> output = new();
-        }
-
-        private readonly List<Node> trie = new() { new Node() };
-
-        public AhoCorasick(string[] patterns)
-        {
-            for (int i = 0; i < patterns.Length; i++)
+            if (!seen.TryGetValue(patterns[i], out int canonical))
             {
-                int node = 0;
-                foreach (char c in patterns[i])
+                canonical = i;
+                seen[patterns[i]] = i;
+
+                int cur = 0;
+                foreach (char ch in patterns[i])
                 {
-                    if (!trie[node].next.ContainsKey(c))
-                    {
-                        trie[node].next[c] = trie.Count;
-                        trie.Add(new Node());
-                    }
-                    node = trie[node].next[c];
+                    int c = ch - 'a';
+                    if (go[cur][c] == -1)
+                        go[cur][c] = size++;
+                    cur = go[cur][c];
                 }
-                trie[node].output.Add(i);
+                if (output[cur] == -1)
+                    output[cur] = i;
             }
+            canonicalIdx[i] = canonical;
+        }
 
-            var queue = new Queue<int>();
-            foreach (var kvp in trie[0].next)
+        var queue = new Queue<int>();
+        for (int c = 0; c < 26; c++)
+        {
+            if (go[0][c] == -1)
+                go[0][c] = 0;
+            else
             {
-                queue.Enqueue(kvp.Value);
+                fail[go[0][c]] = 0;
+                queue.Enqueue(go[0][c]);
             }
+        }
 
-            while (queue.Count > 0)
+        while (queue.Count > 0)
+        {
+            int u = queue.Dequeue();
+            dict[u] = (output[fail[u]] != -1) ? fail[u] : dict[fail[u]];
+
+            for (int c = 0; c < 26; c++)
             {
-                int u = queue.Dequeue();
-                foreach (var kvp in trie[u].next)
+                if (go[u][c] == -1)
                 {
-                    char c = kvp.Key;
-                    int v = kvp.Value;
-                    queue.Enqueue(v);
-
-                    int f = trie[u].fail;
-                    while (f != 0 && !trie[f].next.ContainsKey(c))
-                        f = trie[f].fail;
-                    trie[v].fail = trie[f].next.ContainsKey(c) ? trie[f].next[c] : 0;
-
-                    trie[v].output.AddRange(trie[trie[v].fail].output);
+                    go[u][c] = go[fail[u]][c];
+                }
+                else
+                {
+                    fail[go[u][c]] = go[fail[u]][c];
+                    queue.Enqueue(go[u][c]);
                 }
             }
         }
 
-        public bool[] Search(string text)
+        var found = new bool[n];
+        int cur2 = 0;
+        foreach (char ch in t)
         {
-            bool[] found = new bool[trie.Count];
-            int node = 0;
-
-            foreach (char c in text)
+            cur2 = go[cur2][ch - 'a'];
+            int tmp = (output[cur2] != -1) ? cur2 : dict[cur2];
+            while (tmp != -1)
             {
-                while (node != 0 && !trie[node].next.ContainsKey(c))
-                    node = trie[node].fail;
-                if (trie[node].next.ContainsKey(c))
-                    node = trie[node].next[c];
-
-                foreach (int idx in trie[node].output)
-                    found[idx] = true;
+                found[output[tmp]] = true;
+                tmp = dict[tmp];
             }
-
-            bool[] result = new bool[found.Length];
-            for (int i = 0; i < found.Length; i++)
-                result[i] = found[i];
-            return result;
         }
+
+        var sb = new StringBuilder(n * 4);
+        for (int i = 0; i < n; i++)
+            sb.AppendLine(found[canonicalIdx[i]] ? "YES" : "NO");
+
+        Console.Write(sb);
     }
+}
 
-    private sealed class FastScanner
+internal sealed class FastScannerG
+{
+    private readonly Stream stream;
+    private readonly byte[] buffer = new byte[1 << 16];
+    private int pos, len;
+    public FastScannerG(Stream s) { stream = s; }
+    private byte ReadByte()
     {
-        private readonly Stream stream;
-        private readonly byte[] buffer;
-        private int len;
-        private int ptr;
-
-        public FastScanner(Stream stream, int bufferSize = 1 << 16)
-        {
-            this.stream = stream;
-            buffer = new byte[bufferSize];
-        }
-
-        private byte Read()
-        {
-            if (ptr >= len)
-            {
-                len = stream.Read(buffer, 0, buffer.Length);
-                ptr = 0;
-                if (len <= 0) return 0;
-            }
-            return buffer[ptr++];
-        }
-
-        public int NextInt()
-        {
-            int c;
-            do c = Read(); while (c <= ' ');
-
-            int val = 0;
-            while (c > ' ')
-            {
-                val = val * 10 + (c - '0');
-                c = Read();
-            }
-            return val;
-        }
-
-        public string NextString()
-        {
-            int c;
-            do c = Read(); while (c <= ' ');
-
-            var sb = new System.Text.StringBuilder();
-            while (c > ' ')
-            {
-                sb.Append((char)c);
-                c = Read();
-            }
-            return sb.ToString();
-        }
+        if (pos >= len) { pos = 0; len = stream.Read(buffer); if (len == 0) return 0; }
+        return buffer[pos++];
+    }
+    public int NextInt()
+    {
+        int c = ReadByte();
+        while (c <= ' ') { if (c == 0) return 0; c = ReadByte(); }
+        int res = 0;
+        do { res = res * 10 + c - '0'; c = ReadByte(); } while (c >= '0' && c <= '9');
+        return res;
+    }
+    public string NextString()
+    {
+        int c = ReadByte();
+        while (c <= ' ') { if (c == 0) return ""; c = ReadByte(); }
+        var sb = new StringBuilder();
+        do { sb.Append((char)c); c = ReadByte(); } while (c > ' ');
+        return sb.ToString();
     }
 }

@@ -445,6 +445,5 @@ FodyWeavers.xsd
 **/obj/
 **/*.cache
 **/*.user
-contests/CT7/Explanations/B.md
 
 /labs/db/05-dj-music-db/music
