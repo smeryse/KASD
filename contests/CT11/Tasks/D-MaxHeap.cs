@@ -5,11 +5,6 @@ using System.Text;
 
 namespace CT11.Tasks
 {
-    /// <summary>
-    /// D. Групповой турнир — распределить результаты матчей через максимальный поток.
-    /// Модель: источник → матчи (3 единицы потока), матчи → команды, команды → сток (очки).
-    /// Каждый матч распределяет 3 очка между двумя командами: (3,0), (0,3), (2,1), (1,2).
-    /// </summary>
     internal static class TaskD
     {
         private class Edge
@@ -33,7 +28,6 @@ namespace CT11.Tasks
             for (int i = 0; i < N; i++)
                 needed[i] = fs.NextInt();
 
-            // Подсчитываем текущие очки и список нерешённых матчей
             int[] currentPoints = new int[N];
             var matches = new List<(int i, int j)>();
 
@@ -53,23 +47,14 @@ namespace CT11.Tasks
                 }
             }
 
-            // Сколько очков ещё нужно каждой команде
             int[] remaining = new int[N];
             for (int i = 0; i < N; i++)
             {
                 remaining[i] = needed[i] - currentPoints[i];
                 if (remaining[i] < 0)
                 {
-                    // Уже набрали больше нужного — решение невозможно
-                    // Но по гарантии существует, так что просто продолжаем
                 }
             }
-
-            // Строим сеть:
-            // Источник S = 0
-            // Узлы матчей: 1..M
-            // Узлы команд: M+1..M+N
-            // Сток T = M+N+1
             int M = matches.Count;
             int S = 0;
             int T = M + N + 1;
@@ -86,42 +71,35 @@ namespace CT11.Tasks
 
             int totalFlowNeeded = 0;
 
-            // S → каждый матч с capacity 3
             for (int k = 0; k < M; k++)
             {
                 AddEdge(S, k + 1, 3);
                 totalFlowNeeded += 3;
 
-                // Матч → команда i и команда j с capacity 3 each
                 var (i, j) = matches[k];
                 AddEdge(k + 1, M + 1 + i, 3);
                 AddEdge(k + 1, M + 1 + j, 3);
             }
 
-            // Каждая команда → T с capacity = remaining[i]
             for (int i = 0; i < N; i++)
             {
                 if (remaining[i] > 0)
                     AddEdge(M + 1 + i, T, remaining[i]);
             }
 
-            // Находим максимальный поток
             int maxFlow = EdmondsKarp(graph, totalNodes, S, T);
 
             if (maxFlow != totalFlowNeeded)
             {
-                // Отладка
                 Console.Error.WriteLine($"maxFlow={maxFlow}, totalFlowNeeded={totalFlowNeeded}");
                 for (int i = 0; i < N; i++)
                     Console.Error.WriteLine($"Team {i+1}: current={currentPoints[i]}, remaining={remaining[i]}, needed={needed[i]}");
                 return;
             }
 
-            // Восстанавливаем результаты матчей из потока
             for (int k = 0; k < M; k++)
             {
                 var (i, j) = matches[k];
-                // Поток из узла матча в команду i
                 int flowToI = 0;
                 foreach (var edge in graph[k + 1])
                 {
@@ -132,16 +110,14 @@ namespace CT11.Tasks
                     }
                 }
 
-                int flowToJ = 3 - flowToI; // всего 3 очка
+                int flowToJ = 3 - flowToI;
 
-                // Определяем результат
                 if (flowToI == 3 && flowToJ == 0) { table[i][j] = 'W'; table[j][i] = 'L'; }
                 else if (flowToI == 0 && flowToJ == 3) { table[i][j] = 'L'; table[j][i] = 'W'; }
                 else if (flowToI == 2 && flowToJ == 1) { table[i][j] = 'w'; table[j][i] = 'l'; }
                 else if (flowToI == 1 && flowToJ == 2) { table[i][j] = 'l'; table[j][i] = 'w'; }
                 else
                 {
-                    //fallback — не должно произойти
                     table[i][j] = 'W'; table[j][i] = 'L';
                 }
             }

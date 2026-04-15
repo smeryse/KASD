@@ -5,15 +5,6 @@ using System.Text;
 
 namespace CT11.Tasks
 {
-    /// <summary>
-    /// E. Великая стена — минимальный разрез между A и B на grid.
-    /// Сводим к минимальному разрезу: каждая клетка '.' имеет стоимость 1 (можно построить стену),
-    /// '-' — бесконечность (нельзя строить), '#' — уже заблокирована.
-    /// 
-    /// Модель: разрезаем вершины, а не рёбра. Разбиваем каждую клетку на in/out с ребром capacity=1 (для '.'),
-    /// соседние клетки соединяем бесконечными рёбрами.
-    /// Минимальный разрез = минимальное количество стен.
-    /// </summary>
     internal static class TaskE
     {
         private const int INF = 1_000_000_000;
@@ -36,7 +27,6 @@ namespace CT11.Tasks
             for (int i = 0; i < m; i++)
                 grid[i] = fs.NextString().ToCharArray();
 
-            // Находим позиции A и B
             int aRow = -1, aCol = -1, bRow = -1, bCol = -1;
             for (int i = 0; i < m; i++)
             {
@@ -46,11 +36,8 @@ namespace CT11.Tasks
                     else if (grid[i][j] == 'B') { bRow = i; bCol = j; }
                 }
             }
-
-            // Проверяем, что A и B не соседствуют напрямую
             if (AreAdjacent(aRow, aCol, bRow, bCol, m, n, grid))
             {
-                // Проверяем, можно ли пройти из A в B без стен
                 if (CanReach(aRow, aCol, bRow, bCol, m, n, grid, new bool[m, n]))
                 {
                     Console.WriteLine("-1");
@@ -65,11 +52,6 @@ namespace CT11.Tasks
                 }
             }
 
-            // Строим сеть для минимального вершинного разреза
-            // Каждая клетка (i,j) -> два узла: in = (i*n+j)*2, out = (i*n+j)*2+1
-            // Ребро in->out: capacity=1 для '.', INF для '-', 0 для '#'
-            // Соседние клетки: out->in с capacity=INF
-            // Источник = out узла A, сток = in узла B
             int totalCells = m * n;
             int totalNodes = totalCells * 2 + 2;
             int source = totalCells * 2;
@@ -87,7 +69,6 @@ namespace CT11.Tasks
             int CellIn(int r, int c) => (r * n + c) * 2;
             int CellOut(int r, int c) => (r * n + c) * 2 + 1;
 
-            // Рёбра внутри клеток
             for (int i = 0; i < m; i++)
             {
                 for (int j = 0; j < n; j++)
@@ -104,7 +85,6 @@ namespace CT11.Tasks
                 }
             }
 
-            // Соседние клетки
             int[] dr = { -1, 1, 0, 0 };
             int[] dc = { 0, 0, -1, 1 };
 
@@ -124,9 +104,6 @@ namespace CT11.Tasks
                 }
             }
 
-            // Источник -> out(A) с INF
-            // in(B) -> сток с INF
-            // Поток идёт из out(A) к in(B) через граф
             AddEdge(source, CellOut(aRow, aCol), INF);
             AddEdge(CellIn(bRow, bCol), sink, INF);
 
@@ -138,7 +115,6 @@ namespace CT11.Tasks
                 return;
             }
 
-            // Находим достижимые из source в остаточном графе
             var reachable = new bool[totalNodes];
             var q = new Queue<int>();
             q.Enqueue(source);
@@ -157,7 +133,6 @@ namespace CT11.Tasks
                 }
             }
 
-            // Клетки в разрезе: in достижим, out нет (для '.' клеток)
             int wallsBuilt = 0;
             for (int i = 0; i < m; i++)
             {
