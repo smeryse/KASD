@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>Task28</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../25-my-tree-set/Task25.csproj" />
+    <ProjectReference Include="../19-my-tree-set/MyTreeSet.csproj" />
+    <ProjectReference Include="../18-my-tree-map/MyTreeMap.csproj" />
+  </ItemGroup>
+
+</Project>

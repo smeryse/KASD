@@ -1,0 +1,6 @@
+Hello world! Hello Universe.
+The quick brown fox jumps over the lazy dog.
+Hello again, World!
+Programming is fun and interesting.
+The fox was quick and the dog was lazy.
+ABC abc AbC aBc - all the same word!

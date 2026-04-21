@@ -9,19 +9,11 @@ namespace CT12
     {
         private static readonly Dictionary<string, Action> TaskMap = new Dictionary<string, Action>(StringComparer.OrdinalIgnoreCase)
         {
-            ["A"] = SimpleSort.Solve,
-            ["B"] = CountSort.Solve,
-            ["C"] = CountInversions.Solve,
-            ["D"] = MaxHeapTask.Solve,
-            ["E"] = QuickSearchInArray.Solve,
-            ["F"] = ApproximateBinarySearch.Solve,
-            ["G"] = VeryEasyTask.Solve,
-            ["H"] = SquareRootAndSquareSquare.Solve,
-            ["I"] = GladeOfFirewood.Solve,
-            ["J"] = KBest.Solve,
-            ["K"] = SplitArray.Solve,
-            ["L"] = CompTable.Solve,
-            ["M"] = KSumm.Solve
+            ["A"] = A_MCMF.Solve,
+            ["B"] = AssignmentProblem.Solve,
+            ["C"] = RockPaperScissors.Solve,
+            ["D"] = TravelingSalesmen.Solve,
+            ["E"] = SeekingBrides.Solve
         };
 
         static void Main(string[] args)
@@ -83,8 +75,6 @@ namespace CT12
             return false;
         }
 
-
-
         private static void RunWithOptionalCheck(Action run, string key, string[] args)
         {
             if (!TryResolveExpectedPath(key, args, out var expectedPath))
@@ -114,6 +104,7 @@ namespace CT12
                 Environment.ExitCode = 1;
             }
         }
+
         private static bool TryResolveExpectedPath(string key, string[] args, out string expectedPath)
         {
             expectedPath = "";
@@ -138,15 +129,15 @@ namespace CT12
             expectedPath = arg;
             return true;
         }
+
         private static string Normalize(string value)
         {
             return value.Replace("\r\n", "\n").TrimEnd();
         }
 
-
         private static void PrintUsage()
         {
-            Console.WriteLine("Укажи задачу A-M, напр.: dotnet run -- A");
+            Console.WriteLine("Укажи задачу A-E, напр.: dotnet run -- A");
             Console.WriteLine("Примеры: dotnet run -- A sample | dotnet run -- A Samples/A.in");
             Console.WriteLine("Сравнение: dotnet run -- A sample check | dotnet run -- A Samples/A.in Samples/A.out");
         }

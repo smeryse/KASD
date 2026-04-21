@@ -1,0 +1,4 @@
+A quick brown fox jumps over the lazy dog.
+The dog was not amused by the fox.
+The fox was quick and the dog was lazy.
+Programming is fun and interesting.

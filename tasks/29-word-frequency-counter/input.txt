@@ -1,0 +1,4 @@
+The quick brown fox jumps over the lazy dog.
+The dog was not amused by the fox.
+The fox was quick and the dog was lazy.
+A quick brown fox is a quick brown fox.
