@@ -1,6 +1,3 @@
-// FIXME: ArgumentNullException.ThrowIfNull(arr);
-// FIXME: Refactor Size() -> this.Size (func to field)
-// FIXME: REfactor Get\Set to use like vector[i] = 12; or Print(vector[i])
 namespace Task10.Collection
 {
     public class MyVector<T>
@@ -30,9 +27,7 @@ namespace Task10.Collection
         }
 
         public MyVector(T[] arr)
-        /*
-            MyVector(T[] a) ->  MyVector(T[] arr)
-        */
+        
         {
             if (arr == null)
                 throw new ArgumentNullException(nameof(arr));
@@ -48,18 +43,14 @@ namespace Task10.Collection
         public bool IsEmpty() => elementCount == 0;
 
         public void Add(T elem) 
-        /*
-            add(T e) -> add(T elem)
-        */
+        
         {
             EnsureCapacity(elementData.Length + 1);
             elementData[elementCount++] = elem;
         }
 
         public void Add(int index, T elem)
-        /*
-            Add(int  index,  T  e) -> Add(int  index,  T  elem)
-        */
+        
         {
             if (index < 0 || index >= elementCount)
                 throw new ArgumentOutOfRangeException(nameof(index));
@@ -73,9 +64,7 @@ namespace Task10.Collection
         }
 
         public void AddAll(T[] arr)
-        /*
-            T[] a -> T[] arr
-        */
+        
         { 
             if (arr == null) 
                 throw new ArgumentNullException(nameof(arr));
@@ -85,9 +74,7 @@ namespace Task10.Collection
         }
 
         public void AddAll(int index, T[] arr)
-        /*
-            AddAll(int index, T[] a) -> AddAll(int index, T[] arr)
-        */
+        
         {
             if (arr == null) 
                 throw new ArgumentNullException(nameof(arr));
@@ -97,10 +84,7 @@ namespace Task10.Collection
         }
 
         public bool Remove(object obj)
-        /*
-            Remove(object o) -> Remove(object obj)
-            Return true if removed, else false
-        */
+        
         {
         bool removedAny = false;
 
@@ -115,12 +99,7 @@ namespace Task10.Collection
         }
 
         public T RemoveAt(int index)
-        /*
-        Merge Remove(int index)
-        Rename: RemoveElementAt -> RemoveAt
-        Rename: pos -> index
-        Return type "T" (before void)
-        */
+        
         {
             if (index < 0 || index >= elementCount)
                 throw new ArgumentOutOfRangeException(nameof(index));
@@ -134,10 +113,7 @@ namespace Task10.Collection
         }
 
         public bool RemoveAll(T[] arr)
-        /*
-            RemoveAll(T[] a) -> RemoveAll(T[] arr)
-            Return if all removed, else false
-        */
+        
         {
             if (arr == null) 
                 throw new ArgumentNullException(nameof(arr));
@@ -153,19 +129,14 @@ namespace Task10.Collection
         }
 
         public void RemoveRange(int begin, int end)
-        /*
-            Remove inderval - [begin; end]
-            Return array of removed elements
-        */
+        
         {
             for (int i = begin; i <= end; i++)
                 RemoveAt(begin);
         }
 
         public void Clear()
-        /*
-            Delete link on elements for garbage collector
-        */
+        
         {
             elementCount = 0;
             Array.Clear(elementData, 0, elementCount);
@@ -180,9 +151,7 @@ namespace Task10.Collection
         }
 
         public void Set(int index, T elem)
-        /*
-            Set(int index, T e) -> Set(int index, T elem)
-        */
+        
         {
             if (index < 0 || index >= elementCount)
                 throw new IndexOutOfRangeException($"Index {index} is out of range.");
@@ -211,10 +180,7 @@ namespace Task10.Collection
         }
 
         public int IndexOf(object obj)
-        /*
-            IndexOf(object o) -> IndexOf(object obj)
-            Return -1 if not find
-        */
+        
         {
             for (int i = 0; i < elementCount; i++)
             {
@@ -225,9 +191,7 @@ namespace Task10.Collection
         }
 
         public int LastIndexOf(object obj)
-        /*
-            LastIndexOf(object o) -> LastIndexOf(object obj)
-        */
+        
         {
             for (int i = elementCount - 1; i >= 0; i--)
             {
@@ -238,9 +202,7 @@ namespace Task10.Collection
         }
 
         public bool Contains(object obj)
-        /*
-            LastIndexOf(object o) -> LastIndexOf(object obj)
-        */
+        
         {
             for (int i = 0; i < elementCount; i++)
             {
@@ -251,9 +213,7 @@ namespace Task10.Collection
         }
 
         public bool ContainsAll(T[] arr)
-        /*
-            ContainsAll(T[] a) -> ContainsAll(T[] arr)
-        */
+        
         {
             if (arr == null)
                 throw new ArgumentNullException(nameof(arr));
@@ -267,9 +227,7 @@ namespace Task10.Collection
         }
 
         public void RetainAll(T[] arr)
-        /*
-            RetainAll(T[] a) -> RetainAll(T[] arr)
-        */
+        
         {
             if (arr == null) 
                 throw new ArgumentNullException(nameof(arr));
@@ -289,9 +247,6 @@ namespace Task10.Collection
         }
 
         public T[] ToArray()
-        /*
-            ??????
-        */
         {
             T[] arr = new T[elementCount];
             for (int i = 0; i < elementCount; i++)
@@ -300,10 +255,6 @@ namespace Task10.Collection
         }
 
         public void ToArray(T[] arr)
-        /*
-            ?????
-            ToArray(T[] a) -> ToArray(T[] arr)
-        */
         {
             if (arr == null || arr.Length < elementCount)
                 arr = new T[elementCount];

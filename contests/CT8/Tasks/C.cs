@@ -29,7 +29,7 @@ internal class NegativeCycle
             }
         }
 
-        // Флойд-Уоршелл
+        
         for (int k = 1; k <= n; k++)
         {
             for (int i = 1; i <= n; i++)
@@ -45,12 +45,12 @@ internal class NegativeCycle
             }
         }
 
-        // Проверка на цикл отрицательного веса
+        
         for (int i = 1; i <= n; i++)
         {
             if (dist[i, i] < 0)
             {
-                // Нашли цикл отрицательного веса
+                
                 var cycle = new System.Collections.Generic.List<int>();
                 int curr = i;
                 do
@@ -59,16 +59,16 @@ internal class NegativeCycle
                     curr = next[curr, i];
                 } while (curr != -1 && curr != i && cycle.Count <= n);
 
-                // Если цикл не замкнулся, пробуем восстановить иначе
+                
                 if (curr != i || cycle.Count > n)
                 {
                     cycle.Clear();
-                    // Ищем вершину на цикле
+                    
                     int v = i;
                     for (int step = 0; step < n; step++)
                         v = next[v, i];
                     
-                    // Восстанавливаем цикл начиная с v
+                    
                     cycle.Add(v);
                     int start = v;
                     while (true)

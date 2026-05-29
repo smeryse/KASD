@@ -56,7 +56,7 @@ internal static class TaskC
 
     private static int ParseTimeToMinutes(string time)
     {
-        // Формат "HH:MM"
+        
         int hours = (time[0] - '0') * 10 + (time[1] - '0');
         int minutes = (time[3] - '0') * 10 + (time[4] - '0');
         return hours * 60 + minutes;

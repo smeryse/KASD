@@ -7,8 +7,8 @@ namespace CT2.Tasks
     {
         static int[] parent;
         static int[] size;
-        // add[root] — накопленный опыт, добавленный всему клану с корнем root
-        // diff[x] — "личная" поправка игрока x: опыт(x) = add[find(x)] + diff[x]
+        
+        
         static long[] add;
         static long[] diff;
 
@@ -79,7 +79,7 @@ namespace CT2.Tasks
             int ry = Find(y);
             if (rx == ry) return;
 
-            // union by size
+            
             if (size[rx] < size[ry])
             {
                 int tmp = rx;
@@ -87,7 +87,7 @@ namespace CT2.Tasks
                 ry = tmp;
             }
 
-            // присоединяем корень ry к rx
+            
             parent[ry] = rx;
             diff[ry] = add[ry] - add[rx];
             size[rx] += size[ry];

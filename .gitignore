@@ -5,7 +5,7 @@ __pycache__/
 .pytest_cache/
 
 ## == Obsidian ==
-.obsidian
+.obsidian/
 .DS_Store
 Thumbs.db
 .vault/
@@ -437,8 +437,6 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
-
-.obsidian/
 
 ## == Build artifacts (global) ==
 **/bin/

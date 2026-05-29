@@ -7,7 +7,7 @@ namespace CT1.Tasks
     {
         public static void Solve()
         {
-            Console.ReadLine(); // n не нужен
+            Console.ReadLine(); 
             int[] arr = Console.ReadLine()
                                .Split(' ', StringSplitOptions.RemoveEmptyEntries)
                                .Select(int.Parse)

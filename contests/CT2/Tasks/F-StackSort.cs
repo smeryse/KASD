@@ -25,8 +25,8 @@ namespace CT2.Tasks
 
             int need = 1;
 
-            // push: A.Pop() -> B.Push()
-            // pop : B.Pop() -> output
+            
+            
             while (stackA.Count > 0)
             {
                 stackB.Push(stackA.Pop());

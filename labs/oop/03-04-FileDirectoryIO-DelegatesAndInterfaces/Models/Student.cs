@@ -11,7 +11,7 @@ public class Student : IPrintable, IManageable
     public string Surname { get; set; }
     public int Age { get; set; }
 
-    // Список оценок по предметам (Grade уже содержит ссылку на Subject)
+    
     public List<Grade> Grades { get; set; } = new List<Grade>();
 
     public Student() { }
@@ -23,7 +23,7 @@ public class Student : IPrintable, IManageable
         Age = age;
     }
 
-    // Добавление предмета (создаём запись Grade для этого предмета)
+    
     public void AddSubject(Subject subject)
     {
         if (Grades.Any(g => g.Subject.SubjectId == subject.SubjectId))
@@ -31,7 +31,7 @@ public class Student : IPrintable, IManageable
         Grades.Add(new Grade(subject));
     }
 
-    // Удаление предмета и всех оценок по нему
+    
     public void RemoveSubject(int subjectId)
     {
         var grade = Grades.FirstOrDefault(g => g.Subject.SubjectId == subjectId);
@@ -40,7 +40,7 @@ public class Student : IPrintable, IManageable
         Grades.Remove(grade);
     }
 
-    // Добавление оценки по предмету
+    
     public void AddGrade(Subject subject, int score)
     {
         Grade grade = Grades.FirstOrDefault(g => g.Subject.SubjectId == subject.SubjectId);
@@ -52,7 +52,7 @@ public class Student : IPrintable, IManageable
         grade.AddScore(score);
     }
 
-    // Удаление оценки
+    
     public void RemoveGrade(Subject subject, int score)
     {
         Grade grade = Grades.FirstOrDefault(g => g.Subject.SubjectId == subject.SubjectId);
@@ -61,14 +61,14 @@ public class Student : IPrintable, IManageable
         grade.RemoveScore(score);
     }
 
-    // Получить средний балл по всем предметам
+    
     public double GetAverageAll()
     {
         IEnumerable<Grade> validGrades = Grades.Where(g => g.Scores.Count > 0);
         return validGrades.Any() ? validGrades.Average(g => g.Average) : 0;
     }
 
-    // Поиск оценок по предмету
+    
     public Grade FindGrades(Subject subject)
     {
         Grade grades = Grades.FirstOrDefault(g => g.Subject.SubjectId == subject.SubjectId);
@@ -77,7 +77,7 @@ public class Student : IPrintable, IManageable
         return grades;
     }
 
-    // Вывод информации о студенте
+    
     public string ToFormattedString(string indent = "")
     {
         string result = $"{indent}{Name} {Surname} ({Age} лет, ID={StudentId})\n";

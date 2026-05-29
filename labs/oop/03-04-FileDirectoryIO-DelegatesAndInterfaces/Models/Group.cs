@@ -15,7 +15,7 @@ public class Group : IPrintable
         GroupName = groupName;
     }
 
-    // Работа со студентами
+    
     public void AddStudent(Student student)
     {
         if (Students.Exists(s => s.StudentId == student.StudentId))

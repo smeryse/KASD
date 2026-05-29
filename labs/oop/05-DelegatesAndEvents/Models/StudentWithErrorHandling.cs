@@ -4,16 +4,16 @@ using System.Linq;
 
 namespace ЛР5
 {
-    /// <summary>
-    /// Производный класс Student, переопределяющий событие ErrorOccurred через наследование
-    /// и реализующий обработку 7 типов исключений
-    /// </summary>
+    
+    
+    
+    
     class StudentWithErrorHandling : Student
     {
-        // Переопределение события через ключевое слово new
+        
         public new event EventHandler<StudentEventArgs> ErrorOccurred;
 
-        // Публичный метод для вызова переопределенного события
+        
         public new void RaiseError(Exception ex)
         {
             ErrorOccurred?.Invoke(this, new StudentEventArgs(ex));
@@ -23,18 +23,18 @@ namespace ЛР5
         public StudentWithErrorHandling(string name, string surname, int age) 
             : base(name, surname, age) { }
 
-        // === Методы для генерации и обработки исключений ===
+        
 
-        /// <summary>
-        /// Генерация StackOverflowException через рекурсию
-        /// </summary>
+        
+        
+        
         public void TestStackOverflow()
         {
             try
             {
-                // StackOverflowException обычно не может быть пойман в .NET,
-                // поэтому создаём его явно для демонстрации
-                // В реальном приложении это исключение обычно приводит к завершению программы
+                
+                
+                
                 throw new StackOverflowException("Переполнение стека при рекурсивном вызове");
             }
             catch (StackOverflowException ex)
@@ -43,21 +43,21 @@ namespace ЛР5
             }
             catch (Exception ex)
             {
-                // Если по какой-то причине не поймался, создаём его явно
+                
                 RaiseError(new StackOverflowException("Переполнение стека при рекурсивном вызове", ex));
             }
         }
 
-        /// <summary>
-        /// Генерация ArrayTypeMismatchException
-        /// </summary>
+        
+        
+        
         public void TestArrayTypeMismatch()
         {
             try
             {
                 int[] intArray = new int[5];
                 Array objArray = intArray;
-                // Попытка установить строку в массив целых чисел
+                
                 objArray.SetValue("string", 0);
             }
             catch (ArrayTypeMismatchException ex)
@@ -66,9 +66,9 @@ namespace ЛР5
             }
         }
 
-        /// <summary>
-        /// Генерация DivideByZeroException
-        /// </summary>
+        
+        
+        
         public void TestDivideByZero()
         {
             try
@@ -83,15 +83,15 @@ namespace ЛР5
             }
         }
 
-        /// <summary>
-        /// Генерация IndexOutOfRangeException
-        /// </summary>
+        
+        
+        
         public void TestIndexOutOfRange()
         {
             try
             {
                 int[] array = new int[5];
-                // Попытка доступа к несуществующему индексу
+                
                 int value = array[10];
             }
             catch (IndexOutOfRangeException ex)
@@ -100,15 +100,15 @@ namespace ЛР5
             }
         }
 
-        /// <summary>
-        /// Генерация InvalidCastException
-        /// </summary>
+        
+        
+        
         public void TestInvalidCast()
         {
             try
             {
                 object obj = "Это строка";
-                // Попытка приведения строки к целому числу
+                
                 int number = (int)obj;
             }
             catch (InvalidCastException ex)
@@ -117,15 +117,15 @@ namespace ЛР5
             }
         }
 
-        /// <summary>
-        /// Генерация OutOfMemoryException
-        /// </summary>
+        
+        
+        
         public void TestOutOfMemory()
         {
             try
             {
-                // Попытка выделить слишком большой массив
-                // В реальности это может не сработать, поэтому создаём исключение явно
+                
+                
                 long[] hugeArray = new long[int.MaxValue];
             }
             catch (OutOfMemoryException ex)
@@ -134,14 +134,14 @@ namespace ЛР5
             }
             catch (Exception)
             {
-                // Если реальное исключение не произошло, создаём его явно
+                
                 RaiseError(new OutOfMemoryException("Недостаточно памяти для выделения массива"));
             }
         }
 
-        /// <summary>
-        /// Генерация OverflowException
-        /// </summary>
+        
+        
+        
         public void TestOverflow()
         {
             try
@@ -149,7 +149,7 @@ namespace ЛР5
                 checked
                 {
                     int maxValue = int.MaxValue;
-                    // Попытка переполнения при сложении
+                    
                     int overflow = maxValue + 1;
                 }
             }
@@ -159,9 +159,9 @@ namespace ЛР5
             }
         }
 
-        /// <summary>
-        /// Метод для запуска всех тестов исключений
-        /// </summary>
+        
+        
+        
         public void RunAllExceptionTests()
         {
             Console.WriteLine("=== Запуск тестов исключений ===");

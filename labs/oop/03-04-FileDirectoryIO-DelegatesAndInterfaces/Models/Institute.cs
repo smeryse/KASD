@@ -14,7 +14,7 @@ public class Institute
         Name = name;
     }
 
-    // Методы
+    
     public void AddCourse(Course course) => Courses.Add(course);
     public void RemoveCourse(int id) => Courses.Remove(FindCourse(id));
     public Course FindCourse(int id)
@@ -39,7 +39,7 @@ public class Institute
     public override string ToString() => ToFormattedString();
     public void Print() => Console.Write(ToFormattedString());
 
-    // JSON SAVE/LOAD
+    
     public void SaveToFile(string path)
     {
         var options = new JsonSerializerOptions { WriteIndented = true };
@@ -53,7 +53,7 @@ public static Institute LoadFromFile(string path)
 
     if (inst == null) return null;
 
-    // вычисляем максимальные ID и ставим следующие значения
+    
     int maxCourseId = inst.Courses.Any() ? inst.Courses.Max(c => c.CourseId) : 0;
     Course.SetNextId(maxCourseId + 1);
 

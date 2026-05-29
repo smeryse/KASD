@@ -1,68 +1,31 @@
-# Educational C# Labs Repository
+# Algorithms and Data Structures
 
-Repository for educational lab | tasks | contests exercises in C# programming.
+Учебный репозиторий на C#/.NET. Основная рабочая структура:
 
-## Task Tracker
+- `contests/` — контесты по алгоритмам (CT1–CT12)
+- `tasks/` — отдельные учебные задачи (1–31)
+- `labs/` — лабораторные работы (OOP + базы данных)
+- `docs/` — лекции, теория, литература
+- `exams/` — подготовка к экзаменам и коллоквиуму
+- `meta/` — мета-информация курса
+- `assets/` — изображения, конфиги, документация
 
-* [Tasks](Учеба%20ВУЗ/kasd/tasks/Tasks.md)
-* [Labs](labs/oop/Labs.md)
-* [Contests](contests/Contests.md)
+## Требования
 
-## Contests Structure
+- .NET 8.0 SDK+
+- C# 12
 
-Each contest folder `CT1`..`CT8` contains:
-
-* `CTn.md` — contest index
-* `Tasks/` — solutions per task
-* `Samples/` — `A.in` / `A.out` pairs
-* `Explanations/` — `A.md`..`N.md` notes
-
-Run a task from its contest folder:
+## Запуск задач
 
 ```bash
-dotnet run -- A sample
-dotnet run -- A Samples/A.in
+# Запуск контестной задачи
+dotnet run --project contests/CT9/CT9.csproj -- A sample
+
+# Запуск учебной задачи
+dotnet run --project tasks/01-vector-norm/VectorNorm.csproj
+
+# Проверка по эталонному выводу
+dotnet run --project contests/CT9/CT9.csproj -- A sample check
 ```
 
-Compare output with `Samples/A.out`:
-
-```bash
-dotnet run -- A sample check
-```
-
-## Tech Stack
-
-* **Language**: C# 12
-* **Platform**: .NET 8.0
-* **Package Management**: NuGet
-* **CI/CD**: GitHub Actions
-
-### Key Dependencies
-
-* `Newtonsoft.Json` 13.0.4 – JSON serialization
-* `System.Text.Json` 9.0.9 – Built-in JSON serialization
-
-## Requirements
-
-* .NET 8.0 SDK or higher
-* Visual Studio Code (recommended) or Visual Studio 2022
-
-## Installation & Running
-
-### Restore Dependencies
-
-```bash
-dotnet restore
-```
-
-## Migration History
-
-This project was migrated from .NET Framework 4.8 to the modern .NET 8.0 SDK-style format:
-
-* All `App.config` and `packages.config` files were removed
-* Project properties converted to SDK-style `.csproj` format
-* Automatic versioning and dependency management enabled
-
-## Author
-
-Smeryse
+Подробнее: [assets/README.md](assets/README.md) и [assets/AGENTS.md](assets/AGENTS.md).

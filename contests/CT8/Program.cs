@@ -15,6 +15,10 @@ internal class Program
         ["D"] = ShortestPathK.Solve,
         ["E"] = ShortestPaths.Solve,
         ["F"] = LostKefir.Solve,
+        ["G"] = G.Solve,
+        ["H"] = H.Solve,
+        ["I"] = I.Solve,
+        ["J"] = J.Solve,
     };
 
     static void Main(string[] args)
@@ -27,7 +31,7 @@ internal class Program
 
         var key = args[0];
 
-        // Специальная команда для запуска тестов
+        
         if (key.Equals("tests", StringComparison.OrdinalIgnoreCase))
         {
             CT8_TestRunner.RunAllTests();

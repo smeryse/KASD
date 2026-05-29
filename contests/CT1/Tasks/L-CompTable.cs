@@ -2,7 +2,7 @@ using System;
 
 namespace CT1.Tasks
 {
-    // K-я порядковая статистика в таблице умножения n x n
+    
     static class CompTable
     {
         private static long n, k;

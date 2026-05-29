@@ -93,7 +93,7 @@ class Knapsack2D:
 
 
 class Knapsack1D:
-    # TODO: Разобраться, как работает движение w сверху вниз
+    
     """Bottom-up 1D DP"""
     def __init__(self, W: int, weights: List[int], values: List[int]):
         self.W = W
@@ -112,23 +112,23 @@ class Knapsack1D:
         return self.dp[self.W]
 
 class UnboundedKnapsack1D:
-    # TODO: аналогично разобраться почему при движении снизу вверх нескольо элементов мб включены
+    
     """Unbounded Knapsack — каждый предмет можно брать неограниченно"""
     def __init__(self, W: int, weights: List[int], values: List[int]):
         self.W = W
         self.n = len(weights)
         self.weights = weights
         self.values = values
-        self.dp = [0] * (W + 1)  # 1D массив для DP
+        self.dp = [0] * (W + 1)  
 
     def Solve(self) -> int:
-        # Идём по всем вместимостям от 1 до W
+        
         for w in range(1, self.W + 1):
             for i in range(self.n):
                 if self.weights[i] <= w:
                     self.dp[w] = max(
-                        self.dp[w],  # не берём текущий предмет
-                        self.dp[w - self.weights[i]] + self.values[i]  # берём текущий предмет
+                        self.dp[w],  
+                        self.dp[w - self.weights[i]] + self.values[i]  
                     )
         return self.dp[self.W]
 
@@ -139,7 +139,7 @@ class PSS:
         self.target = target
         self.arr = arr
         self.n = len(arr)
-        self.dp = [0] * (target + 1)  # dp[s] = 1, если сумму s можно набрать
+        self.dp = [0] * (target + 1)  
         self.dp[0] = 1
 
     def Solve(self) -> bool:
@@ -167,11 +167,11 @@ def Knapsack_example():
     values = [60, 100, 120]
     W = 50
 
-    # Тест 2D DP с восстановлением
+    
     knapsack_2d = Knapsack2D(W, weights, values)
     max_value = knapsack_2d.Solve()
     indexes = knapsack_2d.GetItems()
-    print("Максимальная стоимость (2D DP):", max_value)  # 220
+    print("Максимальная стоимость (2D DP):", max_value)  
     print("Выбранные элементы (индексы):", indexes)
 
 
@@ -197,13 +197,13 @@ class Grasshopper:
         """
         self.n = n
         self.k = k
-        # coins[1..n], на первом и последнем столбике 0 монет
+        
         self.coins = [0] + coins_input + [0]
         self.dp: List[Optional[int]] = [None] * (n + 1)
         self.prev: List[Optional[int]] = [None] * (n + 1)
 
     def Solve(self):
-        self.dp[1] = 0  # стартовое состояние
+        self.dp[1] = 0  
 
         for i in range(2, self.n + 1):
             best = None
@@ -217,7 +217,7 @@ class Grasshopper:
             self.dp[i] = best
             self.prev[i] = best_prev
 
-        # Восстанавливаем путь
+        
         path = []
         cur = self.n
         while cur is not None:
@@ -227,7 +227,7 @@ class Grasshopper:
 
         return self.dp[self.n], path
 
-# ---------------------------
+
 if __name__ == "__main__":
     n = 10
     k = 3

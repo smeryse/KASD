@@ -3,12 +3,12 @@ using System.Linq;
 
 namespace CT1.Tasks
 {
-    // Подсчёт инверсий через сортировку слиянием
+    
     static class SimpleSort
     {
         public static void Solve()
         {
-            Console.ReadLine(); // n не обязательно использовать
+            Console.ReadLine(); 
             int[] arr = Console.ReadLine()
                                .Split(' ', StringSplitOptions.RemoveEmptyEntries)
                                .Select(int.Parse)
@@ -37,7 +37,7 @@ namespace CT1.Tasks
                 else
                 {
                     buf[k++] = a[j++];
-                    inv += m - i; // все оставшиеся слева больше a[j]
+                    inv += m - i; 
                 }
             }
             while (i < m) buf[k++] = a[i++];

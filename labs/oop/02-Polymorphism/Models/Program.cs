@@ -6,7 +6,7 @@ namespace ЛР2
     {
         static void Main(string[] args)
         {
-            // 1. Создание объектов каждого типа
+            
             Console.WriteLine("1. СОЗДАНИЕ ОБЪЕКТОВ:");
             Console.WriteLine("----------------------");
 

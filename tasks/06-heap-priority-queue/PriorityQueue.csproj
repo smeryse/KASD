@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../05-MaxHeap/MaxHeap.csproj" />
+    <ProjectReference Include="../05-max-heap/MaxHeap.csproj" />
   </ItemGroup>
 
 </Project>

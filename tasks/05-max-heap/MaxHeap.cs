@@ -13,23 +13,23 @@ namespace Task5.Collections
         #endregion
 
         #region Constructors
-        // Default constructor
+        
         public MaxHeap() { }
 
-        // Constructor with initial capacity
+        
         public MaxHeap(int capacity)
         {
             _items = new List<T>(capacity);
         }
 
-        // Constructor with initial capacity and comparer
+        
         public MaxHeap(int capacity, IComparer<T> comparer)
         {
             _items = new List<T>(capacity);
             _comparer = comparer;
         }
 
-        // Constructor from enumerable
+        
         public MaxHeap(IEnumerable<T> values)
         {
             if (values != null)
@@ -40,7 +40,7 @@ namespace Task5.Collections
             }
 
         }
-        // Constructor from enumerable with comparer
+        
         public MaxHeap(IEnumerable<T> values, IComparer<T> comparer)
         {
             _comparer = comparer;
@@ -55,27 +55,27 @@ namespace Task5.Collections
 
 
         #region Private helper methods (CompareItems, GreaterOrEq, Swap, IsEmpty, ShiftUp, ShiftDown)
-        // Comparing two elements using a comparator
+        
         private int CompareItems(T a, T b)
         {
             if (_comparer != null) return _comparer.Compare(a, b);
             return a.CompareTo(b);
         }
 
-        // Returns true if item at index i is greater than or equal to item at index j
+        
         private bool GreaterOrEq(int i, int j)
         {
             return CompareItems(_items[i], _items[j]) >= 0;
         }
 
-        // Returns true if item a is greater than or equal to item b
+        
         private bool GreaterOrEq(T a, T b)
         {
             return CompareItems(a, b) >= 0;
         }
 
 
-        // Swaps two elements in the heap
+        
         private void Swap(int i, int j)
         {
             T temp = _items[i];
@@ -83,27 +83,27 @@ namespace Task5.Collections
             _items[j] = temp;
         }
 
-        // Checks if the heap is empty
+        
         private bool IsEmpty() => Count == 0;
 
-        // Restores the heap property by shifting an element up
+        
         private void ShiftUp(int current)
         {
             while (current > 0)
             {
                 int parent = (current - 1) / 2;
                 if (GreaterOrEq(parent, current))
-                    break; // heap property restored
+                    break; 
                 else
                 {
-                    // move current element up
+                    
                     Swap(current, parent);
                     current = parent;
                 }
             }
         }
 
-        // Restores the heap property by shifting an element down
+        
         private void ShiftDown(int index)
         {
             int left = index * 2 + 1;
@@ -113,15 +113,15 @@ namespace Task5.Collections
             {
                 int current;
 
-                // determine the larger child
+                
                 if (right >= Count) current = left;
                 else current = GreaterOrEq(right, left) ? right : left;
 
-                // check heap condition
+                
                 if (GreaterOrEq(index, current)) return;
                 else
                 {
-                    // swap current and larger child
+                    
                     Swap(index, current);
                     index = current;
                     left = index * 2 + 1;
@@ -132,7 +132,7 @@ namespace Task5.Collections
         #endregion
         
         #region Public operations (ExtractMax, Peek, IncreaseKey, Print, Remove, Insert, Contains, Clear, ToArray)
-        // Extracts and returns the maximum element from the heap
+        
         public T ExtractMax()
         {
             if (IsEmpty()) throw new Exception("Heap is empty");
@@ -147,14 +147,14 @@ namespace Task5.Collections
             }
         }
 
-        // Returns the maximum element without removing it
+        
         public T Peek()
         {
             if (IsEmpty()) throw new Exception("Heap is empty");
             else return _items[0];
         }
 
-        // Updates the value at given index and restores heap property
+        
         public void IncreaseKey(int index, T newValue)
         {
             if (index < 0 || index > Count) throw new ArgumentOutOfRangeException();
@@ -166,7 +166,7 @@ namespace Task5.Collections
             else ShiftDown(index);
         }
 
-        // Prints heap contents in a tree-like layout
+        
         public void Print()
         {
             if (Count == 0) return;
@@ -194,7 +194,7 @@ namespace Task5.Collections
             Console.WriteLine("====================");
         }
 
-        // Removes the first occurrence of the specified item
+        
         public bool Remove(T item)
         {
             int index = _items.IndexOf(item);
@@ -220,20 +220,20 @@ namespace Task5.Collections
             return true;
         }
 
-        // Inserts a new element into the heap
+        
         public void Insert(T value)
         {
             _items.Add(value);
             ShiftUp(Count - 1);
         }
 
-        // Checks whether the heap contains the specified item
+        
         public bool Contains(T item) => _items.Contains(item);
 
-        // Removes all elements from the heap
+        
         public void Clear() => _items.Clear();
 
-        // Returns heap elements as an array
+        
         public T[] ToArray() => _items.ToArray();
         #endregion
     }

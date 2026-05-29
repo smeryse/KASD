@@ -36,7 +36,7 @@ internal class ShortestPathK
             dist[i] = INF;
         dist[s] = 0;
 
-        // K итераций Bellman-Ford style
+        
         for (int step = 0; step < k; step++)
         {
             long[] newDist = new long[n + 1];

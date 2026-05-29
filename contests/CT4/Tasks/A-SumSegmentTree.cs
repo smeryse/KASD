@@ -44,9 +44,9 @@ internal static class SumSegmentTree
 
     private sealed class SegmentTreeSum
     {
-        private readonly int length;     // n
-        private readonly int sizePow2;   // степень двойки >= n
-        private readonly long[] tree;    // 1..2*sizePow2-1 (0 не используем)
+        private readonly int length;     
+        private readonly int sizePow2;   
+        private readonly long[] tree;    
 
         public SegmentTreeSum(long[] data)
         {

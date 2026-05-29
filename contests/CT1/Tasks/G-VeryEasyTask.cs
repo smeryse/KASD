@@ -2,7 +2,7 @@ using System;
 
 namespace CT1.Tasks
 {
-    // Ксерокопии: минимальное время сделать n копий двумя аппаратами
+    
     static class VeryEasyTask
     {
         public static void Solve()

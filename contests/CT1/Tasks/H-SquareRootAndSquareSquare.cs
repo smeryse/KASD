@@ -2,7 +2,7 @@ using System;
 
 namespace CT1.Tasks
 {
-    // Решение уравнения x^2 + sqrt(x) = C
+    
     static class SquareRootAndSquareSquare
     {
         public static void Solve()

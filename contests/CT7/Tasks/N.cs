@@ -1,62 +1,111 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace CT7.Tasks;
 
-internal class TreeDP
+internal static class TreeDP
 {
-    private static List<int>[] adj = null!;
-    private static bool[] visited = null!;
-
     public static void Solve()
     {
-        var line = Console.ReadLine();
-        if (string.IsNullOrEmpty(line))
-            return;
+        var fs = new FastScanner(Console.In);
+        int n = fs.NextInt();
+        fs.NextInt();
+        if (n == 0) return;
 
-        var parts = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-        int n = int.Parse(parts[0]);
-        int m = int.Parse(parts[1]);
-
-        adj = new List<int>[n + 1];
-        for (int i = 1; i <= n; i++)
-            adj[i] = new List<int>();
-
+        var adj = new List<int>[n + 1];
+        for (int i = 1; i <= n; i++) adj[i] = new List<int>();
         for (int i = 0; i < n - 1; i++)
         {
-            line = Console.ReadLine();
-            if (string.IsNullOrEmpty(line))
-                break;
-            parts = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-            int u = int.Parse(parts[0]);
-            int v = int.Parse(parts[1]);
+            int u = fs.NextInt();
+            int v = fs.NextInt();
             adj[u].Add(v);
             adj[v].Add(u);
         }
 
-        var dp0 = new long[n + 1];
-        var dp1 = new long[n + 1];
-        visited = new bool[n + 1];
+        var parent = new int[n + 1];
+        var order = new List<int>(n);
+        var stack = new Stack<int>();
+        parent[1] = 1;
+        stack.Push(1);
 
-        DFS(1, dp0, dp1);
+        while (stack.Count > 0)
+        {
+            int u = stack.Pop();
+            order.Add(u);
+            foreach (int v in adj[u])
+            {
+                if (v == parent[u]) continue;
+                parent[v] = u;
+                stack.Push(v);
+            }
+        }
+
+        var dp0 = new int[n + 1];
+        var dp1 = new int[n + 1];
+        for (int i = order.Count - 1; i >= 0; i--)
+        {
+            int u = order[i];
+            dp1[u] = 1;
+            foreach (int v in adj[u])
+            {
+                if (v == parent[u]) continue;
+                dp1[u] += dp0[v];
+                dp0[u] += Math.Max(dp0[v], dp1[v]);
+            }
+        }
 
         Console.WriteLine(Math.Max(dp0[1], dp1[1]));
     }
 
-    private static void DFS(int u, long[] dp0, long[] dp1)
+    private sealed class FastScanner
     {
-        visited[u] = true;
-        dp1[u] = 1;
-        dp0[u] = 0;
+        private readonly TextReader reader;
+        private readonly char[] buffer = new char[1 << 16];
+        private int len;
+        private int ptr;
 
-        foreach (int v in adj[u])
+        public FastScanner(TextReader reader)
         {
-            if (!visited[v])
+            this.reader = reader;
+        }
+
+        private int Read()
+        {
+            if (ptr >= len)
             {
-                DFS(v, dp0, dp1);
-                dp1[u] += dp0[v];
-                dp0[u] += Math.Max(dp0[v], dp1[v]);
+                len = reader.Read(buffer, 0, buffer.Length);
+                ptr = 0;
+                if (len == 0) return 0;
             }
+
+            return buffer[ptr++];
+        }
+
+        public int NextInt()
+        {
+            int c = Read();
+            while (c <= ' ')
+            {
+                if (c == 0) return 0;
+                c = Read();
+            }
+
+            int sign = 1;
+            if (c == '-')
+            {
+                sign = -1;
+                c = Read();
+            }
+
+            int result = 0;
+            while (c > ' ')
+            {
+                result = result * 10 + c - '0';
+                c = Read();
+            }
+
+            return result * sign;
         }
     }
 }

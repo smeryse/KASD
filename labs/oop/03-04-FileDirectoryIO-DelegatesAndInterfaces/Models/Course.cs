@@ -15,7 +15,7 @@ public class Course : IManageable, IPrintable
         Number = number;
     }
 
-    // Работа с группами
+    
     public void AddGroup(Group group)
     {
         if (Groups.Exists(g => g.GroupId == group.GroupId))
@@ -35,7 +35,7 @@ public class Course : IManageable, IPrintable
         return group;
     }
 
-    // Работа с предметами
+    
     public void AddSubject(Subject subject)
     {
         if (Subjects.Exists(s => s.SubjectId == subject.SubjectId))
@@ -59,7 +59,7 @@ public class Course : IManageable, IPrintable
     {
         string result = $"{indent}Курс {Number} (ID={CourseId})\n";
 
-        // Предметы
+        
         if (Subjects.Count == 0)
             result += $"{indent}   ├─ Нет предметов\n";
         else
@@ -72,7 +72,7 @@ public class Course : IManageable, IPrintable
             }
         }
 
-        // Группы
+        
         if (Groups.Count == 0)
             result += $"{indent}   └─ Нет групп\n";
         else

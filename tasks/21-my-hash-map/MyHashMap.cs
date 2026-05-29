@@ -195,6 +195,28 @@ namespace Task21.Collections
             return entries;
         }
 
+        public void PutAll(MyHashMap<K, V> other)
+        {
+            if (other == null) throw new ArgumentNullException(nameof(other));
+            foreach (var entry in other.EntrySet())
+                Put(entry.Key, entry.Value);
+        }
+
+        public List<V> Values()
+        {
+            var values = new List<V>();
+            for (int i = 0; i < table.Length; i++)
+            {
+                Entry? e = table[i];
+                while (e != null)
+                {
+                    values.Add(e.Value);
+                    e = e.Next;
+                }
+            }
+            return values;
+        }
+
         public void Print()
         {
             Console.WriteLine($"HashMap: size={size}, capacity={table.Length}, loadFactor={loadFactor:F2}");

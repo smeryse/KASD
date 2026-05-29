@@ -38,7 +38,7 @@ def download_thumbnail(track_name, output_path):
         ]
         subprocess.run(cmd, capture_output=True, timeout=60)
         
-        # Проверяем есть ли обложка
+        
         for ext in ['.jpg', '.webp', '.png']:
             cover = output_path.with_suffix(ext)
             if cover.exists():
@@ -55,13 +55,13 @@ def add_metadata(mp3_path, artist, title, cover_path=None):
         
         cmd = ["ffmpeg", "-y", "-i", str(mp3_path), "-c:a", "copy"]
         
-        # Метаданные
+        
         cmd.extend(["-metadata", f"title={title}"])
         if artist:
             cmd.extend(["-metadata", f"artist={artist}"])
             cmd.extend(["-metadata", f"albumartist={artist}"])
         
-        # Обложка
+        
         if cover_path and cover_path.exists():
             cmd.extend(["-i", str(cover_path), "-map", "0:a", "-map", "1:v", 
                        "-c:v", "mjpeg", "-q:v", "2"])
@@ -100,11 +100,11 @@ def download_track(track_name, output_path):
 def main():
     OUTPUT_DIR.mkdir(exist_ok=True)
     
-    # Обновляем yt-dlp
+    
     print("Обновляем yt-dlp...")
     subprocess.run(["pip", "install", "--upgrade", "yt-dlp", "-q"])
     
-    # Читаем треки
+    
     with open(INPUT_FILE, "r", encoding="utf-8") as f:
         tracks = [line.strip() for line in f if line.strip()]
     
@@ -122,14 +122,14 @@ def main():
             
             mp3_path = OUTPUT_DIR / f"{safe_name}.%(ext)s"
             
-            # Скачиваем
+            
             if download_track(track, mp3_path):
-                # Находим скачанный файл
+                
                 mp3_files = list(OUTPUT_DIR.glob(f"{safe_name}.*"))
                 if mp3_files:
                     mp3_path = mp3_files[0]
                     if mp3_path.suffix != '.mp3':
-                        # Конвертируем в mp3 если нужно
+                        
                         final_path = OUTPUT_DIR / f"{safe_name}.mp3"
                         subprocess.run(["ffmpeg", "-y", "-i", str(mp3_path), 
                                       "-c:a", "libmp3lame", "-b:a", "192K", 
@@ -137,12 +137,12 @@ def main():
                         mp3_path.unlink()
                         mp3_path = final_path
                     
-                    # Скачиваем обложку
+                    
                     print(f"  → Обложка...")
                     cover_path = OUTPUT_DIR / f"{safe_name}.cover"
                     downloaded_cover = download_thumbnail(track, cover_path)
                     
-                    # Добавляем метаданные
+                    
                     print(f"  → Метаданные...")
                     if add_metadata(mp3_path, artist, title, downloaded_cover):
                         print(f"  ✓ Успешно: {artist} - {title}")
@@ -153,7 +153,7 @@ def main():
                         log.write(f"✓ {track} (без метаданных)\n")
                         success += 1
                     
-                    # Чистим обложку
+                    
                     if downloaded_cover:
                         downloaded_cover.unlink()
                 else:

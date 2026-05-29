@@ -10,12 +10,12 @@ class Program
 
         MyStack<int> stack = new MyStack<int>();
 
-        // 1. Проверяем, что стек пуст
+        
         Console.WriteLine("1. Проверка Empty() на пустом стеке:");
         Console.WriteLine("Стек пуст? " + stack.Empty());
         Console.WriteLine();
 
-        // 2. Push
+        
         Console.WriteLine("2. Добавляем элементы (Push): 10, 20, 30, 20");
         stack.Push(10);
         stack.Push(20);
@@ -25,14 +25,14 @@ class Program
         stack.Print();
         Console.WriteLine();
 
-        // 3. Peek
+        
         Console.WriteLine("3. Проверяем Peek():");
         Console.WriteLine("Верхний элемент: " + stack.Peek());
         Console.Write("Содержимое после Peek(): ");
         stack.Print();
         Console.WriteLine();
 
-        // 4. Pop
+        
         Console.WriteLine("4. Снимаем элементы методом Pop():");
         Console.WriteLine("Pop() -> " + stack.Pop());
         Console.WriteLine("Pop() -> " + stack.Pop());
@@ -40,7 +40,7 @@ class Program
         stack.Print();
         Console.WriteLine();
 
-        // 5. Поиск элемента Search
+        
         Console.WriteLine("5. Тестируем Search():");
         stack.Push(50);
         stack.Push(60);
@@ -51,7 +51,7 @@ class Program
         Console.WriteLine("Search(999) = " + stack.Search(999));
         Console.WriteLine();
 
-        // 6. Проверка Pop и Peek на пустом стеке (исключения)
+        
         Console.WriteLine("6. Тест исключений Pop/Peek на пустом стеке:");
         try
         {
@@ -60,7 +60,7 @@ class Program
                 stack.Pop();
 
             Console.WriteLine("Выполняем Pop() на пустом стеке:");
-            stack.Pop(); // должно быть исключение
+            stack.Pop(); 
         }
         catch (Exception ex)
         {
@@ -70,7 +70,7 @@ class Program
         try
         {
             Console.WriteLine("Выполняем Peek() на пустом стеке:");
-            stack.Peek(); // должно быть исключение
+            stack.Peek(); 
         }
         catch (Exception ex)
         {

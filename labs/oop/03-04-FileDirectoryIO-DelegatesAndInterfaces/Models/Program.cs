@@ -25,7 +25,7 @@ class Program
             Console.WriteLine("5. Сохранить в файл");
             Console.WriteLine("6. Загрузить из файла");
             Console.WriteLine("7. Запустить тесты");
-            Console.WriteLine("8. Удалить студентов с тремя двойками"); // НОВЫЙ ПУНКТ
+            Console.WriteLine("8. Удалить студентов с тремя двойками"); 
             Console.WriteLine("0. Выход");
             Console.Write("Ваш выбор: ");
 
@@ -41,7 +41,7 @@ class Program
                 case "5": SaveToFile(); break;
                 case "6": LoadFromFile(); break;
                 case "7": TestDelegate(); break;
-                case "8": RemoveStudentsWithThreeTwos(institute); break; // ВЫЗОВ НОВОЙ ФУНКЦИИ
+                case "8": RemoveStudentsWithThreeTwos(institute); break; 
                 case "0": return;
                 default: Console.WriteLine("Неверный выбор."); break;
             }
@@ -51,7 +51,7 @@ class Program
         }
     }
 
-    // === 1. Показать структуру ===
+    
     static void ShowStructure()
     {
         Console.Clear();
@@ -59,7 +59,7 @@ class Program
         institute.Print();
     }
 
-    // === 2. Добавление ===
+    
     static void AddMenu()
     {
         Console.Clear();
@@ -205,7 +205,7 @@ class Program
         Console.WriteLine("Оценка добавлена.");
     }
 
-    // === 3. Редактирование ===
+    
     static void EditMenu()
     {
         Console.Clear();
@@ -313,7 +313,7 @@ class Program
         Console.WriteLine("Название группы изменено.");
     }
 
-    // === 4. Удаление ===
+    
     static void DeleteMenu()
     {
         Console.Clear();
@@ -442,7 +442,7 @@ class Program
             Console.WriteLine("Такая оценка не найдена.");
     }
 
-    // === 5. Сохранение / загрузка ===
+    
     static void SaveToFile()
     {
         string path = "institute.json";
@@ -463,13 +463,13 @@ class Program
         Console.WriteLine("Данные успешно загружены.");
     }
 
-    // === 6. Тесты ===
+    
     static void TestDelegate()
     {
         Console.Clear();
         Console.WriteLine("=== Тест делегата и интерфейсов ===");
 
-        // 1. Создаём курс, группу и предметы
+        
         Course course = new Course(1);
         Group group = new Group("А1");
         Subject math = new Subject("Математика", "Иванова", 60);
@@ -479,23 +479,23 @@ class Program
         course.AddSubject(prog);
         course.AddGroup(group);
 
-        // 1.2. Создаём студентов
+        
         Student ivan = new Student("Иван", "Иванов", 19);
         Student petr = new Student("Петр", "Петров", 20);
-        Student sergey = new Student("Сергей", "Сидоров", 21); // Студент с тремя двойками
-        Student olga = new Student("Ольга", "Олегова", 20);   // Еще один студент с тремя двойками
+        Student sergey = new Student("Сергей", "Сидоров", 21); 
+        Student olga = new Student("Ольга", "Олегова", 20);   
 
         group.AddStudent(ivan);
         group.AddStudent(petr);
         group.AddStudent(sergey);
         group.AddStudent(olga);
 
-        // 1.3. Создаём многоадресный делегат для студентов
+        
         Action<Student> actions = null;
         actions += s => s.AddSubject(math);
         actions += s => s.AddSubject(prog);
 
-        // Добавляем оценки Ивану (2 двойки)
+        
         actions += s =>
         {
             if (s.StudentId == ivan.StudentId)
@@ -507,7 +507,7 @@ class Program
             }
         };
 
-        // Добавляем оценки Петру (без двоек)
+        
         actions += s =>
         {
             if (s.StudentId == petr.StudentId)
@@ -519,7 +519,7 @@ class Program
             }
         };
 
-        // Добавляем оценки Сергею (3 двойки)
+        
         actions += s =>
         {
             if (s.StudentId == sergey.StudentId)
@@ -531,7 +531,7 @@ class Program
             }
         };
 
-        // Добавляем оценки Ольге (4 двойки)
+        
         actions += s =>
         {
             if (s.StudentId == olga.StudentId)
@@ -543,7 +543,7 @@ class Program
             }
         };
 
-        // 1.4. Вызываем делегат для всех студентов
+        
         Console.WriteLine("=== Исходные данные студентов ===");
         foreach (var student in group.Students)
         {
@@ -552,7 +552,7 @@ class Program
             Console.WriteLine();
         }
 
-        // 2. Добавляем курс в институт
+        
         institute.Courses.Clear();
         institute.AddCourse(course);
     }
@@ -561,7 +561,7 @@ class Program
     {
         Console.WriteLine("=== Запрос: Удаление студентов первого курса с тремя двойками ===");
 
-        // Находим первый курс
+        
         var firstCourse = institute.Courses.FirstOrDefault(c => c.Number == 1);
         if (firstCourse == null)
         {
@@ -571,20 +571,20 @@ class Program
 
         int removedCount = 0;
 
-        // Перебираем все группы первого курса
+        
         foreach (var group in firstCourse.Groups.ToList())
         {
-            // Находим студентов с тремя и более двойками
+            
             var studentsToRemove = group.Students
                 .Where(s =>
                 {
-                    // Считаем общее количество двоек у студента
+                    
                     int twosCount = s.Grades.Sum(g => g.Scores.Count(score => score == 2));
                     return twosCount >= 3;
                 })
                 .ToList();
 
-            // Удаляем найденных студентов
+            
             foreach (var student in studentsToRemove)
             {
                 Console.WriteLine($"Удаляем студента: {student.Name} {student.Surname} (ID: {student.StudentId})");

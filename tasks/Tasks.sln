@@ -3,39 +3,47 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VectorNorm", "01-VectorNorm\VectorNorm.csproj", "{9D8BC99E-CD93-40C1-BBC4-2E93CC5C914A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VectorNorm", "01-vector-norm\VectorNorm.csproj", "{9D8BC99E-CD93-40C1-BBC4-2E93CC5C914A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComplexCalculator", "02-ComplexCalculator\ComplexCalculator.csproj", "{890E0DFC-999A-4CB9-9392-56C317FEA030}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComplexCalculator", "02-complex-calculator\ComplexCalculator.csproj", "{890E0DFC-999A-4CB9-9392-56C317FEA030}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericSorting", "04-GenericSorting\GenericSorting.csproj", "{05AF3E02-B754-4B37-8A52-9DCF86D31B1D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericSorting", "04-generic-sorting\GenericSorting.csproj", "{05AF3E02-B754-4B37-8A52-9DCF86D31B1D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaxHeap", "05-MaxHeap\MaxHeap.csproj", "{BB985244-5915-4600-A8A1-ABCF864A4F26}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaxHeap", "05-max-heap\MaxHeap.csproj", "{BB985244-5915-4600-A8A1-ABCF864A4F26}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriorityQueue", "06-HeapPriorityQueue\PriorityQueue.csproj", "{6237216B-2399-4E25-A408-825005070B6B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriorityQueue", "06-heap-priority-queue\PriorityQueue.csproj", "{6237216B-2399-4E25-A408-825005070B6B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyVector", "10-MyVector\MyVector.csproj", "{38532C27-1318-41CE-96A5-B629E95460C9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyVector", "10-my-vector\MyVector.csproj", "{38532C27-1318-41CE-96A5-B629E95460C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriorityQueueSimulation", "07-PriorityQueueSimulation\PriorityQueueSimulation.csproj", "{EA97EA01-D3BC-4413-9E03-F823E8907ADA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriorityQueueSimulation", "07-priority-queue-simulation\PriorityQueueSimulation.csproj", "{EA97EA01-D3BC-4413-9E03-F823E8907ADA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyArrayList", "08-MyArrayList\MyArrayList.csproj", "{9596CD6A-4A34-4C71-BEAA-234A3A6EA426}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyArrayList", "08-my-array-list\MyArrayList.csproj", "{9596CD6A-4A34-4C71-BEAA-234A3A6EA426}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyArrayTagParser", "09-MyArrayTagParser\MyArrayTagParser.csproj", "{BC6AD4DB-9E35-4CC2-A90F-8C5710C645CE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyArrayTagParser", "09-my-array-tag-parser\MyArrayTagParser.csproj", "{BC6AD4DB-9E35-4CC2-A90F-8C5710C645CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortingAlgorithms", "03-SortingAlgorithms\SortingAlgorithms.csproj", "{43B580EF-A219-4DBB-84C2-ECBB7CCAD640}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortingAlgorithms", "03-sorting-algorithms\SortingAlgorithms.csproj", "{43B580EF-A219-4DBB-84C2-ECBB7CCAD640}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPParser", "11-IPParser\IPParser.csproj", "{BD04C345-9162-40D0-A1F9-FA9EA144FA6F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPParser", "11-ip-parser\IPParser.csproj", "{BD04C345-9162-40D0-A1F9-FA9EA144FA6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyArrayDeque", "14-MyArrayDeque\MyArrayDeque.csproj", "{8DBC7D76-1FDD-4F97-A9C3-8EDA33A32718}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyArrayDeque", "14-my-array-deque\MyArrayDeque.csproj", "{8DBC7D76-1FDD-4F97-A9C3-8EDA33A32718}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTreeMap", "18-my-tree-map\MyTreeMap.csproj", "{D56E0760-DE77-4618-9E41-7143CADC8948}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTreeSet", "19\MyTreeSet.csproj", "{47A4AD4D-508F-441D-88C9-C2CA3BF96979}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTreeSet", "19-my-tree-set\MyTreeSet.csproj", "{47A4AD4D-508F-441D-88C9-C2CA3BF96979}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task20", "20\Task20.csproj", "{C97F577C-9355-45C2-B6CB-8B85490D0BB3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task20", "20-graph-algorithms\Task20.csproj", "{C97F577C-9355-45C2-B6CB-8B85490D0BB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task21", "21\Task21.csproj", "{9DA20941-5AA5-4DE0-B90B-82B855DC1FC1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task21", "21-my-hash-map\Task21.csproj", "{9DA20941-5AA5-4DE0-B90B-82B855DC1FC1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task22", "22-my-html-tag-parser\Task22.csproj", "{2AFC4C7B-5F8A-441F-98CB-1585CBFC4CCB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task28", "28-expand-my-hash-set\Task28.csproj", "{945D6425-707E-4D50-B3A3-53F1D61DC64E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task29", "29-word-frequency-counter\Task29.csproj", "{53E734C2-5F0C-4A7C-B3DE-F20E952A9CCE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task30", "30-text-analyzer\Task30.csproj", "{7DA6E1CC-ED1C-4B11-97CE-09A4E6D45015}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task31", "31-criss-cross\Task31.csproj", "{3A3300E4-3EC8-4F74-A3C3-43E6E14DA296}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -114,5 +122,21 @@ Global
 		{2AFC4C7B-5F8A-441F-98CB-1585CBFC4CCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2AFC4C7B-5F8A-441F-98CB-1585CBFC4CCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2AFC4C7B-5F8A-441F-98CB-1585CBFC4CCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{945D6425-707E-4D50-B3A3-53F1D61DC64E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{945D6425-707E-4D50-B3A3-53F1D61DC64E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{945D6425-707E-4D50-B3A3-53F1D61DC64E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{945D6425-707E-4D50-B3A3-53F1D61DC64E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53E734C2-5F0C-4A7C-B3DE-F20E952A9CCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53E734C2-5F0C-4A7C-B3DE-F20E952A9CCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53E734C2-5F0C-4A7C-B3DE-F20E952A9CCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53E734C2-5F0C-4A7C-B3DE-F20E952A9CCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DA6E1CC-ED1C-4B11-97CE-09A4E6D45015}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DA6E1CC-ED1C-4B11-97CE-09A4E6D45015}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DA6E1CC-ED1C-4B11-97CE-09A4E6D45015}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DA6E1CC-ED1C-4B11-97CE-09A4E6D45015}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A3300E4-3EC8-4F74-A3C3-43E6E14DA296}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A3300E4-3EC8-4F74-A3C3-43E6E14DA296}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A3300E4-3EC8-4F74-A3C3-43E6E14DA296}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A3300E4-3EC8-4F74-A3C3-43E6E14DA296}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

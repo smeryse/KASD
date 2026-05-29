@@ -35,6 +35,12 @@ namespace Task18.Collection
             this.size = 0;
         }
 
+        public MyTreeMap(MyTreeMap<K, V> other) : this()
+        {
+            if (other == null) throw new ArgumentNullException(nameof(other));
+            PutAll(other);
+        }
+
         public int Size => size;
         public bool IsEmpty() => size == 0;
 
@@ -408,6 +414,28 @@ namespace Task18.Collection
         private int Compare(K key1, K key2)
         {
             return comparator?.Compare(key1, key2) ?? key1.CompareTo(key2);
+        }
+
+        public void PutAll(MyTreeMap<K, V> other)
+        {
+            if (other == null) throw new ArgumentNullException(nameof(other));
+            foreach (var entry in other.EntrySet())
+                Put(entry.Key, entry.Value);
+        }
+
+        public List<V> Values()
+        {
+            var list = new List<V>();
+            CollectValues(root, list);
+            return list;
+        }
+
+        private void CollectValues(Node? node, List<V> list)
+        {
+            if (node == null) return;
+            CollectValues(node.left, list);
+            list.Add(node.value);
+            CollectValues(node.right, list);
         }
 
         public void Print()

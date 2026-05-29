@@ -5,9 +5,6 @@ using System.Text;
 
 namespace CT7.Tasks;
 
-/// <summary>
-/// Генератор тестов и проверка решения для задачи E (Компоненты вершинной двусвязности)
-/// </summary>
 internal class E_TestRunner
 {
     private static readonly Random Rand = new Random(42);
@@ -20,7 +17,7 @@ internal class E_TestRunner
         Console.WriteLine("Запуск тестов для задачи E (Vertex Biconnected Components)");
         Console.WriteLine(new string('=', 60));
 
-        // Тесты 1-10: Базовые случаи
+        
         for (int i = 1; i <= 10; i++)
         {
             if (RunTest(i, GenerateBasicTest(i)))
@@ -29,7 +26,7 @@ internal class E_TestRunner
                 failed++;
         }
 
-        // Тесты 11-15: Кратные рёбра
+        
         for (int i = 11; i <= 15; i++)
         {
             if (RunTest(i, GenerateMultiEdgeTest(i)))
@@ -38,7 +35,7 @@ internal class E_TestRunner
                 failed++;
         }
 
-        // Тесты 16-35: Случайные графы малой плотности
+        
         for (int i = 16; i <= 35; i++)
         {
             if (RunTest(i, GenerateRandomTest(10 + (i % 20), 15 + (i % 30))))
@@ -47,7 +44,7 @@ internal class E_TestRunner
                 failed++;
         }
 
-        // Тесты 36-55: Случайные графы средней плотности
+        
         for (int i = 36; i <= 55; i++)
         {
             if (RunTest(i, GenerateRandomTest(50 + (i % 50), 100 + (i % 100))))
@@ -56,7 +53,7 @@ internal class E_TestRunner
                 failed++;
         }
 
-        // Тесты 56-75: Графы с несколькими компонентами
+        
         for (int i = 56; i <= 75; i++)
         {
             if (RunTest(i, GenerateMultiComponentTest(20 + (i % 30), 2 + (i % 4))))
@@ -65,7 +62,7 @@ internal class E_TestRunner
                 failed++;
         }
 
-        // Тесты 76-85: Цепочки и циклы
+        
         for (int i = 76; i <= 85; i++)
         {
             if (RunTest(i, GenerateChainOrCycleTest(10 + (i % 20), i % 2 == 0)))
@@ -74,7 +71,7 @@ internal class E_TestRunner
                 failed++;
         }
 
-        // Тесты 86-95: Деревья (каждое ребро - отдельная компонента)
+        
         for (int i = 86; i <= 95; i++)
         {
             if (RunTest(i, GenerateTreeTest(5 + (i % 15))))
@@ -83,7 +80,7 @@ internal class E_TestRunner
                 failed++;
         }
 
-        // Тесты 96-105: Большие графы
+        
         for (int i = 96; i <= 105; i++)
         {
             if (RunTest(i, GenerateRandomTest(100 + (i % 100), 200 + (i % 300))))
@@ -115,7 +112,7 @@ internal class E_TestRunner
             string input = FormatInput(n, m, edges);
             string actualOutput = RunSolution(input);
 
-            // Если ожидаемый ответ известен — проверяем точное совпадение
+            
             if (isVerifiable && expectedOutput != null)
             {
                 if (Normalize(actualOutput) == Normalize(expectedOutput))
@@ -134,7 +131,7 @@ internal class E_TestRunner
             }
             else
             {
-                // Проверяем только корректность формата вывода
+                
                 if (ValidateOutputFormat(actualOutput, m))
                 {
                     Console.WriteLine($"Тест {testNum,3}: OK (n={n}, m={m})");
@@ -226,41 +223,41 @@ internal class E_TestRunner
 
     #region Генераторы тестов
 
-    /// <summary>
-    /// Базовые тесты (простые случаи)
-    /// </summary>
+    
+    
+    
     private static (int n, int m, List<(int, int)>, string expected, bool isVerifiable) GenerateBasicTest(int testNum)
     {
         switch (testNum)
         {
-            case 1: // Одна вершина, нет рёбер
+            case 1: 
                 return (1, 0, new List<(int, int)>(), "0\n", true);
 
-            case 2: // Две вершины, одно ребро
+            case 2: 
                 return (2, 1, new List<(int, int)> { (1, 2) }, "1\n1", true);
 
-            case 3: // Три вершины в цикле
+            case 3: 
                 return (3, 3, new List<(int, int)> { (1, 2), (2, 3), (3, 1) }, "1\n1 1 1", true);
 
-            case 4: // Четыре вершины в цикле
+            case 4: 
                 return (4, 4, new List<(int, int)> { (1, 2), (2, 3), (3, 4), (4, 1) }, "1\n1 1 1 1", true);
 
-            case 5: // Два треугольника с общей вершиной
+            case 5: 
                 return (5, 6, new List<(int, int)> { (1, 2), (2, 3), (3, 1), (1, 4), (4, 5), (5, 1) }, "2\n1 1 1 2 2 2", true);
 
-            case 6: // Полный граф K4
+            case 6: 
                 return (4, 6, new List<(int, int)> { (1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4) }, "1\n1 1 1 1 1 1", true);
 
-            case 7: // Мост между двумя циклами
+            case 7: 
                 return (6, 7, new List<(int, int)> { (1, 2), (2, 3), (3, 1), (3, 4), (4, 5), (5, 6), (6, 4) }, "3\n3 3 3 2 1 1 1", true);
 
-            case 8: // Звезда (все рёбра инцидентны вершине 1)
+            case 8: 
                 return (5, 4, new List<(int, int)> { (1, 2), (1, 3), (1, 4), (1, 5) }, "4\n1 2 3 4", true);
 
-            case 9: // Путь из 4 вершин
+            case 9: 
                 return (4, 3, new List<(int, int)> { (1, 2), (2, 3), (3, 4) }, "3\n3 2 1", true);
 
-            case 10: // Два несвязанных цикла
+            case 10: 
                 return (6, 6, new List<(int, int)> { (1, 2), (2, 3), (3, 1), (4, 5), (5, 6), (6, 4) }, "2\n1 1 1 2 2 2", true);
 
             default:
@@ -268,9 +265,9 @@ internal class E_TestRunner
         }
     }
 
-    /// <summary>
-    /// Случайный граф (проверка формата вывода)
-    /// </summary>
+    
+    
+    
     private static (int n, int m, List<(int, int)>, string expected, bool isVerifiable) GenerateRandomTest(int n, int m)
     {
         var edges = new HashSet<(int, int)>();
@@ -294,26 +291,26 @@ internal class E_TestRunner
         return (n, edgeList.Count, edgeList, null, false);
     }
 
-    /// <summary>
-    /// Граф с кратными рёбрами
-    /// </summary>
+    
+    
+    
     private static (int n, int m, List<(int, int)>, string expected, bool isVerifiable) GenerateMultiEdgeTest(int testNum)
     {
         switch (testNum)
         {
-            case 11: // Два ребра между 1 и 2
+            case 11: 
                 return (2, 2, new List<(int, int)> { (1, 2), (1, 2) }, "1\n1 1", true);
 
-            case 12: // Три ребра между 1 и 2
+            case 12: 
                 return (2, 3, new List<(int, int)> { (1, 2), (1, 2), (1, 2) }, "1\n1 1 1", true);
 
-            case 13: // Треугольник с кратным ребром
+            case 13: 
                 return (3, 4, new List<(int, int)> { (1, 2), (1, 2), (2, 3), (3, 1) }, "1\n1 1 1 1", true);
 
-            case 14: // Мост с кратными рёбрами в компонентах
+            case 14: 
                 return (4, 5, new List<(int, int)> { (1, 2), (1, 2), (2, 3), (3, 4), (3, 4) }, "3\n3 3 2 1 1", true);
 
-            case 15: // Две вершины с 5 рёбрами
+            case 15: 
                 return (2, 5, new List<(int, int)> { (1, 2), (1, 2), (1, 2), (1, 2), (1, 2) }, "1\n1 1 1 1 1", true);
 
             default:
@@ -321,9 +318,9 @@ internal class E_TestRunner
         }
     }
 
-    /// <summary>
-    /// Граф с несколькими компонентами двусвязности
-    /// </summary>
+    
+    
+    
     private static (int n, int m, List<(int, int)>, string expected, bool isVerifiable) GenerateMultiComponentTest(int n, int numComponents)
     {
         var edges = new List<(int, int)>();
@@ -334,7 +331,7 @@ internal class E_TestRunner
             int start = c * verticesPerComponent + 1;
             int end = Math.Min((c + 1) * verticesPerComponent, n);
 
-            // Создаём цикл внутри компоненты
+            
             for (int i = start; i < end; i++)
             {
                 edges.Add((i, i + 1));
@@ -344,7 +341,7 @@ internal class E_TestRunner
                 edges.Add((end, start));
             }
 
-            // Соединяем компоненты мостом
+            
             if (c > 0 && end < n)
             {
                 edges.Add((end, end + 1));
@@ -354,9 +351,9 @@ internal class E_TestRunner
         return (n, edges.Count, edges, null, false);
     }
 
-    /// <summary>
-    /// Цепочка или цикл
-    /// </summary>
+    
+    
+    
     private static (int n, int m, List<(int, int)>, string expected, bool isVerifiable) GenerateChainOrCycleTest(int n, bool isCycle)
     {
         var edges = new List<(int, int)>();
@@ -374,9 +371,9 @@ internal class E_TestRunner
         return (n, edges.Count, edges, null, false);
     }
 
-    /// <summary>
-    /// Дерево (каждое ребро - отдельная компонента)
-    /// </summary>
+    
+    
+    
     private static (int n, int m, List<(int, int)>, string expected, bool isVerifiable) GenerateTreeTest(int n)
     {
         var edges = new List<(int, int)>();

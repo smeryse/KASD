@@ -20,16 +20,16 @@ class Program
         var vbox = new VBox(false, 5);
         vbox.BorderWidth = 10;
 
-        // Меню
+        
         var menuBar = CreateMenus();
         vbox.PackStart(menuBar, false, false, 0);
 
-        // Статус
+        
         statusLabel = new Label("Готово");
         statusLabel.Name = "statusLabel";
         vbox.PackStart(statusLabel, false, false, 0);
 
-        // Таблица
+        
         var scrollWin = new ScrolledWindow();
         scrollWin.SetPolicy(PolicyType.Automatic, PolicyType.Automatic);
         
@@ -48,7 +48,7 @@ class Program
     {
         var menuBar = new MenuBar();
 
-        // Справочники
+        
         var refMenu = new MenuItem("Справочники");
         var refSubMenu = new Menu();
         refMenu.Submenu = refSubMenu;
@@ -61,7 +61,7 @@ class Program
         genreItem.Activated += (s, e) => LoadData("genre", "Genre");
         refSubMenu.Append(genreItem);
 
-        // Данные
+        
         var dataMenu = new MenuItem("Данные");
         var dataSubMenu = new Menu();
         dataMenu.Submenu = dataSubMenu;
@@ -78,7 +78,7 @@ class Program
         eventItem.Activated += (s, e) => LoadData("event", "Event");
         dataSubMenu.Append(eventItem);
 
-        // Отчеты
+        
         var reportMenu = new MenuItem("Отчеты");
         var reportSubMenu = new Menu();
         reportMenu.Submenu = reportSubMenu;
@@ -99,11 +99,11 @@ class Program
         managerItem.Activated += (s, e) => LoadData("v_event_manager_report", "Event Manager Report");
         reportSubMenu.Append(managerItem);
 
-        // О программе
+        
         var aboutMenu = new MenuItem("О программе");
         aboutMenu.Activated += ShowAbout;
 
-        // Выход
+        
         var exitMenu = new MenuItem("Выход");
         exitMenu.Activated += (s, e) => Application.Quit();
 
@@ -123,13 +123,13 @@ class Program
             var data = DbHelper.SelectAll(table);
             if (data.Count < 2) return;
 
-            // Удаление старых колонок
+            
             foreach (TreeViewColumn col in tableView.Columns)
             {
                 tableView.RemoveColumn(col);
             }
 
-            // Создание колонок
+            
             var columns = new List<TreeViewColumn>();
             var types = new List<Type>();
 
@@ -142,10 +142,10 @@ class Program
                 columns.Add(col);
             }
 
-            // Создание модели данных
+            
             listStore = new ListStore(types.ToArray());
             
-            // Добавление строк
+            
             foreach (var row in data.GetRange(1, data.Count - 1))
             {
                 listStore.AppendValues(row.ToArray());
@@ -153,11 +153,11 @@ class Program
 
             tableView.Model = listStore;
             
-            // Добавление колонок в таблицу
+            
             foreach (var col in columns)
                 tableView.AppendColumn(col);
 
-            // Обновление статуса
+            
             statusLabel.Text = $"{title}: {data.Count - 1} строк";
         }
         catch (Exception ex)

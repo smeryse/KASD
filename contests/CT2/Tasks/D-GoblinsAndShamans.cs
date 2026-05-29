@@ -5,8 +5,8 @@ namespace CT2.Tasks
     class Deque
     {
         private readonly int[] data;
-        private int head; // индекс первого элемента
-        private int tail; // индекс позиции после последнего
+        private int head; 
+        private int tail; 
         public int Count { get; private set; }
 
         public Deque(int capacity)
@@ -65,10 +65,10 @@ namespace CT2.Tasks
         {
             int n = int.Parse(Console.ReadLine());
 
-            // Максимальное количество гоблинов в очереди не превышает n,
-            // поэтому для каждой половины достаточно емкости n.
-            Deque left = new Deque(n);   // Первая половина
-            Deque right = new Deque(n);  // Вторая половина
+            
+            
+            Deque left = new Deque(n);   
+            Deque right = new Deque(n);  
 
             for (int i = 0; i < n; i++)
             {
@@ -106,7 +106,7 @@ namespace CT2.Tasks
 
         static void Balance(Deque left, Deque right)
         {
-            // Поддерживаем: left.Count == right.Count или left.Count == right.Count + 1
+            
             while (left.Count > right.Count + 1)
             {
                 int val = left.PopBack();

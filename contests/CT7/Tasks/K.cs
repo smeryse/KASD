@@ -1,111 +1,206 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace CT7.Tasks;
 
-internal class LCABinaryLifting
+internal static class LCABinaryLifting
 {
-    private static List<int>[] adj = null!;
-    private static int[][] up = null!;
-    private static int[] depth = null!;
-    private static int LOG;
+    private readonly record struct Edge(int From, int To, long Weight);
 
     public static void Solve()
     {
-        var line = Console.ReadLine();
-        if (string.IsNullOrEmpty(line))
-            return;
+        var fs = new FastScanner(Console.In);
+        int n = fs.NextInt();
+        int m = fs.NextInt();
+        if (n == 0) return;
 
-        var parts = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-        int n = int.Parse(parts[0]);
-        int m = int.Parse(parts[1]);
+        var edges = new List<Edge>(m);
+        var reach = new List<int>[n];
+        for (int i = 0; i < n; i++) reach[i] = new List<int>();
 
-        adj = new List<int>[n + 1];
-        for (int i = 1; i <= n; i++)
-            adj[i] = new List<int>();
-
-        int root = 0;
-        for (int i = 1; i <= n; i++)
-        {
-            line = Console.ReadLine();
-            if (string.IsNullOrEmpty(line))
-                break;
-            parts = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-            int parent = int.Parse(parts[0]);
-            if (parent == 0)
-                root = i;
-            else
-            {
-                adj[parent].Add(i);
-                adj[i].Add(parent);
-            }
-        }
-
-        LOG = 0;
-        while ((1 << LOG) <= n)
-            LOG++;
-
-        up = new int[n + 1][];
-        depth = new int[n + 1];
-        for (int i = 1; i <= n; i++)
-            up[i] = new int[LOG];
-
-        DFS(root, root, 0);
-
-        var result = new System.Text.StringBuilder();
         for (int i = 0; i < m; i++)
         {
-            line = Console.ReadLine();
-            if (string.IsNullOrEmpty(line))
-                break;
-            parts = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-            int u = int.Parse(parts[0]);
-            int v = int.Parse(parts[1]);
-            result.Append(LCA(u, v)).Append('\n');
+            int from = fs.NextInt() - 1;
+            int to = fs.NextInt() - 1;
+            long weight = fs.NextLong();
+            edges.Add(new Edge(from, to, weight));
+            reach[from].Add(to);
         }
 
-        Console.Write(result.ToString());
+        if (!AllReachable(reach))
+        {
+            Console.WriteLine("NO");
+            return;
+        }
+
+        long answer = DirectedMst(0, n, edges);
+        Console.WriteLine("YES");
+        Console.WriteLine(answer);
     }
 
-    private static void DFS(int u, int p, int d)
+    private static bool AllReachable(List<int>[] graph)
     {
-        depth[u] = d;
-        up[u][0] = p;
-
-        for (int i = 1; i < LOG; i++)
-            up[u][i] = up[up[u][i - 1]][i - 1];
-
-        foreach (int v in adj[u])
+        int n = graph.Length;
+        var used = new bool[n];
+        var stack = new Stack<int>();
+        used[0] = true;
+        stack.Push(0);
+        while (stack.Count > 0)
         {
-            if (v != p)
-                DFS(v, u, d + 1);
-        }
-    }
-
-    private static int LCA(int u, int v)
-    {
-        if (depth[u] < depth[v])
-            (u, v) = (v, u);
-
-        int diff = depth[u] - depth[v];
-        for (int i = 0; i < LOG; i++)
-        {
-            if ((diff & (1 << i)) != 0)
-                u = up[u][i];
-        }
-
-        if (u == v)
-            return u;
-
-        for (int i = LOG - 1; i >= 0; i--)
-        {
-            if (up[u][i] != up[v][i])
+            int u = stack.Pop();
+            foreach (int v in graph[u])
             {
-                u = up[u][i];
-                v = up[v][i];
+                if (used[v]) continue;
+                used[v] = true;
+                stack.Push(v);
             }
         }
 
-        return up[u][0];
+        for (int i = 0; i < n; i++)
+            if (!used[i]) return false;
+        return true;
+    }
+
+    private static long DirectedMst(int root, int n, List<Edge> edges)
+    {
+        long result = 0;
+        while (true)
+        {
+            var minIn = new long[n];
+            var parent = new int[n];
+            Array.Fill(minIn, long.MaxValue);
+            Array.Fill(parent, -1);
+
+            foreach (var edge in edges)
+            {
+                if (edge.From != edge.To && edge.Weight < minIn[edge.To])
+                {
+                    minIn[edge.To] = edge.Weight;
+                    parent[edge.To] = edge.From;
+                }
+            }
+
+            minIn[root] = 0;
+            for (int i = 0; i < n; i++) result += minIn[i];
+
+            var id = new int[n];
+            var mark = new int[n];
+            Array.Fill(id, -1);
+            Array.Fill(mark, -1);
+            int cycles = 0;
+
+            for (int i = 0; i < n; i++)
+            {
+                int v = i;
+                while (mark[v] != i && id[v] == -1 && v != root)
+                {
+                    mark[v] = i;
+                    v = parent[v];
+                }
+
+                if (v != root && id[v] == -1)
+                {
+                    for (int u = parent[v]; u != v; u = parent[u]) id[u] = cycles;
+                    id[v] = cycles++;
+                }
+            }
+
+            if (cycles == 0) break;
+
+            for (int i = 0; i < n; i++)
+                if (id[i] == -1) id[i] = cycles++;
+
+            var nextEdges = new List<Edge>();
+            foreach (var edge in edges)
+            {
+                int from = id[edge.From];
+                int to = id[edge.To];
+                if (from != to) nextEdges.Add(new Edge(from, to, edge.Weight - minIn[edge.To]));
+            }
+
+            root = id[root];
+            n = cycles;
+            edges = nextEdges;
+        }
+
+        return result;
+    }
+
+    private sealed class FastScanner
+    {
+        private readonly TextReader reader;
+        private readonly char[] buffer = new char[1 << 16];
+        private int len;
+        private int ptr;
+
+        public FastScanner(TextReader reader)
+        {
+            this.reader = reader;
+        }
+
+        private int Read()
+        {
+            if (ptr >= len)
+            {
+                len = reader.Read(buffer, 0, buffer.Length);
+                ptr = 0;
+                if (len == 0) return 0;
+            }
+
+            return buffer[ptr++];
+        }
+
+        public int NextInt()
+        {
+            int c = Read();
+            while (c <= ' ')
+            {
+                if (c == 0) return 0;
+                c = Read();
+            }
+
+            int sign = 1;
+            if (c == '-')
+            {
+                sign = -1;
+                c = Read();
+            }
+
+            int result = 0;
+            while (c > ' ')
+            {
+                result = result * 10 + c - '0';
+                c = Read();
+            }
+
+            return result * sign;
+        }
+
+        public long NextLong()
+        {
+            int c = Read();
+            while (c <= ' ')
+            {
+                if (c == 0) return 0;
+                c = Read();
+            }
+
+            int sign = 1;
+            if (c == '-')
+            {
+                sign = -1;
+                c = Read();
+            }
+
+            long result = 0;
+            while (c > ' ')
+            {
+                result = result * 10 + c - '0';
+                c = Read();
+            }
+
+            return sign == 1 ? result : -result;
+        }
     }
 }

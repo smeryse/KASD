@@ -8,20 +8,20 @@ namespace Task20
         {
             Console.WriteLine("=== ЗАДАЧА 20: Алгоритмы на графах ===\n");
 
-            // =========================================
-            // Алгоритм 1: Мальгранж — компоненты сильной связности
-            // =========================================
+            
+            
+            
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Алгоритм 1: Компоненты сильной связности (Мальгранж)");
             Console.ResetColor();
 
             var graph1 = new Graph(8);
-            // Граф с несколькими SCC
-            graph1.AddEdge(0, 1); graph1.AddEdge(1, 2); graph1.AddEdge(2, 0); // SCC: {0,1,2}
-            graph1.AddEdge(3, 4); graph1.AddEdge(4, 5); graph1.AddEdge(5, 3); // SCC: {3,4,5}
-            graph1.AddEdge(2, 3); // связь между SCC
-            graph1.AddEdge(6, 7); graph1.AddEdge(7, 6); // SCC: {6,7}
-            graph1.AddEdge(5, 6); // связь между SCC
+            
+            graph1.AddEdge(0, 1); graph1.AddEdge(1, 2); graph1.AddEdge(2, 0); 
+            graph1.AddEdge(3, 4); graph1.AddEdge(4, 5); graph1.AddEdge(5, 3); 
+            graph1.AddEdge(2, 3); 
+            graph1.AddEdge(6, 7); graph1.AddEdge(7, 6); 
+            graph1.AddEdge(5, 6); 
 
             Console.WriteLine("Рёбра графа:");
             Console.WriteLine("  0→1, 1→2, 2→0 (SCC 1)");
@@ -36,7 +36,7 @@ namespace Task20
                 Console.WriteLine($"  SCC {i + 1}: [{string.Join(", ", sccs[i])}]");
             }
 
-            // Транзитивное замыкание
+            
             Console.WriteLine("\nТранзитивное замыкание:");
             var tc = graph1.TransitiveClosureDFS();
             int n = graph1.VerticesCount;
@@ -51,16 +51,16 @@ namespace Task20
                 Console.WriteLine();
             }
 
-            // =========================================
-            // Алгоритм 2: Проталкивание предпотока — максимальный поток
-            // =========================================
+            
+            
+            
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Алгоритм 2: Максимальный поток (проталкивание предпотока)");
             Console.ResetColor();
 
             var flowNetwork = new PushRelabelMaxFlow(6);
-            // Классический пример сети
+            
             flowNetwork.AddEdge(0, 1, 16); flowNetwork.AddEdge(0, 2, 13);
             flowNetwork.AddEdge(1, 2, 10); flowNetwork.AddEdge(1, 3, 12);
             flowNetwork.AddEdge(2, 1, 4);  flowNetwork.AddEdge(2, 4, 14);
@@ -77,20 +77,20 @@ namespace Task20
             int maxFlow = flowNetwork.ComputeMaxFlow(0, 5);
             Console.WriteLine($"\nМаксимальный поток: {maxFlow}");
 
-            // =========================================
-            // Алгоритм 3: Брон-Кербош — максимальная клика
-            // =========================================
+            
+            
+            
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Алгоритм 3: Максимальная клика (Брон-Кербош)");
             Console.ResetColor();
 
             var graph3 = new BronKerbosch(7);
-            // Граф с кликами
-            graph3.AddEdge(0, 1); graph3.AddEdge(0, 2); graph3.AddEdge(1, 2); // клика {0,1,2}
-            graph3.AddEdge(2, 3); graph3.AddEdge(3, 4); graph3.AddEdge(4, 2); // клика {2,3,4}
-            graph3.AddEdge(4, 5); graph3.AddEdge(5, 6); graph3.AddEdge(6, 4); // клика {4,5,6}
-            graph3.AddEdge(1, 3); // дополнительная связь
+            
+            graph3.AddEdge(0, 1); graph3.AddEdge(0, 2); graph3.AddEdge(1, 2); 
+            graph3.AddEdge(2, 3); graph3.AddEdge(3, 4); graph3.AddEdge(4, 2); 
+            graph3.AddEdge(4, 5); graph3.AddEdge(5, 6); graph3.AddEdge(6, 4); 
+            graph3.AddEdge(1, 3); 
 
             Console.WriteLine("Рёбра графа (7 вершин):");
             Console.WriteLine("  {0,1,2}, {2,3,4}, {4,5,6} — треугольники");

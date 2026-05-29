@@ -1,5 +1,5 @@
-// Номер в списке - 12
-// Решены задачи 3, 12, 15
+
+
 namespace Task20.Graphs
 {
     public class Graph
@@ -29,7 +29,7 @@ namespace Task20.Graphs
         public List<int> GetNeighbors(int v) => adjList[v];
         public List<int> GetReverseNeighbors(int v) => reverseAdjList[v];
 
-        // Транзитивное замыкание через DFS
+        
         public bool[,] TransitiveClosureDFS()
         {
             int n = VerticesCount;
@@ -53,7 +53,7 @@ namespace Task20.Graphs
             }
         }
 
-        // Алгоритм Мальгранжа
+        
         public List<List<int>> MalgrangeSCC()
         {
             int n = VerticesCount;
@@ -106,14 +106,14 @@ namespace Task20.Graphs
         }
     }
 
-    // Максимальный поток — алгоритм проталкивания предпотока
+    
     public class PushRelabelMaxFlow
     {
         private int n;
-        private int[,] capacity; // пропускная способность
-        private int[,] flow; // поток
-        private int[] height; // высота
-        private int[] excess; // избыток
+        private int[,] capacity; 
+        private int[,] flow; 
+        private int[] height; 
+        private int[] excess; 
         private bool[] inQueue;
 
         public PushRelabelMaxFlow(int n)
@@ -136,7 +136,7 @@ namespace Task20.Graphs
             height[source] = n;
             excess[source] = int.MaxValue;
 
-            // Инициализация — проталкиваем из источника
+            
             for (int v = 0; v < n; v++)
             {
                 if (capacity[source, v] > 0)
@@ -150,7 +150,7 @@ namespace Task20.Graphs
                 }
             }
 
-            // Обработка вершин с избытком
+            
             Queue<int> queue = new Queue<int>();
             for (int i = 0; i < n; i++)
                 if (inQueue[i]) queue.Enqueue(i);
@@ -225,7 +225,7 @@ namespace Task20.Graphs
         }
     }
 
-    // Алгоритм Брона-Кербоша — максимальная клика
+    
     public class BronKerbosch
     {
         private int n;

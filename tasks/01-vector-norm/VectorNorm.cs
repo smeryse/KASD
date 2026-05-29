@@ -13,7 +13,7 @@ namespace Task1.Collections
         #endregion
 
         #region Constructors
-        // Creates a matrix of size n with provided data
+        
         public Matrix(int n, double[][] g)
         {
             N = n;
@@ -22,7 +22,7 @@ namespace Task1.Collections
         #endregion
 
         #region Methods
-        // Checks whether the matrix is symmetric
+        
         public bool IsSymmetric()
         {
             for (int i = 0; i < N; i++)
@@ -43,7 +43,7 @@ namespace Task1.Collections
         #endregion
 
         #region Constructors
-        // Initializes vector from given array
+        
         public Vector(double[] arr)
         {
             x = arr;
@@ -52,7 +52,7 @@ namespace Task1.Collections
         #endregion
 
         #region Methods
-        // Computes the quadratic form norm using matrix G
+        
         public double Norm(Matrix G)
         {
             if (!G.IsSymmetric())

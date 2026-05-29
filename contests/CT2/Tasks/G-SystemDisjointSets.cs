@@ -66,7 +66,7 @@ namespace CT2.Tasks
             int ry = Find(y);
             if (rx == ry) return;
 
-            // union by size
+            
             if (size[rx] < size[ry])
             {
                 int tmp = rx;

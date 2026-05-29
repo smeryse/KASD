@@ -1,0 +1,72 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="Lab9_WPF.MainWindow"
+        Title="DJ Library - Avalonia UI" Height="700" Width="1100"
+        WindowStartupLocation="CenterScreen"
+        Background="#1E1E1E">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Menu Grid.Row="0" Background="#2D2D30">
+            <MenuItem Header="Таблицы" Foreground="White">
+                <MenuItem Header="Artist" Click="MenuItem_Artist_Click"/>
+                <MenuItem Header="Genre" Click="MenuItem_Genre_Click"/>
+                <MenuItem Header="Track" Click="MenuItem_Track_Click"/>
+                <MenuItem Header="Collection" Click="MenuItem_Collection_Click"/>
+                <MenuItem Header="Event" Click="MenuItem_Event_Click"/>
+            </MenuItem>
+            <MenuItem Header="Представления" Foreground="White">
+                <MenuItem Header="Списки треков" Click="MenuItem_TrackLists_Click"/>
+                <MenuItem Header="Подготовленные сеты" Click="MenuItem_PreparedSets_Click"/>
+                <MenuItem Header="История выступлений" Click="MenuItem_PerformanceHistory_Click"/>
+                <MenuItem Header="Отчёт менеджера событий" Click="MenuItem_EventManager_Click"/>
+            </MenuItem>
+        </Menu>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10" Background="#3C3C3C" Spacing="10">
+            <TextBlock Text="Таблица:" VerticalAlignment="Center" FontWeight="Bold" Foreground="White"/>
+            <TextBlock x:Name="tblCurrentTable" Text="Не выбрана" VerticalAlignment="Center" Foreground="LightGray"/>
+            <Button Content="Добавить" Click="Btn_Add_Click" Padding="10,5" Foreground="White"/>
+            <Button Content="Редактировать" Click="Btn_Edit_Click" Padding="10,5" Foreground="White"/>
+            <Button Content="Удалить" Click="Btn_Delete_Click" Padding="10,5" Foreground="White"/>
+            <Button Content="Обновить" Click="Btn_Refresh_Click" Padding="10,5" Foreground="White"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10,0,10,5" Spacing="10">
+            <TextBlock Text="Поиск:" VerticalAlignment="Center" FontWeight="Bold" Foreground="White"/>
+            <TextBox x:Name="searchBox" Width="300" Watermark="Введите текст для поиска..." Background="#2D2D30" Foreground="White"/>
+            <Button Content="Найти" Click="Btn_Search_Click" Padding="10,5" Foreground="White"/>
+            <Button Content="Сброс" Click="Btn_ResetSearch_Click" Padding="10,5" Foreground="White"/>
+            <TextBlock x:Name="searchInfo" Text="" VerticalAlignment="Center" Foreground="Gray"/>
+        </StackPanel>
+
+        <ListBox x:Name="dataList" Grid.Row="3" Margin="10"
+                 SelectionMode="Single"
+                 BorderBrush="#555555" BorderThickness="1"
+                 Background="#1E1E1E"
+                 Foreground="White">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+        </ListBox>
+
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10" Spacing="10">
+            <Button x:Name="btnPrev" Content="← Назад" Width="100" Click="Btn_Prev_Click" IsEnabled="False" Foreground="White"/>
+            <TextBlock x:Name="pageInfo" Text="Страница 1" VerticalAlignment="Center" Foreground="White"/>
+            <Button x:Name="btnNext" Content="Вперёд →" Width="100" Click="Btn_Next_Click" IsEnabled="False" Foreground="White"/>
+        </StackPanel>
+
+        <Border Grid.Row="5" Background="#2D2D30" Padding="10">
+            <TextBlock x:Name="statusBar" Text="Готово" Foreground="White"/>
+        </Border>
+    </Grid>
+</Window>

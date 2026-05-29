@@ -2,23 +2,23 @@
 
 namespace ЛР5
 {
-    /// <summary>
-    /// Класс для обработки и уведомления об ошибках различных типов
-    /// </summary>
+    
+    
+    
     internal class ErrorNotifier
     {
-        /// <summary>
-        /// Обработчик ошибок для базового класса Student
-        /// </summary>
+        
+        
+        
         public static void HandleStudentError(object sender, StudentEventArgs e)
         {
             Console.WriteLine($"[Ошибка студента] {sender.GetType().Name}: {e.Exception.GetType().Name} - {e.Message}");
         }
 
-        /// <summary>
-        /// Обработчик ошибок для производного класса StudentWithErrorHandling
-        /// с детальной обработкой различных типов исключений
-        /// </summary>
+        
+        
+        
+        
         public static void HandleStudentWithErrorHandling(object sender, StudentEventArgs e)
         {
             string exceptionType = e.Exception.GetType().Name;
@@ -30,7 +30,7 @@ namespace ЛР5
             Console.WriteLine($"Тип исключения: {exceptionType}");
             Console.WriteLine($"Сообщение: {e.Message}");
 
-            // Специфичная обработка для каждого типа исключения
+            
             switch (e.Exception)
             {
                 case StackOverflowException _:

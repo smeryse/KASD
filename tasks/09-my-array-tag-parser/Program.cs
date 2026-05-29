@@ -14,7 +14,7 @@ class Program
             return;
         }
 
-        Regex tagRegex = new Regex(@"<(/?)([A-Za-z][A-Za-z0-9]*)>", RegexOptions.Compiled); // </f13fvr5>
+        Regex tagRegex = new Regex(@"<(/?)([A-Za-z][A-Za-z0-9]*)>", RegexOptions.Compiled); 
 
         MyArrayList<string> uniqueTags = new MyArrayList<string>();
 
@@ -22,7 +22,7 @@ class Program
         {
             foreach (Match m in tagRegex.Matches(line))
             {
-                // Normalize tag to format <tag> in lowercase, without '/'
+                
                 string normalizedTag = $"<{m.Groups[2].Value.ToLower()}>";
 
                 if (!uniqueTags.Contains(normalizedTag))

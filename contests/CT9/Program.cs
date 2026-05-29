@@ -17,6 +17,12 @@ internal class Program
         ["E"] = PeriodSearch.Solve,
         ["F"] = CommonSubstring.Solve,
         ["G"] = MultipleSearch.Solve,
+        ["H"] = MultipleSearch2.Solve,
+        ["I"] = MultipleSearch3.Solve,
+        ["J"] = SuffixArrayTask.Solve,
+        ["K"] = SubstringCount.Solve,
+        ["L"] = CyclicShifts.Solve,
+        ["M"] = LongestCommonSubstring.Solve,
     };
 
     static void Main(string[] args)

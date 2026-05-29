@@ -3,16 +3,16 @@ using System.Linq;
 
 namespace ЛР5
 {
-    /// <summary>
-    /// Класс Student, наследуемый от базового Student из Lab 4
-    /// Добавляет функциональность событий для обработки ошибок
-    /// </summary>
+    
+    
+    
+    
     class Student : global::Student
     {
-        // === Событие ошибок ===
+        
         public event EventHandler<StudentEventArgs> ErrorOccurred;
 
-        // Публичный метод для вызова события
+        
         public void RaiseError(Exception ex)
         {
             ErrorOccurred?.Invoke(this, new StudentEventArgs(ex));
@@ -22,9 +22,9 @@ namespace ЛР5
         public Student(string name, string surname, int age) 
             : base(name, surname, age) { }
 
-        // Переопределяем методы базового класса для добавления обработки ошибок через события
+        
 
-        // Добавление предмета
+        
         public new void AddSubject(global::Subject subject)
         {
             try
@@ -37,7 +37,7 @@ namespace ЛР5
             }
         }
 
-        // Удаление предмета
+        
         public new void RemoveSubject(int subjectId)
         {
             try
@@ -50,7 +50,7 @@ namespace ЛР5
             }
         }
 
-        // Добавление оценки
+        
         public new void AddGrade(global::Subject subject, int score)
         {
             try
@@ -63,7 +63,7 @@ namespace ЛР5
             }
         }
 
-        // Удаление оценки
+        
         public new void RemoveGrade(global::Subject subject, int score)
         {
             try
@@ -76,7 +76,7 @@ namespace ЛР5
             }
         }
 
-        // Поиск оценок по предмету
+        
         public new global::Grade FindGrades(global::Subject subject)
         {
             try

@@ -52,7 +52,7 @@ def add_metadata(mp3_path, artist, title):
         audio.add_tags()
         audio = EasyID3(mp3_path)
     
-    # Основные метаданные
+    
     audio['title'] = title
     if artist:
         audio['artist'] = artist
@@ -60,9 +60,9 @@ def add_metadata(mp3_path, artist, title):
     
     audio.save()
     
-    # Добавляем обложку
+    
     try:
-        # Ищем обложку в том же каталоге
+        
         cover_path = mp3_path.with_suffix('.jpg')
         if not cover_path.exists():
             cover_path = mp3_path.with_suffix('.png')
@@ -75,7 +75,7 @@ def add_metadata(mp3_path, artist, title):
             audio['APIC'] = APIC(
                 encoding=3,
                 mime='image/jpeg',
-                type=3,  # обложка
+                type=3,  
                 desc='Cover',
                 data=cover_data
             )
@@ -85,24 +85,24 @@ def add_metadata(mp3_path, artist, title):
         print(f"  ✗ Обложка: {e}")
 
 def main():
-    # Читаем треки из файла
+    
     with open(INPUT_FILE, 'r', encoding='utf-8') as f:
         tracks = [line.strip() for line in f if line.strip()]
     
     print(f"Всего треков в файле: {len(tracks)}")
     
-    # Получаем список скачанных файлов
+    
     mp3_files = list(MUSIC_DIR.glob('*.mp3'))
     print(f"Скачано MP3 файлов: {len(mp3_files)}\n")
     
-    # Сопоставляем файлы с треками
+    
     for mp3_file in mp3_files:
-        filename = mp3_file.stem  # имя без расширения
+        filename = mp3_file.stem  
         
-        # Ищем匹配的 трек в списке
+        
         matched_track = None
         for track in tracks:
-            # Проверяем совпадение по имени файла
+            
             if track in filename or filename in track:
                 matched_track = track
                 break
@@ -115,7 +115,7 @@ def main():
             
             add_metadata(mp3_file, artist, title)
             
-            # Скачиваем обложку если нет
+            
             if not mp3_file.with_suffix('.jpg').exists():
                 print(f"  → Скачиваем обложку...")
                 cover_data = download_thumbnail(matched_track)

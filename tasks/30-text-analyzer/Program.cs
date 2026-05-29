@@ -1,10 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text.RegularExpressions;
-using Task18.Collection;
-using Task25;
 
 namespace Task30
 {
@@ -12,101 +6,83 @@ namespace Task30
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("=== Задача 30: Анализ текстов (группировка по длине слов) ===\n");
+            Console.WriteLine("=== Задача 30: MyString ===\n");
 
-            string inputFile = args.Length > 0 ? args[0] : "input.txt";
+            Console.WriteLine("--- Конструкторы ---");
+            MyString s1 = new MyString();
+            Console.WriteLine($"Пустая строка: '{s1}', длина: {s1.Length()}");
 
-            if (!File.Exists(inputFile))
-            {
-                Console.WriteLine($"Файл '{inputFile}' не найден. Создаю тестовый файл...");
-                CreateSampleInput(inputFile);
-            }
+            MyString s2 = new MyString(new char[] { 'H', 'e', 'l', 'l', 'o' });
+            Console.WriteLine($"Из массива: '{s2}', длина: {s2.Length()}");
 
-            string text = File.ReadAllText(inputFile);
-            Console.WriteLine($"Прочитано {text.Length} символов из файла\n");
+            MyString s3 = new MyString(s2);
+            Console.WriteLine($"Копия: '{s3}', длина: {s3.Length()}");
 
-            var wordsByLength = new MyTreeMap<int, MyHashSet<string>>();
-            var allUniqueWords = new MyHashSet<string>(new CaseInsensitiveComparer());
-            string[] words = ExtractWords(text);
+            Console.WriteLine("\n--- length() и charAt() ---");
+            Console.WriteLine($"s2.Length() = {s2.Length()}");
+            Console.WriteLine($"s2.CharAt(0) = '{s2.CharAt(0)}'");
+            Console.WriteLine($"s2.CharAt(4) = '{s2.CharAt(4)}'");
 
-            Console.WriteLine($"Всего слов в тексте: {words.Length}\n");
+            Console.WriteLine("\n--- substring() ---");
+            MyString sub = s2.Substring(1, 4);
+            Console.WriteLine($"s2.Substring(1,4) = '{sub}'");
 
-            foreach (var word in words)
-            {
-                string normalizedWord = word.ToLower();
-                allUniqueWords.Add(normalizedWord);
-                int len = normalizedWord.Length;
+            Console.WriteLine("\n--- concat() ---");
+            MyString s4 = new MyString(new char[] { ' ', 'W', 'o', 'r', 'l', 'd' });
+            MyString concat = s2.Concat(s4);
+            Console.WriteLine($"s2.Concat(s4) = '{concat}'");
 
-                if (!wordsByLength.ContainsKey(len))
-                {
-                    wordsByLength.Put(len, new MyHashSet<string>());
-                }
+            Console.WriteLine("\n--- equals() и equalsIgnoreCase() ---");
+            MyString s5 = new MyString(new char[] { 'h', 'e', 'l', 'l', 'o' });
+            Console.WriteLine($"s2.Equals(s3) = {s2.Equals(s3)}");
+            Console.WriteLine($"s2.Equals(s5) = {s2.Equals(s5)}");
+            Console.WriteLine($"s2.EqualsIgnoreCase(s5) = {s2.EqualsIgnoreCase(s5)}");
 
-                wordsByLength.Get(len).Add(normalizedWord);
-            }
+            Console.WriteLine("\n--- toLowerCase() и toUpperCase() ---");
+            MyString mixed = new MyString(new char[] { 'H', 'e', 'L', 'l', 'O' });
+            Console.WriteLine($"toLowerCase: '{mixed.ToLowerCase()}'");
+            Console.WriteLine($"toUpperCase: '{mixed.ToUpperCase()}'");
 
-            Console.WriteLine($"Уникальных слов: {allUniqueWords.Size()}");
-            int[] allLengths = wordsByLength.KeySet().ToArray();
-            Console.WriteLine($"Диапазон длин: от {allLengths[0]} до {allLengths[allLengths.Length - 1]} символов\n");
+            Console.WriteLine("\n--- trim() ---");
+            MyString spaced = new MyString(new char[] { ' ', ' ', 'H', 'i', ' ', ' ' });
+            Console.WriteLine($"trim: '{spaced.Trim()}'");
 
-            Console.WriteLine("Группировка по длине:");
-            foreach (var len in allLengths)
-            {
-                MyHashSet<string> set = wordsByLength.Get(len);
-                Console.Write($"  {len} симв: ");
-                bool first = true;
-                foreach (var w in set.ToArray())
-                {
-                    if (!first) Console.Write(", ");
-                    Console.Write(w);
-                    first = false;
-                }
-                Console.WriteLine($" ({set.Size()} шт.)");
-            }
+            Console.WriteLine("\n--- replace() ---");
+            Console.WriteLine($"replace('l','X'): '{s2.Replace('l', 'X')}'");
 
-            Console.WriteLine($"\nСтатистика:");
-            int totalUnique = allUniqueWords.Size();
-            int avgLen = 0;
-            object[] wordArr = allUniqueWords.ToArray();
-            foreach (var wordObj in wordArr)
-            {
-                avgLen += ((string)wordObj).Length;
-            }
-            if (totalUnique > 0)
-                avgLen /= totalUnique;
+            Console.WriteLine("\n--- contains() и indexOf() ---");
+            MyString ell = new MyString(new char[] { 'e', 'l', 'l' });
+            Console.WriteLine($"s2.Contains('ell'): {s2.Contains(ell)}");
+            Console.WriteLine($"s2.IndexOf('ell'): {s2.IndexOf(ell)}");
+            MyString xyz = new MyString(new char[] { 'x', 'y', 'z' });
+            Console.WriteLine($"s2.Contains('xyz'): {s2.Contains(xyz)}");
+            Console.WriteLine($"s2.IndexOf('xyz'): {s2.IndexOf(xyz)}");
 
-            Console.WriteLine($"  Средняя длина слова: {avgLen} симв.");
-            Console.WriteLine($"  Уникальных слов: {totalUnique}");
-            Console.WriteLine($"  Всего слов: {words.Length}");
+            Console.WriteLine("\n--- split() ---");
+            MyString csv = new MyString(new char[] { 'a', ',', 'b', ',', 'c' });
+            MyString[] parts = csv.Split(',');
+            Console.WriteLine($"split(',') на '{csv}':");
+            foreach (var p in parts)
+                Console.WriteLine($"  '{p}'");
+
+            Console.WriteLine("\n--- startsWith() и endsWith() ---");
+            MyString he = new MyString(new char[] { 'H', 'e' });
+            MyString lo = new MyString(new char[] { 'l', 'o' });
+            Console.WriteLine($"s2.StartsWith('He'): {s2.StartsWith(he)}");
+            Console.WriteLine($"s2.EndsWith('lo'): {s2.EndsWith(lo)}");
+
+            Console.WriteLine("\n--- reverse() ---");
+            Console.WriteLine($"s2.Reverse() = '{s2.Reverse()}'");
+
+            Console.WriteLine("\n--- valueOf() ---");
+            Console.WriteLine($"valueOf(42) = '{MyString.ValueOf(42)}'");
+            Console.WriteLine($"valueOf(3.14) = '{MyString.ValueOf(3.14)}'");
+            Console.WriteLine($"valueOf(true) = '{MyString.ValueOf(true)}'");
+
+            Console.WriteLine("\n--- toString() ---");
+            Console.WriteLine($"s2.ToString() = '{s2.ToString()}'");
 
             Console.WriteLine("\n=== Готово ===");
-        }
-
-        static string[] ExtractWords(string text)
-        {
-            return Regex.Matches(text, "[a-zA-Z]+")
-                        .Select(m => m.Value)
-                        .ToArray();
-        }
-
-        static void CreateSampleInput(string path)
-        {
-            var text = @"A quick brown fox jumps over the lazy dog.
-The dog was not amused by the fox.
-The fox was quick and the dog was lazy.
-Programming is fun and interesting.";
-            File.WriteAllText(path, text);
-        }
-    }
-
-    class CaseInsensitiveComparer : IComparer<string>
-    {
-        public int Compare(string x, string y)
-        {
-            if (x == null && y == null) return 0;
-            if (x == null) return -1;
-            if (y == null) return 1;
-            return string.Compare(x, y, StringComparison.OrdinalIgnoreCase);
         }
     }
 }

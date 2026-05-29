@@ -2,11 +2,11 @@ using System;
 
 public sealed class SegmentTree
 {
-    private readonly int n;          // исходная длина
-    private readonly int size;       // степень двойки >= n
-    private readonly long neutral;   // нейтральный элемент
-    private readonly Func<long, long, long> op; // ассоциативная операция
-    private readonly long[] tree;    // 1..2*size-1 (0 не используем)
+    private readonly int n;          
+    private readonly int size;       
+    private readonly long neutral;   
+    private readonly Func<long, long, long> op; 
+    private readonly long[] tree;    
 
     public SegmentTree(long[] data, Func<long, long, long> op, long neutral)
     {

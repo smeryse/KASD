@@ -3,7 +3,7 @@ using System.Globalization;
 
 namespace CT1.Tasks
 {
-    // Троичный поиск оптимальной точки
+    
     static class GladeOfFirewood
     {
         public static void Solve()

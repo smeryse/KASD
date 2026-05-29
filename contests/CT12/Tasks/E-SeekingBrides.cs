@@ -1,168 +1,173 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
-internal static class SeekingBrides
+class Solution
 {
-    static readonly long INF = long.MaxValue / 2;
+    const long INF = long.MaxValue / 2;
 
     struct Edge
     {
-        public int To, Rev, EdgeId;
-        public long Cap, Cost;
+        public int to, cap;
+        public long cost;
+        public int orig;
     }
 
-    static List<Edge>[] graph;
+    static List<Edge> edges;
+    static List<int>[] g;
+    static int n_nodes;
 
-    static void AddEdge(int u, int v, long cap, long cost, int eid)
+    static void AddArc(int from, int to, int cap, long cost, int origIdx)
     {
-        graph[u].Add(new Edge { To = v, Cap = cap,  Cost = cost,  EdgeId = eid, Rev = graph[v].Count });
-        graph[v].Add(new Edge { To = u, Cap = 0,    Cost = -cost, EdgeId = eid, Rev = graph[u].Count - 1 });
+        g[from].Add(edges.Count);
+        edges.Add(new Edge { to = to, cap = cap, cost = cost, orig = origIdx });
+        g[to].Add(edges.Count);
+        edges.Add(new Edge { to = from, cap = 0, cost = -cost, orig = 0 });
     }
 
-    public static void Solve()
+    
+    static (long flow, long cost) MinCostFlow(int s, int t, int need)
     {
-        var line1 = Console.ReadLine()!.Trim().Split();
-        int n = int.Parse(line1[0]);
-        int m = int.Parse(line1[1]);
-        int k = int.Parse(line1[2]);
+        long totalFlow = 0, totalCost = 0;
+        long[] dist = new long[n_nodes];
+        bool[] inq = new bool[n_nodes];
+        int[] prev = new int[n_nodes];
 
-        graph = new List<Edge>[n + 1];
-        for (int i = 0; i <= n; i++) graph[i] = new List<Edge>();
-
-        for (int i = 0; i < m; i++)
+        while (totalFlow < need)
         {
-            var p = Console.ReadLine()!.Trim().Split();
-            int u = int.Parse(p[0]);
-            int v = int.Parse(p[1]);
-            long w = long.Parse(p[2]);
+            for (int i = 0; i < n_nodes; i++) { dist[i] = INF; inq[i] = false; prev[i] = -1; }
+            dist[s] = 0;
 
-            AddEdge(u, v, 1, w, i + 1);
-            AddEdge(v, u, 1, w, i + 1);
-        }
+            
+            var dq = new LinkedList<int>();
+            dq.AddFirst(s);
+            inq[s] = true;
 
-        int source = 1, sink = n;
-
-        long[] pot = new long[n + 1];
-        Array.Fill(pot, INF);
-        pot[source] = 0;
-        for (int iter = 0; iter < n - 1; iter++)
-        {
-            bool upd = false;
-            for (int u = 1; u <= n; u++)
+            while (dq.Count > 0)
             {
-                if (pot[u] == INF) continue;
-                foreach (var e in graph[u])
+                int v = dq.First.Value; dq.RemoveFirst(); inq[v] = false;
+                foreach (int id in g[v])
                 {
-                    if (e.Cap > 0 && pot[u] != INF && pot[u] + e.Cost < pot[e.To])
+                    var e = edges[id];
+                    if (e.cap > 0 && dist[v] < INF && dist[v] + e.cost < dist[e.to])
                     {
-                        pot[e.To] = pot[u] + e.Cost;
-                        upd = true;
-                    }
-                }
-            }
-            if (!upd) break;
-        }
-
-        long totalCost = 0;
-        int totalFlow = 0;
-        var paths = new List<List<int>>();
-
-        for (int iter = 0; iter < k; iter++)
-        {
-            // Dijkstra with Johnson potentials (reduced costs >= 0)
-            long[] dist = new long[n + 1];
-            Array.Fill(dist, INF);
-            dist[source] = 0;
-            int[] parentV = new int[n + 1];
-            int[] parentE = new int[n + 1];
-            Array.Fill(parentV, -1);
-
-            var pq = new PriorityQueue<int, long>();
-            pq.Enqueue(source, 0);
-
-            while (pq.Count > 0)
-            {
-                pq.TryDequeue(out int u, out long d);
-                if (d > dist[u]) continue;
-                for (int i = 0; i < graph[u].Count; i++)
-                {
-                    var e = graph[u][i];
-                    if (e.Cap <= 0) continue;
-                    if (pot[u] == INF || pot[e.To] == INF) continue;
-                    long rc = e.Cost + pot[u] - pot[e.To];
-                    if (rc < 0) rc = 0;
-                    long nd = dist[u] + rc;
-                    if (nd < dist[e.To])
-                    {
-                        dist[e.To] = nd;
-                        parentV[e.To] = u;
-                        parentE[e.To] = i;
-                        pq.Enqueue(e.To, nd);
+                        dist[e.to] = dist[v] + e.cost;
+                        prev[e.to] = id;
+                        if (!inq[e.to])
+                        {
+                            inq[e.to] = true;
+                            
+                            if (dq.Count > 0 && dist[e.to] < dist[dq.First.Value])
+                                dq.AddFirst(e.to);
+                            else
+                                dq.AddLast(e.to);
+                        }
                     }
                 }
             }
 
-            if (dist[sink] >= INF) break;
+            if (dist[t] == INF) break;
 
-            // Real cost of this augmenting path = pot[sink] + dist[sink]
-            // (because pot[v] = shortest real dist to v before this iteration's adjustments)
-            // Actually: real_dist[sink] = dist[sink] + pot[sink] - pot[source]
-            // pot[source] = 0 always (source dist=0, never updated away from 0)
-            long realCost = dist[sink] + pot[sink]; // pot[source]=0
-
-            // Update potentials
-            for (int i = 1; i <= n; i++)
-                if (dist[i] < INF) pot[i] += dist[i];
-
-            // Trace and augment
-            var path = new List<int>();
-            int v = sink;
-            while (v != source)
+            int pushed = need - (int)totalFlow;
+            for (int cur = t; cur != s;) { int id = prev[cur]; pushed = Math.Min(pushed, edges[id].cap); cur = edges[id ^ 1].to; }
+            for (int cur = t; cur != s;)
             {
-                int u = parentV[v];
-                int idx = parentE[v];
-                var fe = graph[u][idx];
-                path.Add(fe.EdgeId);
-
-                // Update forward edge
-                graph[u][idx] = new Edge {
-                    To = fe.To, Cap = fe.Cap - 1,
-                    Cost = fe.Cost, EdgeId = fe.EdgeId, Rev = fe.Rev
-                };
-                // Update reverse edge
-                var re = graph[v][fe.Rev];
-                graph[v][fe.Rev] = new Edge {
-                    To = re.To, Cap = re.Cap + 1,
-                    Cost = re.Cost, EdgeId = re.EdgeId, Rev = re.Rev
-                };
-
-                v = u;
+                int id = prev[cur];
+                var e = edges[id]; e.cap -= pushed; edges[id] = e;
+                var er = edges[id ^ 1]; er.cap += pushed; edges[id ^ 1] = er;
+                cur = edges[id ^ 1].to;
             }
-            path.Reverse();
-            paths.Add(path);
-            totalFlow++;
-            totalCost += realCost;
+            totalFlow += pushed;
+            totalCost += (long)pushed * dist[t];
         }
+        return (totalFlow, totalCost);
+    }
 
-        if (totalFlow < k)
+    static int[] remFlow;
+
+    static bool DFSPath(int v, int sink, List<int> path, bool[] visited)
+    {
+        if (v == sink) return true;
+        visited[v] = true;
+        foreach (int id in g[v])
         {
-            Console.WriteLine("-1");
-            return;
+            var e = edges[id];
+            if (e.orig != 0 && remFlow[id] > 0 && !visited[e.to])
+            {
+                remFlow[id]--;
+                path.Add(Math.Abs(e.orig));
+                if (DFSPath(e.to, sink, path, visited))
+                    return true;
+                path.RemoveAt(path.Count - 1);
+                remFlow[id]++;
+            }
+        }
+        visited[v] = false;
+        return false;
+    }
+
+    static void Run()
+    {
+        var line = Console.ReadLine().Trim().Split();
+        int N = int.Parse(line[0]);
+        int M = int.Parse(line[1]);
+        int K = int.Parse(line[2]);
+
+        n_nodes = N;
+        edges = new List<Edge>(M * 4 + 4);
+        g = new List<int>[N];
+        for (int i = 0; i < N; i++) g[i] = new List<int>();
+
+        int[] eu = new int[M]; int[] ev = new int[M]; long[] ew = new long[M];
+        for (int i = 0; i < M; i++)
+        {
+            var p = Console.ReadLine().Trim().Split();
+            eu[i] = int.Parse(p[0]) - 1;
+            ev[i] = int.Parse(p[1]) - 1;
+            ew[i] = long.Parse(p[2]);
         }
 
+        
+        
+        
+        
+        
+        for (int i = 0; i < M; i++)
+        {
+            AddArc(eu[i], ev[i], 1, ew[i],  (i + 1));
+            AddArc(ev[i], eu[i], 1, ew[i], -(i + 1));
+        }
+
+        int source = 0, sink = N - 1;
+        var (flow, cost) = MinCostFlow(source, sink, K);
+
+        if (flow < K) { Console.WriteLine(-1); return; }
+
+        double avg = (double)cost / K;
         var sb = new StringBuilder();
-        double avgTime = (double)totalCost / k;
-        sb.AppendLine(avgTime.ToString("F5", System.Globalization.CultureInfo.InvariantCulture));
-        foreach (var path in paths)
-            sb.AppendLine(path.Count + " " + string.Join(" ", path));
-        Console.Write(sb);
+        sb.AppendLine(avg.ToString("F5"));
+
+        remFlow = new int[edges.Count];
+        for (int i = 0; i < edges.Count; i++)
+            if (edges[i].orig != 0)
+                remFlow[i] = 1 - edges[i].cap;
+
+        for (int p = 0; p < K; p++)
+        {
+            var path = new List<int>();
+            DFSPath(source, sink, path, new bool[N]);
+            sb.Append(path.Count);
+            foreach (int eo in path) sb.Append(' ').Append(eo);
+            sb.AppendLine();
+        }
+
+        Console.Write(sb.ToString().TrimEnd());
+        Console.WriteLine();
     }
 
-    static void Main() => Solve();
-}
-
-class Program
-{
-    static void Main() => SeekingBrides.Main();
+    static void Main()
+    {
+        new Thread(Run, 64 * 1024 * 1024).Start();
+    }
 }

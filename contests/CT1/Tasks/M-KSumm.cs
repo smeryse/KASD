@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace CT1.Tasks
 {
-    // k-я минимальная сумма пары (a[i] + b[j])
+    
     static class KSumm
     {
         private static long[] a;

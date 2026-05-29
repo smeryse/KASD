@@ -2,7 +2,7 @@ using System;
 
 namespace CT1.Tasks
 {
-    // Для каждого запроса q выводим ближайший элемент массива
+    
     static class ApproximateBinarySearch
     {
         public static void Solve()

@@ -67,13 +67,13 @@ class Program
         for (int i = 0; i < m; i++) matchGreen[i]  = -1;
         for (int j = 0; j < k; j++) matchYellow[j] = -1;
 
-        // Обязательные зелёные — первыми (приоритет в паросочетании)
+        
         foreach (int g in lonelyGreen) { visited = new bool[k]; DfsGreen(g); }
-        // Остальные зелёные
+        
         for (int g = 0; g < m; g++)
             if (!lonelyGreen.Contains(g)) { visited = new bool[k]; DfsGreen(g); }
 
-        // Проверяем покрытие обязательных
+        
         bool ok = true;
         foreach (int g in lonelyGreen)
             if (matchGreen[g] == -1) { ok = false; break; }
@@ -86,7 +86,7 @@ class Program
 
         if (!ok || matched < n) { Console.WriteLine("NO"); return; }
 
-        // Обязательные зелёные = lonelyGreen + партнёры lonelyYellow
+        
         var mandatoryGreen = new HashSet<int>(lonelyGreen);
         foreach (int y in lonelyYellow)
             mandatoryGreen.Add(matchYellow[y]);

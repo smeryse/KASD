@@ -6,7 +6,7 @@ namespace CT8.Tasks;
 
 internal class LostKefir
 {
-    // Быстрый ввод для обработки больших тестов
+    
     private class FastReader
     {
         private TextReader reader;
@@ -62,35 +62,35 @@ internal class LostKefir
 
         const long INF = long.MaxValue / 4;
 
-        // Запускаем Дейкстру из a, b, c
+        
         long[] distA = Dijkstra(n, adj, a);
         long[] distB = Dijkstra(n, adj, b);
         long[] distC = Dijkstra(n, adj, c);
 
-        // Проверяем все 6 перестановок посещения a, b, c
+        
         long ans = INF;
 
-        // a -> b -> c
+        
         if (distA[b] != INF && distB[c] != INF)
             ans = Math.Min(ans, distA[b] + distB[c]);
 
-        // a -> c -> b
+        
         if (distA[c] != INF && distC[b] != INF)
             ans = Math.Min(ans, distA[c] + distC[b]);
 
-        // b -> a -> c
+        
         if (distB[a] != INF && distA[c] != INF)
             ans = Math.Min(ans, distB[a] + distA[c]);
 
-        // b -> c -> a
+        
         if (distB[c] != INF && distC[a] != INF)
             ans = Math.Min(ans, distB[c] + distC[a]);
 
-        // c -> a -> b
+        
         if (distC[a] != INF && distA[b] != INF)
             ans = Math.Min(ans, distC[a] + distA[b]);
 
-        // c -> b -> a
+        
         if (distC[b] != INF && distB[a] != INF)
             ans = Math.Min(ans, distC[b] + distB[a]);
 
@@ -118,7 +118,7 @@ internal class LostKefir
         {
             int u = pq.Dequeue();
 
-            // Пропускаем уже обработанные вершины
+            
             if (visited[u])
                 continue;
             

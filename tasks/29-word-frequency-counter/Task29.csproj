@@ -9,8 +9,4 @@
     <Nullable>disable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\18-my-tree-map\MyTreeMap.csproj" />
-  </ItemGroup>
-
 </Project>

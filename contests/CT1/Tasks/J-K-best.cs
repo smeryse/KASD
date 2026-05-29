@@ -2,7 +2,7 @@ using System;
 
 namespace CT1.Tasks
 {
-    // Выбор k предметов с максимальным средним v/w через бинарный поиск по ответу
+    
     static class KBest
     {
         private static int n, k;
@@ -43,7 +43,7 @@ namespace CT1.Tasks
             }
 
             for (int i = 0; i < k; i++)
-                Console.WriteLine(answer[i] + 1); // индексация с 1
+                Console.WriteLine(answer[i] + 1); 
         }
 
         private static bool IsPossible(double x, out int[] chosen)

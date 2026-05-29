@@ -2,7 +2,7 @@ using System;
 
 namespace CT1.Tasks
 {
-    // Кол-во элементов в диапазоне [l, r]
+    
     static class QuickSearchInArray
     {
         public static void Solve()

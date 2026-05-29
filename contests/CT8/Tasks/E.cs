@@ -35,7 +35,7 @@ internal class ShortestPaths
             dist[i] = INF;
         dist[s] = 0;
 
-        // Bellman-Ford: n-1 итерация
+        
         for (int i = 0; i < n - 1; i++)
         {
             bool changed = false;
@@ -51,10 +51,10 @@ internal class ShortestPaths
                 break;
         }
 
-        // Проверка на достижимость из цикла отрицательного веса
+        
         bool[] reachableFromNegCycle = new bool[n + 1];
         
-        // Запускаем ещё n итераций для распространения -∞
+        
         for (int i = 0; i < n; i++)
         {
             foreach (var (u, v, w) in edges)
@@ -71,7 +71,7 @@ internal class ShortestPaths
             }
         }
 
-        // Вывод результатов
+        
         for (int i = 1; i <= n; i++)
         {
             if (dist[i] == INF)

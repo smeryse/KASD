@@ -27,7 +27,7 @@ class Knapsack
         N = items.Count;
         dp = new int[N + 1, W + 1];
 
-        // Инициализация -1 для мемоизации
+        
         for (int i = 0; i <= N; i++)
         {
             for (int j = 0; j <= W; j++)
@@ -50,10 +50,10 @@ class Knapsack
         if (dp[i, w] != -1)
             return dp[i, w];
 
-        // Не берём текущий предмет
+        
         int notTake = Recursive(i - 1, w);
 
-        // Берём текущий предмет, если помещается
+        
         int take = 0;
         if (Items[i - 1].Weight <= w)
         {
@@ -81,6 +81,6 @@ class Program
 
         Knapsack knapsack = new Knapsack(W, items);
         int maxValue = knapsack.Solve();
-        Console.WriteLine("Максимальная стоимость: " + maxValue); // Ожидаемый вывод: 220
+        Console.WriteLine("Максимальная стоимость: " + maxValue); 
     }
 }

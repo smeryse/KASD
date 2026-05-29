@@ -1,133 +1,131 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
 
 namespace CT7.Tasks;
 
-internal class CentroidDecomposition
+internal static class CentroidDecomposition
 {
-    private static List<int>[] adj = null!;
-    private static bool[] removed = null!;
-    private static int[] subtreeSize = null!, centroidParent = null!;
-    private static int n;
-
     public static void Solve()
     {
-        var line = Console.ReadLine();
-        if (string.IsNullOrEmpty(line))
-            return;
+        var fs = new FastScanner(Console.In);
+        int n = fs.NextInt();
+        int q = fs.NextInt();
+        if (n == 0) return;
 
-        var parts = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-        n = int.Parse(parts[0]);
-        int m = int.Parse(parts[1]);
-
-        adj = new List<int>[n + 1];
-        for (int i = 1; i <= n; i++)
-            adj[i] = new List<int>();
-
+        var adj = new List<int>[n + 1];
+        for (int i = 1; i <= n; i++) adj[i] = new List<int>();
         for (int i = 0; i < n - 1; i++)
         {
-            line = Console.ReadLine();
-            if (string.IsNullOrEmpty(line))
-                break;
-            parts = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-            int u = int.Parse(parts[0]);
-            int v = int.Parse(parts[1]);
+            int u = fs.NextInt();
+            int v = fs.NextInt();
             adj[u].Add(v);
             adj[v].Add(u);
         }
 
-        removed = new bool[n + 1];
-        subtreeSize = new int[n + 1];
-        centroidParent = new int[n + 1];
+        int log = 1;
+        while ((1 << log) <= n) log++;
+        var up = new int[n + 1, log];
+        var depth = new int[n + 1];
+        BuildParents(adj, up, depth, log);
 
-        BuildCentroidDecomposition(1, 0);
-
-        var result = new System.Text.StringBuilder();
-        for (int i = 0; i < m; i++)
+        var sb = new StringBuilder();
+        for (int i = 0; i < q; i++)
         {
-            line = Console.ReadLine();
-            if (string.IsNullOrEmpty(line))
-                break;
-            parts = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-            int u = int.Parse(parts[0]);
-            int v = int.Parse(parts[1]);
-            result.Append(Distance(u, v)).Append('\n');
+            int u = fs.NextInt();
+            int v = fs.NextInt();
+            int lca = Lca(u, v, up, depth, log);
+            sb.AppendLine((depth[u] + depth[v] - 2 * depth[lca]).ToString());
         }
-
-        Console.Write(result.ToString());
+        Console.Write(sb);
     }
 
-    private static void BuildCentroidDecomposition(int u, int parent)
+    private static void BuildParents(List<int>[] adj, int[,] up, int[] depth, int log)
     {
-        CalcSubtreeSize(u, parent);
-        int total = subtreeSize[u];
-        int centroid = FindCentroid(u, parent, total);
-
-        removed[centroid] = true;
-        centroidParent[centroid] = parent;
-
-        foreach (int v in adj[centroid])
+        var stack = new Stack<(int node, int parent)>();
+        stack.Push((1, 1));
+        while (stack.Count > 0)
         {
-            if (!removed[v])
-                BuildCentroidDecomposition(v, centroid);
-        }
-    }
+            var (u, parent) = stack.Pop();
+            up[u, 0] = parent;
+            for (int j = 1; j < log; j++) up[u, j] = up[up[u, j - 1], j - 1];
 
-    private static void CalcSubtreeSize(int u, int parent)
-    {
-        subtreeSize[u] = 1;
-        foreach (int v in adj[u])
-        {
-            if (v != parent && !removed[v])
+            foreach (int v in adj[u])
             {
-                CalcSubtreeSize(v, u);
-                subtreeSize[u] += subtreeSize[v];
+                if (v == parent) continue;
+                depth[v] = depth[u] + 1;
+                stack.Push((v, u));
             }
         }
     }
 
-    private static int FindCentroid(int u, int parent, int total)
+    private static int Lca(int a, int b, int[,] up, int[] depth, int log)
     {
-        foreach (int v in adj[u])
+        if (depth[a] < depth[b]) (a, b) = (b, a);
+        int diff = depth[a] - depth[b];
+        for (int j = 0; j < log; j++)
+            if (((diff >> j) & 1) == 1)
+                a = up[a, j];
+
+        if (a == b) return a;
+        for (int j = log - 1; j >= 0; j--)
         {
-            if (v != parent && !removed[v] && subtreeSize[v] > total / 2)
-                return FindCentroid(v, u, total);
+            if (up[a, j] == up[b, j]) continue;
+            a = up[a, j];
+            b = up[b, j];
         }
-        return u;
+        return up[a, 0];
     }
 
-    private static int Distance(int u, int v)
+    private sealed class FastScanner
     {
-        var depth = new int[n + 1];
-        var parent = new int[n + 1];
-        DFS(u, -1, 0, parent, depth);
+        private readonly TextReader reader;
+        private readonly char[] buffer = new char[1 << 16];
+        private int len;
+        private int ptr;
 
-        int lca = LCA(u, v, parent, depth);
-        return depth[u] + depth[v] - 2 * depth[lca];
-    }
-
-    private static void DFS(int u, int p, int d, int[] parent, int[] depth)
-    {
-        depth[u] = d;
-        parent[u] = p;
-        foreach (int v in adj[u])
+        public FastScanner(TextReader reader)
         {
-            if (v != p)
-                DFS(v, u, d + 1, parent, depth);
+            this.reader = reader;
         }
-    }
 
-    private static int LCA(int u, int v, int[] parent, int[] depth)
-    {
-        while (depth[u] > depth[v])
-            u = parent[u];
-        while (depth[v] > depth[u])
-            v = parent[v];
-        while (u != v)
+        private int Read()
         {
-            u = parent[u];
-            v = parent[v];
+            if (ptr >= len)
+            {
+                len = reader.Read(buffer, 0, buffer.Length);
+                ptr = 0;
+                if (len == 0) return 0;
+            }
+
+            return buffer[ptr++];
         }
-        return u;
+
+        public int NextInt()
+        {
+            int c = Read();
+            while (c <= ' ')
+            {
+                if (c == 0) return 0;
+                c = Read();
+            }
+
+            int sign = 1;
+            if (c == '-')
+            {
+                sign = -1;
+                c = Read();
+            }
+
+            int result = 0;
+            while (c > ' ')
+            {
+                result = result * 10 + c - '0';
+                c = Read();
+            }
+
+            return result * sign;
+        }
     }
 }

@@ -15,3 +15,9 @@ Samples:
 | E | [PeriodSearch](Tasks/E-PeriodSearch.cs) | Поиск периода |  |
 | F | [CommonSubstring](Tasks/F-CommonSubstring.cs) | Подстроки-3 |  |
 | G | [MultipleSearch](Tasks/G-MultipleSearch.cs) | Множественный поиск |  |
+| H | [MultipleSearch-2](Tasks/H-MultipleSearch-2.cs) | Множественный поиск-2 |  |
+| I | [MultipleSearch-3](Tasks/I-MultipleSearch-3.cs) | Множественный поиск-3 |  |
+| J | [SuffixArray](Tasks/J-SuffixArray.cs) | Суффиксный массив |  |
+| K | [SubstringCount](Tasks/K-SubstringCount.cs) | Количество подстрок |  |
+| L | [CyclicShifts](Tasks/L-CyclicShifts.cs) | Циклические сдвиги |  |
+| M | [LongestCommonSubstring](Tasks/M-LongestCommonSubstring.cs) | Наибольшая общая подстрока |  |

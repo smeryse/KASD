@@ -10,16 +10,16 @@ internal class KnightPhone
 
     private readonly int[][] moves =
     [
-        new[] { 4, 6 },    // 0
-        new[] { 6, 8 },    // 1
-        new[] { 7, 9 },    // 2
-        new[] { 4, 8 },    // 3
-        new[] { 0, 3, 9 }, // 4
-        [],               // 5 (конь не может ходить на 5)
-        new[] { 0, 1, 7 }, // 6
-        new[] { 2, 6 },    // 7
-        new[] { 1, 3 },    // 8
-        new[] { 2, 4 }     // 9
+        new[] { 4, 6 },    
+        new[] { 6, 8 },    
+        new[] { 7, 9 },    
+        new[] { 4, 8 },    
+        new[] { 0, 3, 9 }, 
+        [],               
+        new[] { 0, 1, 7 }, 
+        new[] { 2, 6 },    
+        new[] { 1, 3 },    
+        new[] { 2, 4 }     
     ];
 
     public KnightPhone(int n)

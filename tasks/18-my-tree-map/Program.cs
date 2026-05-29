@@ -9,7 +9,7 @@ namespace Task18
         {
             Console.WriteLine("ТЕСТИРОВАНИЕ РЕАЛИЗАЦИИ MyTreeMap");
 
-            // Тест 1
+            
             TestHeader(1, "Конструктор по умолчанию, Put(), Get(), Size()");
             var map1 = new MyTreeMap<string, int>();
             map1.Put("one", 1);
@@ -19,7 +19,7 @@ namespace Task18
             Show($"Значение по ключу 'two': {map1.Get("two")} (ожидается 2)");
             Show("Содержимое: ", map1);
 
-            // Тест 2
+            
             TestHeader(2, "Конструктор с компаратором (обратный порядок)");
             var map2 = new MyTreeMap<string, int>(Comparer<string>.Create((a, b) => b.CompareTo(a)));
             map2.Put("A", 10);
@@ -29,7 +29,7 @@ namespace Task18
             Show($"Первый ключ: {map2.FirstKey()} (ожидается C)");
             Show($"Последний ключ: {map2.LastKey()} (ожидается A)");
 
-            // Тест 3
+            
             TestHeader(3, "ContainsKey(), ContainsValue(), IsEmpty()");
             var map3 = new MyTreeMap<string, string>();
             map3.Put("apple", "red");
@@ -41,7 +41,7 @@ namespace Task18
             Show($"ContainsValue('blue') → {map3.ContainsValue("blue")} (false)");
             Show($"IsEmpty() → {map3.IsEmpty()} (false)");
 
-            // Тест 4
+            
             TestHeader(4, "Remove() и Clear()");
             var map4 = new MyTreeMap<int, string>();
             for (int i = 1; i <= 5; i++) map4.Put(i, $"Value{i}");
@@ -52,7 +52,7 @@ namespace Task18
             map4.Clear();
             Show($"После Clear(): Size = {map4.Size}, IsEmpty = {map4.IsEmpty()} (0, true)");
 
-            // Тест 5
+            
             TestHeader(5, "FirstKey(), LastKey(), FirstEntry(), LastEntry()");
             var map5 = new MyTreeMap<string, int>();
             map5.Put("zebra", 5);
@@ -66,7 +66,7 @@ namespace Task18
             var lastEntry = map5.LastEntry();
             Show($"LastEntry() → {lastEntry?.Key}={lastEntry?.Value} (zebra=5)");
 
-            // Тест 6
+            
             TestHeader(6, "HeadMap() — элементы с ключом меньше end");
             var map6 = new MyTreeMap<int, string>();
             for (int i = 1; i <= 10; i++) map6.Put(i, $"V{i}");
@@ -75,7 +75,7 @@ namespace Task18
             Show<int, string>($"HeadMap(5): ", headMap);
             Show("Ожидается: 1=V1, 2=V2, 3=V3, 4=V4");
 
-            // Тест 7
+            
             TestHeader(7, "TailMap() — элементы с ключом больше start");
             var map7 = new MyTreeMap<int, string>();
             for (int i = 1; i <= 10; i++) map7.Put(i, $"V{i}");
@@ -84,7 +84,7 @@ namespace Task18
             Show<int, string>($"TailMap(5): ", tailMap);
             Show("Ожидается: 6=V6, 7=V7, 8=V8, 9=V9, 10=V10");
 
-            // Тест 8
+            
             TestHeader(8, "SubMap() — элементы в диапазоне [start, end)");
             var map8 = new MyTreeMap<int, string>();
             for (int i = 1; i <= 10; i++) map8.Put(i, $"V{i}");
@@ -93,7 +93,7 @@ namespace Task18
             Show<int, string>($"SubMap(3, 7): ", subMap);
             Show("Ожидается: 3=V3, 4=V4, 5=V5, 6=V6");
 
-            // Тест 9
+            
             TestHeader(9, "LowerEntry(), FloorEntry(), HigherEntry(), CeilingEntry()");
             var map9 = new MyTreeMap<int, string>();
             map9.Put(10, "A");
@@ -114,7 +114,7 @@ namespace Task18
             var ceiling = map9.CeilingEntry(30);
             Show($"CeilingEntry(30) → {ceiling?.Key}={ceiling?.Value} (ожидается 30=C)");
 
-            // Тест 10
+            
             TestHeader(10, "LowerKey(), FloorKey(), HigherKey(), CeilingKey()");
             var map10 = new MyTreeMap<string, int>();
             map10.Put("apple", 1);
@@ -128,7 +128,7 @@ namespace Task18
             Show($"HigherKey('banana') → {map10.HigherKey("banana")} (ожидается cherry)");
             Show($"CeilingKey('banana') → {map10.CeilingKey("banana")} (ожидается banana)");
 
-            // Тест 11
+            
             TestHeader(11, "PollFirstEntry(), PollLastEntry()");
             var map11 = new MyTreeMap<int, string>();
             map11.Put(5, "E");
@@ -144,7 +144,7 @@ namespace Task18
             Show($"PollLastEntry() → {pollLast?.Key}={pollLast?.Value} (ожидается 5=E)");
             Show("После PollLastEntry(): ", map11);
 
-            // Тест 12
+            
             TestHeader(12, "KeySet() и EntrySet()");
             var map12 = new MyTreeMap<string, int>();
             map12.Put("X", 100);
@@ -178,7 +178,7 @@ namespace Task18
             Console.ResetColor();
             Console.WriteLine(" ]");
 
-            // Тест 13
+            
             TestHeader(13, "Обновление значения существующего ключа");
             var map13 = new MyTreeMap<string, int>();
             map13.Put("key1", 10);
@@ -188,7 +188,7 @@ namespace Task18
             Show("После Put('key1', 999): ", map13);
             Show($"Get('key1') → {map13.Get("key1")} (ожидается 999)");
 
-            // Тест 14
+            
             TestHeader(14, "Обработка null ключа (должна быть ошибка)");
             var map14 = new MyTreeMap<string, int>();
             try
@@ -201,7 +201,7 @@ namespace Task18
                 Show("Correctly thrown ArgumentNullException for null key");
             }
 
-            // Тест 15
+            
             TestHeader(15, "Пустая карта — граничные случаи");
             var map15 = new MyTreeMap<string, int>();
             Show($"IsEmpty() → {map15.IsEmpty()} (true)");
@@ -234,7 +234,7 @@ namespace Task18
             Console.ResetColor();
         }
 
-        // Generic Show method to avoid ambiguity
+        
         static void Show<TK, TV>(string message, MyTreeMap<TK, TV>? map = null) where TK : IComparable<TK>
         {
             Console.Write($"   • {message}");

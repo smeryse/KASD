@@ -13,11 +13,25 @@
 | 10 | [MyVector](Tasks/10-MyVector) | Generic vector data structure | ✅ |  |
 | 11 | [IPParser](Tasks/11-IPParser) | Parsing IP program by MyVector class | ✅ | 10 |
 | 12 | [MyStack](Tasks/12-MyStack) | Generic stack data structure | ✅ | 10 |
-| 13 |  |  |  |  |
-| 14 |  |  |  |  |
-| 15 |  |  |  |  |
-| 16 |  |  |  |  |
-| 17 |  |  |  |  |
+| 13 | [ReversePolishEntry](Tasks/13-ReversePolishEntry) | Evaluating expressions in reverse Polish notation | ✅ | 12 |
+| 14 | [MyArrayDeque](14-my-array-deque) | Generic array deque (broken/stub) | ❌ |  |
+| 15 | (empty) | Not implemented | ❌ |  |
+| 16 | (empty) | Not implemented | ❌ |  |
+| 17 | (empty) | Not implemented | ❌ |  |
+| 18 | [MyTreeMap](18-my-tree-map) | Generic tree map (BST with comparator) | ✅ |  |
+| 19 | [MyTreeSet](19-my-tree-set) | Red-black tree set | ✅ | 18 |
+| 20 | [GraphAlgorithms](20-graph-algorithms) | Graph algorithms (SCC, max flow, max clique) | ✅ |  |
+| 21 | [MyHashMap](21-my-hash-map) | Hash map with separate chaining | ✅ |  |
+| 22 | [MyHtmlTagParser](22-my-html-tag-parser) | HTML tag counter via MyHashMap | ✅ | 21 |
+| 23 | [VariableFileParser](23-variable-file-parser) | Variable definition parser with MyHashMap | ✅ | 21 |
+| 24 | [MapComparison](24-map-comparison) | Performance comparison: HashMap vs TreeMap | ✅ | 18, 21 |
+| 25 | [MyHashSet](25-my-tree-set) | Set backed by MyTreeMap | ✅ | 18 |
+| 26 | [StringSetComparison](26-string-set-comparison) | String set with word-length comparer | ✅ | 25 |
+| 27 | [UniqueWords](27-unique-words) | Unique words via MyHashSet | ✅ | 25 |
+| 28 | [ExpandMyHashSet](28-expand-my-hash-set) | Iterators: IMyIterator, IMyListIterator + error hierarchy | ✅ | 25, 19, 6, 8, 10, 29 |
+| 29 | [InterfaceHierarchy](29-word-frequency-counter) | Interface hierarchy (IMyCollection, IMyList, etc.) + MyLinkedList | ✅ |  |
+| 30 | [MyString](30-text-analyzer) | Custom string class on char[] | ✅ |  |
+| 31 | [CrissCross](31-criss-cross) | Criss-cross puzzle generator (backtracking) | ✅ |  |
 
 ## Build & Run
 
@@ -44,6 +58,21 @@ cd 09-MyArrayTagParser && dotnet run
 cd 10-MyVector && dotnet run
 cd 11-IPParser && dotnet run
 cd 12-MyStack && dotnet run
+cd 13-ReversePolishEntry && dotnet run
+cd 14-MyArrayDeque && dotnet run
+cd 18-MyTreeMap && dotnet run
+cd 19-MyTreeSet && dotnet run
+cd 21-MyHashMap && dotnet run
+cd 22-MyHtmlTagParser && dotnet run
+cd 23-VariableFileParser && dotnet run
+cd 24-MapComparison && dotnet run
+cd 25-MyHashSet && dotnet run
+cd 26-StringSetComparison && dotnet run
+cd 27-UniqueWords && dotnet run
+cd 28-expand-my-hash-set && dotnet run
+cd 29-word-frequency-counter && dotnet run
+cd 30-text-analyzer && dotnet run
+cd 31-criss-cross && dotnet run
 ```
 
 ## Requirements

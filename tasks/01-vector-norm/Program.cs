@@ -7,7 +7,7 @@ using Task1.Collections;
 class Program
 {
     #region Helpers
-    // Reads test cases from a file and returns list of (Matrix, Vector)
+    
     static List<(Matrix, Vector)> ReadTests(string filename)
     {
         var tests = new List<(Matrix, Vector)>();
@@ -16,7 +16,7 @@ class Program
 
         while (i < lines.Length)
         {
-            // Skip empty lines
+            
             if (string.IsNullOrWhiteSpace(lines[i]))
             {
                 i++;
@@ -40,7 +40,7 @@ class Program
     #endregion
 
     #region Main
-    // Program entry point: reads tests and prints norms
+    
     static void Main()
     {
         string testFile = "test.txt"; 

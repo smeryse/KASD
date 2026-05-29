@@ -31,7 +31,7 @@ namespace Task25
 
         public MyHashSet(int initialCapacity, float loadFactor)
         {
-            // Дерево автоматически масштабируется, поэтому просто создаём пустое множество
+            
             map = new MyTreeMap<T, object>();
         }
 
@@ -202,7 +202,7 @@ namespace Task25
             Console.WriteLine($"Конструктор 1 — пустое множество: {set1}");
             Console.WriteLine($"  IsEmpty: {set1.IsEmpty()}, Size: {set1.Size()}");
 
-            int[] initial = { 5, 3, 8, 1, 9, 3, 2 }; // дублирующиеся значения игнорируются
+            int[] initial = { 5, 3, 8, 1, 9, 3, 2 }; 
             var set2 = new MyHashSet<int>(initial);
             Console.WriteLine($"\nКонструктор 2 — из массива {{5,3,8,1,9,3,2}}: {set2}");
             Console.WriteLine($"  Size: {set2.Size()} (дубликаты отброшены)");

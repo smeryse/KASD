@@ -1,5 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
@@ -8,10 +7,4 @@
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>disable</Nullable>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\18-my-tree-map\MyTreeMap.csproj" />
-    <ProjectReference Include="..\25-my-tree-set\Task25.csproj" />
-  </ItemGroup>
-
 </Project>

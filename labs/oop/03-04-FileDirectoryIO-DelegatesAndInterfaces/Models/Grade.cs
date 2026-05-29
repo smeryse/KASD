@@ -4,11 +4,11 @@ using System.Linq;
 
 public class Grade : IPrintable
 {
-    /*Класс, представляющий оценки студента по одному предмету*/
+    
     public Subject Subject { get; set; }
     public List<int> Scores { get; set; } = new List<int>();
 
-    // Средний балл
+    
     public double Average => Scores.Count > 0 ? Scores.Average() : 0;
 
     public Grade() { }

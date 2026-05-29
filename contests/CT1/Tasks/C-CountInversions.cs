@@ -3,12 +3,12 @@ using System.Linq;
 
 namespace CT1.Tasks
 {
-    // Ещё один вариант подсчёта инверсий
+    
     static class CountInversions
     {
         public static void Solve()
         {
-            Console.ReadLine(); // n
+            Console.ReadLine(); 
             int[] a = Console.ReadLine()
                              .Split(' ', StringSplitOptions.RemoveEmptyEntries)
                              .Select(int.Parse)

@@ -5,13 +5,8 @@ using System.Text;
 
 namespace CT9.Tasks;
 
-internal static class TaskG
+internal static class MultipleSearch
 {
-    public static void Main()
-    {
-        Solve();
-    }
-
     public static void Solve()
     {
         var fs = new FastScannerG(Console.OpenStandardInput());

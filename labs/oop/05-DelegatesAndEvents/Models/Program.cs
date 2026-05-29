@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-// Используем классы из Lab 4 (глобальный namespace)
+
 using BaseStudent = global::Student;
 using BaseCourse = global::Course;
 using BaseGroup = global::Group;
@@ -27,7 +27,7 @@ namespace ЛР5
                          .SelectMany(c => c.Groups)
                          .SelectMany(g => g.Students))
             {
-                // Подписываемся только если это Student из Lab 5 (с событиями)
+                
                 if (student is Student studentWithEvents)
                 {
                     studentWithEvents.ErrorOccurred += OnStudentError;
@@ -82,11 +82,11 @@ namespace ЛР5
             Console.WriteLine("=== Тест ошибок студентов ===");
             Console.WriteLine("\n--- Тест базового класса Student ---");
             
-            // Создаём студента базового класса
+            
             Student testStudent = new Student("Иван", "Базовый", 20);
             testStudent.ErrorOccurred += OnStudentError;
 
-            // Примеры генерации исключений для базового класса
+            
             try
             {
                 throw new StackOverflowException("Имитация переполнения стека");
@@ -97,20 +97,20 @@ namespace ЛР5
             {
                 int[] arr = new int[2];
                 Array objArr = arr;
-                objArr.SetValue("string", 0); // ArrayTypeMismatchException
+                objArr.SetValue("string", 0); 
             }
             catch (Exception ex) { testStudent.RaiseError(ex); }
 
             Console.WriteLine("\n--- Тест производного класса StudentWithErrorHandling ---");
             Console.WriteLine("(Переопределение события через наследование)\n");
 
-            // Создаём студента производного класса с переопределенным событием
+            
             StudentWithErrorHandling studentWithHandling = new StudentWithErrorHandling("Петр", "Производный", 21);
             
-            // Подписываемся на переопределенное событие
+            
             studentWithHandling.ErrorOccurred += ErrorNotifier.HandleStudentWithErrorHandling;
 
-            // Запускаем все тесты исключений через методы производного класса
+            
             studentWithHandling.RunAllExceptionTests();
 
             Console.WriteLine("\n--- Сравнение: базовый vs производный класс ---");
@@ -120,7 +120,7 @@ namespace ЛР5
         }
 
 
-        // === 1. Показать структуру ===
+        
         static void ShowStructure()
         {
             Console.Clear();
@@ -128,7 +128,7 @@ namespace ЛР5
             institute.Print();
         }
 
-        // === 2. Добавление ===
+        
         static void AddMenu()
         {
             Console.Clear();
@@ -211,7 +211,7 @@ namespace ЛР5
             Console.Write("Введите возраст: ");
             int age = int.Parse(Console.ReadLine());
 
-            // Используем Student из Lab 5 (с событиями)
+            
             group.AddStudent(new Student(name, surname, age));
             Console.WriteLine("Студент добавлен.");
         }
@@ -275,7 +275,7 @@ namespace ЛР5
             Console.WriteLine("Оценка добавлена.");
         }
 
-        // === 3. Редактирование ===
+        
         static void EditMenu()
         {
             Console.Clear();
@@ -383,7 +383,7 @@ namespace ЛР5
             Console.WriteLine("Название группы изменено.");
         }
 
-        // === 4. Удаление ===
+        
         static void DeleteMenu()
         {
             Console.Clear();
@@ -512,7 +512,7 @@ namespace ЛР5
                 Console.WriteLine("Такая оценка не найдена.");
         }
 
-        // === 5. Сохранение / загрузка ===
+        
         static void SaveToFile()
         {
             string path = "institute.json";
@@ -531,17 +531,17 @@ namespace ЛР5
 
             institute = BaseInstitute.LoadFromFile(path);
             Console.WriteLine("Данные успешно загружены.");
-            // После загрузки нужно подписаться на события новых студентов
+            
             SubscribeToStudentErrors();
         }
 
-        // === 6. Тесты ===
+        
         static void TestDelegate()
         {
             Console.Clear();
             Console.WriteLine("=== Тест делегата и интерфейсов ===");
 
-            // 1. Создаём курс, группу и предметы
+            
             BaseCourse course = new BaseCourse(1);
             BaseGroup group = new BaseGroup("А1");
             BaseSubject math = new BaseSubject("Математика", "Иванова", 60);
@@ -551,23 +551,23 @@ namespace ЛР5
             course.AddSubject(prog);
             course.AddGroup(group);
 
-            // 1.2. Создаём студентов
+            
             Student ivan = new Student("Иван", "Иванов", 19);
             Student petr = new Student("Петр", "Петров", 20);
-            Student sergey = new Student("Сергей", "Сидоров", 21); // Студент с тремя двойками
-            Student olga = new Student("Ольга", "Олегова", 20);   // Еще один студент с тремя двойками
+            Student sergey = new Student("Сергей", "Сидоров", 21); 
+            Student olga = new Student("Ольга", "Олегова", 20);   
 
             group.AddStudent(ivan);
             group.AddStudent(petr);
             group.AddStudent(sergey);
             group.AddStudent(olga);
 
-            // 1.3. Создаём многоадресный делегат для студентов
+            
             StudentAction actions = null;
             actions += s => s.AddSubject(math);
             actions += s => s.AddSubject(prog);
 
-            // Добавляем оценки Ивану (2 двойки)
+            
             actions += s =>
             {
                 if (s.StudentId == ivan.StudentId)
@@ -579,7 +579,7 @@ namespace ЛР5
                 }
             };
 
-            // Добавляем оценки Петру (без двоек)
+            
             actions += s =>
             {
                 if (s.StudentId == petr.StudentId)
@@ -591,7 +591,7 @@ namespace ЛР5
                 }
             };
 
-            // Добавляем оценки Сергею (3 двойки)
+            
             actions += s =>
             {
                 if (s.StudentId == sergey.StudentId)
@@ -603,7 +603,7 @@ namespace ЛР5
                 }
             };
 
-            // Добавляем оценки Ольге (4 двойки)
+            
             actions += s =>
             {
                 if (s.StudentId == olga.StudentId)
@@ -615,7 +615,7 @@ namespace ЛР5
                 }
             };
 
-            // 1.4. Вызываем делегат для всех студентов
+            
             Console.WriteLine("=== Исходные данные студентов ===");
             foreach (var student in group.Students)
             {
@@ -624,7 +624,7 @@ namespace ЛР5
                 Console.WriteLine();
             }
 
-            // 2. Добавляем курс в институт
+            
             institute.Courses.Clear();
             institute.AddCourse(course);
         }
@@ -633,7 +633,7 @@ namespace ЛР5
         {
             Console.WriteLine("=== Запрос: Удаление студентов первого курса с тремя двойками ===");
 
-            // Находим первый курс
+            
             var firstCourse = institute.Courses.FirstOrDefault(c => c.Number == 1);
             if (firstCourse == null)
             {
@@ -643,20 +643,20 @@ namespace ЛР5
 
             int removedCount = 0;
 
-            // Перебираем все группы первого курса
+            
             foreach (var group in firstCourse.Groups.ToList())
             {
-                // Находим студентов с тремя и более двойками
+                
                 var studentsToRemove = group.Students
                     .Where(s =>
                     {
-                        // Считаем общее количество двоек у студента
+                        
                         int twosCount = s.Grades.Sum(g => g.Scores.Count(score => score == 2));
                         return twosCount >= 3;
                     })
                     .ToList();
 
-                // Удаляем найденных студентов
+                
                 foreach (var student in studentsToRemove)
                 {
                     Console.WriteLine($"Удаляем студента: {student.Name} {student.Surname} (ID: {student.StudentId})");

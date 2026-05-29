@@ -6,7 +6,7 @@ using Task2.Collections;
 class Program
 {
     #region Helpers
-    // Reads a complex number from user input with given prompt
+    
     static Complex ReadComplex(string prompt)
     {
         Console.WriteLine(prompt);
@@ -16,7 +16,7 @@ class Program
     #endregion
 
     #region Main
-    // Interactive calculator for complex numbers
+    
     static void Main()
     {
         string[] single_operations = { "GetReal", "GetImag", "Module", "Argument", "ToString" };

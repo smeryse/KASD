@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace CT1.Tasks
 {
-    // Разбить массив на k частей с минимальным максимальным суммированием
+    
     static class SplitArray
     {
         private static int[] arr;

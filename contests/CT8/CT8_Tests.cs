@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace CT8.Tasks;
 
-/// <summary>
-/// Генератор тестов и проверка решений для задач A-F (кратчайшие пути)
-/// </summary>
+
+
+
 internal class CT8_TestRunner
 {
     private static readonly Random Rand = new Random(42);
@@ -20,7 +21,7 @@ internal class CT8_TestRunner
         Console.WriteLine("Запуск тестов для задач CT8 (кратчайшие пути)");
         Console.WriteLine(new string('=', 60));
 
-        // Задача A - Флойд
+        
         Console.WriteLine("\n--- Задача A: Флойд-Уоршелл ---");
         for (int i = 1; i <= 15; i++)
         {
@@ -30,7 +31,7 @@ internal class CT8_TestRunner
                 failed++;
         }
 
-        // Задача B - Дейкстра
+        
         Console.WriteLine("\n--- Задача B: Дейкстра ---");
         for (int i = 1; i <= 15; i++)
         {
@@ -40,7 +41,7 @@ internal class CT8_TestRunner
                 failed++;
         }
 
-        // Задача C - Цикл отрицательного веса
+        
         Console.WriteLine("\n--- Задача C: Цикл отрицательного веса ---");
         for (int i = 1; i <= 15; i++)
         {
@@ -50,7 +51,7 @@ internal class CT8_TestRunner
                 failed++;
         }
 
-        // Задача D - Кратчайший путь длины K
+        
         Console.WriteLine("\n--- Задача D: Кратчайший путь длины K ---");
         for (int i = 1; i <= 15; i++)
         {
@@ -60,7 +61,7 @@ internal class CT8_TestRunner
                 failed++;
         }
 
-        // Задача E - Беллман-Форд с -∞
+        
         Console.WriteLine("\n--- Задача E: Кратчайшие пути (Беллман-Форд) ---");
         for (int i = 1; i <= 15; i++)
         {
@@ -70,7 +71,7 @@ internal class CT8_TestRunner
                 failed++;
         }
 
-        // Задача F - Кефир
+        
         Console.WriteLine("\n--- Задача F: В поисках кефира ---");
         for (int i = 1; i <= 15; i++)
         {
@@ -166,38 +167,38 @@ internal class CT8_TestRunner
     {
         switch (testNum)
         {
-            case 1: // Пример из условия
+            case 1: 
                 return (4, new int[,] {
                     {0, 5, 9, 100}, {100, 0, 2, 8}, {100, 100, 0, 7}, {4, 100, 100, 0}
                 }, "0 5 7 13\n12 0 2 8\n11 16 0 7\n4 9 11 0");
 
-            case 2: // Одна вершина
+            case 2: 
                 return (1, new int[,] { {0} }, "0");
 
-            case 3: // Две вершины
+            case 3: 
                 return (2, new int[,] { {0, 1}, {2, 0} }, "0 1\n2 0");
 
-            case 4: // Три вершины, полный граф
+            case 4: 
                 return (3, new int[,] {
                     {0, 1, 5}, {2, 0, 3}, {100, 100, 0}
                 }, "0 1 4\n2 0 3\n100 100 0");
 
-            case 5: // Все вершины достижимы
+            case 5: 
                 return (3, new int[,] {
                     {0, 1, 1}, {1, 0, 1}, {1, 1, 0}
                 }, "0 1 1\n1 0 1\n1 1 0");
 
-            case 6: // Цепочка
+            case 6: 
                 return (4, new int[,] {
                     {0, 1, 100, 100}, {100, 0, 1, 100}, {100, 100, 0, 1}, {100, 100, 100, 0}
                 }, "0 1 2 3\n100 0 1 2\n100 100 0 1\n100 100 100 0");
 
-            case 7: // Отрицательные веса (но без отрицательных циклов)
+            case 7: 
                 return (3, new int[,] {
                     {0, -1, 100}, {100, 0, -2}, {100, 100, 0}
                 }, "0 -1 -3\n98 0 -2\n100 99 0");
 
-            case 8: // Большой граф
+            case 8: 
                 int n8 = 5;
                 var m8 = new int[n8, n8];
                 for (int i = 0; i < n8; i++)
@@ -205,29 +206,29 @@ internal class CT8_TestRunner
                         m8[i, j] = (i == j) ? 0 : 10;
                 return (n8, m8, string.Join("\n", Enumerable.Range(0, n8).Select(i => string.Join(" ", Enumerable.Range(0, n8).Select(j => (i == j) ? 0 : 10)))));
 
-            case 9: // Граф с нулевыми рёбрами
+            case 9: 
                 return (3, new int[,] {
                     {0, 0, 0}, {0, 0, 0}, {0, 0, 0}
                 }, "0 0 0\n0 0 0\n0 0 0");
 
-            case 10: // Несвязный граф
+            case 10: 
                 return (4, new int[,] {
                     {0, 1, 100, 100}, {100, 0, 100, 100}, {100, 100, 0, 1}, {100, 100, 100, 0}
                 }, "0 1 100 100\n100 0 100 100\n100 100 0 1\n100 100 100 0");
 
-            case 11: // Случайный малый граф
+            case 11: 
                 return GenerateRandomTestA(5, 10);
 
-            case 12: // Случайный малый граф
+            case 12: 
                 return GenerateRandomTestA(6, 15);
 
-            case 13: // Случайный малый граф
+            case 13: 
                 return GenerateRandomTestA(7, 20);
 
-            case 14: // Случайный малый граф
+            case 14: 
                 return GenerateRandomTestA(8, 25);
 
-            case 15: // Случайный малый граф
+            case 15: 
                 return GenerateRandomTestA(10, 30);
 
             default:
@@ -243,7 +244,7 @@ internal class CT8_TestRunner
             for (int j = 0; j < n; j++)
                 matrix[i, j] = (i == j) ? 0 : (Rand.Next(1, 20) > density / 3 ? INF : Rand.Next(-10, 20));
 
-        // Флойд для вычисления ожидаемого ответа
+        
         var dist = (int[,])matrix.Clone();
         for (int k = 0; k < n; k++)
             for (int i = 0; i < n; i++)
@@ -332,49 +333,49 @@ internal class CT8_TestRunner
     {
         switch (testNum)
         {
-            case 1: // Пример из условия
+            case 1: 
                 return (4, 5, new List<(int, int, int)> { (1, 2, 1), (1, 3, 5), (2, 4, 8), (3, 4, 1), (2, 3, 3) }, "0 1 4 5");
 
-            case 2: // Две вершины
+            case 2: 
                 return (2, 1, new List<(int, int, int)> { (1, 2, 10) }, "0 10");
 
-            case 3: // Цепочка
+            case 3: 
                 return (4, 3, new List<(int, int, int)> { (1, 2, 1), (2, 3, 2), (3, 4, 3) }, "0 1 3 6");
 
-            case 4: // Звезда
+            case 4: 
                 return (5, 4, new List<(int, int, int)> { (1, 2, 1), (1, 3, 2), (1, 4, 3), (1, 5, 4) }, "0 1 2 3 4");
 
-            case 5: // Цикл
+            case 5: 
                 return (4, 4, new List<(int, int, int)> { (1, 2, 1), (2, 3, 2), (3, 4, 3), (4, 1, 4) }, "0 1 3 4");
 
-            case 6: // Полный граф K4
+            case 6: 
                 return (4, 6, new List<(int, int, int)> { (1, 2, 1), (1, 3, 2), (1, 4, 3), (2, 3, 1), (2, 4, 2), (3, 4, 1) }, "0 1 2 3");
 
-            case 7: // С нулевыми весами
+            case 7: 
                 return (3, 2, new List<(int, int, int)> { (1, 2, 0), (2, 3, 0) }, "0 0 0");
 
-            case 8: // Большой вес
+            case 8: 
                 return (3, 2, new List<(int, int, int)> { (1, 2, 10000), (2, 3, 10000) }, "0 10000 20000");
 
-            case 9: // Несколько путей
+            case 9: 
                 return (4, 5, new List<(int, int, int)> { (1, 2, 10), (1, 3, 5), (2, 4, 1), (3, 2, 1), (3, 4, 10) }, "0 6 5 7");
 
-            case 10: // Сложный граф
+            case 10: 
                 return (5, 7, new List<(int, int, int)> { (1, 2, 1), (1, 3, 4), (2, 3, 2), (2, 4, 5), (3, 4, 1), (3, 5, 3), (4, 5, 1) }, "0 1 3 4 5");
 
-            case 11: // Случайный граф
+            case 11: 
                 return GenerateRandomTestB(10, 20);
 
-            case 12: // Случайный граф
+            case 12: 
                 return GenerateRandomTestB(15, 30);
 
-            case 13: // Случайный граф
+            case 13: 
                 return GenerateRandomTestB(20, 40);
 
-            case 14: // Случайный граф
+            case 14: 
                 return GenerateRandomTestB(25, 50);
 
-            case 15: // Случайный граф
+            case 15: 
                 return GenerateRandomTestB(30, 60);
 
             default:
@@ -402,7 +403,7 @@ internal class CT8_TestRunner
             }
         }
 
-        // Дейкстра для ожидаемого ответа
+        
         const long INF = long.MaxValue / 4;
         var adj = new List<(int, int)>[n + 1];
         for (int i = 1; i <= n; i++) adj[i] = new List<(int, int)>();
@@ -464,7 +465,7 @@ internal class CT8_TestRunner
             }
             else
             {
-                // Проверяем только наличие/отсутствие цикла
+                
                 bool actualHasCycle = actual.Contains("YES");
                 if (actualHasCycle == hasCycle)
                 {
@@ -529,53 +530,53 @@ internal class CT8_TestRunner
 
         switch (testNum)
         {
-            case 1: // Пример из условия
+            case 1: 
                 return (2, new int[,] { {0, -1}, {-1, 0} }, true, "YES\n2\n2 1");
 
-            case 2: // Без цикла
+            case 2: 
                 return (3, new int[,] { {0, 1, INF}, {INF, 0, 2}, {INF, INF, 0} }, false, "NO");
 
-            case 3: // С циклом
+            case 3: 
                 return (3, new int[,] { {0, 1, INF}, {INF, 0, -5}, {2, INF, 0} }, true, "YES");
 
-            case 4: // Одна вершина
+            case 4: 
                 return (1, new int[,] { {0} }, false, "NO");
 
-            case 5: // Отрицательное ребро без цикла
+            case 5: 
                 return (2, new int[,] { {0, -5}, {INF, 0} }, false, "NO");
 
-            case 6: // Нулевой цикл
+            case 6: 
                 return (2, new int[,] { {0, 0}, {0, 0} }, false, "NO");
 
-            case 7: // Большой отрицательный цикл
+            case 7: 
                 return (3, new int[,] { {0, -10, INF}, {INF, 0, -10}, {-10, INF, 0} }, true, "YES");
 
-            case 8: // Положительный цикл
+            case 8: 
                 return (3, new int[,] { {0, 1, INF}, {INF, 0, 1}, {1, INF, 0} }, false, "NO");
 
-            case 9: // Сложный граф без цикла
+            case 9: 
                 return (4, new int[,] {
                     {0, 1, INF, INF}, {INF, 0, 2, INF}, {INF, INF, 0, 3}, {INF, INF, INF, 0}
                 }, false, "NO");
 
-            case 10: // Сложный граф с циклом
+            case 10: 
                 return (4, new int[,] {
                     {0, 1, INF, INF}, {INF, 0, 2, INF}, {INF, INF, 0, -10}, {1, INF, INF, 0}
                 }, true, "YES");
 
-            case 11: // Случайный граф
+            case 11: 
                 return GenerateRandomTestC(5, 0.3);
 
-            case 12: // Случайный граф
+            case 12: 
                 return GenerateRandomTestC(6, 0.4);
 
-            case 13: // Случайный граф
+            case 13: 
                 return GenerateRandomTestC(7, 0.5);
 
-            case 14: // Случайный граф
+            case 14: 
                 return GenerateRandomTestC(8, 0.3);
 
-            case 15: // Случайный граф
+            case 15: 
                 return GenerateRandomTestC(10, 0.4);
 
             default:
@@ -600,7 +601,7 @@ internal class CT8_TestRunner
                     matrix[i, j] = Rand.Next(1, 20);
             }
 
-        // Проверяем наличие отрицательного цикла через Флойд
+        
         var dist = (int[,])matrix.Clone();
         for (int k = 0; k < n; k++)
             for (int i = 0; i < n; i++)
@@ -688,49 +689,49 @@ internal class CT8_TestRunner
     {
         switch (testNum)
         {
-            case 1: // Пример 1
+            case 1: 
                 return (3, 3, 1, 1, new List<(int, int, int)> { (1, 2, 100), (2, 3, 300), (1, 3, 2) }, "-1\n100\n2");
 
-            case 2: // Пример 2
+            case 2: 
                 return (3, 3, 2, 1, new List<(int, int, int)> { (1, 2, 100), (2, 3, 300), (1, 3, 2) }, "-1\n-1\n400");
 
-            case 3: // K=0
+            case 3: 
                 return (3, 2, 0, 1, new List<(int, int, int)> { (1, 2, 10), (2, 3, 20) }, "0\n-1\n-1");
 
-            case 4: // Цепочка K=2
+            case 4: 
                 return (4, 3, 2, 1, new List<(int, int, int)> { (1, 2, 1), (2, 3, 2), (3, 4, 3) }, "-1\n-1\n3\n-1");
 
-            case 5: // K=3 цепочка
+            case 5: 
                 return (4, 3, 3, 1, new List<(int, int, int)> { (1, 2, 1), (2, 3, 2), (3, 4, 3) }, "-1\n-1\n-1\n6");
 
-            case 6: // Несколько путей
+            case 6: 
                 return (3, 4, 2, 1, new List<(int, int, int)> { (1, 2, 1), (1, 3, 10), (2, 3, 1), (3, 2, 1) }, "-1\n11\n2");
 
-            case 7: // Отрицательные веса
+            case 7: 
                 return (3, 3, 2, 1, new List<(int, int, int)> { (1, 2, 5), (2, 3, -3), (1, 3, 10) }, "-1\n-1\n2");
 
-            case 8: // K больше числа вершин
+            case 8: 
                 return (3, 3, 5, 1, new List<(int, int, int)> { (1, 2, 1), (2, 3, 1), (3, 1, 1) }, "-1\n-1\n5");
 
-            case 9: // Полный граф
+            case 9: 
                 return (4, 6, 2, 1, new List<(int, int, int)> { (1, 2, 1), (1, 3, 2), (1, 4, 3), (2, 3, 1), (2, 4, 2), (3, 4, 1) }, "-1\n-1\n2\n3");
 
-            case 10: // Несвязный
+            case 10: 
                 return (4, 2, 2, 1, new List<(int, int, int)> { (1, 2, 1), (3, 4, 1) }, "-1\n-1\n-1\n-1");
 
-            case 11: // Случайный
+            case 11: 
                 return GenerateRandomTestD(5, 8, 2);
 
-            case 12: // Случайный
+            case 12: 
                 return GenerateRandomTestD(6, 10, 3);
 
-            case 13: // Случайный
+            case 13: 
                 return GenerateRandomTestD(7, 12, 4);
 
-            case 14: // Случайный
+            case 14: 
                 return GenerateRandomTestD(8, 15, 2);
 
-            case 15: // Случайный
+            case 15: 
                 return GenerateRandomTestD(10, 20, 3);
 
             default:
@@ -758,7 +759,7 @@ internal class CT8_TestRunner
             }
         }
 
-        // Динамика для ожидаемого ответа
+        
         const long INF = long.MaxValue / 4;
         long[] dist = new long[n + 1];
         for (int i = 1; i <= n; i++) dist[i] = INF;
@@ -853,49 +854,49 @@ internal class CT8_TestRunner
     {
         switch (testNum)
         {
-            case 1: // Пример из условия
+            case 1: 
                 return (6, 7, 1, new List<(int, int, long)> { (1, 2, 10), (2, 3, 5), (1, 3, 100), (3, 5, 7), (5, 4, 10), (4, 3, -18), (6, 1, -1) }, "0\n10\n-\n-\n-\n*");
 
-            case 2: // Простой граф
+            case 2: 
                 return (3, 2, 1, new List<(int, int, long)> { (1, 2, 5), (2, 3, 3) }, "0\n5\n8");
 
-            case 3: // Несвязный
+            case 3: 
                 return (4, 2, 1, new List<(int, int, long)> { (1, 2, 1), (3, 4, 1) }, "0\n1\n*\n*");
 
-            case 4: // Отрицательное ребро без цикла
+            case 4: 
                 return (3, 3, 1, new List<(int, int, long)> { (1, 2, 5), (2, 3, -3), (1, 3, 10) }, "0\n5\n2");
 
-            case 5: // Отрицательный цикл
+            case 5: 
                 return (3, 3, 1, new List<(int, int, long)> { (1, 2, 1), (2, 3, -5), (3, 2, 1) }, "0\n-\n-");
 
-            case 6: // Петля
+            case 6: 
                 return (2, 2, 1, new List<(int, int, long)> { (1, 1, 0), (1, 2, 5) }, "0\n5");
 
-            case 7: // Отрицательная петля
+            case 7: 
                 return (2, 2, 1, new List<(int, int, long)> { (1, 1, -1), (1, 2, 5) }, "-\n-");
 
-            case 8: // Кратные рёбра
+            case 8: 
                 return (2, 3, 1, new List<(int, int, long)> { (1, 2, 10), (1, 2, 5), (1, 2, 8) }, "0\n5");
 
-            case 9: // Большой вес
+            case 9: 
                 return (3, 2, 1, new List<(int, int, long)> { (1, 2, 1000000000), (2, 3, 1000000000) }, "0\n1000000000\n2000000000");
 
-            case 10: // Сложный граф
+            case 10: 
                 return (5, 6, 1, new List<(int, int, long)> { (1, 2, 1), (2, 3, 2), (3, 4, 3), (4, 5, 4), (1, 5, 20), (2, 5, 10) }, "0\n1\n3\n6\n10");
 
-            case 11: // Случайный
+            case 11: 
                 return GenerateRandomTestE(5, 8);
 
-            case 12: // Случайный
+            case 12: 
                 return GenerateRandomTestE(6, 10);
 
-            case 13: // Случайный
+            case 13: 
                 return GenerateRandomTestE(7, 12);
 
-            case 14: // Случайный
+            case 14: 
                 return GenerateRandomTestE(8, 15);
 
-            case 15: // Случайный
+            case 15: 
                 return GenerateRandomTestE(10, 20);
 
             default:
@@ -914,7 +915,7 @@ internal class CT8_TestRunner
             edges.Add((u, v, w));
         }
 
-        // Bellman-Ford для ожидаемого ответа (упрощённо)
+        
         const long INF = long.MaxValue / 4;
         long[] dist = new long[n + 1];
         for (int i = 1; i <= n; i++) dist[i] = INF;
@@ -1028,49 +1029,49 @@ internal class CT8_TestRunner
     {
         switch (testNum)
         {
-            case 1: // Пример 1
+            case 1: 
                 return (4, 4, new List<(int, int, int)> { (1, 2, 3), (2, 3, 1), (3, 4, 7), (4, 2, 10) }, 1, 4, 3, 11);
 
-            case 2: // Пример 2 (несвязный)
+            case 2: 
                 return (4, 2, new List<(int, int, int)> { (1, 2, 10), (2, 3, 5) }, 1, 2, 4, -1);
 
-            case 3: // Прямой путь
+            case 3: 
                 return (3, 2, new List<(int, int, int)> { (1, 2, 1), (2, 3, 1) }, 1, 2, 3, 2);
 
-            case 4: // Звезда
+            case 4: 
                 return (5, 4, new List<(int, int, int)> { (1, 2, 1), (1, 3, 2), (1, 4, 3), (1, 5, 4) }, 2, 3, 4, 7);
 
-            case 5: // Треугольник
+            case 5: 
                 return (3, 3, new List<(int, int, int)> { (1, 2, 1), (2, 3, 2), (1, 3, 5) }, 1, 2, 3, 3);
 
-            case 6: // Полный граф K4
+            case 6: 
                 return (4, 6, new List<(int, int, int)> { (1, 2, 1), (1, 3, 2), (1, 4, 3), (2, 3, 1), (2, 4, 2), (3, 4, 1) }, 1, 2, 4, 3);
 
-            case 7: // Большое расстояние
+            case 7: 
                 return (5, 4, new List<(int, int, int)> { (1, 2, 100), (2, 3, 100), (3, 4, 100), (4, 5, 100) }, 1, 3, 5, 400);
 
-            case 8: // Несвязный граф
+            case 8: 
                 return (6, 3, new List<(int, int, int)> { (1, 2, 1), (3, 4, 1), (5, 6, 1) }, 1, 3, 5, -1);
 
-            case 9: // a,b,c рядом
+            case 9: 
                 return (4, 4, new List<(int, int, int)> { (1, 2, 1), (2, 3, 1), (3, 4, 1), (4, 1, 1) }, 1, 2, 3, 2);
 
-            case 10: // Сложный граф
+            case 10: 
                 return (6, 7, new List<(int, int, int)> { (1, 2, 2), (2, 3, 3), (3, 4, 1), (4, 5, 2), (5, 6, 1), (1, 6, 10), (2, 5, 5) }, 1, 3, 6, 9);
 
-            case 11: // Случайный
+            case 11: 
                 return GenerateRandomTestF(8, 12);
 
-            case 12: // Случайный
+            case 12: 
                 return GenerateRandomTestF(10, 15);
 
-            case 13: // Случайный
+            case 13: 
                 return GenerateRandomTestF(12, 18);
 
-            case 14: // Случайный
+            case 14: 
                 return GenerateRandomTestF(15, 20);
 
-            case 15: // Случайный
+            case 15: 
                 return GenerateRandomTestF(20, 30);
 
             default:
@@ -1104,7 +1105,7 @@ internal class CT8_TestRunner
         int c = Rand.Next(1, n + 1);
         while (c == a || c == b) c = Rand.Next(1, n + 1);
 
-        // 3 Дейкстры
+        
         const long INF = long.MaxValue / 4;
         var adj = new List<(int, int)>[n + 1];
         for (int i = 1; i <= n; i++) adj[i] = new List<(int, int)>();

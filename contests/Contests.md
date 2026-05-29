@@ -9,7 +9,11 @@
 | 5 | [CT5](CT5/CT5.md) | Contest tasks: TBD | ⬜ |
 | 6 | [CT6](CT6/CT6.md) | Contest tasks: TBD | ⬜ |
 | 7 | [CT7](CT7/CT7.md) | Contest tasks: TBD | ⬜ |
-| 8 | [CT8](CT8/CT8.md) | Contest tasks: TBD | ⬜ |
+| 8 | [CT8](CT8/CT8.md) | Contest tasks: strings, hashes | ⬜ |
+| 9 | [CT9](CT9/CT9.md) | Contest tasks: substring search, suffix array | ✅ |
+| 10 | [CT10](CT10/CT10.md) | Contest tasks: segment tree, range queries | ✅ |
+| 11 | [CT11](CT11/CT11.md) | Contest tasks: maximum flow applications | ✅ |
+| 12 | [CT12](CT12/CT12.md) | Contest tasks: max-flow variants (MCMF, assignment) | 🟡 |
 
 ## Build & Run
 

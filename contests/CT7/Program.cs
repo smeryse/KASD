@@ -35,7 +35,7 @@ internal class Program
 
         var key = args[0];
 
-        // Специальная команда для запуска тестов задачи E
+        
         if (key.Equals("E-tests", StringComparison.OrdinalIgnoreCase))
         {
             E_TestRunner.RunAllTests();

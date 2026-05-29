@@ -38,7 +38,7 @@ internal class ShortestPath2
             dist[i] = INF;
         dist[1] = 0;
 
-        // Дейкстра с приоритетной очередью
+        
         var pq = new PriorityQueue<int, long>();
         pq.Enqueue(1, 0);
 

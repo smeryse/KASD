@@ -1,0 +1,16 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="Lab9_WPF.EditWindow"
+        Title="Редактирование" Height="500" Width="550"
+        WindowStartupLocation="CenterOwner"
+        Background="#1E1E1E">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Margin="15" Spacing="10">
+            <Button x:Name="btnSave" Content="Сохранить" Width="100" Click="Btn_Save_Click" Foreground="White"/>
+            <Button x:Name="btnCancel" Content="Отмена" Width="100" Click="Btn_Cancel_Click" Foreground="White"/>
+        </StackPanel>
+        <ScrollViewer>
+            <StackPanel x:Name="formPanel" Margin="15" Spacing="8"/>
+        </ScrollViewer>
+    </DockPanel>
+</Window>
